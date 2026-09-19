@@ -162,26 +162,76 @@ header p {
     white-space: nowrap;
 }
 
+/* Vertical month markers */
+.scale-marker.vertical-marker {
+    bottom: auto;
+    top: 4px;
+    transform: translateX(-50%) rotate(-90deg);
+    transform-origin: left center;
+    white-space: nowrap;
+}
+
+.scale-marker.vertical-marker span {
+    display: inline-block;
+    padding: 2px 4px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+/* Month grid lines */
+.month-grid-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(52, 152, 219, 0.2);
+    pointer-events: none;
+}
+
 /* ==========================================================================
    4. Timeline Data Rows & Bars
    ========================================================================== */
 .timeline-bars {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-flow: row;
     gap: 12px;
 }
 
 .timeline-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     align-items: center;
     width: 100%;
+    grid-row: var(--row, auto);
 }
 
 .timeline-label {
     flex-shrink: 0;
-    padding-right: 15px;
+    padding-right: 8px;
     box-sizing: border-box;
+    position: relative;
+    width: var(--track-label-width, 120px);
+    min-width: 0;
+    pointer-events: auto !important;
+    z-index: 100;
+}
+
+.conference-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conference-name-vertical {
+    font-weight: 700;
+    font-size: 13px;
+    color: #2980b9;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-align: center;
+    white-space: nowrap;
 }
 
 .conference-name {
@@ -191,6 +241,46 @@ header p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.conference-first {
+    /* First track of a conference - show the name vertically */
+    font-weight: 700;
+    color: #2980b9;
+    grid-row: var(--span, span 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conference-spanned {
+    /* Subsequent tracks of same conference - hidden */
+    display: none;
+}
+
+/* Track name styling - ensure links are clickable */
+.track-name {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    z-index: 10;
+}
+
+.track-name a {
+    color: #7f8c8d;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    pointer-events: auto !important;
+}
+
+.track-name a:hover {
+    color: #2980b9;
+    text-decoration: underline;
 }
 
 .days-left {
@@ -277,6 +367,20 @@ header p {
     height: 10px;
     background-color: #e74c3c;
     border-radius: 50%;
+}
+
+/* Conference Group Box - shaded background for all tracks of same conference */
+.conference-group-box {
+    background: linear-gradient(90deg, rgba(52, 152, 219, 0.03) 0%, rgba(52, 152, 219, 0.01) 100%);
+    border-radius: 0 4px 4px 0;
+    padding: 4px 0;
+    margin: 2px 0;
+}
+
+/* Alternating colors for different conferences */
+.conf-group-1, .conf-group-3, .conf-group-5, .conf-group-7, .conf-group-9, 
+.conf-group-11, .conf-group-13, .conf-group-15, .conf-group-17, .conf-group-19 {
+    background: linear-gradient(90deg, rgba(46, 204, 113, 0.03) 0%, rgba(46, 204, 113, 0.01) 100%);
 }
 
 .no-data {

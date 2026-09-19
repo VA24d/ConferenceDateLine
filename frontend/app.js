@@ -165,81 +165,146 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Dynamic label width calculation
-        let maxWidth = 180;
+        // Calculate widths for conference column and track label column
+        let confColWidth = 40; // Minimum width for vertical conference names
+        let trackLabelWidth = 120; // Minimum width for track labels
+        
         deadlines.forEach(d => {
+            const confName = d.conference_name || 'Conference';
             const name = d.workshop_name || d.track_name || 'Main Track';
-            const labelText = `${d.conference_name || ''} - ${name}`;
-            const textWidth = Math.min(labelText.length * 7.5, 320);
-            maxWidth = Math.max(maxWidth, textWidth);
+            
+            // Conference column width - estimate based on text length with vertical writing
+            const confTextWidth = Math.min(confName.length * 8, 80);
+            confColWidth = Math.max(confColWidth, confTextWidth);
+            
+            // Track label width - measure actual text
+            const textWidth = Math.ceil(name.length * 7.2);
+            trackLabelWidth = Math.max(trackLabelWidth, textWidth);
+        });
+        
+        // Cap track label width to avoid excessive stretching
+        trackLabelWidth = Math.min(trackLabelWidth, 180);
+        
+        const maxWidth = confColWidth + trackLabelWidth;
+
+        // Group deadlines by conference name
+        const groupedDeadlines = {};
+        deadlines.forEach(d => {
+            const confName = d.conference_name || 'Conference';
+            if (!groupedDeadlines[confName]) {
+                groupedDeadlines[confName] = [];
+            }
+            groupedDeadlines[confName].push(d);
         });
 
-        // Render Header Scale
+        // Render Header Scale with vertical month markers and grid lines
         let html = `
             <div class="timeline-wrapper">
-                <div class="timeline-scale-row">
-                    <div class="timeline-label-spacer" style="width: ${maxWidth}px"></div>
+                <div class="timeline-scale-row" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr;">
+                    <div class="timeline-label-spacer" style="width: ${confColWidth}px"></div>
+                    <div class="timeline-label-spacer" style="width: ${trackLabelWidth}px"></div>
                     <div class="timeline-scale">
         `;
 
-        const numMarkers = 6;
-        for (let i = 0; i <= numMarkers; i++) {
-            const date = new Date(minDate);
-            date.setDate(date.getDate() + Math.round(totalDays * i / numMarkers));
-            const left = (i / numMarkers) * 100;
-            html += `<div class="scale-marker" style="left: ${left}%"><span>${date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' })}</span></div>`;
+        // Add vertical grid lines at month boundaries
+        const months = [];
+        const currentDate = new Date(minDate);
+        currentDate.setDate(1); // Start from first day of month
+        const endDate = new Date(maxDate);
+        
+        while (currentDate <= endDate) {
+            const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const offset = ((monthStart - minDate) / 86400000) / totalDays;
+            if (offset >= 0 && offset <= 1) {
+                months.push({
+                    date: new Date(currentDate),
+                    left: offset * 100
+                });
+            }
+            currentDate.setMonth(currentDate.getMonth() + 1);
         }
+
+        // Render vertical grid lines for each month
+        months.forEach((month, i) => {
+            html += `<div class="month-grid-line" style="left: ${month.left}%"></div>`;
+        });
+
+        // Render month labels vertically
+        months.forEach((month, i) => {
+            const label = month.date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+            html += `<div class="scale-marker vertical-marker" style="left: ${month.left}%"><span>${label}</span></div>`;
+        });
 
         html += `
                     </div>
                 </div>
-                <div class="timeline-bars">
+                <div class="timeline-bars" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr; gap: 12px;">
                     <!-- Single global Today line overlay -->
-                    <div class="today-line-overlay" style="left: calc(${maxWidth}px + (100% - ${maxWidth}px) * ${todayOffset / 100})"></div>
+                    <div class="today-line-overlay" style="grid-column: 3; left: calc(100% * ${todayOffset / 100})"></div>
         `;
 
-        // Render Rows
-        deadlines.forEach(d => {
-            const start = parseLocalDate(d.paper_submission_date);
-            const end = parseLocalDate(d.intimation_date);
-            const abstractDate = parseLocalDate(d.abstract_deadline);
+        // Render Rows - each conference gets its own row with spanning
+        let rowIndex = 1;
+        let confIndex = 0;
+        for (const confName in groupedDeadlines) {
+            const tracks = groupedDeadlines[confName];
+            const trackCount = tracks.length;
+            
+            // Conference name column (spans all tracks vertically)
+            html += `<div class="conference-column" style="grid-row: ${rowIndex} / span ${trackCount}; grid-column: 1;" title="${confName}">
+                        <div class="conference-name-vertical">${confName}</div>
+                     </div>`;
+            
+            // Render each track
+            tracks.forEach((d, trackIndex) => {
+                const start = parseLocalDate(d.paper_submission_date);
+                const end = parseLocalDate(d.intimation_date);
+                const abstractDate = parseLocalDate(d.abstract_deadline);
 
-            const startOffset = Math.max(0, Math.min(100, ((start - minDate) / 86400000) / totalDays * 100));
-            const endOffset = Math.max(0, Math.min(100, ((end - minDate) / 86400000) / totalDays * 100));
-            const width = Math.max(1.5, endOffset - startOffset);
+                const startOffset = Math.max(0, Math.min(100, ((start - minDate) / 86400000) / totalDays * 100));
+                const endOffset = Math.max(0, Math.min(100, ((end - minDate) / 86400000) / totalDays * 100));
+                const width = Math.max(1.5, endOffset - startOffset);
 
-            const daysToSubmission = Math.ceil((start - today) / 86400000);
+                const daysToSubmission = Math.ceil((start - today) / 86400000);
 
-            let daysColorClass = 'days-green';
-            if (daysToSubmission <= 10) daysColorClass = 'days-darkred';
-            else if (daysToSubmission <= 30) daysColorClass = 'days-red';
-            else if (daysToSubmission <= 60) daysColorClass = 'days-yellow';
+                let daysColorClass = 'days-green';
+                if (daysToSubmission <= 10) daysColorClass = 'days-darkred';
+                else if (daysToSubmission <= 30) daysColorClass = 'days-red';
+                else if (daysToSubmission <= 60) daysColorClass = 'days-yellow';
 
-            const daysDisplay = daysToSubmission > 0 ? `${daysToSubmission} days left` : 
-                               daysToSubmission === 0 ? 'Today!' : 
-                               `${Math.abs(daysToSubmission)} days ago`;
+                const daysDisplay = daysToSubmission > 0 ? `${daysToSubmission} days left` : 
+                                   daysToSubmission === 0 ? 'Today!' : 
+                                   `${Math.abs(daysToSubmission)} days ago`;
 
-            const name = d.workshop_name || d.track_name || 'Main Track';
-            const confName = d.conference_name || 'Conference';
-            const strikeClass = daysToSubmission <= 0 ? 'strike-through' : '';
-            const durationDays = Math.round((end - start) / 86400000);
+                const name = d.workshop_name || d.track_name || 'Main Track';
+                const websiteUrl = d.website_url || '';
+                const strikeClass = daysToSubmission <= 0 ? 'strike-through' : '';
+                const durationDays = Math.round((end - start) / 86400000);
+                
+                // Format dates for tooltip
+                const formatDate = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
+                const barTooltip = `Submission: ${formatDate(start)}\nNotification: ${formatDate(end)}${abstractDate ? `\nAbstract: ${formatDate(abstractDate)}` : ''}`;
 
-            html += `
-                <div class="timeline-row">
-                    <div class="timeline-label" style="width: ${maxWidth}px">
-                        <div class="conference-name" title="${confName} - ${name}">${confName} - ${name}</div>
-                        <div class="days-left ${daysColorClass} ${strikeClass}">${daysDisplay}</div>
-                    </div>
-                    <div class="timeline-bar-container">
-                        <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
-                            <span class="duration">${durationDays}d</span>
+                html += `
+                    <div class="timeline-row conf-group-${confIndex}" style="grid-row: ${rowIndex + trackIndex}; grid-column: 2 / span 2;">
+                        <div class="timeline-label" style="width: ${trackLabelWidth}px; position: relative; z-index: 100;">
+                            <div class="track-name">${websiteUrl ? `<a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" title="${name}">${name}</a>` : `<span title="${name}">${name}</span>`}</div>
+                            <div class="days-left ${daysColorClass} ${strikeClass}">${daysDisplay}</div>
                         </div>
-                        ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate - minDate) / 86400000) / totalDays * 100}%" title="Abstract Deadline"></div>` : ''}
-                        ${end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date"></div>` : ''}
+                        <div class="timeline-bar-container" title="${barTooltip}">
+                            <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
+                                <span class="duration">${durationDays}d</span>
+                            </div>
+                            ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate - minDate) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDate(abstractDate)}"></div>` : ''}
+                            ${end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDate(end)}"></div>` : ''}
+                        </div>
                     </div>
-                </div>
-            `;
-        });
+                `;
+            });
+            
+            confIndex++;
+            rowIndex += trackCount;
+        }
 
         html += '</div></div>';
         container.innerHTML = html;
@@ -257,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isWorkshop = !!d.workshop_name;
             const cardClass = isWorkshop ? 'workshop-card workshop' : 'workshop-card';
             const name = d.workshop_name || (d.track_name || 'Main Track');
-            const url = d.url || d.link || d.website;
+            const url = d.website_url;
             
             const titleHtml = url 
                 ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="workshop-title-link">${name} ↗</a>`
