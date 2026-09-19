@@ -1,5 +1,7 @@
 conference_name,track_name
 ICSE,
+SANER,
+ISSTA,
+ICST,
 FSE,
-MSR,RPT
-ASE,RPT
+EASE,
