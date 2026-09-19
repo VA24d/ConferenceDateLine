@@ -250,11 +250,11 @@ class ConferenceScraper:
                     date_text = details[0]
                     label = details[1].lower()
                     
-                    if 'abstract' in label:
+                    if 'abstract' in label and not result['abstract_deadline']:
                         result['abstract_deadline'] = self._parse_date(date_text)
-                    elif 'submission' in label:
+                    elif 'submission' in label and not result['paper_submission']:
                         result['paper_submission'] = self._parse_date(date_text)
-                    elif 'notification' in label or 'acceptance' in label:
+                    elif ('notification' in label or 'acceptance' in label)and not result['notification']:
                         result['notification'] = self._parse_date(date_text)
 
         # Return early if sidebar extraction succeeded
@@ -275,7 +275,7 @@ class ConferenceScraper:
                     label = text_first.lower() if not any(char.isdigit() for char in text_first) else text_second.lower()
                     date_text = text_second if label == text_first.lower() else text_first
 
-                    if 'submission' in label and not result['paper_submission']:
+                    if ('submission' in label or 'full paper' in label) and not result['paper_submission']:
                         result['paper_submission'] = self._parse_date(date_text)
                     elif 'abstract' in label and not result['abstract_deadline']:
                         result['abstract_deadline'] = self._parse_date(date_text)
@@ -530,7 +530,8 @@ class ConferenceScraper:
                     workshop_name=None if venue_type == 'Conference' else name,
                     paper_submission_date=deadline_date,
                     abstract_deadline=abstract_deadline,
-                    intimation_date=intimation_date
+                    intimation_date=intimation_date,
+                    website_url=link if link else None
                 )
                 deadlines.append(deadline)
         
@@ -601,7 +602,7 @@ class ConferenceScraper:
         """
         with open(output_path, 'w', newline='', encoding='utf-8') as f:
             fieldnames = ['conference_name', 'track_name', 'workshop_name',
-                         'paper_submission_date', 'abstract_deadline', 'intimation_date']
+                         'paper_submission_date', 'abstract_deadline', 'intimation_date', 'website_url']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             for d in deadlines:
@@ -612,6 +613,7 @@ class ConferenceScraper:
                     'paper_submission_date': d.paper_submission_date.isoformat() if d.paper_submission_date else '',
                     'abstract_deadline': d.abstract_deadline.isoformat() if d.abstract_deadline else '',
                     'intimation_date': d.intimation_date.isoformat() if d.intimation_date else '',
+                    'website_url': d.website_url or '',
                 })
 
     def save_to_csv(self, deadlines: List[Deadline], output_path: str):
@@ -624,7 +626,7 @@ class ConferenceScraper:
         """
         with open(output_path, 'w', newline='', encoding='utf-8') as f:
             fieldnames = ['conference_name', 'track_name', 'workshop_name',
-                         'paper_submission_date', 'abstract_deadline', 'intimation_date']
+                         'paper_submission_date', 'abstract_deadline', 'intimation_date', 'website_url']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             for d in deadlines:
@@ -635,6 +637,7 @@ class ConferenceScraper:
                     'paper_submission_date': d.paper_submission_date.isoformat() if d.paper_submission_date else '',
                     'abstract_deadline': d.abstract_deadline.isoformat() if d.abstract_deadline else '',
                     'intimation_date': d.intimation_date.isoformat() if d.intimation_date else '',
+                    'website_url': d.website_url or '',
                 })
 
 

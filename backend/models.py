@@ -15,6 +15,7 @@ class Deadline:
     paper_submission_date: date
     abstract_deadline: Optional[date]
     intimation_date: date
+    website_url: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
@@ -25,6 +26,7 @@ class Deadline:
             "paper_submission_date": self.paper_submission_date.isoformat() if self.paper_submission_date else None,
             "abstract_deadline": self.abstract_deadline.isoformat() if self.abstract_deadline else None,
             "intimation_date": self.intimation_date.isoformat() if self.intimation_date else None,
+            "website_url": self.website_url,
         }
 
     @property

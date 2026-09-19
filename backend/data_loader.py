@@ -53,6 +53,7 @@ class DataLoader:
                 paper_submission_date=parse_date(row.get('paper_submission_date')),
                 abstract_deadline=parse_date(row.get('abstract_deadline')),
                 intimation_date=parse_date(row.get('intimation_date')),
+                website_url=row.get('website_url', '').strip() or None,
             )
             if deadline.conference_name and deadline.paper_submission_date:
                 deadlines.append(deadline)
@@ -82,7 +83,8 @@ class DataLoader:
 
     def add_workshop(self, conference_name: str, track_name: str, 
                      workshop_name: str, paper_submission_date: str,
-                     abstract_deadline: Optional[str], intimation_date: str) -> Deadline:
+                     abstract_deadline: Optional[str], intimation_date: str,
+                     website_url: Optional[str] = None) -> Deadline:
         """
         Add a new workshop entry to the CSV file.
         
@@ -95,13 +97,14 @@ class DataLoader:
             paper_submission_date=parse_date(paper_submission_date),
             abstract_deadline=parse_date(abstract_deadline) if abstract_deadline else None,
             intimation_date=parse_date(intimation_date),
+            website_url=website_url,
         )
         
         # Append to CSV file
         file_exists = os.path.exists(self.data_path)
         with open(self.data_path, 'a', newline='', encoding='utf-8') as f:
             fieldnames = ['conference_name', 'track_name', 'workshop_name', 
-                         'paper_submission_date', 'abstract_deadline', 'intimation_date']
+                         'paper_submission_date', 'abstract_deadline', 'intimation_date', 'website_url']
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             
             if not file_exists:
@@ -114,6 +117,7 @@ class DataLoader:
                 'paper_submission_date': new_deadline.paper_submission_date.isoformat(),
                 'abstract_deadline': new_deadline.abstract_deadline.isoformat() if new_deadline.abstract_deadline else '',
                 'intimation_date': new_deadline.intimation_date.isoformat(),
+                'website_url': new_deadline.website_url or '',
             })
         
         return new_deadline

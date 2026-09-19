@@ -72,6 +72,7 @@ def add_workshop():
             paper_submission_date=data['paper_submission_date'],
             abstract_deadline=data.get('abstract_deadline'),
             intimation_date=data['intimation_date'],
+            website_url=data.get('website_url'),
         )
         return jsonify(deadline.to_dict()), 201
     except Exception as e:
