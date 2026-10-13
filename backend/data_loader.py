@@ -54,6 +54,9 @@ class DataLoader:
                 abstract_deadline=parse_date(row.get('abstract_deadline')),
                 intimation_date=parse_date(row.get('intimation_date')),
                 website_url=row.get('website_url', '').strip() or None,
+                core_rating=row.get('core_rating', '').strip() or None,
+                location=row.get('location', '').strip() or None,
+                flag=row.get('flag', '').strip() or None,
             )
             if deadline.conference_name and deadline.paper_submission_date:
                 deadlines.append(deadline)

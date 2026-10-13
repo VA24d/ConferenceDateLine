@@ -3,24 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
     <title>Conference Deadline Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-page="home">
     <div class="container">
         <header>
             <h1>Conference Deadline Tracker</h1>
-            <p>Track paper submission deadlines, abstract dates, and notification dates</p>
+            <p>Track paper submission deadlines, abstract dates, and notification dates with CORE rankings & locations</p>
+            <p>Track paper submission deadlines, abstract dates, and notification dates with CORE rankings, locations, and VR conferences</p>
+            <p>Track paper submission deadlines, abstract dates, and notification dates with CORE rankings, locations, VR venues & co-hosted events</p>
         </header>
 
         <section class="controls">
-            <div class="conference-selector">
-                <label for="conference-filter">Filter by Conference:</label>
-                <select id="conference-filter">
-                    <option value="all">All Conferences</option>
-                </select>
+            <!-- Keyword search for workshops and tracks -->
+            <div class="search-bar-row">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="search" id="keyword-search" placeholder="Search workshops, tracks, or topics (e.g. VR, AI, Testing, Security, Education)..." autocomplete="off">
+                    <input type="search" id="keyword-search" placeholder="Search workshops, tracks, or topics (e.g. VR, AI, Agents, Architecture, Security)..." autocomplete="off">
+                    <button type="button" id="clear-search-btn" class="clear-search-btn" title="Clear search" aria-label="Clear search">✕</button>
+                </div>
+                <div class="quick-keywords-bar">
+                    <span class="keywords-label">Filter by topic:</span>
+                    <button type="button" class="keyword-chip" data-keyword="VR">🥽 VR / XR</button>
+                    <button type="button" class="keyword-chip" data-keyword="CHI PLAY">🎮 CHI PLAY / Games</button>
+                    <button type="button" class="keyword-chip" data-keyword="Agents">🦙 Agents</button>
+                    <button type="button" class="keyword-chip" data-keyword="Architecture">🏛️ Architecture</button>
+                    <button type="button" class="keyword-chip" data-keyword="AI">🤖 AI / LLM</button>
+                    <button type="button" class="keyword-chip" data-keyword="Testing">🧪 Testing</button>
+                    <button type="button" class="keyword-chip" data-keyword="Security">🔒 Security</button>
+                    <button type="button" class="keyword-chip" data-keyword="Workshop">🎯 Workshops</button>
+                    <button type="button" class="keyword-chip" data-keyword="Education">🎓 Education</button>
+                </div>
             </div>
-            <div class="conference-stats" id="conference-stats"></div>
+
+            <div class="controls-grid">
+                <div class="control-item">
+                    <label for="conference-filter">Conference:</label>
+                    <select id="conference-filter">
+                        <option value="all">All Conferences</option>
+                    </select>
+                </div>
+
+                <div class="control-item">
+                    <label for="core-filter">CORE Rating:</label>
+                    <select id="core-filter">
+                        <option value="all">All Ratings</option>
+                        <option value="A*">CORE A* (Premier)</option>
+                        <option value="A">CORE A (Major)</option>
+                    </select>
+                </div>
+
+                <div class="control-item">
+                    <label for="sort-order">Sort by:</label>
+                    <select id="sort-order">
+                        <option value="deadline-asc">Submission Deadline (Soonest first)</option>
+                        <option value="deadline-desc">Submission Deadline (Furthest first)</option>
+                        <option value="core-desc">CORE Rating (A* → A)</option>
+                        <option value="name-asc">Conference Name (A → Z)</option>
+                        <option value="notification-asc">Notification Date (Soonest first)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="controls-bottom-bar">
+                <div class="dedicated-pages-nav">
+                    <span class="dedicated-label">Dedicated Pages:</span>
+                    <div class="dedicated-pills" id="conference-quick-pills"></div>
+                </div>
+                <div class="conference-stats" id="conference-stats"></div>
+            </div>
         </section>
 
         <section class="legend">
@@ -58,6 +112,122 @@
             </div>
             <div id="workshop-list-container"></div>
         </section>
+    </div>
+
+    <!-- Co-hosted Conferences & Sister Events Modal -->
+    <div id="cohosted-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cohosted-modal-title">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <span class="modal-flag" id="modal-conf-flag">🌐</span>
+                    <div>
+                        <div class="modal-title-row">
+                            <h3 id="cohosted-modal-title">Conference Details</h3>
+                            <span class="core-badge" id="modal-core-badge">CORE A*</span>
+                        </div>
+                        <p class="modal-subtitle" id="modal-conf-desc">Full Conference Title</p>
+                    </div>
+                </div>
+                <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+            </div>
+
+            <div class="modal-meta-row">
+                <span class="modal-meta-item">📍 <span id="modal-conf-location">Location</span></span>
+                <span class="modal-meta-item">📅 <span id="modal-conf-year">2027</span></span>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="modal-link" id="modal-website-link">Official Website ↗</a>
+                <a href="#" class="modal-link" id="modal-dedicated-link">Dedicated Page ↗</a>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-header">
+                    <h4>🤝 Co-hosted Conferences & Sister Events</h4>
+                    <span class="modal-section-badge" id="modal-cohosted-count"></span>
+                </div>
+                <div class="cohosted-cards-grid" id="modal-cohosted-grid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <div class="modal-section-header">
+                    <h4>📅 Submission Tracks & Deadlines</h4>
+                    <span class="modal-section-badge" id="modal-tracks-count"></span>
+                </div>
+                <div class="modal-tracks-list" id="modal-tracks-list">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-filter-cohosted" id="modal-filter-all-btn">
+                    Filter Timeline to Host + Co-hosted Events
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Local Chat Bot Widget -->
+    <div id="dateline-chat-widget" class="chat-widget">
+        <button type="button" id="chat-toggle-btn" class="chat-toggle-btn" aria-label="Open Dateline Assistant">
+            <span class="chat-toggle-icon">💬</span>
+            <span class="chat-toggle-text">Dateline AI</span>
+            <span class="chat-status-dot" title="Ready (Offline Mode)"></span>
+        </button>
+
+        <div id="chat-panel" class="chat-panel hidden">
+            <div class="chat-panel-header">
+                <div class="chat-panel-title">
+                    <span class="chat-bot-avatar">🤖</span>
+                    <div>
+                        <strong>Dateline Assistant</strong>
+                        <span class="chat-engine-tag" id="chat-engine-tag">🟢 Offline Local NLP</span>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <button type="button" id="chat-llm-settings-btn" class="chat-header-btn" title="Configure Local Ollama / LLM">⚙️</button>
+                    <button type="button" id="chat-close-btn" class="chat-header-btn" title="Close chat">✕</button>
+                </div>
+            </div>
+
+            <!-- Optional Local LLM Settings Drawer -->
+            <div id="chat-settings-drawer" class="chat-settings-drawer hidden">
+                <div class="settings-group">
+                    <label>
+                        <input type="checkbox" id="enable-ollama-cb"> Enable Local Ollama LLM
+                    </label>
+                </div>
+                <div class="settings-group">
+                    <label for="ollama-url">Ollama Endpoint:</label>
+                    <input type="text" id="ollama-url" value="http://localhost:11434" placeholder="http://localhost:11434">
+                </div>
+                <div class="settings-group">
+                    <label for="ollama-model">Model Name:</label>
+                    <input type="text" id="ollama-model" value="llama3.2" placeholder="e.g. llama3.2, mistral, qwen2.5">
+                </div>
+                <p class="settings-hint">Zero setup: if Ollama is not running, built-in offline NLP responds instantly in-browser.</p>
+            </div>
+
+            <!-- Quick Suggestions Bar -->
+            <div class="chat-quick-prompts">
+                <button type="button" class="chat-prompt-pill" data-prompt="What deadlines are coming up next?">📅 Next deadlines</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Where do Prof. Raghu and KV from SERC publish?">🎓 Raghu & KV venues</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show me VR and gaming conferences like CHI PLAY and IEEE VR">🥽 VR & CHI PLAY</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="What conferences are co-hosted with ICSE?">🤝 ICSE co-hosted</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show all CORE A* conferences">⭐ CORE A*</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show agent and AI workshops">🤖 Agent workshops</button>
+            </div>
+
+            <!-- Messages Thread -->
+            <div id="chat-messages" class="chat-messages">
+                <!-- Initial welcome populated dynamically -->
+            </div>
+
+            <!-- Input area -->
+            <form id="chat-form" class="chat-input-bar">
+                <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu & KV, co-hosted events..." autocomplete="off">
+                <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">➤</button>
+            </form>
+        </div>
     </div>
 
     <script src="app.js"></script>

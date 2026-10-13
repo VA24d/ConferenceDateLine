@@ -35,3 +35,46 @@ EASE,Doctoral symposium,,2027-03-08,,2027-04-12,https://conf.researchr.org/track
 EASE,Data and Benchmarking track,,2026-03-02,,2026-04-06,https://conf.researchr.org/track/ease-2026/ease-2026-ai-models---data
 EASE,Reproducibility Studies and Negative Results Track,,2026-02-23,2026-02-23,2026-04-06,https://conf.researchr.org/track/ease-2026/ease-2026-reproducibility-and-negative-results
 EASE,Tutorials and technical briefings track,,2027-03-02,,2027-04-05,https://conf.researchr.org/track/ease-2027/ease-2027-tutorial
+IEEE VR,Research paper track,,2026-08-31,2026-08-24,2026-11-18,https://ieeevr.org/2027/
+IEEE VR,Posters track,,2026-11-20,,2026-12-18,https://ieeevr.org/2027/contribute/posters/
+IEEE VR,,KELVAR Workshop (Learning in VR),2027-01-10,,2027-01-22,https://kelvar.org/
+IEEE VR,,SEARIS Workshop (SE & Architectures for Interactive Systems),2027-01-12,,2027-01-25,http://searis.net/
+IEEE VR,,OpenXRS Workshop (Open Source & Standards in XR),2027-01-15,,2027-01-26,https://openxrs.github.io/
+IEEE VR,,XR-Health Workshop (VR in Healthcare),2027-01-12,,2027-01-25,https://xr-health.org/
+ISMAR,Research paper track,,2027-03-22,2027-03-15,2027-06-20,https://ieeeismar.net/
+ISMAR,Posters track,,2027-06-15,,2027-07-20,https://ieeeismar.net/
+ISMAR,,HCI in AR/VR Workshop,2027-06-20,,2027-07-20,https://ieeeismar.net/workshops/
+ISMAR,,Spatial Computing & Perception Workshop,2027-06-25,,2027-07-25,https://ieeeismar.net/workshops/
+VRST,Research paper track,,2026-06-24,2026-06-17,2026-08-28,https://vrst.acm.org/
+VRST,Short papers and demos track,,2026-07-08,,2026-08-30,https://vrst.acm.org/
+VRST,,Virtual Reality Technologies Workshop,2026-07-15,,2026-08-30,https://vrst.acm.org/
+ICSE,,LLM4Code Workshop (LLMs for Code),2026-10-20,,2026-12-15,https://llm4code.github.io/
+ICSE,,ChainSEC Workshop (Software Supply Chain Security),2026-11-27,,2026-12-20,https://chain-sec.github.io/
+ICSE,,DeepTest Workshop (Deep Learning for Testing),2026-10-20,,2026-12-15,https://conf.researchr.org/home/icse-2026/deeptest-2026
+ICSE,,SE4ALL Workshop (Software Engineering and AI for All),2026-11-13,,2026-12-20,https://conf.researchr.org/home/icse-2027/se4all-2027
+ICSE,,SBFT Workshop (Search-Based and Fuzz Testing),2026-10-20,,2026-12-15,https://search-based-and-fuzz-testing.github.io/
+FSE,,LLMTrust Workshop (Trustworthy LLMs in SE),2027-02-12,,2027-03-15,https://llmtrust2026.github.io/
+FSE,,CauSE Workshop (Causal Methods in Software Engineering),2027-02-01,,2027-03-10,https://causality-software-engineering.github.io/
+CHI PLAY,Research paper track,,2026-06-15,2026-06-08,2026-08-14,https://chiplay.acm.org/2026/
+CHI PLAY,Work-in-progress and demos track,,2026-07-20,,2026-08-25,https://chiplay.acm.org/2026/wip
+CHI PLAY,,Serious Games and VR Showcase,2026-07-25,,2026-08-30,https://chiplay.acm.org/2026/games
+ICSA,Research paper track,,2026-11-20,2026-11-13,2027-01-20,https://conf.researchr.org/home/icsa-2026
+ICSA,In practice track,,2026-12-05,,2027-01-25,https://conf.researchr.org/track/icsa-2026/icsa-2026-in-practice
+ICSA,New ideas and emerging results track,,2026-12-10,,2027-01-28,https://conf.researchr.org/track/icsa-2026/icsa-2026-nemi
+ICSA,Tool track,,2026-12-15,,2027-02-05,https://conf.researchr.org/track/icsa-2026/icsa-2026-tools
+SEAMS,Research paper track,,2026-11-28,2026-11-21,2027-01-18,https://conf.researchr.org/home/seams-2026
+SEAMS,Artifacts and exemplars track,,2026-12-12,,2027-01-22,https://conf.researchr.org/track/seams-2026/seams-2026-artifacts
+AGENT,,Agentic Engineering Workshop (Agentic AI in SE),2026-11-15,,2026-12-22,https://agentic-engineering.github.io/
+CAIN,Research paper track,,2026-11-10,2026-11-03,2027-01-15,https://conf.researchr.org/home/cain-2026
+CAIN,In practice track,,2026-12-01,,2027-01-20,https://conf.researchr.org/track/cain-2026/cain-2026-industry
+MODELS,Research paper track,,2026-05-18,2026-05-11,2026-07-10,https://conf.researchr.org/home/models-2026
+MODELS,New ideas and emerging results track,,2026-05-25,,2026-07-15,https://conf.researchr.org/track/models-2026/models-2026-practice
+MODELS,Tool track,,2026-06-08,,2026-07-20,https://conf.researchr.org/track/models-2026/models-2026-tools
+ISEC,Research paper track,,2026-09-15,2026-09-08,2026-11-10,https://isec2026.github.io/
+ISEC,In practice track,,2026-10-01,,2026-11-15,https://isec2026.github.io/industry
+ISEC,,ModSym Workshop (Modelling Symposium),2026-10-10,,2026-11-25,https://isec2026.github.io/modsym
+ISEC,,VR and Emerging Tech in SE Track,2026-10-05,,2026-11-20,https://isec2026.github.io/vr-se
+ECSA,Research paper track,,2026-04-10,2026-04-03,2026-06-12,https://ecsa2026.disim.univaq.it/
+ECSA,,Agentic AI and Sustainable Software Track,2026-04-20,,2026-06-18,https://ecsa2026.disim.univaq.it/tracks
+MSR,Research paper track,,2026-11-15,2026-11-08,2027-01-20,https://conf.researchr.org/home/msr-2027
+ICPC,Research paper track,,2026-11-20,2026-11-13,2027-01-22,https://conf.researchr.org/home/icpc-2027

@@ -16,6 +16,9 @@ class Deadline:
     abstract_deadline: Optional[date]
     intimation_date: date
     website_url: Optional[str] = None
+    core_rating: Optional[str] = None
+    location: Optional[str] = None
+    flag: Optional[str] = None
 
     def to_dict(self) -> dict:
         """Convert to dictionary for JSON serialization."""
@@ -27,6 +30,9 @@ class Deadline:
             "abstract_deadline": self.abstract_deadline.isoformat() if self.abstract_deadline else None,
             "intimation_date": self.intimation_date.isoformat() if self.intimation_date else None,
             "website_url": self.website_url,
+            "core_rating": self.core_rating,
+            "location": self.location,
+            "flag": self.flag,
         }
 
     @property
