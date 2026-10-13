@@ -118,15 +118,18 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
     # Adjust asset links for child directory placement (conferences/ -> ../)
     subpage_template = (
         raw_template
+        .replace('href="styles.css?v=20261013-1"', 'href="../styles.css?v=20261013-1"')
         .replace('href="styles.css"', 'href="../styles.css"')
+        .replace('src="app.js?v=20261013-1"', 'src="../app.js?v=20261013-1"')
         .replace('src="app.js"', 'src="../app.js"')
         .replace('href="index.html"', 'href="../index.html"')
+        .replace('src="assets/', 'src="../assets/')
     )
 
     generated_files = []
     for conf_name, meta in conferences.items():
         slug = conf_slug(conf_name)
-        flag = meta.get("flag", "🌐")
+        flag = meta.get("flag", "")
         year = str(meta.get("year", "2027"))
         core = meta.get("core_rating", "Unranked")
         full_name = meta.get("full_name", f"{conf_name} Conference")
@@ -141,7 +144,7 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
         )
         page_content = re.sub(
             r'<title>.*?</title>',
-            f'<title>{conf_name} {flag} - Conference Deadlines & Tracks</title>',
+            f'<title>{conf_name} ({core}) - Conference Deadlines & Tracks</title>',
             page_content
         )
         page_content = re.sub(

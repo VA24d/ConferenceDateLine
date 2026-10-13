@@ -21,10 +21,10 @@
     --color-primary-subtle: #eff6ff;
     --color-primary-border: #bfdbfe;
 
-    /* CORE Rating Badges */
-    --color-core-star-bg: #faf5ff;
-    --color-core-star-text: #7e22ce;
-    --color-core-star-border: #e9d5ff;
+    /* CORE Rating Badges - Academic Gold Star & Blue */
+    --color-core-star-bg: #fffbeb;
+    --color-core-star-text: #b45309;
+    --color-core-star-border: #fde68a;
 
     --color-core-a-bg: #eff6ff;
     --color-core-a-text: #1d4ed8;
@@ -56,7 +56,7 @@
     --bar-submission-end: #2563eb;
     --marker-submission: #10b981;
     --marker-abstract: #f59e0b;
-    --marker-notification: #a855f7;
+    --marker-notification: #0284c7;
     --marker-today: #ef4444;
     --timeline-lane-bg: #f1f5f9;
     --month-grid-line-color: rgba(226, 232, 240, 0.7);
@@ -93,10 +93,10 @@
         --color-primary-subtle: rgba(59, 130, 246, 0.15);
         --color-primary-border: rgba(59, 130, 246, 0.35);
 
-        /* CORE Rating Badges */
-        --color-core-star-bg: rgba(168, 85, 247, 0.15);
-        --color-core-star-text: #d8b4fe;
-        --color-core-star-border: rgba(168, 85, 247, 0.35);
+        /* CORE Rating Badges - Academic Gold Star & Blue */
+        --color-core-star-bg: rgba(30, 41, 59, 0.85);
+        --color-core-star-text: #fbbf24;
+        --color-core-star-border: rgba(245, 158, 11, 0.35);
 
         --color-core-a-bg: rgba(59, 130, 246, 0.15);
         --color-core-a-text: #93c5fd;
@@ -128,7 +128,7 @@
         --bar-submission-end: #1d4ed8;
         --marker-submission: #34d399;
         --marker-abstract: #f59e0b;
-        --marker-notification: #c084fc;
+        --marker-notification: #38bdf8;
         --marker-today: #ef4444;
         --timeline-lane-bg: #1e293b;
         --month-grid-line-color: rgba(75, 85, 99, 0.5);
@@ -154,9 +154,9 @@
     --color-primary-subtle: rgba(59, 130, 246, 0.15);
     --color-primary-border: rgba(59, 130, 246, 0.35);
 
-    --color-core-star-bg: rgba(168, 85, 247, 0.15);
-    --color-core-star-text: #d8b4fe;
-    --color-core-star-border: rgba(168, 85, 247, 0.35);
+    --color-core-star-bg: rgba(30, 41, 59, 0.85);
+    --color-core-star-text: #fbbf24;
+    --color-core-star-border: rgba(245, 158, 11, 0.35);
 
     --color-core-a-bg: rgba(59, 130, 246, 0.15);
     --color-core-a-text: #93c5fd;
@@ -186,7 +186,7 @@
     --bar-submission-end: #1d4ed8;
     --marker-submission: #34d399;
     --marker-abstract: #f59e0b;
-    --marker-notification: #c084fc;
+    --marker-notification: #38bdf8;
     --marker-today: #ef4444;
     --timeline-lane-bg: #1e293b;
     --month-grid-line-color: rgba(75, 85, 99, 0.5);
@@ -534,7 +534,9 @@ header p {
     border-top: 3px solid var(--color-primary);
 }
 
-.pinned-targets-section.hidden {
+[hidden],
+.pinned-targets-section.hidden,
+.pinned-targets-section[hidden] {
     display: none !important;
 }
 
@@ -680,6 +682,7 @@ header p {
     font-size: 13.5px;
     font-weight: 800;
     letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
     color: var(--color-primary);
 }
 
@@ -691,6 +694,30 @@ header p {
     font-size: 11px;
     font-weight: 600;
     color: var(--color-text-muted);
+    line-height: 1.35;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+}
+
+.countdown-due-date .local-due-text {
+    font-size: 10px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.aoe-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 1px 4px;
+    border-radius: var(--radius-sm);
+    background: var(--color-primary-subtle);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary-border);
 }
 
 .pinned-card-actions {
@@ -816,6 +843,22 @@ header p {
     background-color: var(--color-surface);
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.search-kbd-hint {
+    position: absolute;
+    right: 38px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 2px 6px;
+    font-size: 11px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    pointer-events: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    line-height: 1.2;
 }
 
 .clear-search-btn {
@@ -1020,6 +1063,49 @@ header p {
     border-radius: 9999px;
 }
 
+/* View Mode Switcher (Timeline vs Cards Grid vs Combined) */
+.view-mode-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.view-mode-toggle {
+    display: inline-flex;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 3px;
+    gap: 3px;
+}
+
+.view-mode-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: calc(var(--radius-md) - 2px);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.view-mode-btn:hover {
+    color: var(--color-text);
+}
+
+.view-mode-btn.active {
+    background: var(--color-surface);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    font-weight: 700;
+}
+
 /* ==========================================================================
    5. Legend Section (At Top)
    ========================================================================== */
@@ -1080,7 +1166,7 @@ header p {
 .color-box.green  { background-color: var(--marker-submission); }
 .color-box.blue   { background-color: var(--bar-submission-start); }
 .color-box.orange { background-color: var(--marker-abstract); }
-.color-box.purple { background-color: var(--marker-notification); }
+.color-box.cyan   { background-color: var(--marker-notification); }
 .color-box.today  { background-color: var(--marker-today); }
 
 /* ==========================================================================
@@ -1089,12 +1175,15 @@ header p {
 .timeline-container {
     background: var(--color-surface);
     border-radius: var(--radius-lg);
-    padding: 24px;
+    padding: 0 24px 24px 24px;
     margin-bottom: 28px;
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--color-border);
     min-height: 350px;
+    max-height: 78vh;
+    overflow-y: auto;
     overflow-x: auto;
+    position: relative;
 }
 
 #timeline-chart {
@@ -1109,18 +1198,20 @@ header p {
     position: relative;
 }
 
-/* Header Month Scale (Horizontal & Clean) */
+/* Header Month Scale (Horizontal & Clean - Sticky Header) */
 .timeline-scale-row {
     display: grid;
     align-items: center;
     width: 100%;
-    height: 42px;
+    height: 44px;
+    padding-top: 6px;
     margin-bottom: 12px;
     border-bottom: 2px solid var(--color-border);
     position: sticky;
     top: 0;
     background: var(--color-surface);
     z-index: 20;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .timeline-label-spacer {
@@ -1447,8 +1538,8 @@ header p {
 /* Duration Bar */
 .timeline-bar {
     position: absolute;
-    top: 2px;
-    bottom: 2px;
+    top: 3px;
+    bottom: 3px;
     background: linear-gradient(90deg, var(--bar-submission-start) 0%, var(--bar-submission-end) 100%);
     border-radius: var(--radius-sm);
     display: flex;
@@ -1459,6 +1550,7 @@ header p {
     box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
     transition: filter 0.15s ease;
     z-index: 3;
+    min-width: 4px;
 }
 
 .timeline-bar:hover {
@@ -1466,11 +1558,16 @@ header p {
 }
 
 .timeline-bar .duration {
-    font-size: 11px;
+    font-size: 10px;
     color: #ffffff;
     font-weight: 700;
-    padding: 0 6px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    padding: 0 3px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+    pointer-events: none;
 }
 
 /* Submission, Abstract & Notification Markers */
@@ -1498,7 +1595,7 @@ header p {
 
 .timeline-marker.notification-marker {
     background-color: var(--marker-notification);
-    box-shadow: 0 0 4px rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 4px rgba(2, 132, 199, 0.5);
 }
 
 .no-data {
@@ -1544,9 +1641,96 @@ header p {
 }
 
 #workshop-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.domain-group {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.domain-group[open] {
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-sm);
+}
+
+.domain-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    background: var(--color-surface-subtle);
+    user-select: none;
+    transition: background-color 0.15s ease;
+    list-style: none;
+}
+
+.domain-summary::-webkit-details-marker {
+    display: none;
+}
+
+.domain-summary:hover {
+    background: var(--color-surface-hover);
+}
+
+.domain-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.domain-chevron {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--color-text-muted);
+    transition: transform 0.2s ease;
+}
+
+.domain-group[open] .domain-chevron {
+    transform: rotate(90deg);
+}
+
+.domain-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+}
+
+.domain-meta-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+}
+
+.domain-toggle-hint {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.domain-cards-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+    padding: 16px;
+}
+
+@media (max-width: 768px) {
+    .domain-cards-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .workshop-card {

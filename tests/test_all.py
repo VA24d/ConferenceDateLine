@@ -152,8 +152,8 @@ class TestBuildStaticData(unittest.TestCase):
                 content = f.read()
 
             # Ensure relative paths for subfolder
-            self.assertIn('href="../styles.css"', content)
-            self.assertIn('src="../app.js"', content)
+            self.assertIn('href="../styles.css', content)
+            self.assertIn('src="../app.js', content)
             self.assertIn('href="../index.html"', content)
             self.assertIn(f'data-conf="{venue}"', content)
 

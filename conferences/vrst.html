@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
-    <title>VRST 🇯🇵 - Conference Deadlines & Tracks</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>VRST (A) - Conference Deadlines & Tracks</title>
+    <link rel="stylesheet" href="../styles.css?v=20261013-1">
 </head>
 <body data-page="conference" data-conf="VRST">
     <div class="container">
         <header class="conference-header-wrap">
             <div class="header-nav-bar">
-                <a href="../index.html" class="nav-back-button">← All Conferences</a>
+                <a href="../index.html" class="nav-back-button" id="nav-back-button">← All Conferences</a>
                 <div class="conference-nav-switcher">
                     <span class="switcher-label">Switch:</span>
                     <div class="switcher-pills" id="conference-switcher"></div>
                 </div>
                 <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme">
-                    <span class="theme-toggle-icon" id="theme-icon">🌓</span>
+                    <span class="theme-toggle-icon" id="theme-icon">◐</span>
                     <span id="theme-label">Theme</span>
                 </button>
             </div>
@@ -38,15 +38,15 @@
 
                 <div class="hero-meta-bar">
                     <div class="hero-meta-item">
-                        <span class="meta-icon">📍</span>
+                        <span class="meta-label">Location:</span>
                         <span id="hero-location">Sendai, Japan</span>
                     </div>
                     <div class="hero-meta-item">
-                        <span class="meta-icon">📅</span>
+                        <span class="meta-label">Year:</span>
                         <span id="hero-year">2026</span>
                     </div>
                     <div class="hero-meta-item">
-                        <span class="meta-icon">📊</span>
+                        <span class="meta-label">Tracks:</span>
                         <span id="hero-tracks-count">10 Tracks & Workshops</span>
                     </div>
                     <a href="https://vrst.acm.org/" target="_blank" rel="noopener noreferrer" class="hero-external-link" id="hero-website-link">Official Website ↗</a>
@@ -55,14 +55,15 @@
         </header>
 
         <!-- Pinned Target Conferences (Live Countdowns & User Memory) -->
-        <section id="pinned-targets-section" class="pinned-targets-section hidden">
+        <section id="pinned-targets-section" class="pinned-targets-section hidden" hidden style="display: none !important;">
             <div class="pinned-targets-header">
                 <div class="pinned-title-group">
-                    <span class="pinned-icon">📌</span>
+                    <span class="pinned-badge-tag">TARGETS</span>
                     <h3>Target Conferences</h3>
                     <span class="pinned-count-badge" id="pinned-count-badge">0 pinned</span>
                 </div>
                 <div class="pinned-header-actions">
+                    <button type="button" id="export-all-pinned-btn" class="btn-subtle" title="Export all pinned target conferences as iCalendar (.ics)">Export All (.ics)</button>
                     <button type="button" id="clear-all-pinned-btn" class="btn-subtle" title="Clear all pinned target conferences">Clear Targets</button>
                 </div>
             </div>
@@ -76,7 +77,6 @@
             <div class="cohosted-section-card">
                 <div class="cohosted-header-row">
                     <div class="cohosted-title-group">
-                        <span class="cohosted-icon">🤝</span>
                         <div>
                             <h3>Co-hosted & Co-located Events</h3>
                             <p class="cohosted-desc" id="cohosted-section-desc">Conferences, symposia, and workshops co-located with this venue</p>
@@ -92,9 +92,10 @@
             <!-- Keyword search row -->
             <div class="search-bar-row">
                 <div class="search-input-wrapper">
-                    <span class="search-icon">🔍</span>
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     <input type="search" id="keyword-search" placeholder="Search tracks or workshops in this conference (e.g. Research, Student, Industry, Tool)..." autocomplete="off">
-                    <button type="button" id="clear-search-btn" class="clear-search-btn" title="Clear search" aria-label="Clear search">✕</button>
+                    <kbd class="search-kbd-hint" id="search-kbd-hint" title="Press ⌘K or / to search">⌘K</kbd>
+                    <button type="button" id="clear-search-btn" class="clear-search-btn" title="Clear search" aria-label="Clear search">×</button>
                 </div>
             </div>
 
@@ -119,14 +120,18 @@
             <div class="legend-items">
                 <div class="legend-item">
                     <span class="color-box blue"></span>
-                    <span>Submission Window</span>
+                    <span>Review Window</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box green"></span>
+                    <span>Submission Deadline</span>
                 </div>
                 <div class="legend-item">
                     <span class="color-box orange"></span>
                     <span>Abstract Deadline</span>
                 </div>
                 <div class="legend-item">
-                    <span class="color-box purple"></span>
+                    <span class="color-box cyan"></span>
                     <span>Notification Date</span>
                 </div>
                 <div class="legend-item">
@@ -149,62 +154,9 @@
         </section>
     </div>
 
-    <!-- Co-hosted Conferences & Sister Events Modal -->
-    <div id="cohosted-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cohosted-modal-title">
-        <div class="modal-card">
-            <div class="modal-header">
-                <div class="modal-title-wrap">
-                    <span class="modal-flag" id="modal-conf-flag">🌐</span>
-                    <div>
-                        <div class="modal-title-row">
-                            <h3 id="cohosted-modal-title">Conference Details</h3>
-                            <span class="core-badge" id="modal-core-badge">CORE A*</span>
-                        </div>
-                        <p class="modal-subtitle" id="modal-conf-desc">Full Conference Title</p>
-                    </div>
-                </div>
-                <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
-            </div>
-
-            <div class="modal-meta-row">
-                <span class="modal-meta-item">📍 <span id="modal-conf-location">Location</span></span>
-                <span class="modal-meta-item">📅 <span id="modal-conf-year">2027</span></span>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="modal-link" id="modal-website-link">Official Website ↗</a>
-                <a href="#" class="modal-link" id="modal-dedicated-link">Dedicated Page ↗</a>
-            </div>
-
-            <div class="modal-section">
-                <div class="modal-section-header">
-                    <h4>🤝 Co-hosted Conferences & Sister Events</h4>
-                    <span class="modal-section-badge" id="modal-cohosted-count"></span>
-                </div>
-                <div class="cohosted-cards-grid" id="modal-cohosted-grid">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-
-            <div class="modal-section">
-                <div class="modal-section-header">
-                    <h4>📅 Submission Tracks & Deadlines</h4>
-                    <span class="modal-section-badge" id="modal-tracks-count"></span>
-                </div>
-                <div class="modal-tracks-list" id="modal-tracks-list">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn-filter-cohosted" id="modal-filter-all-btn">
-                    Filter Tracks for this Event
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Local Chat Bot Widget -->
     <div id="dateline-chat-widget" class="chat-widget">
         <button type="button" id="chat-toggle-btn" class="chat-toggle-btn" aria-label="Open Dateline Assistant">
-            <span class="chat-toggle-icon">💬</span>
             <span class="chat-toggle-text">Dateline AI</span>
             <span class="chat-status-dot" title="Ready (Offline Mode)"></span>
         </button>
@@ -212,15 +164,14 @@
         <div id="chat-panel" class="chat-panel hidden">
             <div class="chat-panel-header">
                 <div class="chat-panel-title">
-                    <span class="chat-bot-avatar">🤖</span>
                     <div>
                         <strong>Dateline Assistant</strong>
-                        <span class="chat-engine-tag" id="chat-engine-tag">🟢 Offline Local NLP</span>
+                        <span class="chat-engine-tag" id="chat-engine-tag">Offline Local NLP</span>
                     </div>
                 </div>
                 <div class="chat-header-actions">
-                    <button type="button" id="chat-llm-settings-btn" class="chat-header-btn" title="Configure Local Ollama / LLM">⚙️</button>
-                    <button type="button" id="chat-close-btn" class="chat-header-btn" title="Close chat">✕</button>
+                    <button type="button" id="chat-llm-settings-btn" class="chat-header-btn" title="Configure Local Ollama / LLM">Settings</button>
+                    <button type="button" id="chat-close-btn" class="chat-header-btn" title="Close chat">×</button>
                 </div>
             </div>
 
@@ -244,12 +195,12 @@
 
             <!-- Quick Suggestions Bar -->
             <div class="chat-quick-prompts">
-                <button type="button" class="chat-prompt-pill" data-prompt="What deadlines are coming up next?">📅 Next deadlines</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="Where does Prof. Raghu from SERC publish?">🎓 Prof. Raghu venues</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="Show me VR and gaming conferences like CHI PLAY and IEEE VR">🥽 VR & CHI PLAY</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="What conferences are co-hosted with ICSE?">🤝 ICSE co-hosted</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="Show all CORE A* conferences">⭐ CORE A*</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="Show agent and AI workshops">🤖 Agent workshops</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="What deadlines are coming up next?">Next deadlines</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Where does Prof. Raghu from SERC publish?">Prof. Raghu venues</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show me VR and gaming conferences like CHI PLAY and IEEE VR">VR & CHI PLAY</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="What conferences are co-hosted with ICSE?">ICSE co-hosted</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show all CORE A* conferences">CORE A*</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show agent and AI workshops">Agent workshops</button>
             </div>
 
             <!-- Messages Thread -->
@@ -260,12 +211,11 @@
             <!-- Input area -->
             <form id="chat-form" class="chat-input-bar">
                 <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu, co-hosted events..." autocomplete="off">
-                <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">➤</button>
+                <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">Send</button>
             </form>
         </div>
     </div>
 
-    <script src="../app.js"></script>
+    <script src="../app.js?v=20261013-1"></script>
 </body>
 </html>
-

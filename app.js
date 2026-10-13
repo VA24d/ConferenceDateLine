@@ -1,12 +1,19 @@
 /**
  * Conference Deadline Tracker - Frontend JavaScript
  * Supports All Conferences View and Dedicated Conference Pages,
- * Sorting, CORE Rating Filtering, Locations, and Flags.
- * VR Conferences, Workshops, Keyword Search, CORE Ratings, Sorting, Locations, and Flags.
+ * AoE Local Time Conversions, User Memory & Pinned Targets,
+ * Dual View Switcher (Timeline & Cards), Domain Grouping (SE Closed by Default),
+ * Sorting, CORE Rating Filtering, Locations, and Flat SVG Flags.
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Conference Metadata (Locations, Flags, CORE ratings, Year, etc.)
+    // Software Engineering (SE) Conferences classification
+    const SE_CONFERENCES = new Set([
+        'ICSE', 'FSE', 'ISSTA', 'SANER', 'EASE', 'ICSA', 'SEAMS',
+        'AGENT', 'CAIN', 'MODELS', 'ISEC', 'ECSA', 'MSR', 'ICPC'
+    ]);
+
+    // Conference Metadata (Locations, CORE ratings, Year, etc.)
     const CONFERENCE_METADATA = {
         'ICSE': {
             fullName: 'International Conference on Software Engineering',
@@ -14,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Dublin, Ireland',
             country: 'Ireland',
             country_code: 'ie',
-            flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/icse-2027',
             cohosted: ['SEAMS', 'CAIN', 'AGENT', 'MSR', 'ICPC', 'LLM4Code', 'DeepTest', 'ChainSEC']
@@ -25,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Shenzhen, China',
             country: 'China',
             country_code: 'cn',
-            flag: '🇨🇳',
             year: '2027',
             website: 'https://conf.researchr.org/home/fse-2027',
             cohosted: ['LLMTrust Workshop', 'CauSE Workshop', 'Student Research Competition']
@@ -36,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Singapore',
             country: 'Singapore',
             country_code: 'sg',
-            flag: '🇸🇬',
             year: '2027',
             website: 'https://conf.researchr.org/home/issta-2027',
             cohosted: ['ISSTA Tool Demos', 'Doctoral Symposium']
@@ -47,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Richmond, Virginia, USA',
             country: 'United States',
             country_code: 'us',
-            flag: '🇺🇸',
             year: '2027',
             website: 'https://conf.researchr.org/home/saner-2027',
             cohosted: ['IWESEP', 'ERA Track', 'RENE Track']
@@ -58,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Hanoi, Vietnam',
             country: 'Vietnam',
             country_code: 'vn',
-            flag: '🇻🇳',
             year: '2027',
             website: 'https://conf.researchr.org/home/ease-2027',
             cohosted: ['Emerging Results Track', 'Doctoral Symposium']
@@ -69,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Melbourne, Australia',
             country: 'Australia',
             country_code: 'au',
-            flag: '🇦🇺',
             year: '2027',
             website: 'https://ieeevr.org/2027/',
             cohosted: ['3DUI Symposium', 'KELVAR', 'SEARIS', 'OpenXRS', 'XR-Health']
@@ -80,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Bari, Italy',
             country: 'Italy',
             country_code: 'it',
-            flag: '🇮🇹',
             year: '2027',
             website: 'https://ieeeismar.net/',
             cohosted: ['XR-Health Workshop', 'MAR Art & Design', 'Doctoral Consortium']
@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Sendai, Japan',
             country: 'Japan',
             country_code: 'jp',
-            flag: '🇯🇵',
             year: '2026',
             website: 'https://vrst.acm.org/',
             cohosted: ['Virtual Reality Technologies Workshop', 'Posters & Demos']
@@ -102,76 +101,69 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Zurich, Switzerland',
             country: 'Switzerland',
             country_code: 'ch',
-            flag: '🇨🇭',
             year: '2026',
-            website: 'https://chiplay.acm.org/2026/',
-            cohosted: ['Serious Games & VR Showcase', 'CHI PLAY WIP & Demos']
+            website: 'https://chiplay.acm.org/',
+            cohosted: ['Serious Games Showcase', 'Work-in-Progress', 'Student Game Design']
         },
         'ICSA': {
             fullName: 'IEEE International Conference on Software Architecture',
             coreRating: 'A',
-            location: 'Amsterdam, Netherlands',
-            country: 'Netherlands',
-            country_code: 'nl',
-            flag: '🇳🇱',
-            year: '2026',
-            website: 'https://conf.researchr.org/home/icsa-2026',
-            cohosted: ['CAAIN Workshop', 'NEMI Track', 'Architecture in Practice']
+            location: 'Odense, Denmark',
+            country: 'Denmark',
+            country_code: 'dk',
+            year: '2027',
+            website: 'https://conf.researchr.org/home/icsa-2027',
+            cohosted: ['WICSA', 'Software Architecture in Practice', 'Early Career Track']
         },
         'SEAMS': {
             fullName: 'International Symposium on Software Engineering for Adaptive and Self-Managing Systems',
             coreRating: 'A',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
+            location: 'Dublin, Ireland',
             country: 'Ireland',
             country_code: 'ie',
-            flag: '🇮🇪',
             year: '2027',
-            website: 'https://conf.researchr.org/home/seams-2026',
-            cohosted: ['ICSE', 'CAIN', 'AGENT', 'MSR', 'ICPC']
+            website: 'https://conf.researchr.org/home/seams-2027',
+            cohosted: ['ICSE 2027 Co-located', 'Artifact Track']
         },
         'AGENT': {
-            fullName: 'International Workshop on Agentic Engineering (Agentic AI in SE)',
-            coreRating: 'Workshop',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
+            fullName: 'International Workshop on Agentic Engineering',
+            coreRating: 'Unranked',
+            location: 'Dublin, Ireland',
             country: 'Ireland',
             country_code: 'ie',
-            flag: '🇮🇪',
             year: '2027',
-            website: 'https://agentic-engineering.github.io/',
-            cohosted: ['ICSE', 'SEAMS', 'CAIN']
+            website: 'https://conf.researchr.org/home/icse-2027',
+            cohosted: ['ICSE 2027 Co-located', 'Agent-Based Software Engineering']
         },
         'CAIN': {
-            fullName: 'IEEE/ACM International Conference on AI Engineering – Software Engineering for AI',
-            coreRating: 'A',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
+            fullName: 'International Conference on AI Engineering – Software Engineering for AI',
+            coreRating: 'Unranked',
+            location: 'Dublin, Ireland',
             country: 'Ireland',
             country_code: 'ie',
-            flag: '🇮🇪',
             year: '2027',
-            website: 'https://conf.researchr.org/home/cain-2026',
-            cohosted: ['ICSE', 'SEAMS', 'AGENT']
+            website: 'https://conf.researchr.org/home/cain-2027',
+            cohosted: ['ICSE 2027 Co-located']
         },
         'MODELS': {
             fullName: 'ACM/IEEE International Conference on Model Driven Engineering Languages and Systems',
             coreRating: 'A',
-            location: 'Linz, Austria',
+            location: 'Vienna, Austria',
             country: 'Austria',
             country_code: 'at',
-            flag: '🇦🇹',
             year: '2026',
             website: 'https://conf.researchr.org/home/models-2026',
-            cohosted: ['SAM (System Analysis and Modelling)', 'MDE4AI Workshop']
+            cohosted: ['MDE Intelligence', 'Educators Symposium']
         },
         'ISEC': {
             fullName: 'Innovations in Software Engineering Conference',
-            coreRating: 'A',
+            coreRating: 'Unranked',
             location: 'Hyderabad, India',
             country: 'India',
             country_code: 'in',
-            flag: '🇮🇳',
-            year: '2026',
-            website: 'https://isec2026.github.io/',
-            cohosted: ['ModSym (Modelling Symposium)', 'VR in Software Engineering Track']
+            year: '2027',
+            website: 'https://isec2027.github.io/',
+            cohosted: ['ModSym Symposium', 'Tech Briefings']
         },
         'ECSA': {
             fullName: 'European Conference on Software Architecture',
@@ -179,60 +171,50 @@ document.addEventListener('DOMContentLoaded', function() {
             location: 'Limassol, Cyprus',
             country: 'Cyprus',
             country_code: 'cy',
-            flag: '🇨🇾',
             year: '2026',
-            website: 'https://ecsa2026.disim.univaq.it/',
-            cohosted: ['Agentic AI & Sustainable Software Track', 'ECSA Workshops']
+            website: 'https://ecsa2026.github.io/',
+            cohosted: ['ECSA Workshops', 'Tools & Demos']
         },
         'MSR': {
             fullName: 'Mining Software Repositories',
             coreRating: 'A',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
+            location: 'Dublin, Ireland',
             country: 'Ireland',
             country_code: 'ie',
-            flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/msr-2027',
-            cohosted: ['ICSE', 'ICPC', 'SEAMS']
+            cohosted: ['ICSE 2027 Co-located', 'Mining Challenge']
         },
         'ICPC': {
-            fullName: 'IEEE/ACM International Conference on Program Comprehension',
+            fullName: 'International Conference on Program Comprehension',
             coreRating: 'A',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
+            location: 'Dublin, Ireland',
             country: 'Ireland',
             country_code: 'ie',
-            flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/icpc-2027',
-            cohosted: ['ICSE', 'MSR', 'SEAMS']
+            cohosted: ['ICSE 2027 Co-located', 'Tool Demonstrations']
         }
     };
 
-    // Page mode & directory detection
+    function getMeta(confName) {
+        if (!confName) return { fullName: 'Unknown', coreRating: 'Unranked', location: 'TBA', year: '2027', website: '#', cohosted: [] };
+        const key = confName.toUpperCase();
+        for (const [k, v] of Object.entries(CONFERENCE_METADATA)) {
+            if (k.toUpperCase() === key) return v;
+        }
+        return { fullName: confName, coreRating: 'Unranked', location: 'TBA', year: '2027', website: '#', cohosted: [] };
+    }
+
+    const isInSubfolder = window.location.pathname.includes('/conferences/');
     const isConferencePage = document.body.dataset.page === 'conference';
-    const isInSubfolder = window.location.pathname.includes('/conferences/') ||
-                          (document.querySelector('script[src*="../app.js"]') !== null) ||
-                          (document.querySelector('link[href*="../styles.css"]') !== null);
 
     function confSlug(name) {
-        const slug = name.toLowerCase().replace(/\s+/g, '-') + '.html';
-        return isInSubfolder ? slug : `conferences/${slug}`;
+        const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        return isInSubfolder ? `${slug}.html` : `conferences/${slug}.html`;
     }
 
-    function getMeta(confName) {
-        return CONFERENCE_METADATA[confName] || {
-            fullName: `${confName} Conference`,
-            coreRating: 'Unranked',
-            location: 'TBA',
-            country: '',
-            country_code: 'globe',
-            flag: '🌐',
-            year: '2027',
-            website: '#'
-        };
-    }
-
-    // Flat Vector SVG Flag Mapping
+    // Flat SVG Flags lookup table
     const FLAG_CODES = {
         'Ireland': 'ie',
         'China': 'cn',
@@ -248,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Austria': 'at',
         'India': 'in',
         'Cyprus': 'cy',
+        'Denmark': 'dk',
         'ie': 'ie',
         'cn': 'cn',
         'sg': 'sg',
@@ -261,27 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
         'at': 'at',
         'in': 'in',
         'cy': 'cy',
-        '🇮🇪': 'ie',
-        '🇨🇳': 'cn',
-        '🇸🇬': 'sg',
-        '🇺🇸': 'us',
-        '🇻🇳': 'vn',
-        '🇦🇺': 'au',
-        '🇮🇹': 'it',
-        '🇯🇵': 'jp',
-        '🇨🇭': 'ch',
-        '🇳🇱': 'nl',
-        '🇦🇹': 'at',
-        '🇮🇳': 'in',
-        '🇨🇾': 'cy',
-        '🌐': 'globe'
+        'dk': 'dk'
     };
 
     function getFlagCode(metaOrConf) {
         if (!metaOrConf) return 'globe';
         if (metaOrConf.country_code && FLAG_CODES[metaOrConf.country_code]) return FLAG_CODES[metaOrConf.country_code];
         if (metaOrConf.country && FLAG_CODES[metaOrConf.country]) return FLAG_CODES[metaOrConf.country];
-        if (metaOrConf.flag && FLAG_CODES[metaOrConf.flag]) return FLAG_CODES[metaOrConf.flag];
         return 'globe';
     }
 
@@ -294,26 +263,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // State
+    /** @type {any[]} */
     let allDeadlines = [];
+    /** @type {any[]} */
     let allConferences = [];
 
     const urlParams = new URLSearchParams(window.location.search);
     let selectedConference = document.body.dataset.conf || urlParams.get('conf') || '';
 
     // DOM Elements
-    const searchInput = document.getElementById('keyword-search');
-    const clearSearchBtn = document.getElementById('clear-search-btn');
+    const searchInput = /** @type {HTMLInputElement|null} */ (document.getElementById('keyword-search'));
+    const clearSearchBtn = /** @type {HTMLButtonElement|null} */ (document.getElementById('clear-search-btn'));
     const keywordChips = document.querySelectorAll('.keyword-chip');
-    const conferenceFilter = document.getElementById('conference-filter');
-    const coreFilter = document.getElementById('core-filter');
-    const sortOrderSelect = document.getElementById('sort-order');
+    const conferenceFilter = /** @type {HTMLSelectElement|null} */ (document.getElementById('conference-filter'));
+    const coreFilter = /** @type {HTMLSelectElement|null} */ (document.getElementById('core-filter'));
+    const sortOrderSelect = /** @type {HTMLSelectElement|null} */ (document.getElementById('sort-order'));
     const workshopListContainer = document.getElementById('workshop-list-container');
     const conferenceStats = document.getElementById('conference-stats');
     const workshopCount = document.getElementById('workshop-count');
     const quickPillsContainer = document.getElementById('conference-quick-pills');
     const switcherContainer = document.getElementById('conference-switcher');
 
-    // Helper: Safely parses YYYY-MM-DD date strings in local time without UTC offset shifts
+    // Helper: Parses YYYY-MM-DD date strings in local time without UTC offset shifts
     function parseLocalDate(dateStr) {
         if (!dateStr) return null;
         const cleanDate = dateStr.split('T')[0];
@@ -328,7 +299,47 @@ document.addEventListener('DOMContentLoaded', function() {
         return isNaN(date.getTime()) ? null : date;
     }
 
-    // Derive the conference list from the deadlines
+    // Helper: Converts Anywhere on Earth (AoE, UTC-12) deadline date string to user's local Date
+    // 23:59:59 AoE = 11:59:59 UTC on following day
+    function parseAoeDate(dateStr) {
+        if (!dateStr) return null;
+        const cleanDate = dateStr.split('T')[0];
+        const parts = cleanDate.split('-');
+        if (parts.length === 3) {
+            const year = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1;
+            const day = parseInt(parts[2], 10);
+            const utcMs = Date.UTC(year, month, day, 23, 59, 59) + (12 * 3600 * 1000);
+            return new Date(utcMs);
+        }
+        const date = new Date(dateStr);
+        return isNaN(date.getTime()) ? null : date;
+    }
+
+    // Helper: Formats an AoE deadline into the user's local timezone
+    function formatAoeToLocal(dateStr) {
+        const localDt = parseAoeDate(dateStr);
+        if (!localDt) return '';
+        try {
+            return localDt.toLocaleString(undefined, {
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            });
+        } catch (e) {
+            return localDt.toLocaleDateString();
+        }
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return 'TBA';
+        const date = parseLocalDate(dateStr);
+        if (!date) return dateStr;
+        return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
     function deriveConferences(deadlines) {
         const map = new Map();
         deadlines.forEach(d => {
@@ -351,7 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 core_rating: d.core_rating || meta.coreRating,
                 location: d.location || meta.location,
                 country_code: d.country_code || meta.country_code,
-                flag: d.flag || meta.flag
+                country: meta.country || ''
             };
         });
     }
@@ -373,7 +384,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 localStorage.setItem(cacheKey, JSON.stringify(data));
             } catch (storageErr) {
-                // Ignore storage quota errors
+                // Ignore storage quota
             }
             return enrichDeadlines(data);
         } catch (fetchErr) {
@@ -403,16 +414,16 @@ document.addEventListener('DOMContentLoaded', function() {
         function applyTheme(theme) {
             if (theme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                if (themeIcon) themeIcon.textContent = '🌙';
+                if (themeIcon) themeIcon.textContent = '●';
                 if (themeLabel) themeLabel.textContent = 'Dark';
             } else if (theme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'light');
-                if (themeIcon) themeIcon.textContent = '☀️';
+                if (themeIcon) themeIcon.textContent = '○';
                 if (themeLabel) themeLabel.textContent = 'Light';
             } else {
                 document.documentElement.removeAttribute('data-theme');
                 const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (themeIcon) themeIcon.textContent = isSystemDark ? '🌙' : '☀️';
+                if (themeIcon) themeIcon.textContent = isSystemDark ? '●' : '○';
                 if (themeLabel) themeLabel.textContent = 'Auto';
             }
         }
@@ -449,54 +460,57 @@ document.addEventListener('DOMContentLoaded', function() {
     /* ==========================================================================
        User Memory & Target Conferences (Pinned Cards, Live Timers & Reminders)
        ========================================================================== */
-    const PINNED_STORAGE_KEY = 'cdl_pinned_targets_v1';
+    const STORAGE_KEY_PINNED = 'cdl_pinned_targets';
     let countdownIntervalId = null;
 
     function getPinnedTargets() {
         try {
-            const raw = localStorage.getItem(PINNED_STORAGE_KEY);
+            const raw = localStorage.getItem(STORAGE_KEY_PINNED);
             return raw ? JSON.parse(raw) : [];
         } catch (e) {
-            console.error('Failed to parse pinned targets from localStorage:', e);
             return [];
         }
     }
 
     function savePinnedTargets(targets) {
         try {
-            localStorage.setItem(PINNED_STORAGE_KEY, JSON.stringify(targets));
+            localStorage.setItem(STORAGE_KEY_PINNED, JSON.stringify(targets));
         } catch (e) {
-            console.error('Failed to save pinned targets to localStorage:', e);
+            console.error('Failed to save pinned targets', e);
         }
     }
 
     function isTargetPinned(confName, trackName) {
-        const pinned = getPinnedTargets();
-        return pinned.some(p => p.conf.toUpperCase() === confName.toUpperCase() && 
-                               (p.track || '').toUpperCase() === (trackName || '').toUpperCase());
+        const targets = getPinnedTargets();
+        const confNorm = (confName || '').toUpperCase();
+        const trackNorm = (trackName || 'Main Track').toUpperCase();
+        return targets.some(t => t.conf.toUpperCase() === confNorm && (t.track || 'Main Track').toUpperCase() === trackNorm);
     }
 
     function toggleTargetPin(confName, trackName) {
-        let pinned = getPinnedTargets();
-        const existsIndex = pinned.findIndex(p => p.conf.toUpperCase() === confName.toUpperCase() && 
-                                                  (p.track || '').toUpperCase() === (trackName || '').toUpperCase());
-        if (existsIndex >= 0) {
-            pinned.splice(existsIndex, 1);
+        let targets = getPinnedTargets();
+        const confNorm = (confName || '').toUpperCase();
+        const trackNorm = (trackName || 'Main Track').toUpperCase();
+
+        const index = targets.findIndex(t => t.conf.toUpperCase() === confNorm && (t.track || 'Main Track').toUpperCase() === trackNorm);
+
+        if (index >= 0) {
+            targets.splice(index, 1);
         } else {
-            const found = allDeadlines.find(d => d.conference_name.toUpperCase() === confName.toUpperCase() &&
-                                                  ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === (trackName || 'Main Track').toUpperCase()));
-            const meta = getMeta(confName);
-            pinned.push({
+            const found = allDeadlines.find(d => d.conference_name.toUpperCase() === confNorm &&
+                                                  ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === trackNorm));
+            targets.push({
                 conf: confName,
-                track: trackName || (found ? (found.workshop_name || found.track_name) : 'Main Track'),
+                track: trackName || 'Main Track',
                 paper_submission_date: found ? found.paper_submission_date : null,
                 abstract_deadline: found ? found.abstract_deadline : null,
                 intimation_date: found ? found.intimation_date : null,
-                website_url: (found && found.website_url) ? found.website_url : meta.website,
+                website_url: found ? found.website_url : null,
                 pinnedAt: Date.now()
             });
         }
-        savePinnedTargets(pinned);
+
+        savePinnedTargets(targets);
         renderPinnedTargets();
         updatePinToggleButtons();
     }
@@ -509,13 +523,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updatePinToggleButtons() {
         document.querySelectorAll('.btn-pin-toggle').forEach(btn => {
-            const conf = btn.dataset.conf;
-            const track = btn.dataset.track;
+            const hBtn = /** @type {HTMLElement} */ (btn);
+            const conf = hBtn.dataset.conf;
+            const track = hBtn.dataset.track;
             if (conf) {
                 const pinned = isTargetPinned(conf, track);
-                btn.classList.toggle('is-pinned', pinned);
-                btn.innerHTML = pinned ? '📌 Pinned' : '📍 Pin Target';
-                btn.title = pinned ? 'Unpin target' : 'Pin to Target Conferences';
+                hBtn.classList.toggle('is-pinned', pinned);
+                hBtn.innerHTML = pinned ? 'Pinned' : 'Pin Target';
+                hBtn.title = pinned ? 'Unpin target' : 'Pin to Target Conferences';
             }
         });
     }
@@ -530,7 +545,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const dateStart = `${y}${m}${d}T180000Z`;
         const dateEnd = `${y}${m}${d}T235900Z`;
         const title = encodeURIComponent(`${confName} - ${trackName} Deadline`);
-        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}).\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
+        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
         return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dateStart}/${dateEnd}&details=${details}`;
     }
 
@@ -549,8 +564,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const y = date.getFullYear();
         const m = String(date.getMonth() + 1).padStart(2, '0');
         const d = String(date.getDate()).padStart(2, '0');
-        const dtStart = `${y}${m}${d}T180000Z`;
-        const dtEnd = `${y}${m}${d}T235900Z`;
+        const dt = `${y}${m}${d}`;
         const url = (found && found.website_url) ? found.website_url : meta.website;
         const uid = `cdl-${confName.toLowerCase()}-${Date.now()}@conferencedateline`;
 
@@ -561,11 +575,11 @@ document.addEventListener('DOMContentLoaded', function() {
             'CALSCALE:GREGORIAN',
             'BEGIN:VEVENT',
             `UID:${uid}`,
-            `DTSTAMP:${dtStart}`,
-            `DTSTART:${dtStart}`,
-            `DTEND:${dtEnd}`,
-            `SUMMARY:${confName} - ${trackName} Submission Deadline`,
-            `DESCRIPTION:Paper submission deadline for ${confName} (${trackName}). Official link: ${url}`,
+            `DTSTAMP:${dt}T000000Z`,
+            `DTSTART;VALUE=DATE:${dt}`,
+            `DTEND;VALUE=DATE:${dt}`,
+            `SUMMARY:${confName} - ${trackName} Submission Deadline (AoE)`,
+            `DESCRIPTION:Paper submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE). Official link: ${url}`,
             'STATUS:CONFIRMED',
             'BEGIN:VALARM',
             'TRIGGER:-P3D',
@@ -581,6 +595,72 @@ document.addEventListener('DOMContentLoaded', function() {
         const a = document.createElement('a');
         a.href = downloadUrl;
         a.download = `${confName}_${trackName.replace(/[^a-zA-Z0-9]/g, '_')}_deadline.ics`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+    }
+
+    function downloadAllPinnedIcs() {
+        const targets = getPinnedTargets();
+        if (targets.length === 0) {
+            alert('No pinned target conferences to export.');
+            return;
+        }
+
+        const events = targets.map(t => {
+            const found = allDeadlines.find(d => d.conference_name.toUpperCase() === t.conf.toUpperCase() &&
+                                                  ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === (t.track || 'Main Track').toUpperCase()));
+            const meta = getMeta(t.conf);
+            const dateStr = t.paper_submission_date || (found ? found.paper_submission_date : null);
+            if (!dateStr) return '';
+
+            const date = parseLocalDate(dateStr);
+            if (!date) return '';
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            const dt = `${y}${m}${d}`;
+            const url = (found && found.website_url) ? found.website_url : meta.website;
+            const uid = `cdl-${t.conf.toLowerCase()}-${t.track.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now()}@conferencedateline`;
+
+            return [
+                'BEGIN:VEVENT',
+                `UID:${uid}`,
+                `DTSTAMP:${dt}T000000Z`,
+                `DTSTART;VALUE=DATE:${dt}`,
+                `DTEND;VALUE=DATE:${dt}`,
+                `SUMMARY:${t.conf} - ${t.track} Submission Deadline (AoE)`,
+                `DESCRIPTION:Paper submission deadline for ${t.conf} (${t.track}). Anywhere on Earth (AoE). Official link: ${url}`,
+                'STATUS:CONFIRMED',
+                'BEGIN:VALARM',
+                'TRIGGER:-P3D',
+                'ACTION:DISPLAY',
+                `DESCRIPTION:Reminder: ${t.conf} submission deadline in 3 days!`,
+                'END:VALARM',
+                'END:VEVENT'
+            ].join('\r\n');
+        }).filter(Boolean).join('\r\n');
+
+        if (!events) {
+            alert('No confirmed dates available to export.');
+            return;
+        }
+
+        const icsContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//ConferenceDateLine//Tracker//EN',
+            'CALSCALE:GREGORIAN',
+            events,
+            'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const downloadUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = 'Target_Conferences_Deadlines.ics';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -613,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function renderPinnedTargets() {
-        const pinnedSection = document.getElementById('pinned-targets-section');
+        const pinnedSection = /** @type {HTMLElement|null} */ (document.getElementById('pinned-targets-section'));
         const pinnedCountBadge = document.getElementById('pinned-count-badge');
         const pinnedGrid = document.getElementById('pinned-cards-grid');
 
@@ -623,18 +703,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (targets.length === 0) {
             pinnedSection.classList.add('hidden');
+            pinnedSection.hidden = true;
+            pinnedSection.style.setProperty('display', 'none', 'important');
             if (pinnedCountBadge) pinnedCountBadge.textContent = '0 pinned';
             pinnedGrid.innerHTML = '';
             return;
         }
 
         pinnedSection.classList.remove('hidden');
+        pinnedSection.hidden = false;
+        pinnedSection.style.removeProperty('display');
+        pinnedSection.style.display = '';
         if (pinnedCountBadge) pinnedCountBadge.textContent = `${targets.length} target${targets.length > 1 ? 's' : ''}`;
 
         pinnedGrid.innerHTML = targets.map(t => {
             const meta = getMeta(t.conf);
             const confPageUrl = confSlug(t.conf);
             const gcalUrl = getGoogleCalendarUrl(t.conf, t.track, t.paper_submission_date, t.website_url);
+            const localFormatted = formatAoeToLocal(t.paper_submission_date);
 
             return `
                 <div class="pinned-target-card" data-conf="${t.conf}" data-track="${t.track}">
@@ -642,29 +728,32 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="pinned-card-identity">
                             ${renderFlagHtml(meta, 'flag-sm')}
                             <a href="${confPageUrl}" style="color:inherit; text-decoration:none;"><strong>${t.conf}</strong></a>
-                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}" style="font-size:10px; padding:1px 5px;">★ ${meta.coreRating}</span>
+                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}" style="font-size:10px; padding:1px 5px;">CORE ${meta.coreRating}</span>
                         </div>
-                        <button type="button" class="pinned-unpin-btn" data-conf="${t.conf}" data-track="${t.track}" title="Unpin this target conference">✕</button>
+                        <button type="button" class="pinned-unpin-btn" data-conf="${t.conf}" data-track="${t.track}" title="Unpin this target conference">×</button>
                     </div>
 
                     <div class="pinned-track-title" title="${t.track}">${t.track}</div>
 
                     <div class="live-countdown-box">
                         <span class="countdown-timer-value" data-date="${t.paper_submission_date || ''}">Calculating...</span>
-                        <span class="countdown-due-date">Due: ${formatDate(t.paper_submission_date)}</span>
+                        <div class="countdown-due-date">
+                            <span><span class="aoe-badge">AoE</span> ${formatDate(t.paper_submission_date)}</span>
+                            ${localFormatted ? `<span class="local-due-text">Your time: ${localFormatted}</span>` : ''}
+                        </div>
                     </div>
 
                     <div class="pinned-card-actions">
                         <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action" title="Add submission deadline to Google Calendar">
-                            📅 Google Cal
+                            Google Calendar
                         </a>
                         <button type="button" class="btn-reminder-action download-ics-btn" data-conf="${t.conf}" data-track="${t.track}" title="Download .ics Calendar File">
-                            📥 .ics File
+                            Export .ics
                         </button>
                         <button type="button" class="btn-reminder-action notify-reminder-btn" data-conf="${t.conf}" data-track="${t.track}" title="Set browser notification alert">
-                            🔔 Alert
+                            Notify
                         </button>
-                        ${t.website_url && t.website_url !== '#' ? `<a href="${t.website_url}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action">Link ↗</a>` : ''}
+                        ${t.website_url && t.website_url !== '#' ? `<a href="${t.website_url}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action">Official Link ↗</a>` : ''}
                     </div>
                 </div>
             `;
@@ -678,24 +767,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const now = new Date();
 
         timerEls.forEach(el => {
-            const dateStr = el.dataset.date;
+            const hEl = /** @type {HTMLElement} */ (el);
+            const dateStr = hEl.dataset.date;
             if (!dateStr) {
-                el.textContent = 'Date TBA';
+                hEl.textContent = 'Date TBA';
                 return;
             }
 
-            const targetDate = parseLocalDate(dateStr);
+            const targetDate = parseAoeDate(dateStr);
             if (!targetDate) {
-                el.textContent = 'Date TBA';
+                hEl.textContent = 'Date TBA';
                 return;
             }
 
-            targetDate.setHours(23, 59, 59, 999);
-            const diff = targetDate - now;
+            const diff = targetDate.getTime() - now.getTime();
 
             if (diff <= 0) {
-                el.textContent = '🏁 Deadline Passed';
-                el.classList.remove('is-urgent');
+                hEl.textContent = 'Deadline Passed';
+                hEl.classList.remove('is-urgent');
                 return;
             }
 
@@ -704,12 +793,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const mins = Math.floor((diff / (1000 * 60)) % 60);
             const secs = Math.floor((diff / 1000) % 60);
 
-            el.textContent = `⏱️ ${days}d ${hours}h ${mins}m ${secs}s`;
+            hEl.textContent = `${days}d ${hours}h ${mins}m ${secs}s`;
 
             if (days <= 7) {
-                el.classList.add('is-urgent');
+                hEl.classList.add('is-urgent');
             } else {
-                el.classList.remove('is-urgent');
+                hEl.classList.remove('is-urgent');
             }
         });
     }
@@ -730,23 +819,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
+        const exportAllBtn = document.getElementById('export-all-pinned-btn');
+        if (exportAllBtn) {
+            exportAllBtn.addEventListener('click', downloadAllPinnedIcs);
+        }
+
         const pinnedGrid = document.getElementById('pinned-cards-grid');
         if (pinnedGrid) {
             pinnedGrid.addEventListener('click', (e) => {
-                const unpinBtn = e.target.closest('.pinned-unpin-btn');
-                if (unpinBtn) {
+                const target = /** @type {HTMLElement} */ (e.target);
+                const unpinBtn = /** @type {HTMLElement|null} */ (target.closest('.pinned-unpin-btn'));
+                if (unpinBtn && unpinBtn.dataset.conf && unpinBtn.dataset.track) {
                     toggleTargetPin(unpinBtn.dataset.conf, unpinBtn.dataset.track);
                     return;
                 }
 
-                const icsBtn = e.target.closest('.download-ics-btn');
-                if (icsBtn) {
+                const icsBtn = /** @type {HTMLElement|null} */ (target.closest('.download-ics-btn'));
+                if (icsBtn && icsBtn.dataset.conf && icsBtn.dataset.track) {
                     downloadIcsReminder(icsBtn.dataset.conf, icsBtn.dataset.track);
                     return;
                 }
 
-                const notifyBtn = e.target.closest('.notify-reminder-btn');
-                if (notifyBtn) {
+                const notifyBtn = /** @type {HTMLElement|null} */ (target.closest('.notify-reminder-btn'));
+                if (notifyBtn && notifyBtn.dataset.conf && notifyBtn.dataset.track) {
                     setupBrowserNotification(notifyBtn.dataset.conf, notifyBtn.dataset.track);
                     return;
                 }
@@ -757,80 +852,34 @@ document.addEventListener('DOMContentLoaded', function() {
         startLiveCountdownInterval();
     }
 
-    // Initialize
-    init();
-
-    async function init() {
-        initTheme();
-        initUserMemory();
-        await loadDeadlines();
-        setupNavigation();
-        setupEventListeners();
-        initCohostedEvents();
-        initLocalChatBot();
-    }
-
-    async function loadDeadlines() {
-        try {
-            allDeadlines = await fetchDeadlines();
-            allConferences = deriveConferences(allDeadlines);
-
-            // Dynamically sync metadata from loaded deadlines (single source of truth)
-            allDeadlines.forEach(d => {
-                if (d.conference_name) {
-                    if (!CONFERENCE_METADATA[d.conference_name]) {
-                        CONFERENCE_METADATA[d.conference_name] = {
-                            fullName: `${d.conference_name} Conference`,
-                            coreRating: d.core_rating || 'Unranked',
-                            location: d.location || 'TBA',
-                            flag: d.flag || '🌐',
-                            year: d.year || '2027',
-                            website: d.website_url || '#',
-                            cohosted: d.cohosted || []
-                        };
-                    } else {
-                        const entry = CONFERENCE_METADATA[d.conference_name];
-                        if (d.core_rating) entry.coreRating = d.core_rating;
-                        if (d.location) entry.location = d.location;
-                        if (d.flag) entry.flag = d.flag;
-                        if (d.year) entry.year = d.year;
-                        if (d.cohosted && d.cohosted.length) entry.cohosted = d.cohosted;
-                    }
-                }
-            });
-
-            // Default conference for dedicated page if none provided
-            if (isConferencePage && !selectedConference && allConferences.length > 0) {
-                selectedConference = allConferences[0].name;
-            }
-
-            if (isConferencePage) {
-                renderConferenceHero(selectedConference);
-            }
-
-            renderTimeline();
-            renderWorkshopList();
-            renderPinnedTargets();
-            updatePinToggleButtons();
-        } catch (error) {
-            console.error('Error loading deadlines:', error);
-        }
-    }
-
+    /* ==========================================================================
+       Navigation, Dropdowns & Dedicated Page Switcher
+       ========================================================================== */
     function setupNavigation() {
         // Setup for Home Page
         if (!isConferencePage && conferenceFilter) {
             conferenceFilter.innerHTML = '<option value="all">All Conferences</option>';
+            const seOptGroup = document.createElement('optgroup');
+            seOptGroup.label = 'Software Engineering (SE)';
+            const vrOptGroup = document.createElement('optgroup');
+            vrOptGroup.label = 'VR, Games & HCI';
+
             allConferences.forEach(conf => {
                 const meta = getMeta(conf.name);
                 const option = document.createElement('option');
                 option.value = conf.name;
                 option.textContent = `${conf.name} (${meta.coreRating}) - ${meta.location}`;
-                conferenceFilter.appendChild(option);
+                if (SE_CONFERENCES.has(conf.name.toUpperCase())) {
+                    seOptGroup.appendChild(option);
+                } else {
+                    vrOptGroup.appendChild(option);
+                }
             });
+            conferenceFilter.appendChild(seOptGroup);
+            conferenceFilter.appendChild(vrOptGroup);
 
             if (urlParams.get('conf')) {
-                conferenceFilter.value = urlParams.get('conf');
+                conferenceFilter.value = urlParams.get('conf') || 'all';
             }
         }
 
@@ -871,10 +920,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroLocation = document.getElementById('hero-location');
         const heroYear = document.getElementById('hero-year');
         const heroTracksCount = document.getElementById('hero-tracks-count');
-        const heroWebsiteLink = document.getElementById('hero-website-link');
+        const heroWebsiteLink = /** @type {HTMLAnchorElement|null} */ (document.getElementById('hero-website-link'));
         const listTitle = document.getElementById('workshop-list-title');
 
-        document.title = `${confName} - Conference Deadlines & Tracks`;
+        document.title = `${confName} (${meta.coreRating}) - Conference Deadlines & Tracks`;
 
         if (heroTitle) heroTitle.textContent = `${confName} ${meta.year}`;
         if (heroFlag) heroFlag.innerHTML = renderFlagHtml(meta, 'flag-hero');
@@ -890,7 +939,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroTracksCount) heroTracksCount.textContent = `${confDeadlines.length} Tracks & Workshops`;
 
         if (heroWebsiteLink) {
-            // Find first website URL from tracks if available
             const trackWithUrl = confDeadlines.find(d => d.website_url);
             heroWebsiteLink.href = trackWithUrl ? trackWithUrl.website_url : meta.website;
         }
@@ -911,25 +959,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 cohostedPillsRow.innerHTML = cohostedList.map(item => {
                     const itemMeta = getMeta(item);
                     const hasPage = allConferences.some(c => c.name.toUpperCase() === item.toUpperCase());
-                    const link = hasPage ? confSlug(item) : '#';
+                    const link = hasPage ? confSlug(item) : (itemMeta.website && itemMeta.website !== '#' ? itemMeta.website : '#');
                     return `
                         <div class="cohosted-pill-card" data-conf="${item}">
                             <span class="cohosted-pill-flag">${renderFlagHtml(itemMeta, 'flag-sm')}</span>
                             <strong>${item}</strong>
                             <span class="cohosted-pill-badge">${itemMeta.coreRating}</span>
-                            ${hasPage ? `<a href="${link}" class="btn-card-action" style="padding:1px 6px;">Page ↗</a>` : ''}
-                            <button type="button" class="btn-card-action cohost-filter-chip" data-conf="${item}">View Details 🤝</button>
+                            <a href="${link}" class="btn-card-action" style="padding:2px 8px;" ${hasPage ? '' : 'target="_blank" rel="noopener noreferrer"'}>${hasPage ? 'View Page ↗' : 'Official Site ↗'}</a>
                         </div>
                     `;
                 }).join('');
-
-                // Attach click handlers to cohost filter chips
-                cohostedPillsRow.querySelectorAll('.cohost-filter-chip').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openCohostedModal(btn.dataset.conf);
-                    });
-                });
             } else {
                 cohostedBannerSection.style.display = 'none';
             }
@@ -937,7 +976,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setupEventListeners() {
-        // Keyword Search Input
         if (searchInput) {
             searchInput.addEventListener('input', () => {
                 updateClearBtnVisibility();
@@ -956,20 +994,19 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Quick Keyword Chips
         keywordChips.forEach(chip => {
             chip.addEventListener('click', () => {
-                const keyword = chip.dataset.keyword;
-                const wasActive = chip.classList.contains('is-active');
+                const hChip = /** @type {HTMLElement} */ (chip);
+                const keyword = hChip.dataset.keyword;
+                const wasActive = hChip.classList.contains('is-active');
 
-                // Clear other active chips
                 keywordChips.forEach(c => c.classList.remove('is-active'));
 
                 if (wasActive) {
                     if (searchInput) searchInput.value = '';
                 } else {
-                    chip.classList.add('is-active');
-                    if (searchInput) searchInput.value = keyword;
+                    hChip.classList.add('is-active');
+                    if (searchInput) searchInput.value = keyword || '';
                 }
 
                 updateClearBtnVisibility();
@@ -984,32 +1021,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 renderWorkshopList();
             });
         }
+
         if (coreFilter) {
             coreFilter.addEventListener('change', () => {
                 renderTimeline();
                 renderWorkshopList();
             });
         }
+
         if (sortOrderSelect) {
             sortOrderSelect.addEventListener('change', () => {
                 renderTimeline();
                 renderWorkshopList();
             });
         }
+
+        // Workshop list pin button delegation
+        if (workshopListContainer) {
+            workshopListContainer.addEventListener('click', (e) => {
+                const target = /** @type {HTMLElement} */ (e.target);
+                const pinBtn = /** @type {HTMLElement|null} */ (target.closest('.btn-pin-toggle'));
+                if (pinBtn && pinBtn.dataset.conf) {
+                    toggleTargetPin(pinBtn.dataset.conf, pinBtn.dataset.track || 'Main Track');
+                }
+            });
+        }
     }
 
     function updateClearBtnVisibility() {
-        if (!clearSearchBtn) return;
-        const hasText = searchInput && searchInput.value.trim().length > 0;
-        clearSearchBtn.style.display = hasText ? 'inline-flex' : 'none';
+        if (clearSearchBtn && searchInput) {
+            clearSearchBtn.style.display = searchInput.value.trim() ? 'flex' : 'none';
+        }
     }
 
+    /* ==========================================================================
+       Filtering & Sorting Engine
+       ========================================================================== */
     function getFilteredDeadlines() {
         let result = [...allDeadlines];
 
-        // If on dedicated conference page, strictly filter to that conference
-        // 1. Keyword search filter
-        const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
+        // 1. Keyword search
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
         if (query) {
             result = result.filter(d => {
                 const conf = (d.conference_name || '').toLowerCase();
@@ -1020,50 +1072,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const meta = getMeta(d.conference_name);
                 const fullName = (meta.fullName || '').toLowerCase();
 
-                if (query === 'workshop') {
-                    return Boolean(d.workshop_name);
-                }
-
-                if (query === 'vr' || query === 'xr') {
-                    return conf.includes('vr') || conf.includes('ismar') || track.includes('vr') ||
-                           workshop.includes('vr') || workshop.includes('xr') || workshop.includes('virtual') ||
-                           fullName.includes('virtual');
-                }
-
-                if (query === 'ai' || query === 'llm') {
-                    return track.includes('ai') || workshop.includes('ai') || workshop.includes('llm') ||
-                           track.includes('llm') || track.includes('intelligence');
-                           track.includes('llm') || track.includes('intelligence') || conf.includes('cain');
-                }
-
-                if (query === 'agents' || query === 'agent') {
-                    return conf.includes('agent') || track.includes('agent') || workshop.includes('agent') ||
-                           fullName.includes('agent') || track.includes('autonomous');
-                }
-
-                if (query === 'chi play' || query === 'games' || query === 'game') {
-                    return conf.includes('chi play') || track.includes('game') || workshop.includes('game') ||
-                           track.includes('play') || workshop.includes('play');
-                }
-
-                if (query === 'architecture') {
-                    return conf.includes('icsa') || conf.includes('ecsa') || track.includes('architecture') ||
-                           workshop.includes('architecture') || fullName.includes('architecture');
-                }
-
                 return conf.includes(query) || track.includes(query) || workshop.includes(query) ||
                        location.includes(query) || core.includes(query) || fullName.includes(query);
             });
         }
 
-        // 2. Conference filter (home or dedicated page)
+        // 2. Conference filter
         if (isConferencePage && selectedConference) {
             result = result.filter(d => d.conference_name.toUpperCase() === selectedConference.toUpperCase());
         } else if (conferenceFilter && conferenceFilter.value !== 'all') {
             result = result.filter(d => d.conference_name === conferenceFilter.value);
         }
 
-        // Filter by CORE rating
         // 3. CORE rating filter
         if (coreFilter && coreFilter.value !== 'all') {
             const targetRating = coreFilter.value;
@@ -1073,17 +1093,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Sorting
         // 4. Sorting
         const sortVal = sortOrderSelect ? sortOrderSelect.value : 'deadline-asc';
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        const fallbackFarFuture = new Date(9999, 0, 1).getTime();
 
         result.sort((a, b) => {
-            const startA = parseLocalDate(a.paper_submission_date) || new Date(9999, 0, 1);
-            const startB = parseLocalDate(b.paper_submission_date) || new Date(9999, 0, 1);
-            const endA = parseLocalDate(a.intimation_date) || new Date(9999, 0, 1);
-            const endB = parseLocalDate(b.intimation_date) || new Date(9999, 0, 1);
+            const dtStartA = parseLocalDate(a.paper_submission_date);
+            const dtStartB = parseLocalDate(b.paper_submission_date);
+            const dtEndA = parseLocalDate(a.intimation_date);
+            const dtEndB = parseLocalDate(b.intimation_date);
+
+            const startA = dtStartA ? dtStartA.getTime() : fallbackFarFuture;
+            const startB = dtStartB ? dtStartB.getTime() : fallbackFarFuture;
+            const endA = dtEndA ? dtEndA.getTime() : fallbackFarFuture;
+            const endB = dtEndB ? dtEndB.getTime() : fallbackFarFuture;
 
             switch (sortVal) {
                 case 'deadline-desc':
@@ -1112,6 +1135,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return result;
     }
 
+    /* ==========================================================================
+       Timeline Chart Rendering
+       ========================================================================== */
     function renderTimeline() {
         const rawDeadlines = getFilteredDeadlines();
         const container = document.getElementById('timeline-chart');
@@ -1127,17 +1153,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        // Set time window: 1 week ago to 1 year from today
         const minDate = new Date(today);
         minDate.setDate(minDate.getDate() - 7);
 
         const maxDate = new Date(today);
         maxDate.setFullYear(maxDate.getFullYear() + 1);
 
-        const totalDays = (maxDate - minDate) / 86400000;
-        const todayOffset = Math.max(0, Math.min(100, ((today - minDate) / 86400000) / totalDays * 100));
+        const totalDays = (maxDate.getTime() - minDate.getTime()) / 86400000;
+        const todayOffset = Math.max(0, Math.min(100, ((today.getTime() - minDate.getTime()) / 86400000) / totalDays * 100));
 
-        // Filter deadlines that overlap with this 1-year range
         const deadlines = rawDeadlines.filter(d => {
             const start = parseLocalDate(d.paper_submission_date);
             const end = parseLocalDate(d.intimation_date);
@@ -1150,7 +1174,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Calculate widths for conference column and track label column
         let confColWidth = isConferencePage ? 60 : 54;
         let trackLabelWidth = 140;
 
@@ -1167,7 +1190,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         trackLabelWidth = Math.min(Math.max(trackLabelWidth, 140), 190);
 
-        // Group deadlines by conference preserving order
         const groupedDeadlines = {};
         const confOrder = [];
 
@@ -1180,17 +1202,14 @@ document.addEventListener('DOMContentLoaded', function() {
             groupedDeadlines[confName].push(d);
         });
 
-        // Update stats badge
         if (conferenceStats) {
             conferenceStats.textContent = `${confOrder.length} Conferences • ${deadlines.length} Tracks`;
         }
         if (workshopCount) {
-            workshopCount.textContent = `Showing ${deadlines.length} items`;
             const query = searchInput ? searchInput.value.trim() : '';
             workshopCount.textContent = query ? `Showing ${deadlines.length} results for "${query}"` : `Showing ${deadlines.length} items`;
         }
 
-        // Calculate month boundaries for scale and vertical grid lines
         const months = [];
         const curDate = new Date(minDate);
         curDate.setDate(1);
@@ -1198,7 +1217,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         while (curDate <= endDate) {
             const monthStart = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
-            const offset = ((monthStart - minDate) / 86400000) / totalDays;
+            const offset = ((monthStart.getTime() - minDate.getTime()) / 86400000) / totalDays;
             if (offset >= 0 && offset <= 1) {
                 months.push({
                     date: new Date(curDate),
@@ -1208,7 +1227,6 @@ document.addEventListener('DOMContentLoaded', function() {
             curDate.setMonth(curDate.getMonth() + 1);
         }
 
-        // Render Header Scale with clean horizontal month markers
         let html = `
             <div class="timeline-wrapper">
                 <div class="timeline-scale-row" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr; column-gap: 12px;">
@@ -1217,7 +1235,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="timeline-scale">
         `;
 
-        // Render month ticks and horizontal labels
         months.forEach((month, i) => {
             const nextLeft = months[i + 1] ? months[i + 1].left : 100;
             const midLeft = (month.left + nextLeft) / 2;
@@ -1228,7 +1245,6 @@ document.addEventListener('DOMContentLoaded', function() {
             html += `<div class="scale-month-label" style="left: ${midLeft}%"><span>${monthName} '${yearShort}</span></div>`;
         });
 
-        // Today tag in header scale
         html += `
                         <div class="scale-today-marker" style="left: ${todayOffset}%">
                             <span class="today-tag">Today</span>
@@ -1238,7 +1254,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="timeline-bars" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr; column-gap: 12px; row-gap: 8px;">
         `;
 
-        // Generate rows and conference separators
         let currentRow = 1;
         let rowsHtml = '';
 
@@ -1249,8 +1264,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const meta = getMeta(confName);
             const pageUrl = confSlug(confName);
 
-            // Conference badge column with Flag & CORE rating (links to dedicated page & opens cohosted modal)
-            const cohostedCount = (meta.cohosted || []).length;
             rowsHtml += `
                 <div class="conference-column" style="grid-row: ${startRow} / span ${trackCount}; grid-column: 1;" title="${confName} (${meta.coreRating}) • ${meta.location}">
                     <a href="${pageUrl}" class="conference-badge-link" data-conf="${confName}">
@@ -1260,53 +1273,42 @@ document.addEventListener('DOMContentLoaded', function() {
                             <span class="badge-core">${meta.coreRating}</span>
                         </div>
                     </a>
-                    ${cohostedCount > 0 ? `
-                        <button type="button" class="cohosted-trigger-badge" data-conf="${confName}" title="View ${cohostedCount} co-hosted events for ${confName}">
-                            🤝 ${cohostedCount}
-                        </button>
-                    ` : ''}
                 </div>
             `;
 
-            // Render each track row
             tracks.forEach((d, trackIndex) => {
                 const row = startRow + trackIndex;
                 const start = parseLocalDate(d.paper_submission_date);
                 const end = parseLocalDate(d.intimation_date);
                 const abstractDate = parseLocalDate(d.abstract_deadline);
 
-                const startOffset = Math.max(0, Math.min(100, ((start - minDate) / 86400000) / totalDays * 100));
-                const endOffset = Math.max(0, Math.min(100, ((end - minDate) / 86400000) / totalDays * 100));
+                const startOffset = start ? Math.max(0, Math.min(100, ((start.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : 0;
+                const endOffset = end ? Math.max(0, Math.min(100, ((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : 0;
                 const width = Math.max(1.5, endOffset - startOffset);
 
-                const daysToSubmission = Math.ceil((start - today) / 86400000);
+                const daysToSubmission = start ? Math.ceil((start.getTime() - today.getTime()) / 86400000) : null;
 
                 let statusClass = 'days-status-safe';
-                let urgencyIcon = '📅';
-                if (daysToSubmission < 0) {
-                    statusClass = 'days-status-past';
-                    urgencyIcon = '🏁';
-                } else if (daysToSubmission === 0) {
-                    statusClass = 'days-status-urgent';
-                    urgencyIcon = '🚨';
-                } else if (daysToSubmission <= 10) {
-                    statusClass = 'days-status-urgent';
-                    urgencyIcon = '🔥';
-                } else if (daysToSubmission <= 30) {
-                    statusClass = 'days-status-soon';
-                    urgencyIcon = '⚡';
-                } else if (daysToSubmission <= 60) {
-                    statusClass = 'days-status-medium';
-                    urgencyIcon = '⏳';
+                if (daysToSubmission !== null) {
+                    if (daysToSubmission < 0) {
+                        statusClass = 'days-status-past';
+                    } else if (daysToSubmission <= 10) {
+                        statusClass = 'days-status-urgent';
+                    } else if (daysToSubmission <= 30) {
+                        statusClass = 'days-status-soon';
+                    } else if (daysToSubmission <= 60) {
+                        statusClass = 'days-status-medium';
+                    }
                 }
 
-                const daysDisplay = daysToSubmission > 0 ? `${urgencyIcon} ${daysToSubmission}d left` : 
-                                   daysToSubmission === 0 ? '🚨 Due Today!' : 
-                                   `🏁 ${Math.abs(daysToSubmission)}d ago`;
+                const daysDisplay = daysToSubmission !== null
+                    ? (daysToSubmission > 0 ? `${daysToSubmission}d left` : daysToSubmission === 0 ? 'Due Today' : `Passed ${Math.abs(daysToSubmission)}d ago`)
+                    : '';
 
                 const name = d.workshop_name || d.track_name || 'Main Track';
                 const websiteUrl = d.website_url || '';
-                const durationDays = Math.round((end - start) / 86400000);
+                const durationDays = (start && end) ? Math.round((end.getTime() - start.getTime()) / 86400000) : 0;
+                const durationLabel = width >= 8 ? `${durationDays}d review` : (width >= 4 ? `${durationDays}d` : '');
 
                 const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
                 const barTooltip = `${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}`;
@@ -1319,11 +1321,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
                             <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
-                                <span class="duration">${durationDays}d review</span>
+                                ${durationLabel ? `<span class="duration">${durationLabel}</span>` : ''}
                             </div>
                             ${start && start >= minDate && start <= maxDate ? `<div class="timeline-marker submission-marker" style="left: ${startOffset}%" title="Submission Deadline: ${formatDateSafe(start)}"></div>` : ''}
-                            ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate - minDate) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDateSafe(abstractDate)}"></div>` : ''}
-                            ${end && end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
+                            ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDateSafe(abstractDate)}"></div>` : ''}
+                            ${end && end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
                         </div>
                     </div>
                 `;
@@ -1331,7 +1333,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             currentRow += trackCount;
 
-            // Conference Separator in between conferences
             if (confIndex < confOrder.length - 1) {
                 rowsHtml += `
                     <div class="conference-separator" style="grid-row: ${currentRow}; grid-column: 1 / span 3;" role="separator"></div>
@@ -1342,14 +1343,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const totalRows = currentRow - 1;
 
-        // Layer 1: Month grid lines in column 3 (rendered behind bars)
         const gridLinesHtml = `
             <div class="timeline-grid-lines" style="grid-column: 3; grid-row: 1 / span ${totalRows};">
                 ${months.map(m => `<div class="month-grid-line" style="left: ${m.left}%"></div>`).join('')}
             </div>
         `;
 
-        // Layer 3: Today line overlay in column 3 (rendered in front of bars)
         const todayLineHtml = `
             <div class="timeline-today-layer" style="grid-column: 3; grid-row: 1 / span ${totalRows};">
                 <div class="today-line-overlay" style="left: ${todayOffset}%"></div>
@@ -1361,346 +1360,223 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = html;
     }
 
-    let currentWorkshopRenderLimit = 20;
-    const WORKSHOP_CHUNK_SIZE = 20;
-    let workshopObserver = null;
+    /* ==========================================================================
+       Workshops & Tracks Card List (Domain Grouped: SE Closed by Default)
+       ========================================================================== */
+    function renderCard(d) {
+        const isWorkshop = !!d.workshop_name;
+        const cardClass = isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track';
+        const name = d.workshop_name || (d.track_name || 'Main Track');
+        const url = d.website_url;
+        const meta = getMeta(d.conference_name);
+        const confPageUrl = confSlug(d.conference_name);
 
-    function renderWorkshopList(reset = true) {
-        if (!workshopListContainer) return;
-
-        if (reset) {
-            currentWorkshopRenderLimit = WORKSHOP_CHUNK_SIZE;
+        const isPinned = isTargetPinned(d.conference_name, name);
+        const aoeDate = parseAoeDate(d.paper_submission_date);
+        const todayDate = new Date();
+        const daysToSubmission = aoeDate ? Math.ceil((aoeDate.getTime() - todayDate.getTime()) / 86400000) : null;
+        let statusClass = 'days-status-safe';
+        if (daysToSubmission !== null) {
+            if (daysToSubmission < 0) {
+                statusClass = 'days-status-past';
+            } else if (daysToSubmission <= 10) {
+                statusClass = 'days-status-urgent';
+            } else if (daysToSubmission <= 30) {
+                statusClass = 'days-status-soon';
+            } else if (daysToSubmission <= 60) {
+                statusClass = 'days-status-medium';
+            }
         }
+
+        const daysBadgeHtml = daysToSubmission !== null ? `
+            <span class="days-left-badge ${statusClass}">
+                ${daysToSubmission > 0 ? `${daysToSubmission}d left` : daysToSubmission === 0 ? 'Due Today' : `Passed ${Math.abs(daysToSubmission)}d ago`}
+            </span>
+        ` : '';
+
+        const titleHtml = url 
+            ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="workshop-title-link">${name} ↗</a>`
+            : name;
+
+        const localTimeFormatted = formatAoeToLocal(d.paper_submission_date);
+
+        return `
+            <div class="${cardClass}">
+                <div class="workshop-header">
+                    <div class="header-chips">
+                        <a href="${confPageUrl}" class="workshop-conf-badge" title="View ${d.conference_name} page">
+                            ${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name} ↗
+                        </a>
+                        <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">CORE ${meta.coreRating}</span>
+                        ${daysBadgeHtml}
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${d.conference_name}" data-track="${name}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
+                            ${isPinned ? 'Pinned' : 'Pin Target'}
+                        </button>
+                        <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
+                    </div>
+                </div>
+
+                <div class="workshop-name">${titleHtml}</div>
+
+                <div class="workshop-location-row">
+                    <span class="location-chip">${meta.location} ${renderFlagHtml(meta, 'flag-sm')}</span>
+                </div>
+
+                <div class="workshop-dates-grid">
+                    <div class="date-tile">
+                        <span class="date-label">Submission Deadline (AoE)</span>
+                        <span class="date-value">${formatDate(d.paper_submission_date)}</span>
+                        ${localTimeFormatted ? `<span class="date-local-hint">Local: ${localTimeFormatted}</span>` : ''}
+                    </div>
+                    <div class="date-tile">
+                        <span class="date-label">Abstract Deadline</span>
+                        <span class="date-value">${formatDate(d.abstract_deadline)}</span>
+                    </div>
+                    <div class="date-tile">
+                        <span class="date-label">Notification Date</span>
+                        <span class="date-value">${formatDate(d.intimation_date)}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderWorkshopList() {
+        if (!workshopListContainer) return;
 
         const deadlines = getFilteredDeadlines();
 
         if (deadlines.length === 0) {
-            if (workshopObserver) {
-                workshopObserver.disconnect();
-                workshopObserver = null;
-            }
             workshopListContainer.innerHTML = '<p class="no-data">No workshops or tracks match your criteria.</p>';
             return;
         }
 
-        const visibleDeadlines = deadlines.slice(0, currentWorkshopRenderLimit);
-
-        let html = visibleDeadlines.map(d => {
-            const isWorkshop = !!d.workshop_name;
-            const cardClass = isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track';
-            const name = d.workshop_name || (d.track_name || 'Main Track');
-            const url = d.website_url;
-            const meta = getMeta(d.conference_name);
-            const confPageUrl = confSlug(d.conference_name);
-
-            const isPinned = isTargetPinned(d.conference_name, name);
-            const start = parseLocalDate(d.paper_submission_date);
-            const todayDate = new Date();
-            todayDate.setHours(0, 0, 0, 0);
-            const daysToSubmission = start ? Math.ceil((start - todayDate) / 86400000) : null;
-            let statusClass = 'days-status-safe';
-            let urgencyIcon = '📅';
-            if (daysToSubmission !== null) {
-                if (daysToSubmission < 0) {
-                    statusClass = 'days-status-past';
-                    urgencyIcon = '🏁';
-                } else if (daysToSubmission === 0) {
-                    statusClass = 'days-status-urgent';
-                    urgencyIcon = '🚨';
-                } else if (daysToSubmission <= 10) {
-                    statusClass = 'days-status-urgent';
-                    urgencyIcon = '🔥';
-                } else if (daysToSubmission <= 30) {
-                    statusClass = 'days-status-soon';
-                    urgencyIcon = '⚡';
-                } else if (daysToSubmission <= 60) {
-                    statusClass = 'days-status-medium';
-                    urgencyIcon = '⏳';
-                }
-            }
-
-            const daysBadgeHtml = daysToSubmission !== null ? `
-                <span class="days-left-badge ${statusClass}">
-                    ${daysToSubmission > 0 ? `${urgencyIcon} ${daysToSubmission}d left` : daysToSubmission === 0 ? '🚨 Due Today!' : `🏁 ${Math.abs(daysToSubmission)}d ago`}
-                </span>
-            ` : '';
-
-            const titleHtml = url 
-                ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="workshop-title-link">${name} ↗</a>`
-                : name;
-
-            return `
-                <div class="${cardClass}">
-                    <div class="workshop-header">
-                        <div class="header-chips">
-                            <a href="${confPageUrl}" class="workshop-conf-badge" title="View ${d.conference_name} page">
-                                ${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name} ↗
-                            </a>
-                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">★ CORE ${meta.coreRating}</span>
-                            ${daysBadgeHtml}
-                            ${meta.cohosted && meta.cohosted.length > 0 ? `
-                                <button type="button" class="btn-card-action cohost-modal-trigger" data-conf="${d.conference_name}" style="padding: 2px 7px; font-size: 10px; cursor: pointer;">
-                                    🤝 Co-hosted (${meta.cohosted.length})
-                                </button>
-                            ` : ''}
-                        </div>
-                        <div style="display:flex; align-items:center; gap:6px;">
-                            <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${d.conference_name}" data-track="${name}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
-                                ${isPinned ? '📌 Pinned' : '📍 Pin Target'}
-                            </button>
-                            <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
-                        </div>
-                    </div>
-
-                    <div class="workshop-name">${titleHtml}</div>
-
-                    <div class="workshop-location-row">
-                        <span class="location-chip">📍 ${meta.location} ${renderFlagHtml(meta, 'flag-sm')}</span>
-                    </div>
-
-                    <div class="workshop-dates-grid">
-                        <div class="date-chip">
-                            <span class="date-chip-label">Paper Submission</span>
-                            <span class="date-chip-val">${formatDate(d.paper_submission_date)}</span>
-                        </div>
-                        ${d.abstract_deadline ? `
-                        <div class="date-chip">
-                            <span class="date-chip-label">Abstract Deadline</span>
-                            <span class="date-chip-val">${formatDate(d.abstract_deadline)}</span>
-                        </div>` : ''}
-                        <div class="date-chip">
-                            <span class="date-chip-label">Notification</span>
-                            <span class="date-chip-val">${formatDate(d.intimation_date)}</span>
-                        </div>
-                    </div>
+        // On single conference page: render flat grid of cards
+        if (isConferencePage) {
+            workshopListContainer.innerHTML = `
+                <div class="domain-cards-grid">
+                    ${deadlines.map(d => renderCard(d)).join('')}
                 </div>
             `;
-        }).join('');
+            return;
+        }
 
-        if (deadlines.length > currentWorkshopRenderLimit) {
-            const remaining = deadlines.length - currentWorkshopRenderLimit;
+        // On home page: Group into Software Engineering (SE) and VR/Games/HCI
+        const seDeadlines = deadlines.filter(d => SE_CONFERENCES.has((d.conference_name || '').toUpperCase()));
+        const vrDeadlines = deadlines.filter(d => !SE_CONFERENCES.has((d.conference_name || '').toUpperCase()));
+
+        // Check if there is an active search or SE filter that should auto-expand SE
+        const query = searchInput ? searchInput.value.trim() : '';
+        const selectedConf = conferenceFilter ? conferenceFilter.value : 'all';
+        const isSeSelected = selectedConf !== 'all' && SE_CONFERENCES.has(selectedConf.toUpperCase());
+        const shouldExpandSe = !!query || isSeSelected;
+
+        let html = '';
+
+        // Extended Reality, Games & HCI Group (Open by default)
+        if (vrDeadlines.length > 0) {
             html += `
-                <div class="lazy-loading-footer">
-                    <span class="lazy-load-counter">Showing ${visibleDeadlines.length} of ${deadlines.length} items</span>
-                    <button type="button" class="btn-load-more" id="btn-load-more">Load More (${remaining} remaining) ↓</button>
-                    <div class="lazy-load-sentinel" id="lazy-load-sentinel"></div>
-                </div>
+                <details class="domain-group vr-group" id="domain-group-vr" open>
+                    <summary class="domain-summary">
+                        <div class="domain-summary-left">
+                            <span class="domain-chevron">▶</span>
+                            <h3 class="domain-title">Virtual Reality, Games & HCI Conferences</h3>
+                            <span class="domain-meta-badge">${vrDeadlines.length} Tracks & Workshops</span>
+                        </div>
+                        <span class="domain-toggle-hint">Click to expand / collapse</span>
+                    </summary>
+                    <div class="domain-cards-grid">
+                        ${vrDeadlines.map(d => renderCard(d)).join('')}
+                    </div>
+                </details>
             `;
-        } else if (deadlines.length > WORKSHOP_CHUNK_SIZE) {
+        }
+
+        // Software Engineering (SE) Group (CLOSED BY DEFAULT per user requirement)
+        if (seDeadlines.length > 0) {
             html += `
-                <div class="lazy-loading-footer">
-                    <span class="lazy-load-counter">All ${deadlines.length} items loaded</span>
-                </div>
+                <details class="domain-group se-group" id="domain-group-se" ${shouldExpandSe ? 'open' : ''}>
+                    <summary class="domain-summary">
+                        <div class="domain-summary-left">
+                            <span class="domain-chevron">▶</span>
+                            <h3 class="domain-title">Software Engineering Conferences</h3>
+                            <span class="domain-meta-badge">${seDeadlines.length} Tracks & Workshops</span>
+                        </div>
+                        <span class="domain-toggle-hint">Click to expand / collapse</span>
+                    </summary>
+                    <div class="domain-cards-grid">
+                        ${seDeadlines.map(d => renderCard(d)).join('')}
+                    </div>
+                </details>
             `;
         }
 
         workshopListContainer.innerHTML = html;
-
-        if (workshopObserver) {
-            workshopObserver.disconnect();
-            workshopObserver = null;
-        }
-
-        const loadMoreBtn = document.getElementById('btn-load-more');
-        const sentinel = document.getElementById('lazy-load-sentinel');
-
-        if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', () => {
-                currentWorkshopRenderLimit += WORKSHOP_CHUNK_SIZE;
-                renderWorkshopList(false);
-            });
-        }
-
-        if (sentinel && 'IntersectionObserver' in window) {
-            workshopObserver = new IntersectionObserver((entries) => {
-                if (entries[0] && entries[0].isIntersecting) {
-                    workshopObserver.disconnect();
-                    workshopObserver = null;
-                    currentWorkshopRenderLimit += WORKSHOP_CHUNK_SIZE;
-                    renderWorkshopList(false);
-                }
-            }, { rootMargin: '250px' });
-            workshopObserver.observe(sentinel);
-        }
-    }
-
-    function formatDate(dateStr) {
-        if (!dateStr) return 'N/A';
-        const date = parseLocalDate(dateStr);
-        if (!date) return 'N/A';
-        return date.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'short', 
-            day: 'numeric' 
-        });
     }
 
     /* ==========================================================================
-       Co-hosted Conferences Modal & Logic
+       Dual View Switcher (Timeline vs Cards Grid vs Combined)
        ========================================================================== */
-    function initCohostedEvents() {
-        const modal = document.getElementById('cohosted-modal');
-        const closeBtn = document.getElementById('modal-close-btn');
+    function initViewMode() {
+        const timelineContainer = /** @type {HTMLElement|null} */ (document.querySelector('.timeline-container'));
+        const workshopList = /** @type {HTMLElement|null} */ (document.querySelector('.workshop-list'));
+        const timelineBtn = document.getElementById('view-timeline-btn');
+        const cardsBtn = document.getElementById('view-cards-btn');
+        const bothBtn = document.getElementById('view-both-btn');
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', closeCohostedModal);
-        }
+        if (!timelineContainer || !workshopList) return;
 
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeCohostedModal();
-            });
-        }
+        function setView(mode) {
+            localStorage.setItem('cdl_view_mode', mode);
+            if (timelineBtn) timelineBtn.classList.toggle('active', mode === 'timeline');
+            if (cardsBtn) cardsBtn.classList.toggle('active', mode === 'cards');
+            if (bothBtn) bothBtn.classList.toggle('active', mode === 'both');
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeCohostedModal();
-        });
-
-        // Delegate clicks for cohosted triggers anywhere on the page
-        document.addEventListener('click', (e) => {
-            const trigger = e.target.closest('.cohosted-trigger-badge, .cohost-modal-trigger');
-            if (trigger) {
-                e.preventDefault();
-                e.stopPropagation();
-                openCohostedModal(trigger.dataset.conf);
-                return;
+            if (mode === 'timeline') {
+                timelineContainer.style.display = 'block';
+                workshopList.style.display = 'none';
+            } else if (mode === 'cards') {
+                timelineContainer.style.display = 'none';
+                workshopList.style.display = 'block';
+            } else {
+                timelineContainer.style.display = 'block';
+                workshopList.style.display = 'block';
             }
+        }
 
-            const confLink = e.target.closest('.conference-badge-link');
-            if (confLink && !isConferencePage) {
-                if (!e.metaKey && !e.ctrlKey) {
-                    e.preventDefault();
-                    openCohostedModal(confLink.dataset.conf);
+        const savedMode = localStorage.getItem('cdl_view_mode') || 'timeline';
+        setView(savedMode);
+
+        if (timelineBtn) timelineBtn.addEventListener('click', () => setView('timeline'));
+        if (cardsBtn) cardsBtn.addEventListener('click', () => setView('cards'));
+        if (bothBtn) bothBtn.addEventListener('click', () => setView('both'));
+    }
+
+    /* ==========================================================================
+       Keyboard Shortcuts (Cmd+K / Ctrl+K and / for Quick Search)
+       ========================================================================== */
+    function initSearchShortcut() {
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            } else if (e.key === '/' && document.activeElement && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                e.preventDefault();
+                if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
                 }
             }
         });
     }
 
-    function openCohostedModal(confName) {
-        if (!confName) return;
-        const meta = getMeta(confName);
-        const modal = document.getElementById('cohosted-modal');
-        if (!modal) return;
-
-        const titleEl = document.getElementById('cohosted-modal-title');
-        const flagEl = document.getElementById('modal-conf-flag');
-        const coreBadgeEl = document.getElementById('modal-core-badge');
-        const descEl = document.getElementById('modal-conf-desc');
-        const locEl = document.getElementById('modal-conf-location');
-        const yearEl = document.getElementById('modal-conf-year');
-        const webLinkEl = document.getElementById('modal-website-link');
-        const dedLinkEl = document.getElementById('modal-dedicated-link');
-        const cohostedGrid = document.getElementById('modal-cohosted-grid');
-        const cohostedCount = document.getElementById('modal-cohosted-count');
-        const tracksList = document.getElementById('modal-tracks-list');
-        const tracksCount = document.getElementById('modal-tracks-count');
-        const filterAllBtn = document.getElementById('modal-filter-all-btn');
-
-        if (titleEl) titleEl.textContent = `${confName} ${meta.year}`;
-        if (flagEl) flagEl.innerHTML = renderFlagHtml(meta, 'flag-hero');
-        if (coreBadgeEl) {
-            coreBadgeEl.textContent = `CORE ${meta.coreRating}`;
-            coreBadgeEl.className = `core-badge ${meta.coreRating === 'A*' ? 'is-core-star' : 'is-core-a'}`;
-        }
-        if (descEl) descEl.textContent = meta.fullName;
-        if (locEl) locEl.textContent = meta.location;
-        if (yearEl) yearEl.textContent = meta.year;
-        if (webLinkEl) webLinkEl.href = meta.website;
-        if (dedLinkEl) dedLinkEl.href = confSlug(confName);
-
-        // Render co-hosted events
-        const cohostedList = meta.cohosted || [];
-        if (cohostedCount) cohostedCount.textContent = `${cohostedList.length} Events`;
-        if (cohostedGrid) {
-            if (cohostedList.length === 0) {
-                cohostedGrid.innerHTML = '<p class="no-data" style="margin:0; font-size:12px;">No separate co-hosted conferences registered for this venue.</p>';
-            } else {
-                cohostedGrid.innerHTML = cohostedList.map(item => {
-                    const itemMeta = getMeta(item);
-                    const isKnownConf = allConferences.some(c => c.name.toUpperCase() === item.toUpperCase());
-                    const itemDeadlines = allDeadlines.filter(d => d.conference_name.toUpperCase() === item.toUpperCase());
-                    const nextD = itemDeadlines[0];
-                    const subDate = nextD ? formatDate(nextD.paper_submission_date) : 'TBA';
-                    return `
-                        <div class="cohosted-card-item">
-                            <div class="cohosted-card-top">
-                                <span class="cohosted-card-name">${renderFlagHtml(itemMeta, 'flag-sm')} ${item}</span>
-                                <span class="core-tag ${itemMeta.coreRating === 'A*' ? 'core-star' : 'core-a'}">${itemMeta.coreRating}</span>
-                            </div>
-                            <div class="cohosted-card-desc">${itemMeta.fullName}</div>
-                            <div style="font-size:11px; color:var(--color-text-secondary); margin-top:2px;">
-                                Submission: <strong>${subDate}</strong>
-                            </div>
-                            <div class="cohosted-card-actions">
-                                <button type="button" class="btn-card-action modal-filter-item-btn" data-conf="${item}">Filter Timeline 🔍</button>
-                                ${isKnownConf ? `<a href="${confSlug(item)}" class="btn-card-action">Dedicated Page ↗</a>` : ''}
-                                ${itemMeta.website && itemMeta.website !== '#' ? `<a href="${itemMeta.website}" target="_blank" rel="noopener noreferrer" class="btn-card-action">Website ↗</a>` : ''}
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-
-                cohostedGrid.querySelectorAll('.modal-filter-item-btn').forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        const target = btn.dataset.conf;
-                        closeCohostedModal();
-                        filterTimelineToConferenceAndCohosted(target);
-                    });
-                });
-            }
-        }
-
-        // Render host tracks
-        const confDeadlines = allDeadlines.filter(d => d.conference_name.toUpperCase() === confName.toUpperCase());
-        if (tracksCount) tracksCount.textContent = `${confDeadlines.length} Tracks & Workshops`;
-        if (tracksList) {
-            tracksList.innerHTML = confDeadlines.map(d => {
-                const name = d.workshop_name || d.track_name || 'Main Track';
-                return `
-                    <div class="modal-track-item">
-                        <span class="modal-track-name">${name}</span>
-                        <span class="modal-track-dates">Due: <strong>${formatDate(d.paper_submission_date)}</strong></span>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        if (filterAllBtn) {
-            filterAllBtn.onclick = () => {
-                closeCohostedModal();
-                filterTimelineToConferenceAndCohosted(confName);
-            };
-        }
-
-        modal.classList.remove('hidden');
-    }
-
-    function closeCohostedModal() {
-        const modal = document.getElementById('cohosted-modal');
-        if (modal) modal.classList.add('hidden');
-    }
-
-    function filterTimelineToConferenceAndCohosted(confName) {
-        if (!confName) return;
-        if (isConferencePage) {
-            window.location.href = confSlug(confName);
-            return;
-        }
-
-        if (conferenceFilter) conferenceFilter.value = 'all';
-        if (searchInput) {
-            searchInput.value = confName;
-            updateClearBtnVisibility();
-        }
-        renderTimeline();
-        renderWorkshopList();
-
-        const timelineContainer = document.querySelector('.timeline-container');
-        if (timelineContainer) timelineContainer.scrollIntoView({ behavior: 'smooth' });
-    }
-
     /* ==========================================================================
-       Local Chat Bot Implementation (Offline NL QA + Optional Local Ollama LLM)
+       Local Assistant Bot Implementation (Offline NL QA + Optional Local Ollama LLM)
        ========================================================================== */
     function initLocalChatBot() {
         const widget = document.getElementById('dateline-chat-widget');
@@ -1710,20 +1586,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const settingsBtn = document.getElementById('chat-llm-settings-btn');
         const settingsDrawer = document.getElementById('chat-settings-drawer');
         const form = document.getElementById('chat-form');
-        const input = document.getElementById('chat-input');
+        const input = /** @type {HTMLInputElement|null} */ (document.getElementById('chat-input'));
         const messagesContainer = document.getElementById('chat-messages');
         const promptPills = document.querySelectorAll('.chat-prompt-pill');
-        const enableOllamaCb = document.getElementById('enable-ollama-cb');
+        const enableOllamaCb = /** @type {HTMLInputElement|null} */ (document.getElementById('enable-ollama-cb'));
         const engineTag = document.getElementById('chat-engine-tag');
 
         if (!widget || !toggleBtn || !panel) return;
 
-        // Toggle chat panel
         toggleBtn.addEventListener('click', () => {
             const isHidden = panel.classList.contains('hidden');
             if (isHidden) {
                 panel.classList.remove('hidden');
-                if (messagesContainer.children.length === 0) {
+                if (messagesContainer && messagesContainer.children.length === 0) {
                     renderInitialBotMessage();
                 }
                 setTimeout(() => input && input.focus(), 100);
@@ -1745,25 +1620,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (enableOllamaCb && engineTag) {
             enableOllamaCb.addEventListener('change', () => {
                 if (enableOllamaCb.checked) {
-                    engineTag.textContent = '🦙 Local Ollama Mode';
-                    engineTag.style.color = '#7c3aed';
+                    engineTag.textContent = 'Local Ollama LLM';
+                    engineTag.style.color = '#0284c7';
                 } else {
-                    engineTag.textContent = '🟢 Offline Local NLP';
+                    engineTag.textContent = 'Offline Local NLP';
                     engineTag.style.color = '#059669';
                 }
             });
         }
 
-        // Quick suggestions
         promptPills.forEach(pill => {
             pill.addEventListener('click', () => {
-                const prompt = pill.dataset.prompt;
+                const hPill = /** @type {HTMLElement} */ (pill);
+                const prompt = hPill.dataset.prompt;
                 if (!prompt) return;
                 handleUserMessage(prompt);
             });
         });
 
-        // Form submit
         if (form && input) {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -1774,13 +1648,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Chat Action Buttons delegation
         if (messagesContainer) {
             messagesContainer.addEventListener('click', (e) => {
-                const btn = e.target.closest('.chat-action-btn');
+                const target = /** @type {HTMLElement} */ (e.target);
+                const btn = /** @type {HTMLElement|null} */ (target.closest('.chat-action-btn'));
                 if (!btn) return;
                 const action = btn.dataset.action;
-                const val = btn.dataset.val;
+                const val = btn.dataset.val || '';
 
                 if (action === 'filter-conf') {
                     if (conferenceFilter) conferenceFilter.value = val;
@@ -1793,8 +1667,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateClearBtnVisibility();
                     renderTimeline();
                     renderWorkshopList();
-                } else if (action === 'open-modal') {
-                    openCohostedModal(val);
                 } else if (action === 'open-page') {
                     window.location.href = confSlug(val);
                 }
@@ -1803,48 +1675,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function renderInitialBotMessage() {
             appendMessage('bot', `
-                👋 <strong>Hello! I am Dateline Assistant</strong>, your local conference intelligence bot.<br><br>
-                I run completely in your browser and can answer questions on:<br>
-                • 📅 Upcoming deadlines & submission dates<br>
-                • 🎓 <strong>SERC Faculty Research Venues</strong> (CHI PLAY, ICSA, SEAMS, AGENT workshop, MODELS, ISEC, CAIN)<br>
-                • 🥽 VR / XR & Serious Games (CHI PLAY, IEEE VR, ISMAR)<br>
-                • 🤝 <strong>Co-hosted & sister conferences</strong> (e.g. events co-located with ICSE)<br>
-                • ⭐ CORE A* / A rankings & tracks<br><br>
-                Ask me anything below or pick a quick prompt!
+                <strong>Hello! I am Dateline Assistant</strong>, your local conference intelligence bot.<br><br>
+                I run directly in your browser and can answer questions on:<br>
+                • Upcoming deadlines & submission dates (AoE converted to local time)<br>
+                • <strong>SERC Faculty Research Venues</strong> (CHI PLAY, ICSA, SEAMS, AGENT workshop, MODELS, ISEC, CAIN)<br>
+                • VR / XR & Serious Games (CHI PLAY, IEEE VR, ISMAR)<br>
+                • <strong>Co-hosted & sister conferences</strong> (events co-located with ICSE)<br>
+                • CORE A* / A rankings & tracks<br><br>
+                Ask me anything below or select a quick prompt!
             `);
         }
 
         async function handleUserMessage(query) {
             appendMessage('user', query);
-
-            // Add typing indicator
             const typingEl = appendMessage('bot', '<em>Thinking...</em>');
 
             try {
                 if (enableOllamaCb && enableOllamaCb.checked) {
-                    const ollamaUrl = document.getElementById('ollama-url').value.trim() || 'http://localhost:11434';
-                    const modelName = document.getElementById('ollama-model').value.trim() || 'llama3.2';
+                    const urlInput = /** @type {HTMLInputElement|null} */ (document.getElementById('ollama-url'));
+                    const modelInput = /** @type {HTMLInputElement|null} */ (document.getElementById('ollama-model'));
+                    const ollamaUrl = (urlInput ? urlInput.value.trim() : '') || 'http://localhost:11434';
+                    const modelName = (modelInput ? modelInput.value.trim() : '') || 'llama3.2';
                     const reply = await askOllamaLLM(query, ollamaUrl, modelName);
-                    typingEl.innerHTML = reply;
+                    if (typingEl) typingEl.innerHTML = reply;
                 } else {
                     const reply = generateLocalAssistantReply(query);
-                    typingEl.innerHTML = reply;
+                    if (typingEl) typingEl.innerHTML = reply;
                 }
             } catch (err) {
                 console.warn('Ollama query failed, falling back to local NLP:', err);
                 const fallbackReply = generateLocalAssistantReply(query);
-                typingEl.innerHTML = `
-                    <div style="font-size:11px; color:#d97706; margin-bottom:6px;">
-                        ⚠️ Local Ollama was unreachable on localhost:11434. Responding with built-in offline intelligence:
-                    </div>
-                    ${fallbackReply}
-                `;
+                if (typingEl) {
+                    typingEl.innerHTML = `
+                        <div style="font-size:11px; color:#d97706; margin-bottom:6px;">
+                            Local Ollama was unreachable on localhost:11434. Responding with built-in offline intelligence:
+                        </div>
+                        ${fallbackReply}
+                    `;
+                }
             }
 
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            if (messagesContainer) messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         function appendMessage(sender, htmlContent) {
+            if (!messagesContainer) return null;
             const msgEl = document.createElement('div');
             msgEl.className = `chat-message ${sender}-msg`;
             msgEl.innerHTML = `<div class="chat-bubble">${htmlContent}</div>`;
@@ -1864,7 +1739,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cohosted: d.cohosted
         }));
 
-        const sysPrompt = `You are Dateline Assistant, pair programming with a researcher studying software engineering, virtual reality, software architecture, autonomous agents, and publication venues for SERC IIIT Hyderabad faculty (including Prof. Y. Raghu Reddy). Context: ${JSON.stringify(compactContext)}. Answer concisely with dates and CORE rankings.`;
+        const sysPrompt = `You are Dateline Assistant, assisting a researcher studying software engineering, virtual reality, software architecture, autonomous agents, and publication venues for SERC IIIT Hyderabad faculty (including Prof. Y. Raghu Reddy). Context: ${JSON.stringify(compactContext)}. Answer concisely with dates and CORE rankings.`;
 
         const resp = await fetch(`${endpoint}/api/generate`, {
             method: 'POST',
@@ -1886,10 +1761,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        // 1. SERC IIIT Hyderabad Faculty & Research Query
         if (lower.includes('raghu') || lower.includes('serc') || lower.includes('faculty') || lower.includes('professor') || lower.includes('architecture') || lower.includes('agents')) {
             return `
-                <strong>🎓 SERC IIIT Hyderabad Publication Venues:</strong><br><br>
+                <strong>SERC IIIT Hyderabad Publication Venues:</strong><br><br>
                 <strong>1. Prof. Y. Raghu Reddy (Virtual Reality, Requirements & Serious Games):</strong><br>
                 • <strong>CHI PLAY (CORE A)</strong>: Serious games, game architectures, VR mazes (<em>ACMGVR 2024</em>).<br>
                 • <strong>IEEE VR & VRW (CORE A*)</strong>: Locomotion in VR, visual acuity, HMD hardware evaluations.<br>
@@ -1905,24 +1779,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 • <strong>CAIN</strong>: AI Engineering – SE for AI (co-located with ICSE).<br>
                 • <strong>ASE (CORE A*)</strong>: QoS-aware model switching in ML systems.<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="CHI PLAY">👉 Filter CHI PLAY</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="ICSA">👉 Filter ICSA</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="SEAMS">👉 Filter SEAMS</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="AGENT">👉 Filter AGENT</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="MODELS">👉 Filter MODELS</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="ISEC">👉 Filter ISEC</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="CHI PLAY">Filter CHI PLAY</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="ICSA">Filter ICSA</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="SEAMS">Filter SEAMS</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="AGENT">Filter AGENT</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="MODELS">Filter MODELS</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="ISEC">Filter ISEC</button>
                 </div>
             `;
         }
 
-        // 2. Upcoming deadlines query
         if (lower.includes('upcoming') || lower.includes('next') || lower.includes('deadline') || lower.includes('due') || lower.includes('when')) {
             const upcoming = allDeadlines
                 .filter(d => {
                     const dt = parseLocalDate(d.paper_submission_date);
                     return dt && dt >= today;
                 })
-                .sort((a, b) => parseLocalDate(a.paper_submission_date) - parseLocalDate(b.paper_submission_date))
+                .sort((a, b) => {
+                    const dtA = parseLocalDate(a.paper_submission_date);
+                    const dtB = parseLocalDate(b.paper_submission_date);
+                    return (dtA ? dtA.getTime() : 0) - (dtB ? dtB.getTime() : 0);
+                })
                 .slice(0, 5);
 
             if (upcoming.length === 0) {
@@ -1931,89 +1808,86 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const itemsHtml = upcoming.map(d => {
                 const dt = parseLocalDate(d.paper_submission_date);
-                const days = Math.ceil((dt - today) / 86400000);
+                const days = dt ? Math.ceil((dt.getTime() - today.getTime()) / 86400000) : 0;
                 const name = d.workshop_name || d.track_name || 'Main Track';
                 const meta = getMeta(d.conference_name);
+                const localHint = formatAoeToLocal(d.paper_submission_date);
                 return `
                     <div style="margin-bottom:6px; padding:4px 0; border-bottom:1px dashed var(--color-border);">
                         <strong>${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name}</strong> - ${name}<br>
-                        📅 Due: <strong>${formatDate(d.paper_submission_date)}</strong> (${days} days left) • <span class="core-tag">${meta.coreRating}</span>
+                        Due: <strong>${formatDate(d.paper_submission_date)}</strong> (AoE • ${days} days left)<br>
+                        ${localHint ? `<span style="font-size:11px; color:var(--color-text-secondary);">Your time: ${localHint}</span> • ` : ''}<span class="core-tag">${meta.coreRating}</span>
                     </div>
                 `;
             }).join('');
 
             return `
-                <strong>📅 Next Upcoming Deadlines:</strong><br><br>
+                <strong>Next Upcoming Deadlines:</strong><br><br>
                 ${itemsHtml}
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="">👉 View All in Timeline</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="">View All in Timeline</button>
                 </div>
             `;
         }
 
-        // 3. VR & Games query
         if (lower.includes('vr') || lower.includes('chi play') || lower.includes('kai play') || lower.includes('game') || lower.includes('virtual') || lower.includes('xr')) {
             return `
-                <strong>🥽 Virtual Reality & Gaming Venues Tracked:</strong><br><br>
+                <strong>Virtual Reality & Gaming Venues Tracked:</strong><br><br>
                 • <strong>CHI PLAY (CORE A)</strong>: Zurich, Switzerland (Papers, Work-in-Progress, Serious Games Showcase).<br>
                 • <strong>IEEE VR 2027 (CORE A*)</strong>: Melbourne, Australia (Research Papers, Posters, 3DUI, KELVAR, SEARIS, OpenXRS).<br>
                 • <strong>ISMAR 2027 (CORE A*)</strong>: Bari, Italy (Research Papers, Posters, XR-Health).<br>
                 • <strong>VRST 2026 (CORE A)</strong>: Sendai, Japan (Full Papers, Short Papers & Demos).<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="VR">👉 Filter to VR / XR</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="CHI PLAY">👉 Filter to CHI PLAY</button>
-                    <button type="button" class="chat-action-btn" data-action="open-modal" data-val="IEEE VR">👉 IEEE VR Co-hosted</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="VR">Filter to VR / XR</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="CHI PLAY">Filter to CHI PLAY</button>
+                    <button type="button" class="chat-action-btn" data-action="open-page" data-val="IEEE VR">View IEEE VR Page</button>
                 </div>
             `;
         }
 
-        // 4. Co-hosted conferences query
         if (lower.includes('cohosted') || lower.includes('co-hosted') || lower.includes('colocated') || lower.includes('sister')) {
             return `
-                <strong>🤝 Co-hosted Conferences & Sister Events:</strong><br><br>
+                <strong>Co-hosted Conferences & Sister Events:</strong><br><br>
                 • <strong>ICSE 2027 (Dublin)</strong> co-hosts: <em>SEAMS</em> (CORE A), <em>CAIN</em>, <em>AGENT Workshop</em>, <em>MSR</em> (CORE A), <em>ICPC</em> (CORE A), <em>LLM4Code</em>, <em>DeepTest</em>.<br>
                 • <strong>IEEE VR 2027 (Melbourne)</strong> co-hosts: <em>3DUI Symposium</em> (CORE A*), <em>KELVAR</em>, <em>SEARIS</em>, <em>OpenXRS</em>, <em>XR-Health</em>.<br>
                 • <strong>ISMAR 2027 (Bari)</strong> co-hosts: <em>XR-Health Workshop</em>, <em>MAR Art & Design</em>.<br>
                 • <strong>CHI PLAY 2026 (Zurich)</strong> co-hosts: <em>Serious Games & VR Showcase</em>, <em>Work-in-Progress & Demos</em>.<br>
                 • <strong>ISEC 2026 (Hyderabad)</strong> co-hosts: <em>ModSym</em> (Modelling Symposium), <em>VR in SE Track</em>.<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="open-modal" data-val="ICSE">👉 View ICSE Co-hosted</button>
-                    <button type="button" class="chat-action-btn" data-action="open-modal" data-val="IEEE VR">👉 View IEEE VR Co-hosted</button>
+                    <button type="button" class="chat-action-btn" data-action="open-page" data-val="ICSE">Open ICSE Page</button>
+                    <button type="button" class="chat-action-btn" data-action="open-page" data-val="IEEE VR">Open IEEE VR Page</button>
                 </div>
             `;
         }
 
-        // 5. Agent & AI query
         if (lower.includes('agent') || lower.includes('agentic') || lower.includes('llm') || lower.includes('ai')) {
             return `
-                <strong>🤖 Agentic Engineering & AI Workshops:</strong><br><br>
-                • <strong>AGENT Workshop</strong>: International Workshop on Agentic Engineering (Agentic AI in SE, co-located with ICSE 2026).<br>
+                <strong>Agentic Engineering & AI Workshops:</strong><br><br>
+                • <strong>AGENT Workshop</strong>: International Workshop on Agentic Engineering (Agentic AI in SE, co-located with ICSE 2027).<br>
                 • <strong>CAIN</strong>: IEEE/ACM Conference on AI Engineering – Software Engineering for AI (co-located with ICSE).<br>
                 • <strong>LLM4Code</strong>: LLMs for Code workshop (ICSE).<br>
                 • <strong>LLMTrust</strong>: Trustworthy LLMs in SE (FSE).<br>
                 • <strong>CauSE</strong>: Causal Methods in SE (FSE).<br>
                 • <strong>SE4ALL</strong>: Software Engineering and AI for All (ICSE).<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="Agents">👉 Filter to Agents</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="AI">👉 Filter to AI / LLM</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="Agents">Filter to Agents</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="AI">Filter to AI / LLM</button>
                 </div>
             `;
         }
 
-        // 6. CORE Ratings query
         if (lower.includes('core') || lower.includes('ranking') || lower.includes('rating') || lower.includes('a*')) {
             return `
-                <strong>⭐ CORE Rankings Overview:</strong><br><br>
+                <strong>CORE Rankings Overview:</strong><br><br>
                 • <strong>CORE A* (Premier)</strong>: ICSE, FSE, IEEE VR, ISMAR.<br>
                 • <strong>CORE A (Major)</strong>: CHI PLAY, ICSA, SEAMS, MODELS, ECSA, MSR, ICPC, ISSTA, SANER, EASE, VRST.<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="A*">👉 Show CORE A*</button>
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="A">👉 Show CORE A</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="A*">Show CORE A*</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="A">Show CORE A</button>
                 </div>
             `;
         }
 
-        // 7. General search fallback
         const matches = allDeadlines.filter(d => {
             const conf = (d.conference_name || '').toLowerCase();
             const track = (d.workshop_name || d.track_name || '').toLowerCase();
@@ -2032,7 +1906,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 I found ${matches.length} matching entries for "<strong>${q}</strong>":<br><br>
                 ${resHtml}<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="${q}">👉 Filter Timeline to "${q}"</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="${q}">Filter Timeline to "${q}"</button>
                 </div>
             `;
         }
@@ -2047,4 +1921,37 @@ document.addEventListener('DOMContentLoaded', function() {
             • <em>"Show agent and AI workshops"</em>
         `;
     }
+
+    // App Initialization
+    async function init() {
+        initTheme();
+        initUserMemory();
+        initViewMode();
+        initSearchShortcut();
+
+        try {
+            allDeadlines = await fetchDeadlines();
+            allConferences = deriveConferences(allDeadlines);
+
+            setupNavigation();
+            setupEventListeners();
+
+            if (isConferencePage && selectedConference) {
+                renderConferenceHero(selectedConference);
+            }
+
+            renderTimeline();
+            renderWorkshopList();
+            renderPinnedTargets();
+            initLocalChatBot();
+        } catch (err) {
+            console.error('Failed to initialize Conference DateLine:', err);
+            const container = document.getElementById('timeline-chart');
+            if (container) {
+                container.innerHTML = '<div class="no-data">Failed to load conference deadlines data. Please refresh.</div>';
+            }
+        }
+    }
+
+    init();
 });
