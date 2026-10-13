@@ -9,10 +9,34 @@
 </head>
 <body data-page="home">
     <div class="container">
+        <div class="top-bar-nav">
+            <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme">
+                <span class="theme-toggle-icon" id="theme-icon">🌓</span>
+                <span id="theme-label">Theme</span>
+            </button>
+        </div>
+
         <header>
             <h1>Conference Deadline Tracker</h1>
             <p>Track paper submission deadlines, abstract dates, and notification dates with CORE rankings, locations, VR venues & co-hosted events</p>
         </header>
+
+        <!-- Pinned Target Conferences (Live Countdowns & User Memory) -->
+        <section id="pinned-targets-section" class="pinned-targets-section hidden">
+            <div class="pinned-targets-header">
+                <div class="pinned-title-group">
+                    <span class="pinned-icon">📌</span>
+                    <h3>Target Conferences</h3>
+                    <span class="pinned-count-badge" id="pinned-count-badge">0 pinned</span>
+                </div>
+                <div class="pinned-header-actions">
+                    <button type="button" id="clear-all-pinned-btn" class="btn-subtle" title="Clear all pinned target conferences">Clear Targets</button>
+                </div>
+            </div>
+            <div id="pinned-cards-grid" class="pinned-cards-grid">
+                <!-- Rendered dynamically from localStorage -->
+            </div>
+        </section>
 
         <section class="controls">
             <!-- Keyword search for workshops and tracks -->
@@ -207,7 +231,7 @@
             <!-- Quick Suggestions Bar -->
             <div class="chat-quick-prompts">
                 <button type="button" class="chat-prompt-pill" data-prompt="What deadlines are coming up next?">📅 Next deadlines</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="Where do Prof. Raghu and KV from SERC publish?">🎓 Raghu & KV venues</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Where does Prof. Raghu from SERC publish?">🎓 Prof. Raghu venues</button>
                 <button type="button" class="chat-prompt-pill" data-prompt="Show me VR and gaming conferences like CHI PLAY and IEEE VR">🥽 VR & CHI PLAY</button>
                 <button type="button" class="chat-prompt-pill" data-prompt="What conferences are co-hosted with ICSE?">🤝 ICSE co-hosted</button>
                 <button type="button" class="chat-prompt-pill" data-prompt="Show all CORE A* conferences">⭐ CORE A*</button>
@@ -221,7 +245,7 @@
 
             <!-- Input area -->
             <form id="chat-form" class="chat-input-bar">
-                <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu & KV, co-hosted events..." autocomplete="off">
+                <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu, co-hosted events..." autocomplete="off">
                 <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">➤</button>
             </form>
         </div>

@@ -149,9 +149,12 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
             f'<h1 id="hero-title">{conf_name} {year}</h1>',
             page_content
         )
+        code = meta.get("country_code", "un")
+        country_name = meta.get("country", "")
+        flag_img_html = f'<img src="../assets/flags/{code}.svg" class="flat-flag flag-hero" alt="{country_name}" loading="lazy">'
         page_content = re.sub(
             r'<span\s+class="hero-flag"\s+id="hero-flag">.*?</span>',
-            f'<span class="hero-flag" id="hero-flag">{flag}</span>',
+            f'<span class="hero-flag" id="hero-flag">{flag_img_html}</span>',
             page_content
         )
         page_content = re.sub(

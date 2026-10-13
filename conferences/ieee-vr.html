@@ -16,12 +16,16 @@
                     <span class="switcher-label">Switch:</span>
                     <div class="switcher-pills" id="conference-switcher"></div>
                 </div>
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme">
+                    <span class="theme-toggle-icon" id="theme-icon">🌓</span>
+                    <span id="theme-label">Theme</span>
+                </button>
             </div>
 
             <div class="conference-hero-card" id="conference-hero">
                 <div class="hero-top-row">
                     <div class="hero-identity">
-                        <span class="hero-flag" id="hero-flag">🇦🇺</span>
+                        <span class="hero-flag" id="hero-flag"><img src="../assets/flags/au.svg" class="flat-flag flag-hero" alt="Australia" loading="lazy"></span>
                         <div>
                             <div class="hero-title-row">
                                 <h1 id="hero-title">IEEE VR 2027</h1>
@@ -49,6 +53,23 @@
                 </div>
             </div>
         </header>
+
+        <!-- Pinned Target Conferences (Live Countdowns & User Memory) -->
+        <section id="pinned-targets-section" class="pinned-targets-section hidden">
+            <div class="pinned-targets-header">
+                <div class="pinned-title-group">
+                    <span class="pinned-icon">📌</span>
+                    <h3>Target Conferences</h3>
+                    <span class="pinned-count-badge" id="pinned-count-badge">0 pinned</span>
+                </div>
+                <div class="pinned-header-actions">
+                    <button type="button" id="clear-all-pinned-btn" class="btn-subtle" title="Clear all pinned target conferences">Clear Targets</button>
+                </div>
+            </div>
+            <div id="pinned-cards-grid" class="pinned-cards-grid">
+                <!-- Rendered dynamically from localStorage -->
+            </div>
+        </section>
 
         <!-- Dedicated Section for Co-hosted & Co-located Conferences -->
         <section class="cohosted-banner-section" id="cohosted-banner-section">
@@ -224,7 +245,7 @@
             <!-- Quick Suggestions Bar -->
             <div class="chat-quick-prompts">
                 <button type="button" class="chat-prompt-pill" data-prompt="What deadlines are coming up next?">📅 Next deadlines</button>
-                <button type="button" class="chat-prompt-pill" data-prompt="Where do Prof. Raghu and KV from SERC publish?">🎓 Raghu & KV venues</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Where does Prof. Raghu from SERC publish?">🎓 Prof. Raghu venues</button>
                 <button type="button" class="chat-prompt-pill" data-prompt="Show me VR and gaming conferences like CHI PLAY and IEEE VR">🥽 VR & CHI PLAY</button>
                 <button type="button" class="chat-prompt-pill" data-prompt="What conferences are co-hosted with ICSE?">🤝 ICSE co-hosted</button>
                 <button type="button" class="chat-prompt-pill" data-prompt="Show all CORE A* conferences">⭐ CORE A*</button>
@@ -238,7 +259,7 @@
 
             <!-- Input area -->
             <form id="chat-form" class="chat-input-bar">
-                <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu & KV, co-hosted events..." autocomplete="off">
+                <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu, co-hosted events..." autocomplete="off">
                 <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">➤</button>
             </form>
         </div>

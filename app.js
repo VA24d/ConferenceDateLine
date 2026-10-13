@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A*',
             location: 'Dublin, Ireland',
             country: 'Ireland',
+            country_code: 'ie',
             flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/icse-2027',
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A*',
             location: 'Shenzhen, China',
             country: 'China',
+            country_code: 'cn',
             flag: '🇨🇳',
             year: '2027',
             website: 'https://conf.researchr.org/home/fse-2027',
@@ -33,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Singapore',
             country: 'Singapore',
+            country_code: 'sg',
             flag: '🇸🇬',
             year: '2027',
             website: 'https://conf.researchr.org/home/issta-2027',
@@ -43,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Richmond, Virginia, USA',
             country: 'United States',
+            country_code: 'us',
             flag: '🇺🇸',
             year: '2027',
             website: 'https://conf.researchr.org/home/saner-2027',
@@ -53,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Hanoi, Vietnam',
             country: 'Vietnam',
+            country_code: 'vn',
             flag: '🇻🇳',
             year: '2027',
             website: 'https://conf.researchr.org/home/ease-2027',
@@ -63,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A*',
             location: 'Melbourne, Australia',
             country: 'Australia',
+            country_code: 'au',
             flag: '🇦🇺',
             year: '2027',
             website: 'https://ieeevr.org/2027/',
@@ -73,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A*',
             location: 'Bari, Italy',
             country: 'Italy',
+            country_code: 'it',
             flag: '🇮🇹',
             year: '2027',
             website: 'https://ieeeismar.net/',
@@ -83,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Sendai, Japan',
             country: 'Japan',
+            country_code: 'jp',
             flag: '🇯🇵',
             year: '2026',
             website: 'https://vrst.acm.org/',
@@ -93,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Zurich, Switzerland',
             country: 'Switzerland',
+            country_code: 'ch',
             flag: '🇨🇭',
             year: '2026',
             website: 'https://chiplay.acm.org/2026/',
@@ -103,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Amsterdam, Netherlands',
             country: 'Netherlands',
+            country_code: 'nl',
             flag: '🇳🇱',
             year: '2026',
             website: 'https://conf.researchr.org/home/icsa-2026',
@@ -113,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
+            country_code: 'ie',
             flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/seams-2026',
@@ -123,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'Workshop',
             location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
+            country_code: 'ie',
             flag: '🇮🇪',
             year: '2027',
             website: 'https://agentic-engineering.github.io/',
@@ -133,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
+            country_code: 'ie',
             flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/cain-2026',
@@ -143,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Linz, Austria',
             country: 'Austria',
+            country_code: 'at',
             flag: '🇦🇹',
             year: '2026',
             website: 'https://conf.researchr.org/home/models-2026',
@@ -153,6 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Hyderabad, India',
             country: 'India',
+            country_code: 'in',
             flag: '🇮🇳',
             year: '2026',
             website: 'https://isec2026.github.io/',
@@ -163,6 +178,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Limassol, Cyprus',
             country: 'Cyprus',
+            country_code: 'cy',
             flag: '🇨🇾',
             year: '2026',
             website: 'https://ecsa2026.disim.univaq.it/',
@@ -173,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
+            country_code: 'ie',
             flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/msr-2027',
@@ -183,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'A',
             location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
+            country_code: 'ie',
             flag: '🇮🇪',
             year: '2027',
             website: 'https://conf.researchr.org/home/icpc-2027',
@@ -207,10 +225,72 @@ document.addEventListener('DOMContentLoaded', function() {
             coreRating: 'Unranked',
             location: 'TBA',
             country: '',
+            country_code: 'globe',
             flag: '🌐',
             year: '2027',
             website: '#'
         };
+    }
+
+    // Flat Vector SVG Flag Mapping
+    const FLAG_CODES = {
+        'Ireland': 'ie',
+        'China': 'cn',
+        'Singapore': 'sg',
+        'United States': 'us',
+        'USA': 'us',
+        'Vietnam': 'vn',
+        'Australia': 'au',
+        'Italy': 'it',
+        'Japan': 'jp',
+        'Switzerland': 'ch',
+        'Netherlands': 'nl',
+        'Austria': 'at',
+        'India': 'in',
+        'Cyprus': 'cy',
+        'ie': 'ie',
+        'cn': 'cn',
+        'sg': 'sg',
+        'us': 'us',
+        'vn': 'vn',
+        'au': 'au',
+        'it': 'it',
+        'jp': 'jp',
+        'ch': 'ch',
+        'nl': 'nl',
+        'at': 'at',
+        'in': 'in',
+        'cy': 'cy',
+        '🇮🇪': 'ie',
+        '🇨🇳': 'cn',
+        '🇸🇬': 'sg',
+        '🇺🇸': 'us',
+        '🇻🇳': 'vn',
+        '🇦🇺': 'au',
+        '🇮🇹': 'it',
+        '🇯🇵': 'jp',
+        '🇨🇭': 'ch',
+        '🇳🇱': 'nl',
+        '🇦🇹': 'at',
+        '🇮🇳': 'in',
+        '🇨🇾': 'cy',
+        '🌐': 'globe'
+    };
+
+    function getFlagCode(metaOrConf) {
+        if (!metaOrConf) return 'globe';
+        if (metaOrConf.country_code && FLAG_CODES[metaOrConf.country_code]) return FLAG_CODES[metaOrConf.country_code];
+        if (metaOrConf.country && FLAG_CODES[metaOrConf.country]) return FLAG_CODES[metaOrConf.country];
+        if (metaOrConf.flag && FLAG_CODES[metaOrConf.flag]) return FLAG_CODES[metaOrConf.flag];
+        return 'globe';
+    }
+
+    function renderFlagHtml(metaOrConf, sizeClass = '') {
+        const code = getFlagCode(metaOrConf);
+        const countryName = (metaOrConf && metaOrConf.country) || (metaOrConf && metaOrConf.location) || '';
+        const flagPath = isInSubfolder ? `../assets/flags/${code}.svg` : `assets/flags/${code}.svg`;
+        const cls = sizeClass ? `flat-flag ${sizeClass}` : 'flat-flag';
+        return `<img src="${flagPath}" class="${cls}" alt="${countryName}" title="${countryName}" loading="lazy">`;
     }
 
     // State
@@ -270,6 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ...d,
                 core_rating: d.core_rating || meta.coreRating,
                 location: d.location || meta.location,
+                country_code: d.country_code || meta.country_code,
                 flag: d.flag || meta.flag
             };
         });
@@ -311,10 +392,377 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    /* ==========================================================================
+       Theme Management (Light / Dark / Auto System Mode)
+       ========================================================================== */
+    function initTheme() {
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeLabel = document.getElementById('theme-label');
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                if (themeIcon) themeIcon.textContent = '🌙';
+                if (themeLabel) themeLabel.textContent = 'Dark';
+            } else if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                if (themeIcon) themeIcon.textContent = '☀️';
+                if (themeLabel) themeLabel.textContent = 'Light';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (themeIcon) themeIcon.textContent = isSystemDark ? '🌙' : '☀️';
+                if (themeLabel) themeLabel.textContent = 'Auto';
+            }
+        }
+
+        const savedTheme = localStorage.getItem('cdl_theme') || 'auto';
+        applyTheme(savedTheme);
+
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                const current = localStorage.getItem('cdl_theme') || 'auto';
+                let next = 'dark';
+                if (current === 'auto') {
+                    const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    next = isSystemDark ? 'light' : 'dark';
+                } else if (current === 'dark') {
+                    next = 'light';
+                } else {
+                    next = 'dark';
+                }
+                localStorage.setItem('cdl_theme', next);
+                applyTheme(next);
+            });
+        }
+
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                if (!localStorage.getItem('cdl_theme') || localStorage.getItem('cdl_theme') === 'auto') {
+                    applyTheme('auto');
+                }
+            });
+        }
+    }
+
+    /* ==========================================================================
+       User Memory & Target Conferences (Pinned Cards, Live Timers & Reminders)
+       ========================================================================== */
+    const PINNED_STORAGE_KEY = 'cdl_pinned_targets_v1';
+    let countdownIntervalId = null;
+
+    function getPinnedTargets() {
+        try {
+            const raw = localStorage.getItem(PINNED_STORAGE_KEY);
+            return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+            console.error('Failed to parse pinned targets from localStorage:', e);
+            return [];
+        }
+    }
+
+    function savePinnedTargets(targets) {
+        try {
+            localStorage.setItem(PINNED_STORAGE_KEY, JSON.stringify(targets));
+        } catch (e) {
+            console.error('Failed to save pinned targets to localStorage:', e);
+        }
+    }
+
+    function isTargetPinned(confName, trackName) {
+        const pinned = getPinnedTargets();
+        return pinned.some(p => p.conf.toUpperCase() === confName.toUpperCase() && 
+                               (p.track || '').toUpperCase() === (trackName || '').toUpperCase());
+    }
+
+    function toggleTargetPin(confName, trackName) {
+        let pinned = getPinnedTargets();
+        const existsIndex = pinned.findIndex(p => p.conf.toUpperCase() === confName.toUpperCase() && 
+                                                  (p.track || '').toUpperCase() === (trackName || '').toUpperCase());
+        if (existsIndex >= 0) {
+            pinned.splice(existsIndex, 1);
+        } else {
+            const found = allDeadlines.find(d => d.conference_name.toUpperCase() === confName.toUpperCase() &&
+                                                  ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === (trackName || 'Main Track').toUpperCase()));
+            const meta = getMeta(confName);
+            pinned.push({
+                conf: confName,
+                track: trackName || (found ? (found.workshop_name || found.track_name) : 'Main Track'),
+                paper_submission_date: found ? found.paper_submission_date : null,
+                abstract_deadline: found ? found.abstract_deadline : null,
+                intimation_date: found ? found.intimation_date : null,
+                website_url: (found && found.website_url) ? found.website_url : meta.website,
+                pinnedAt: Date.now()
+            });
+        }
+        savePinnedTargets(pinned);
+        renderPinnedTargets();
+        updatePinToggleButtons();
+    }
+
+    function clearAllPinnedTargets() {
+        savePinnedTargets([]);
+        renderPinnedTargets();
+        updatePinToggleButtons();
+    }
+
+    function updatePinToggleButtons() {
+        document.querySelectorAll('.btn-pin-toggle').forEach(btn => {
+            const conf = btn.dataset.conf;
+            const track = btn.dataset.track;
+            if (conf) {
+                const pinned = isTargetPinned(conf, track);
+                btn.classList.toggle('is-pinned', pinned);
+                btn.innerHTML = pinned ? '📌 Pinned' : '📍 Pin Target';
+                btn.title = pinned ? 'Unpin target' : 'Pin to Target Conferences';
+            }
+        });
+    }
+
+    function getGoogleCalendarUrl(confName, trackName, dateStr, website) {
+        if (!dateStr) return '#';
+        const date = parseLocalDate(dateStr);
+        if (!date) return '#';
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        const dateStart = `${y}${m}${d}T180000Z`;
+        const dateEnd = `${y}${m}${d}T235900Z`;
+        const title = encodeURIComponent(`${confName} - ${trackName} Deadline`);
+        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}).\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dateStart}/${dateEnd}&details=${details}`;
+    }
+
+    function downloadIcsReminder(confName, trackName) {
+        const found = allDeadlines.find(d => d.conference_name.toUpperCase() === confName.toUpperCase() &&
+                                              ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === (trackName || 'Main Track').toUpperCase()));
+        const meta = getMeta(confName);
+        const dateStr = found ? found.paper_submission_date : null;
+        if (!dateStr) {
+            alert(`No confirmed submission date found for ${confName} - ${trackName}`);
+            return;
+        }
+
+        const date = parseLocalDate(dateStr);
+        if (!date) return;
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        const dtStart = `${y}${m}${d}T180000Z`;
+        const dtEnd = `${y}${m}${d}T235900Z`;
+        const url = (found && found.website_url) ? found.website_url : meta.website;
+        const uid = `cdl-${confName.toLowerCase()}-${Date.now()}@conferencedateline`;
+
+        const icsContent = [
+            'BEGIN:VCALENDAR',
+            'VERSION:2.0',
+            'PRODID:-//ConferenceDateLine//Tracker//EN',
+            'CALSCALE:GREGORIAN',
+            'BEGIN:VEVENT',
+            `UID:${uid}`,
+            `DTSTAMP:${dtStart}`,
+            `DTSTART:${dtStart}`,
+            `DTEND:${dtEnd}`,
+            `SUMMARY:${confName} - ${trackName} Submission Deadline`,
+            `DESCRIPTION:Paper submission deadline for ${confName} (${trackName}). Official link: ${url}`,
+            'STATUS:CONFIRMED',
+            'BEGIN:VALARM',
+            'TRIGGER:-P3D',
+            'ACTION:DISPLAY',
+            `DESCRIPTION:Reminder: ${confName} submission deadline in 3 days!`,
+            'END:VALARM',
+            'END:VEVENT',
+            'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const downloadUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = `${confName}_${trackName.replace(/[^a-zA-Z0-9]/g, '_')}_deadline.ics`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(downloadUrl);
+    }
+
+    function setupBrowserNotification(confName, trackName) {
+        if (!('Notification' in window)) {
+            alert('Browser notifications are not supported in your browser.');
+            return;
+        }
+
+        if (Notification.permission === 'granted') {
+            new Notification(`Target Pinned: ${confName}`, {
+                body: `You are tracking ${confName} - ${trackName}. Live countdown is ticking at the top!`,
+                icon: isInSubfolder ? '../assets/flags/globe.svg' : 'assets/flags/globe.svg'
+            });
+        } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    new Notification(`Target Pinned: ${confName}`, {
+                        body: `You are tracking ${confName} - ${trackName}. Live countdown is ticking at the top!`,
+                        icon: isInSubfolder ? '../assets/flags/globe.svg' : 'assets/flags/globe.svg'
+                    });
+                }
+            });
+        } else {
+            alert('Browser notifications are blocked. Please enable them in your browser settings to receive alerts.');
+        }
+    }
+
+    function renderPinnedTargets() {
+        const pinnedSection = document.getElementById('pinned-targets-section');
+        const pinnedCountBadge = document.getElementById('pinned-count-badge');
+        const pinnedGrid = document.getElementById('pinned-cards-grid');
+
+        if (!pinnedSection || !pinnedGrid) return;
+
+        const targets = getPinnedTargets();
+
+        if (targets.length === 0) {
+            pinnedSection.classList.add('hidden');
+            if (pinnedCountBadge) pinnedCountBadge.textContent = '0 pinned';
+            pinnedGrid.innerHTML = '';
+            return;
+        }
+
+        pinnedSection.classList.remove('hidden');
+        if (pinnedCountBadge) pinnedCountBadge.textContent = `${targets.length} target${targets.length > 1 ? 's' : ''}`;
+
+        pinnedGrid.innerHTML = targets.map(t => {
+            const meta = getMeta(t.conf);
+            const confPageUrl = confSlug(t.conf);
+            const gcalUrl = getGoogleCalendarUrl(t.conf, t.track, t.paper_submission_date, t.website_url);
+
+            return `
+                <div class="pinned-target-card" data-conf="${t.conf}" data-track="${t.track}">
+                    <div class="pinned-card-top">
+                        <div class="pinned-card-identity">
+                            ${renderFlagHtml(meta, 'flag-sm')}
+                            <a href="${confPageUrl}" style="color:inherit; text-decoration:none;"><strong>${t.conf}</strong></a>
+                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}" style="font-size:10px; padding:1px 5px;">★ ${meta.coreRating}</span>
+                        </div>
+                        <button type="button" class="pinned-unpin-btn" data-conf="${t.conf}" data-track="${t.track}" title="Unpin this target conference">✕</button>
+                    </div>
+
+                    <div class="pinned-track-title" title="${t.track}">${t.track}</div>
+
+                    <div class="live-countdown-box">
+                        <span class="countdown-timer-value" data-date="${t.paper_submission_date || ''}">Calculating...</span>
+                        <span class="countdown-due-date">Due: ${formatDate(t.paper_submission_date)}</span>
+                    </div>
+
+                    <div class="pinned-card-actions">
+                        <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action" title="Add submission deadline to Google Calendar">
+                            📅 Google Cal
+                        </a>
+                        <button type="button" class="btn-reminder-action download-ics-btn" data-conf="${t.conf}" data-track="${t.track}" title="Download .ics Calendar File">
+                            📥 .ics File
+                        </button>
+                        <button type="button" class="btn-reminder-action notify-reminder-btn" data-conf="${t.conf}" data-track="${t.track}" title="Set browser notification alert">
+                            🔔 Alert
+                        </button>
+                        ${t.website_url && t.website_url !== '#' ? `<a href="${t.website_url}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action">Link ↗</a>` : ''}
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        updateLiveCountdowns();
+    }
+
+    function updateLiveCountdowns() {
+        const timerEls = document.querySelectorAll('.countdown-timer-value');
+        const now = new Date();
+
+        timerEls.forEach(el => {
+            const dateStr = el.dataset.date;
+            if (!dateStr) {
+                el.textContent = 'Date TBA';
+                return;
+            }
+
+            const targetDate = parseLocalDate(dateStr);
+            if (!targetDate) {
+                el.textContent = 'Date TBA';
+                return;
+            }
+
+            targetDate.setHours(23, 59, 59, 999);
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                el.textContent = '🏁 Deadline Passed';
+                el.classList.remove('is-urgent');
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
+
+            el.textContent = `⏱️ ${days}d ${hours}h ${mins}m ${secs}s`;
+
+            if (days <= 7) {
+                el.classList.add('is-urgent');
+            } else {
+                el.classList.remove('is-urgent');
+            }
+        });
+    }
+
+    function startLiveCountdownInterval() {
+        if (countdownIntervalId) clearInterval(countdownIntervalId);
+        updateLiveCountdowns();
+        countdownIntervalId = setInterval(updateLiveCountdowns, 1000);
+    }
+
+    function initUserMemory() {
+        const clearBtn = document.getElementById('clear-all-pinned-btn');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+                if (confirm('Clear all pinned target conferences?')) {
+                    clearAllPinnedTargets();
+                }
+            });
+        }
+
+        const pinnedGrid = document.getElementById('pinned-cards-grid');
+        if (pinnedGrid) {
+            pinnedGrid.addEventListener('click', (e) => {
+                const unpinBtn = e.target.closest('.pinned-unpin-btn');
+                if (unpinBtn) {
+                    toggleTargetPin(unpinBtn.dataset.conf, unpinBtn.dataset.track);
+                    return;
+                }
+
+                const icsBtn = e.target.closest('.download-ics-btn');
+                if (icsBtn) {
+                    downloadIcsReminder(icsBtn.dataset.conf, icsBtn.dataset.track);
+                    return;
+                }
+
+                const notifyBtn = e.target.closest('.notify-reminder-btn');
+                if (notifyBtn) {
+                    setupBrowserNotification(notifyBtn.dataset.conf, notifyBtn.dataset.track);
+                    return;
+                }
+            });
+        }
+
+        renderPinnedTargets();
+        startLiveCountdownInterval();
+    }
+
     // Initialize
     init();
 
     async function init() {
+        initTheme();
+        initUserMemory();
         await loadDeadlines();
         setupNavigation();
         setupEventListeners();
@@ -362,6 +810,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             renderTimeline();
             renderWorkshopList();
+            renderPinnedTargets();
+            updatePinToggleButtons();
         } catch (error) {
             console.error('Error loading deadlines:', error);
         }
@@ -375,7 +825,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const meta = getMeta(conf.name);
                 const option = document.createElement('option');
                 option.value = conf.name;
-                option.textContent = `${conf.name} ${meta.flag} (${meta.coreRating})`;
+                option.textContent = `${conf.name} (${meta.coreRating}) - ${meta.location}`;
                 conferenceFilter.appendChild(option);
             });
 
@@ -392,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.createElement('a');
                 link.href = confSlug(conf.name);
                 link.className = 'dedicated-pill-link';
-                link.innerHTML = `<span>${meta.flag}</span> <strong>${conf.name}</strong> <span class="pill-core">${meta.coreRating}</span> ↗`;
+                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${conf.name}</strong> <span class="pill-core">${meta.coreRating}</span> ↗`;
                 quickPillsContainer.appendChild(link);
             });
         }
@@ -406,7 +856,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.createElement('a');
                 link.href = confSlug(conf.name);
                 link.className = `switcher-pill ${isActive ? 'is-active' : ''}`;
-                link.innerHTML = `<span>${meta.flag}</span> <strong>${conf.name}</strong>`;
+                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${conf.name}</strong>`;
                 switcherContainer.appendChild(link);
             });
         }
@@ -424,10 +874,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const heroWebsiteLink = document.getElementById('hero-website-link');
         const listTitle = document.getElementById('workshop-list-title');
 
-        document.title = `${confName} ${meta.flag} - Conference Deadlines & Tracks`;
+        document.title = `${confName} - Conference Deadlines & Tracks`;
 
         if (heroTitle) heroTitle.textContent = `${confName} ${meta.year}`;
-        if (heroFlag) heroFlag.textContent = meta.flag;
+        if (heroFlag) heroFlag.innerHTML = renderFlagHtml(meta, 'flag-hero');
         if (heroCoreBadge) {
             heroCoreBadge.textContent = `CORE ${meta.coreRating}`;
             heroCoreBadge.className = `core-badge ${meta.coreRating === 'A*' ? 'is-core-star' : 'is-core-a'}`;
@@ -464,7 +914,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const link = hasPage ? confSlug(item) : '#';
                     return `
                         <div class="cohosted-pill-card" data-conf="${item}">
-                            <span class="cohosted-pill-flag">${itemMeta.flag}</span>
+                            <span class="cohosted-pill-flag">${renderFlagHtml(itemMeta, 'flag-sm')}</span>
                             <strong>${item}</strong>
                             <span class="cohosted-pill-badge">${itemMeta.coreRating}</span>
                             ${hasPage ? `<a href="${link}" class="btn-card-action" style="padding:1px 6px;">Page ↗</a>` : ''}
@@ -732,8 +1182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update stats badge
         if (conferenceStats) {
-            const uniqueFlags = [...new Set(confOrder.map(c => getMeta(c).flag))].join(' ');
-            conferenceStats.textContent = `${confOrder.length} Conferences • ${deadlines.length} Tracks ${uniqueFlags ? '• ' + uniqueFlags : ''}`;
+            conferenceStats.textContent = `${confOrder.length} Conferences • ${deadlines.length} Tracks`;
         }
         if (workshopCount) {
             workshopCount.textContent = `Showing ${deadlines.length} items`;
@@ -800,15 +1249,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const meta = getMeta(confName);
             const pageUrl = confSlug(confName);
 
-            // Conference badge column with Flag & CORE rating (links to dedicated page)
             // Conference badge column with Flag & CORE rating (links to dedicated page & opens cohosted modal)
             const cohostedCount = (meta.cohosted || []).length;
             rowsHtml += `
                 <div class="conference-column" style="grid-row: ${startRow} / span ${trackCount}; grid-column: 1;" title="${confName} (${meta.coreRating}) • ${meta.location}">
-                    <a href="${pageUrl}" class="conference-badge-link">
                     <a href="${pageUrl}" class="conference-badge-link" data-conf="${confName}">
                         <div class="conference-badge-vertical">
-                            <span class="badge-flag">${meta.flag}</span>
+                            ${renderFlagHtml(meta, 'flag-timeline')}
                             <span class="badge-name">${confName}</span>
                             <span class="badge-core">${meta.coreRating}</span>
                         </div>
@@ -835,21 +1282,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 const daysToSubmission = Math.ceil((start - today) / 86400000);
 
                 let statusClass = 'days-status-safe';
-                if (daysToSubmission <= 0) statusClass = 'days-status-past';
-                else if (daysToSubmission <= 10) statusClass = 'days-status-urgent';
-                else if (daysToSubmission <= 30) statusClass = 'days-status-soon';
-                else if (daysToSubmission <= 60) statusClass = 'days-status-medium';
+                let urgencyIcon = '📅';
+                if (daysToSubmission < 0) {
+                    statusClass = 'days-status-past';
+                    urgencyIcon = '🏁';
+                } else if (daysToSubmission === 0) {
+                    statusClass = 'days-status-urgent';
+                    urgencyIcon = '🚨';
+                } else if (daysToSubmission <= 10) {
+                    statusClass = 'days-status-urgent';
+                    urgencyIcon = '🔥';
+                } else if (daysToSubmission <= 30) {
+                    statusClass = 'days-status-soon';
+                    urgencyIcon = '⚡';
+                } else if (daysToSubmission <= 60) {
+                    statusClass = 'days-status-medium';
+                    urgencyIcon = '⏳';
+                }
 
-                const daysDisplay = daysToSubmission > 0 ? `${daysToSubmission}d left` : 
-                                   daysToSubmission === 0 ? 'Today!' : 
-                                   `${Math.abs(daysToSubmission)}d ago`;
+                const daysDisplay = daysToSubmission > 0 ? `${urgencyIcon} ${daysToSubmission}d left` : 
+                                   daysToSubmission === 0 ? '🚨 Due Today!' : 
+                                   `🏁 ${Math.abs(daysToSubmission)}d ago`;
 
                 const name = d.workshop_name || d.track_name || 'Main Track';
                 const websiteUrl = d.website_url || '';
                 const durationDays = Math.round((end - start) / 86400000);
 
                 const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
-                const barTooltip = `${confName} ${meta.flag} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission: ${formatDateSafe(start)}\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}`;
+                const barTooltip = `${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}`;
 
                 rowsHtml += `
                     <div class="timeline-row conf-group-${confIndex % 2}" style="grid-row: ${row}; grid-column: 2 / span 2;">
@@ -859,10 +1319,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
                             <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
-                                <span class="duration">${durationDays}d</span>
+                                <span class="duration">${durationDays}d review</span>
                             </div>
+                            ${start && start >= minDate && start <= maxDate ? `<div class="timeline-marker submission-marker" style="left: ${startOffset}%" title="Submission Deadline: ${formatDateSafe(start)}"></div>` : ''}
                             ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate - minDate) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDateSafe(abstractDate)}"></div>` : ''}
-                            ${end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
+                            ${end && end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
                         </div>
                     </div>
                 `;
@@ -932,6 +1393,38 @@ document.addEventListener('DOMContentLoaded', function() {
             const meta = getMeta(d.conference_name);
             const confPageUrl = confSlug(d.conference_name);
 
+            const isPinned = isTargetPinned(d.conference_name, name);
+            const start = parseLocalDate(d.paper_submission_date);
+            const todayDate = new Date();
+            todayDate.setHours(0, 0, 0, 0);
+            const daysToSubmission = start ? Math.ceil((start - todayDate) / 86400000) : null;
+            let statusClass = 'days-status-safe';
+            let urgencyIcon = '📅';
+            if (daysToSubmission !== null) {
+                if (daysToSubmission < 0) {
+                    statusClass = 'days-status-past';
+                    urgencyIcon = '🏁';
+                } else if (daysToSubmission === 0) {
+                    statusClass = 'days-status-urgent';
+                    urgencyIcon = '🚨';
+                } else if (daysToSubmission <= 10) {
+                    statusClass = 'days-status-urgent';
+                    urgencyIcon = '🔥';
+                } else if (daysToSubmission <= 30) {
+                    statusClass = 'days-status-soon';
+                    urgencyIcon = '⚡';
+                } else if (daysToSubmission <= 60) {
+                    statusClass = 'days-status-medium';
+                    urgencyIcon = '⏳';
+                }
+            }
+
+            const daysBadgeHtml = daysToSubmission !== null ? `
+                <span class="days-left-badge ${statusClass}">
+                    ${daysToSubmission > 0 ? `${urgencyIcon} ${daysToSubmission}d left` : daysToSubmission === 0 ? '🚨 Due Today!' : `🏁 ${Math.abs(daysToSubmission)}d ago`}
+                </span>
+            ` : '';
+
             const titleHtml = url 
                 ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="workshop-title-link">${name} ↗</a>`
                 : name;
@@ -941,22 +1434,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="workshop-header">
                         <div class="header-chips">
                             <a href="${confPageUrl}" class="workshop-conf-badge" title="View ${d.conference_name} page">
-                                <span>${meta.flag}</span> ${d.conference_name} ↗
+                                ${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name} ↗
                             </a>
                             <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">★ CORE ${meta.coreRating}</span>
+                            ${daysBadgeHtml}
                             ${meta.cohosted && meta.cohosted.length > 0 ? `
                                 <button type="button" class="btn-card-action cohost-modal-trigger" data-conf="${d.conference_name}" style="padding: 2px 7px; font-size: 10px; cursor: pointer;">
                                     🤝 Co-hosted (${meta.cohosted.length})
                                 </button>
                             ` : ''}
                         </div>
-                        <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${d.conference_name}" data-track="${name}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
+                                ${isPinned ? '📌 Pinned' : '📍 Pin Target'}
+                            </button>
+                            <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
+                        </div>
                     </div>
 
                     <div class="workshop-name">${titleHtml}</div>
 
                     <div class="workshop-location-row">
-                        <span class="location-chip">📍 ${meta.location} ${meta.flag}</span>
+                        <span class="location-chip">📍 ${meta.location} ${renderFlagHtml(meta, 'flag-sm')}</span>
                     </div>
 
                     <div class="workshop-dates-grid">
@@ -1098,7 +1597,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const filterAllBtn = document.getElementById('modal-filter-all-btn');
 
         if (titleEl) titleEl.textContent = `${confName} ${meta.year}`;
-        if (flagEl) flagEl.textContent = meta.flag;
+        if (flagEl) flagEl.innerHTML = renderFlagHtml(meta, 'flag-hero');
         if (coreBadgeEl) {
             coreBadgeEl.textContent = `CORE ${meta.coreRating}`;
             coreBadgeEl.className = `core-badge ${meta.coreRating === 'A*' ? 'is-core-star' : 'is-core-a'}`;
@@ -1125,7 +1624,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return `
                         <div class="cohosted-card-item">
                             <div class="cohosted-card-top">
-                                <span class="cohosted-card-name">${itemMeta.flag} ${item}</span>
+                                <span class="cohosted-card-name">${renderFlagHtml(itemMeta, 'flag-sm')} ${item}</span>
                                 <span class="core-tag ${itemMeta.coreRating === 'A*' ? 'core-star' : 'core-a'}">${itemMeta.coreRating}</span>
                             </div>
                             <div class="cohosted-card-desc">${itemMeta.fullName}</div>
@@ -1307,7 +1806,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 👋 <strong>Hello! I am Dateline Assistant</strong>, your local conference intelligence bot.<br><br>
                 I run completely in your browser and can answer questions on:<br>
                 • 📅 Upcoming deadlines & submission dates<br>
-                • 🎓 <strong>Prof. Raghu Reddy & Dr. Karthik Vaidhyanathan (KV)</strong> publication venues (CHI PLAY, ICSA, SEAMS, AGENT workshop, MODELS, ISEC)<br>
+                • 🎓 <strong>SERC Faculty Research Venues</strong> (CHI PLAY, ICSA, SEAMS, AGENT workshop, MODELS, ISEC, CAIN)<br>
                 • 🥽 VR / XR & Serious Games (CHI PLAY, IEEE VR, ISMAR)<br>
                 • 🤝 <strong>Co-hosted & sister conferences</strong> (e.g. events co-located with ICSE)<br>
                 • ⭐ CORE A* / A rankings & tracks<br><br>
@@ -1365,7 +1864,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cohosted: d.cohosted
         }));
 
-        const sysPrompt = `You are Dateline Assistant, pair programming with a researcher studying software engineering, virtual reality, and publication venues for SERC IIIT Hyderabad faculty Prof. Y. Raghu Reddy and Dr. Karthik Vaidhyanathan (KV). Context: ${JSON.stringify(compactContext)}. Answer concisely with dates and CORE rankings.`;
+        const sysPrompt = `You are Dateline Assistant, pair programming with a researcher studying software engineering, virtual reality, software architecture, autonomous agents, and publication venues for SERC IIIT Hyderabad faculty (including Prof. Y. Raghu Reddy). Context: ${JSON.stringify(compactContext)}. Answer concisely with dates and CORE rankings.`;
 
         const resp = await fetch(`${endpoint}/api/generate`, {
             method: 'POST',
@@ -1387,22 +1886,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        // 1. Prof. Raghu & KV (SERC IIIT Hyderabad) query
-        if (lower.includes('raghu') || lower.includes('kv') || lower.includes('karthik') || lower.includes('vaidhyanathan') || lower.includes('serc') || lower.includes('professor')) {
+        // 1. SERC IIIT Hyderabad Faculty & Research Query
+        if (lower.includes('raghu') || lower.includes('serc') || lower.includes('faculty') || lower.includes('professor') || lower.includes('architecture') || lower.includes('agents')) {
             return `
-                <strong>🎓 SERC IIIT Hyderabad Publication Venues (Prof. Raghu & Dr. KV):</strong><br><br>
-                <strong>1. Dr. Y. Raghu Reddy (Prof. Raghu):</strong><br>
+                <strong>🎓 SERC IIIT Hyderabad Publication Venues:</strong><br><br>
+                <strong>1. Prof. Y. Raghu Reddy (Virtual Reality, Requirements & Serious Games):</strong><br>
                 • <strong>CHI PLAY (CORE A)</strong>: Serious games, game architectures, VR mazes (<em>ACMGVR 2024</em>).<br>
                 • <strong>IEEE VR & VRW (CORE A*)</strong>: Locomotion in VR, visual acuity, HMD hardware evaluations.<br>
                 • <strong>MODELS (CORE A)</strong>: <em>VRSpecML</em> domain-specific modeling for VR systems.<br>
                 • <strong>ISEC (Flagship India)</strong>: 14+ publications on VR requirements, dev waste, smart contracts, ModSym.<br>
-                • <strong>ICSE Companion & AST</strong>: <em>VReqST</em> requirement specification tool for VR (2025).<br>
+                • <strong>ICSE Companion & AST</strong>: <em>VReqST</em> requirement specification tool for VR.<br>
                 • <strong>ASE Workshops</strong>: Conformance checking in VR interaction testing.<br><br>
-                <strong>2. Dr. Karthik Vaidhyanathan (KV):</strong><br>
+                <strong>2. Software Architecture & Autonomous Agents:</strong><br>
                 • <strong>ICSA (CORE A)</strong>: Premier software architecture venue. Architecture view generation via LLMs, AI agents generating microservices, refactoring.<br>
                 • <strong>ECSA (CORE A)</strong>: Software architecture in the age of Agentic AI, sustainable MLOps (<em>HarmonE</em>).<br>
                 • <strong>SEAMS (CORE A)</strong>: Self-adaptive systems, QoS routing for SLMs (<em>CALM</em>), sustainable MLOps (co-located with ICSE).<br>
-                • <strong>AGENT Workshop</strong>: International Workshop on Agentic Engineering (co-located with ICSE 2026).<br>
+                • <strong>AGENT Workshop</strong>: International Workshop on Agentic Engineering (co-located with ICSE).<br>
                 • <strong>CAIN</strong>: AI Engineering – SE for AI (co-located with ICSE).<br>
                 • <strong>ASE (CORE A*)</strong>: QoS-aware model switching in ML systems.<br><br>
                 <div class="chat-actions-row">
@@ -1437,7 +1936,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const meta = getMeta(d.conference_name);
                 return `
                     <div style="margin-bottom:6px; padding:4px 0; border-bottom:1px dashed var(--color-border);">
-                        <strong>${meta.flag} ${d.conference_name}</strong> - ${name}<br>
+                        <strong>${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name}</strong> - ${name}<br>
                         📅 Due: <strong>${formatDate(d.paper_submission_date)}</strong> (${days} days left) • <span class="core-tag">${meta.coreRating}</span>
                     </div>
                 `;
@@ -1456,10 +1955,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lower.includes('vr') || lower.includes('chi play') || lower.includes('kai play') || lower.includes('game') || lower.includes('virtual') || lower.includes('xr')) {
             return `
                 <strong>🥽 Virtual Reality & Gaming Venues Tracked:</strong><br><br>
-                • <strong>CHI PLAY (CORE A)</strong>: Zurich, Switzerland 🇨🇭 (Papers, Work-in-Progress, Serious Games Showcase).<br>
-                • <strong>IEEE VR 2027 (CORE A*)</strong>: Melbourne, Australia 🇦🇺 (Research Papers, Posters, 3DUI, KELVAR, SEARIS, OpenXRS).<br>
-                • <strong>ISMAR 2027 (CORE A*)</strong>: Bari, Italy 🇮🇹 (Research Papers, Posters, XR-Health).<br>
-                • <strong>VRST 2026 (CORE A)</strong>: Sendai, Japan 🇯🇵 (Full Papers, Short Papers & Demos).<br><br>
+                • <strong>CHI PLAY (CORE A)</strong>: Zurich, Switzerland (Papers, Work-in-Progress, Serious Games Showcase).<br>
+                • <strong>IEEE VR 2027 (CORE A*)</strong>: Melbourne, Australia (Research Papers, Posters, 3DUI, KELVAR, SEARIS, OpenXRS).<br>
+                • <strong>ISMAR 2027 (CORE A*)</strong>: Bari, Italy (Research Papers, Posters, XR-Health).<br>
+                • <strong>VRST 2026 (CORE A)</strong>: Sendai, Japan (Full Papers, Short Papers & Demos).<br><br>
                 <div class="chat-actions-row">
                     <button type="button" class="chat-action-btn" data-action="search-kw" data-val="VR">👉 Filter to VR / XR</button>
                     <button type="button" class="chat-action-btn" data-action="search-kw" data-val="CHI PLAY">👉 Filter to CHI PLAY</button>
@@ -1472,11 +1971,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lower.includes('cohosted') || lower.includes('co-hosted') || lower.includes('colocated') || lower.includes('sister')) {
             return `
                 <strong>🤝 Co-hosted Conferences & Sister Events:</strong><br><br>
-                • <strong>ICSE 2027 (Dublin 🇮🇪)</strong> co-hosts: <em>SEAMS</em> (CORE A), <em>CAIN</em>, <em>AGENT Workshop</em>, <em>MSR</em> (CORE A), <em>ICPC</em> (CORE A), <em>LLM4Code</em>, <em>DeepTest</em>.<br>
-                • <strong>IEEE VR 2027 (Melbourne 🇦🇺)</strong> co-hosts: <em>3DUI Symposium</em> (CORE A*), <em>KELVAR</em>, <em>SEARIS</em>, <em>OpenXRS</em>, <em>XR-Health</em>.<br>
-                • <strong>ISMAR 2027 (Bari 🇮🇹)</strong> co-hosts: <em>XR-Health Workshop</em>, <em>MAR Art & Design</em>.<br>
-                • <strong>CHI PLAY 2026 (Zurich 🇨🇭)</strong> co-hosts: <em>Serious Games & VR Showcase</em>, <em>Work-in-Progress & Demos</em>.<br>
-                • <strong>ISEC 2026 (Hyderabad 🇮🇳)</strong> co-hosts: <em>ModSym</em> (Modelling Symposium), <em>VR in SE Track</em>.<br><br>
+                • <strong>ICSE 2027 (Dublin)</strong> co-hosts: <em>SEAMS</em> (CORE A), <em>CAIN</em>, <em>AGENT Workshop</em>, <em>MSR</em> (CORE A), <em>ICPC</em> (CORE A), <em>LLM4Code</em>, <em>DeepTest</em>.<br>
+                • <strong>IEEE VR 2027 (Melbourne)</strong> co-hosts: <em>3DUI Symposium</em> (CORE A*), <em>KELVAR</em>, <em>SEARIS</em>, <em>OpenXRS</em>, <em>XR-Health</em>.<br>
+                • <strong>ISMAR 2027 (Bari)</strong> co-hosts: <em>XR-Health Workshop</em>, <em>MAR Art & Design</em>.<br>
+                • <strong>CHI PLAY 2026 (Zurich)</strong> co-hosts: <em>Serious Games & VR Showcase</em>, <em>Work-in-Progress & Demos</em>.<br>
+                • <strong>ISEC 2026 (Hyderabad)</strong> co-hosts: <em>ModSym</em> (Modelling Symposium), <em>VR in SE Track</em>.<br><br>
                 <div class="chat-actions-row">
                     <button type="button" class="chat-action-btn" data-action="open-modal" data-val="ICSE">👉 View ICSE Co-hosted</button>
                     <button type="button" class="chat-action-btn" data-action="open-modal" data-val="IEEE VR">👉 View IEEE VR Co-hosted</button>
@@ -1505,8 +2004,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lower.includes('core') || lower.includes('ranking') || lower.includes('rating') || lower.includes('a*')) {
             return `
                 <strong>⭐ CORE Rankings Overview:</strong><br><br>
-                • <strong>CORE A* (Premier)</strong>: ICSE 🇮🇪, FSE 🇨🇳, IEEE VR 🇦🇺, ISMAR 🇮🇹.<br>
-                • <strong>CORE A (Major)</strong>: CHI PLAY 🇨🇭, ICSA 🇳🇱, SEAMS 🇮🇪, MODELS 🇦🇹, ECSA 🇨🇾, MSR 🇮🇪, ICPC 🇮🇪, ISSTA 🇸🇬, SANER 🇺🇸, EASE 🇻🇳, VRST 🇯🇵.<br><br>
+                • <strong>CORE A* (Premier)</strong>: ICSE, FSE, IEEE VR, ISMAR.<br>
+                • <strong>CORE A (Major)</strong>: CHI PLAY, ICSA, SEAMS, MODELS, ECSA, MSR, ICPC, ISSTA, SANER, EASE, VRST.<br><br>
                 <div class="chat-actions-row">
                     <button type="button" class="chat-action-btn" data-action="search-kw" data-val="A*">👉 Show CORE A*</button>
                     <button type="button" class="chat-action-btn" data-action="search-kw" data-val="A">👉 Show CORE A</button>
@@ -1526,7 +2025,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const resHtml = matches.map(m => {
                 const meta = getMeta(m.conference_name);
                 const name = m.workshop_name || m.track_name || 'Main Track';
-                return `• <strong>${meta.flag} ${m.conference_name}</strong> - ${name} (Due: ${formatDate(m.paper_submission_date)})`;
+                return `• <strong>${renderFlagHtml(meta, 'flag-sm')} ${m.conference_name}</strong> - ${name} (Due: ${formatDate(m.paper_submission_date)})`;
             }).join('<br>');
 
             return `
@@ -1542,7 +2041,7 @@ document.addEventListener('DOMContentLoaded', function() {
             I'm tracking <strong>${allConferences.length} conferences</strong> and <strong>${allDeadlines.length} tracks</strong>.<br><br>
             Try asking about:<br>
             • <em>"What deadlines are coming up next?"</em><br>
-            • <em>"Where do Prof. Raghu and KV publish?"</em><br>
+            • <em>"Where does SERC faculty publish?"</em><br>
             • <em>"Show me VR & CHI PLAY conferences"</em><br>
             • <em>"What conferences are co-hosted with ICSE?"</em><br>
             • <em>"Show agent and AI workshops"</em>

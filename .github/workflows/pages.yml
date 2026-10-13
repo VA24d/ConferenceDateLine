@@ -35,6 +35,7 @@ jobs:
           cp *.html app.js styles.css _site/
           cp -r conferences _site/conferences
           cp -r data _site/data
+          cp -r assets _site/assets
           touch _site/.nojekyll
 
       - uses: actions/configure-pages@v5

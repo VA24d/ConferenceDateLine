@@ -1,726 +1,725 @@
-# Conference DateLine - Master Conference Configuration (Single Source of Truth)
-# Tracks all 18 venues with CORE ratings, locations, flags, recurring tracks,
-# co-hosted events, official URLs, and annual timeline cycles.
-
 conferences:
   ICSE:
-    full_name: "International Conference on Software Engineering"
-    core_rating: "A*"
-    location: "Dublin, Ireland"
-    country: "Ireland"
-    flag: "🇮🇪"
+    full_name: International Conference on Software Engineering
+    core_rating: A*
+    location: Dublin, Ireland
+    country: Ireland
+    flag: 🇮🇪
     year: 2027
-    website: "https://conf.researchr.org/home/icse-2027"
-    url_pattern: "https://conf.researchr.org/home/icse-{year}"
+    website: https://conf.researchr.org/home/icse-2027
+    url_pattern: https://conf.researchr.org/home/icse-{year}
     cohosted:
-      - "SEAMS"
-      - "CAIN"
-      - "AGENT"
-      - "MSR"
-      - "ICPC"
-      - "LLM4Code"
-      - "DeepTest"
-      - "ChainSEC"
+    - SEAMS
+    - CAIN
+    - AGENT
+    - MSR
+    - ICPC
+    - LLM4Code
+    - DeepTest
+    - ChainSEC
     cycle:
       conference_month: 5
       typical_submission_month: 6
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-06-30"
-        abstract_deadline: "2026-06-23"
-        intimation_date: "2026-10-20"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-research-track"
-      - track_name: "In practice track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: ""
-        intimation_date: "2026-12-11"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-seip"
-      - track_name: "Society track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: ""
-        intimation_date: "2026-12-18"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-seis"
-      - track_name: "New ideas and emerging results track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: ""
-        intimation_date: "2026-12-18"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-new-ideas-and-emerging-results--nier-"
-      - track_name: "Journal first track"
-        paper_submission_date: "2026-10-30"
-        abstract_deadline: ""
-        intimation_date: "2026-12-11"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-journal-first-papers"
-      - track_name: "Education track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: ""
-        intimation_date: "2026-12-18"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-software-engineering-education-and-training--seet-"
-      - track_name: "Doctoral symposium"
-        paper_submission_date: "2026-11-14"
-        abstract_deadline: "2027-01-26"
-        intimation_date: "2026-12-05"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-doctoral-symposium"
-      - track_name: "Tutorials and technical briefings track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: "2026-11-27"
-        intimation_date: "2026-11-13"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-tutorials-and-technical-briefings"
-      - track_name: "Student research competition"
-        paper_submission_date: "2026-11-13"
-        abstract_deadline: ""
-        intimation_date: "2026-12-18"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-src"
-      - track_name: "Challenge track"
-        paper_submission_date: "2026-11-13"
-        abstract_deadline: ""
-        intimation_date: "2026-12-18"
-        website_url: "https://conf.researchr.org/track/icse-2027/icse-2027-industry-challenge"
-      - workshop_name: "LLM4Code Workshop (LLMs for Code)"
-        paper_submission_date: "2026-10-20"
-        abstract_deadline: ""
-        intimation_date: "2026-12-15"
-        website_url: "https://llm4code.github.io/"
-      - workshop_name: "ChainSEC Workshop (Software Supply Chain Security)"
-        paper_submission_date: "2026-11-27"
-        abstract_deadline: ""
-        intimation_date: "2026-12-20"
-        website_url: "https://chain-sec.github.io/"
-      - workshop_name: "DeepTest Workshop (Deep Learning for Testing)"
-        paper_submission_date: "2026-10-20"
-        abstract_deadline: ""
-        intimation_date: "2026-12-15"
-        website_url: "https://conf.researchr.org/home/icse-2026/deeptest-2026"
-      - workshop_name: "SE4ALL Workshop (Software Engineering and AI for All)"
-        paper_submission_date: "2026-11-13"
-        abstract_deadline: ""
-        intimation_date: "2026-12-20"
-        website_url: "https://conf.researchr.org/home/icse-2027/se4all-2027"
-      - workshop_name: "SBFT Workshop (Search-Based and Fuzz Testing)"
-        paper_submission_date: "2026-10-20"
-        abstract_deadline: ""
-        intimation_date: "2026-12-15"
-        website_url: "https://search-based-and-fuzz-testing.github.io/"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-06-30'
+      abstract_deadline: '2026-06-23'
+      intimation_date: '2026-10-20'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-research-track
+    - track_name: In practice track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: ''
+      intimation_date: '2026-12-11'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-seip
+    - track_name: Society track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: ''
+      intimation_date: '2026-12-18'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-seis
+    - track_name: New ideas and emerging results track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: ''
+      intimation_date: '2026-12-18'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-new-ideas-and-emerging-results--nier-
+    - track_name: Journal first track
+      paper_submission_date: '2026-10-30'
+      abstract_deadline: ''
+      intimation_date: '2026-12-11'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-journal-first-papers
+    - track_name: Education track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: ''
+      intimation_date: '2026-12-18'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-software-engineering-education-and-training--seet-
+    - track_name: Doctoral symposium
+      paper_submission_date: '2026-11-14'
+      abstract_deadline: '2027-01-26'
+      intimation_date: '2026-12-05'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-doctoral-symposium
+    - track_name: Tutorials and technical briefings track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-11-27'
+      intimation_date: '2026-11-13'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-tutorials-and-technical-briefings
+    - track_name: Student research competition
+      paper_submission_date: '2026-11-13'
+      abstract_deadline: ''
+      intimation_date: '2026-12-18'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-src
+    - track_name: Challenge track
+      paper_submission_date: '2026-11-13'
+      abstract_deadline: ''
+      intimation_date: '2026-12-18'
+      website_url: https://conf.researchr.org/track/icse-2027/icse-2027-industry-challenge
+    - workshop_name: LLM4Code Workshop (LLMs for Code)
+      paper_submission_date: '2026-10-20'
+      abstract_deadline: ''
+      intimation_date: '2026-12-15'
+      website_url: https://llm4code.github.io/
+    - workshop_name: ChainSEC Workshop (Software Supply Chain Security)
+      paper_submission_date: '2026-11-27'
+      abstract_deadline: ''
+      intimation_date: '2026-12-20'
+      website_url: https://chain-sec.github.io/
+    - workshop_name: DeepTest Workshop (Deep Learning for Testing)
+      paper_submission_date: '2026-10-20'
+      abstract_deadline: ''
+      intimation_date: '2026-12-15'
+      website_url: https://conf.researchr.org/home/icse-2026/deeptest-2026
+    - workshop_name: SE4ALL Workshop (Software Engineering and AI for All)
+      paper_submission_date: '2026-11-13'
+      abstract_deadline: ''
+      intimation_date: '2026-12-20'
+      website_url: https://conf.researchr.org/home/icse-2027/se4all-2027
+    - workshop_name: SBFT Workshop (Search-Based and Fuzz Testing)
+      paper_submission_date: '2026-10-20'
+      abstract_deadline: ''
+      intimation_date: '2026-12-15'
+      website_url: https://search-based-and-fuzz-testing.github.io/
+    country_code: ie
   FSE:
-    full_name: "ACM International Conference on the Foundations of Software Engineering"
-    core_rating: "A*"
-    location: "Shenzhen, China"
-    country: "China"
-    flag: "🇨🇳"
+    full_name: ACM International Conference on the Foundations of Software Engineering
+    core_rating: A*
+    location: Shenzhen, China
+    country: China
+    flag: 🇨🇳
     year: 2027
-    website: "https://conf.researchr.org/home/fse-2027"
-    url_pattern: "https://conf.researchr.org/home/fse-{year}"
+    website: https://conf.researchr.org/home/fse-2027
+    url_pattern: https://conf.researchr.org/home/fse-{year}
     cohosted:
-      - "LLMTrust Workshop"
-      - "CauSE Workshop"
-      - "Student Research Competition"
+    - LLMTrust Workshop
+    - CauSE Workshop
+    - Student Research Competition
     cycle:
       conference_month: 7
       typical_submission_month: 10
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-10-02"
-        abstract_deadline: ""
-        intimation_date: "2027-01-22"
-        website_url: "https://conf.researchr.org/track/fse-2027/fse-2027-papers"
-      - track_name: "In practice track"
-        paper_submission_date: "2027-01-23"
-        abstract_deadline: ""
-        intimation_date: "2027-03-20"
-        website_url: "https://conf.researchr.org/track/fse-2027/fse-2027-industry-papers"
-      - track_name: "New ideas and emerging results track"
-        paper_submission_date: "2026-01-22"
-        abstract_deadline: ""
-        intimation_date: "2026-03-17"
-        website_url: "https://conf.researchr.org/track/fse-2026/fse-2026-ideas-visions-and-reflections"
-      - track_name: "Journal first track"
-        paper_submission_date: "2026-02-25"
-        abstract_deadline: ""
-        intimation_date: "2026-03-25"
-        website_url: "https://conf.researchr.org/track/fse-2026/fse-2026-journal-first"
-      - track_name: "Education track"
-        paper_submission_date: "2027-01-29"
-        abstract_deadline: ""
-        intimation_date: "2027-03-26"
-        website_url: "https://conf.researchr.org/track/fse-2027/fse-2027-software-engineering-education"
-      - track_name: "Student research competition"
-        paper_submission_date: "2026-01-26"
-        abstract_deadline: ""
-        intimation_date: "2026-03-09"
-        website_url: "https://conf.researchr.org/track/fse-2026/fse-2026-student-research-competition"
-      - track_name: "Tool track"
-        paper_submission_date: "2026-01-22"
-        abstract_deadline: ""
-        intimation_date: "2026-03-17"
-        website_url: "https://conf.researchr.org/track/fse-2026/fse-2026-demonstrations"
-      - track_name: "Tutorials and technical briefings track"
-        paper_submission_date: "2026-01-26"
-        abstract_deadline: ""
-        intimation_date: "2026-03-09"
-        website_url: "https://conf.researchr.org/track/fse-2026/fse-2026-tutorials"
-      - workshop_name: "LLMTrust Workshop (Trustworthy LLMs in SE)"
-        paper_submission_date: "2027-02-12"
-        abstract_deadline: ""
-        intimation_date: "2027-03-15"
-        website_url: "https://llmtrust2026.github.io/"
-      - workshop_name: "CauSE Workshop (Causal Methods in Software Engineering)"
-        paper_submission_date: "2027-02-01"
-        abstract_deadline: ""
-        intimation_date: "2027-03-10"
-        website_url: "https://causality-software-engineering.github.io/"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-10-02'
+      abstract_deadline: ''
+      intimation_date: '2027-01-22'
+      website_url: https://conf.researchr.org/track/fse-2027/fse-2027-papers
+    - track_name: In practice track
+      paper_submission_date: '2027-01-23'
+      abstract_deadline: ''
+      intimation_date: '2027-03-20'
+      website_url: https://conf.researchr.org/track/fse-2027/fse-2027-industry-papers
+    - track_name: New ideas and emerging results track
+      paper_submission_date: '2026-01-22'
+      abstract_deadline: ''
+      intimation_date: '2026-03-17'
+      website_url: https://conf.researchr.org/track/fse-2026/fse-2026-ideas-visions-and-reflections
+    - track_name: Journal first track
+      paper_submission_date: '2026-02-25'
+      abstract_deadline: ''
+      intimation_date: '2026-03-25'
+      website_url: https://conf.researchr.org/track/fse-2026/fse-2026-journal-first
+    - track_name: Education track
+      paper_submission_date: '2027-01-29'
+      abstract_deadline: ''
+      intimation_date: '2027-03-26'
+      website_url: https://conf.researchr.org/track/fse-2027/fse-2027-software-engineering-education
+    - track_name: Student research competition
+      paper_submission_date: '2026-01-26'
+      abstract_deadline: ''
+      intimation_date: '2026-03-09'
+      website_url: https://conf.researchr.org/track/fse-2026/fse-2026-student-research-competition
+    - track_name: Tool track
+      paper_submission_date: '2026-01-22'
+      abstract_deadline: ''
+      intimation_date: '2026-03-17'
+      website_url: https://conf.researchr.org/track/fse-2026/fse-2026-demonstrations
+    - track_name: Tutorials and technical briefings track
+      paper_submission_date: '2026-01-26'
+      abstract_deadline: ''
+      intimation_date: '2026-03-09'
+      website_url: https://conf.researchr.org/track/fse-2026/fse-2026-tutorials
+    - workshop_name: LLMTrust Workshop (Trustworthy LLMs in SE)
+      paper_submission_date: '2027-02-12'
+      abstract_deadline: ''
+      intimation_date: '2027-03-15'
+      website_url: https://llmtrust2026.github.io/
+    - workshop_name: CauSE Workshop (Causal Methods in Software Engineering)
+      paper_submission_date: '2027-02-01'
+      abstract_deadline: ''
+      intimation_date: '2027-03-10'
+      website_url: https://causality-software-engineering.github.io/
+    country_code: cn
   ISSTA:
-    full_name: "International Symposium on Software Testing and Analysis"
-    core_rating: "A"
-    location: "Singapore"
-    country: "Singapore"
-    flag: "🇸🇬"
+    full_name: International Symposium on Software Testing and Analysis
+    core_rating: A
+    location: Singapore
+    country: Singapore
+    flag: 🇸🇬
     year: 2027
-    website: "https://conf.researchr.org/home/issta-2027"
-    url_pattern: "https://conf.researchr.org/home/issta-{year}"
+    website: https://conf.researchr.org/home/issta-2027
+    url_pattern: https://conf.researchr.org/home/issta-{year}
     cohosted:
-      - "ISSTA Tool Demos"
-      - "Doctoral Symposium"
+    - ISSTA Tool Demos
+    - Doctoral Symposium
     cycle:
       conference_month: 9
       typical_submission_month: 1
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2027-01-11"
-        abstract_deadline: ""
-        intimation_date: "2027-07-22"
-        website_url: "https://conf.researchr.org/home/issta-2027"
-
+    - track_name: Research paper track
+      paper_submission_date: '2027-01-11'
+      abstract_deadline: ''
+      intimation_date: '2027-07-22'
+      website_url: https://conf.researchr.org/home/issta-2027
+    country_code: sg
   SANER:
-    full_name: "IEEE International Conference on Software Analysis, Evolution and Reengineering"
-    core_rating: "A"
-    location: "Richmond, Virginia, USA"
-    country: "United States"
-    flag: "🇺🇸"
+    full_name: IEEE International Conference on Software Analysis, Evolution and Reengineering
+    core_rating: A
+    location: Richmond, Virginia, USA
+    country: United States
+    flag: 🇺🇸
     year: 2027
-    website: "https://conf.researchr.org/home/saner-2027"
-    url_pattern: "https://conf.researchr.org/home/saner-{year}"
+    website: https://conf.researchr.org/home/saner-2027
+    url_pattern: https://conf.researchr.org/home/saner-{year}
     cohosted:
-      - "IWESEP"
-      - "ERA Track"
-      - "RENE Track"
+    - IWESEP
+    - ERA Track
+    - RENE Track
     cycle:
       conference_month: 3
       typical_submission_month: 9
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-09-25"
-        abstract_deadline: "2026-09-21"
-        intimation_date: "2026-12-01"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-papers"
-      - track_name: "In practice track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: "2026-10-19"
-        intimation_date: "2026-12-08"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-industrial-track"
-      - track_name: "New ideas and emerging results track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: "2026-10-19"
-        intimation_date: "2026-12-08"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-early-research-achievement-era--track"
-      - track_name: "Short paper track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: "2026-10-19"
-        intimation_date: "2026-12-08"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-short-papers-and-posters-track"
-      - track_name: "Reproducibility Studies and Negative Results Track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: "2026-10-19"
-        intimation_date: "2026-12-08"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-reproducibility-studies-and-negative-results-rene-track"
-      - track_name: "Journal first track"
-        paper_submission_date: "2025-12-08"
-        abstract_deadline: ""
-        intimation_date: "2025-12-22"
-        website_url: "https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track"
-      - track_name: "Tool track"
-        paper_submission_date: "2026-10-23"
-        abstract_deadline: "2026-10-19"
-        intimation_date: "2026-12-08"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-tool-demo-track"
-      - track_name: "Registered reports track"
-        paper_submission_date: "2026-11-06"
-        abstract_deadline: "2026-10-30"
-        intimation_date: "2026-12-24"
-        website_url: "https://conf.researchr.org/track/saner-2027/saner-2027-registered-report-track"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-09-25'
+      abstract_deadline: '2026-09-21'
+      intimation_date: '2026-12-01'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-papers
+    - track_name: In practice track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-10-19'
+      intimation_date: '2026-12-08'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-industrial-track
+    - track_name: New ideas and emerging results track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-10-19'
+      intimation_date: '2026-12-08'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-early-research-achievement-era--track
+    - track_name: Short paper track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-10-19'
+      intimation_date: '2026-12-08'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-short-papers-and-posters-track
+    - track_name: Reproducibility Studies and Negative Results Track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-10-19'
+      intimation_date: '2026-12-08'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-reproducibility-studies-and-negative-results-rene-track
+    - track_name: Journal first track
+      paper_submission_date: '2025-12-08'
+      abstract_deadline: ''
+      intimation_date: '2025-12-22'
+      website_url: https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track
+    - track_name: Tool track
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-10-19'
+      intimation_date: '2026-12-08'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-tool-demo-track
+    - track_name: Registered reports track
+      paper_submission_date: '2026-11-06'
+      abstract_deadline: '2026-10-30'
+      intimation_date: '2026-12-24'
+      website_url: https://conf.researchr.org/track/saner-2027/saner-2027-registered-report-track
+    country_code: us
   EASE:
-    full_name: "International Conference on Evaluation and Assessment in Software Engineering"
-    core_rating: "A"
-    location: "Hanoi, Vietnam"
-    country: "Vietnam"
-    flag: "🇻🇳"
+    full_name: International Conference on Evaluation and Assessment in Software Engineering
+    core_rating: A
+    location: Hanoi, Vietnam
+    country: Vietnam
+    flag: 🇻🇳
     year: 2027
-    website: "https://conf.researchr.org/home/ease-2027"
-    url_pattern: "https://conf.researchr.org/home/ease-{year}"
+    website: https://conf.researchr.org/home/ease-2027
+    url_pattern: https://conf.researchr.org/home/ease-{year}
     cohosted:
-      - "Emerging Results Track"
-      - "Doctoral Symposium"
+    - Emerging Results Track
+    - Doctoral Symposium
     cycle:
       conference_month: 6
       typical_submission_month: 1
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2027-01-22"
-        abstract_deadline: ""
-        intimation_date: "2027-03-12"
-        website_url: "https://conf.researchr.org/track/ease-2027/ease-2027-papers"
-      - track_name: "Short paper track"
-        paper_submission_date: "2026-03-02"
-        abstract_deadline: "2026-02-23"
-        intimation_date: "2026-04-06"
-        website_url: "https://conf.researchr.org/track/ease-2026/ease-2026-short-papers-and-emerging-results"
-      - track_name: "In practice track"
-        paper_submission_date: "2027-03-01"
-        abstract_deadline: "2027-02-22"
-        intimation_date: "2027-04-12"
-        website_url: "https://conf.researchr.org/track/ease-2027/ease-2027-industry-papers#Call-for-Papers"
-      - track_name: "Posters track"
-        paper_submission_date: "2026-03-02"
-        abstract_deadline: ""
-        intimation_date: "2026-04-06"
-        website_url: "https://conf.researchr.org/track/ease-2026/ease-2026-posters-and-vision"
-      - track_name: "Journal first track"
-        paper_submission_date: "2026-03-06"
-        abstract_deadline: ""
-        intimation_date: "2026-04-06"
-        website_url: "https://conf.researchr.org/track/ease-2026/ease-2026-journal-first"
-      - track_name: "Doctoral symposium"
-        paper_submission_date: "2027-03-08"
-        abstract_deadline: ""
-        intimation_date: "2027-04-12"
-        website_url: "https://conf.researchr.org/track/ease-2027/ease-2027-doctoral-symposium"
-      - track_name: "Data and Benchmarking track"
-        paper_submission_date: "2026-03-02"
-        abstract_deadline: ""
-        intimation_date: "2026-04-06"
-        website_url: "https://conf.researchr.org/track/ease-2026/ease-2026-ai-models---data"
-      - track_name: "Reproducibility Studies and Negative Results Track"
-        paper_submission_date: "2026-02-23"
-        abstract_deadline: "2026-02-23"
-        intimation_date: "2026-04-06"
-        website_url: "https://conf.researchr.org/track/ease-2026/ease-2026-reproducibility-and-negative-results"
-      - track_name: "Tutorials and technical briefings track"
-        paper_submission_date: "2027-03-02"
-        abstract_deadline: ""
-        intimation_date: "2027-04-05"
-        website_url: "https://conf.researchr.org/track/ease-2027/ease-2027-tutorial"
-
+    - track_name: Research paper track
+      paper_submission_date: '2027-01-22'
+      abstract_deadline: ''
+      intimation_date: '2027-03-12'
+      website_url: https://conf.researchr.org/track/ease-2027/ease-2027-papers
+    - track_name: Short paper track
+      paper_submission_date: '2026-03-02'
+      abstract_deadline: '2026-02-23'
+      intimation_date: '2026-04-06'
+      website_url: https://conf.researchr.org/track/ease-2026/ease-2026-short-papers-and-emerging-results
+    - track_name: In practice track
+      paper_submission_date: '2027-03-01'
+      abstract_deadline: '2027-02-22'
+      intimation_date: '2027-04-12'
+      website_url: https://conf.researchr.org/track/ease-2027/ease-2027-industry-papers#Call-for-Papers
+    - track_name: Posters track
+      paper_submission_date: '2026-03-02'
+      abstract_deadline: ''
+      intimation_date: '2026-04-06'
+      website_url: https://conf.researchr.org/track/ease-2026/ease-2026-posters-and-vision
+    - track_name: Journal first track
+      paper_submission_date: '2026-03-06'
+      abstract_deadline: ''
+      intimation_date: '2026-04-06'
+      website_url: https://conf.researchr.org/track/ease-2026/ease-2026-journal-first
+    - track_name: Doctoral symposium
+      paper_submission_date: '2027-03-08'
+      abstract_deadline: ''
+      intimation_date: '2027-04-12'
+      website_url: https://conf.researchr.org/track/ease-2027/ease-2027-doctoral-symposium
+    - track_name: Data and Benchmarking track
+      paper_submission_date: '2026-03-02'
+      abstract_deadline: ''
+      intimation_date: '2026-04-06'
+      website_url: https://conf.researchr.org/track/ease-2026/ease-2026-ai-models---data
+    - track_name: Reproducibility Studies and Negative Results Track
+      paper_submission_date: '2026-02-23'
+      abstract_deadline: '2026-02-23'
+      intimation_date: '2026-04-06'
+      website_url: https://conf.researchr.org/track/ease-2026/ease-2026-reproducibility-and-negative-results
+    - track_name: Tutorials and technical briefings track
+      paper_submission_date: '2027-03-02'
+      abstract_deadline: ''
+      intimation_date: '2027-04-05'
+      website_url: https://conf.researchr.org/track/ease-2027/ease-2027-tutorial
+    country_code: vn
   IEEE VR:
-    full_name: "IEEE Conference on Virtual Reality and 3D User Interfaces"
-    core_rating: "A*"
-    location: "Melbourne, Australia"
-    country: "Australia"
-    flag: "🇦🇺"
+    full_name: IEEE Conference on Virtual Reality and 3D User Interfaces
+    core_rating: A*
+    location: Melbourne, Australia
+    country: Australia
+    flag: 🇦🇺
     year: 2027
-    website: "https://ieeevr.org/2027/"
-    url_pattern: "https://ieeevr.org/{year}/"
+    website: https://ieeevr.org/2027/
+    url_pattern: https://ieeevr.org/{year}/
     cohosted:
-      - "3DUI Symposium"
-      - "KELVAR"
-      - "SEARIS"
-      - "OpenXRS"
-      - "XR-Health"
+    - 3DUI Symposium
+    - KELVAR
+    - SEARIS
+    - OpenXRS
+    - XR-Health
     cycle:
       conference_month: 3
       typical_submission_month: 8
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-08-31"
-        abstract_deadline: "2026-08-24"
-        intimation_date: "2026-11-18"
-        website_url: "https://ieeevr.org/2027/"
-      - track_name: "Posters track"
-        paper_submission_date: "2026-11-20"
-        abstract_deadline: ""
-        intimation_date: "2026-12-18"
-        website_url: "https://ieeevr.org/2027/contribute/posters/"
-      - workshop_name: "KELVAR Workshop (Learning in VR)"
-        paper_submission_date: "2027-01-10"
-        abstract_deadline: ""
-        intimation_date: "2027-01-22"
-        website_url: "https://kelvar.org/"
-      - workshop_name: "SEARIS Workshop (SE & Architectures for Interactive Systems)"
-        paper_submission_date: "2027-01-12"
-        abstract_deadline: ""
-        intimation_date: "2027-01-25"
-        website_url: "http://searis.net/"
-      - workshop_name: "OpenXRS Workshop (Open Source & Standards in XR)"
-        paper_submission_date: "2027-01-15"
-        abstract_deadline: ""
-        intimation_date: "2027-01-26"
-        website_url: "https://openxrs.github.io/"
-      - workshop_name: "XR-Health Workshop (VR in Healthcare)"
-        paper_submission_date: "2027-01-12"
-        abstract_deadline: ""
-        intimation_date: "2027-01-25"
-        website_url: "https://xr-health.org/"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-08-31'
+      abstract_deadline: '2026-08-24'
+      intimation_date: '2026-11-18'
+      website_url: https://ieeevr.org/2027/
+    - track_name: Posters track
+      paper_submission_date: '2026-11-20'
+      abstract_deadline: ''
+      intimation_date: '2026-12-18'
+      website_url: https://ieeevr.org/2027/contribute/posters/
+    - workshop_name: KELVAR Workshop (Learning in VR)
+      paper_submission_date: '2027-01-10'
+      abstract_deadline: ''
+      intimation_date: '2027-01-22'
+      website_url: https://kelvar.org/
+    - workshop_name: SEARIS Workshop (SE & Architectures for Interactive Systems)
+      paper_submission_date: '2027-01-12'
+      abstract_deadline: ''
+      intimation_date: '2027-01-25'
+      website_url: http://searis.net/
+    - workshop_name: OpenXRS Workshop (Open Source & Standards in XR)
+      paper_submission_date: '2027-01-15'
+      abstract_deadline: ''
+      intimation_date: '2027-01-26'
+      website_url: https://openxrs.github.io/
+    - workshop_name: XR-Health Workshop (VR in Healthcare)
+      paper_submission_date: '2027-01-12'
+      abstract_deadline: ''
+      intimation_date: '2027-01-25'
+      website_url: https://xr-health.org/
+    country_code: au
   ISMAR:
-    full_name: "IEEE International Symposium on Mixed and Augmented Reality"
-    core_rating: "A*"
-    location: "Bari, Italy"
-    country: "Italy"
-    flag: "🇮🇹"
+    full_name: IEEE International Symposium on Mixed and Augmented Reality
+    core_rating: A*
+    location: Bari, Italy
+    country: Italy
+    flag: 🇮🇹
     year: 2027
-    website: "https://ieeeismar.net/"
-    url_pattern: "https://ieeeismar.net/"
+    website: https://ieeeismar.net/
+    url_pattern: https://ieeeismar.net/
     cohosted:
-      - "XR-Health Workshop"
-      - "MAR Art & Design"
-      - "Doctoral Consortium"
+    - XR-Health Workshop
+    - MAR Art & Design
+    - Doctoral Consortium
     cycle:
       conference_month: 10
       typical_submission_month: 3
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2027-03-22"
-        abstract_deadline: "2027-03-15"
-        intimation_date: "2027-06-20"
-        website_url: "https://ieeeismar.net/"
-      - track_name: "Posters track"
-        paper_submission_date: "2027-06-15"
-        abstract_deadline: ""
-        intimation_date: "2027-07-20"
-        website_url: "https://ieeeismar.net/"
-      - workshop_name: "HCI in AR/VR Workshop"
-        paper_submission_date: "2027-06-20"
-        abstract_deadline: ""
-        intimation_date: "2027-07-20"
-        website_url: "https://ieeeismar.net/workshops/"
-      - workshop_name: "Spatial Computing & Perception Workshop"
-        paper_submission_date: "2027-06-25"
-        abstract_deadline: ""
-        intimation_date: "2027-07-25"
-        website_url: "https://ieeeismar.net/workshops/"
-
+    - track_name: Research paper track
+      paper_submission_date: '2027-03-22'
+      abstract_deadline: '2027-03-15'
+      intimation_date: '2027-06-20'
+      website_url: https://ieeeismar.net/
+    - track_name: Posters track
+      paper_submission_date: '2027-06-15'
+      abstract_deadline: ''
+      intimation_date: '2027-07-20'
+      website_url: https://ieeeismar.net/
+    - workshop_name: HCI in AR/VR Workshop
+      paper_submission_date: '2027-06-20'
+      abstract_deadline: ''
+      intimation_date: '2027-07-20'
+      website_url: https://ieeeismar.net/workshops/
+    - workshop_name: Spatial Computing & Perception Workshop
+      paper_submission_date: '2027-06-25'
+      abstract_deadline: ''
+      intimation_date: '2027-07-25'
+      website_url: https://ieeeismar.net/workshops/
+    country_code: it
   VRST:
-    full_name: "ACM Symposium on Virtual Reality Software and Technology"
-    core_rating: "A"
-    location: "Sendai, Japan"
-    country: "Japan"
-    flag: "🇯🇵"
+    full_name: ACM Symposium on Virtual Reality Software and Technology
+    core_rating: A
+    location: Sendai, Japan
+    country: Japan
+    flag: 🇯🇵
     year: 2026
-    website: "https://vrst.acm.org/"
-    url_pattern: "https://vrst.acm.org/"
+    website: https://vrst.acm.org/
+    url_pattern: https://vrst.acm.org/
     cohosted:
-      - "Virtual Reality Technologies Workshop"
-      - "Posters & Demos"
+    - Virtual Reality Technologies Workshop
+    - Posters & Demos
     cycle:
       conference_month: 11
       typical_submission_month: 6
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-06-24"
-        abstract_deadline: "2026-06-17"
-        intimation_date: "2026-08-28"
-        website_url: "https://vrst.acm.org/"
-      - track_name: "Short papers and demos track"
-        paper_submission_date: "2026-07-08"
-        abstract_deadline: ""
-        intimation_date: "2026-08-30"
-        website_url: "https://vrst.acm.org/"
-      - workshop_name: "Virtual Reality Technologies Workshop"
-        paper_submission_date: "2026-07-15"
-        abstract_deadline: ""
-        intimation_date: "2026-08-30"
-        website_url: "https://vrst.acm.org/"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-06-24'
+      abstract_deadline: '2026-06-17'
+      intimation_date: '2026-08-28'
+      website_url: https://vrst.acm.org/
+    - track_name: Short papers and demos track
+      paper_submission_date: '2026-07-08'
+      abstract_deadline: ''
+      intimation_date: '2026-08-30'
+      website_url: https://vrst.acm.org/
+    - workshop_name: Virtual Reality Technologies Workshop
+      paper_submission_date: '2026-07-15'
+      abstract_deadline: ''
+      intimation_date: '2026-08-30'
+      website_url: https://vrst.acm.org/
+    country_code: jp
   CHI PLAY:
-    full_name: "ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play"
-    core_rating: "A"
-    location: "Zurich, Switzerland"
-    country: "Switzerland"
-    flag: "🇨🇭"
+    full_name: ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play
+    core_rating: A
+    location: Zurich, Switzerland
+    country: Switzerland
+    flag: 🇨🇭
     year: 2026
-    website: "https://chiplay.acm.org/2026/"
-    url_pattern: "https://chiplay.acm.org/{year}/"
+    website: https://chiplay.acm.org/2026/
+    url_pattern: https://chiplay.acm.org/{year}/
     cohosted:
-      - "Serious Games & VR Showcase"
-      - "CHI PLAY WIP & Demos"
+    - Serious Games & VR Showcase
+    - CHI PLAY WIP & Demos
     cycle:
       conference_month: 10
       typical_submission_month: 6
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-06-15"
-        abstract_deadline: "2026-06-08"
-        intimation_date: "2026-08-14"
-        website_url: "https://chiplay.acm.org/2026/"
-      - track_name: "Work-in-progress and demos track"
-        paper_submission_date: "2026-07-20"
-        abstract_deadline: ""
-        intimation_date: "2026-08-25"
-        website_url: "https://chiplay.acm.org/2026/wip"
-      - workshop_name: "Serious Games and VR Showcase"
-        paper_submission_date: "2026-07-25"
-        abstract_deadline: ""
-        intimation_date: "2026-08-30"
-        website_url: "https://chiplay.acm.org/2026/games"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-06-15'
+      abstract_deadline: '2026-06-08'
+      intimation_date: '2026-08-14'
+      website_url: https://chiplay.acm.org/2026/
+    - track_name: Work-in-progress and demos track
+      paper_submission_date: '2026-07-20'
+      abstract_deadline: ''
+      intimation_date: '2026-08-25'
+      website_url: https://chiplay.acm.org/2026/wip
+    - workshop_name: Serious Games and VR Showcase
+      paper_submission_date: '2026-07-25'
+      abstract_deadline: ''
+      intimation_date: '2026-08-30'
+      website_url: https://chiplay.acm.org/2026/games
+    country_code: ch
   ICSA:
-    full_name: "IEEE International Conference on Software Architecture"
-    core_rating: "A"
-    location: "Amsterdam, Netherlands"
-    country: "Netherlands"
-    flag: "🇳🇱"
+    full_name: IEEE International Conference on Software Architecture
+    core_rating: A
+    location: Amsterdam, Netherlands
+    country: Netherlands
+    flag: 🇳🇱
     year: 2026
-    website: "https://conf.researchr.org/home/icsa-2026"
-    url_pattern: "https://conf.researchr.org/home/icsa-{year}"
+    website: https://conf.researchr.org/home/icsa-2026
+    url_pattern: https://conf.researchr.org/home/icsa-{year}
     cohosted:
-      - "CAAIN Workshop"
-      - "NEMI Track"
-      - "Architecture in Practice"
+    - CAAIN Workshop
+    - NEMI Track
+    - Architecture in Practice
     cycle:
       conference_month: 3
       typical_submission_month: 11
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-11-20"
-        abstract_deadline: "2026-11-13"
-        intimation_date: "2027-01-20"
-        website_url: "https://conf.researchr.org/home/icsa-2026"
-      - track_name: "In practice track"
-        paper_submission_date: "2026-12-05"
-        abstract_deadline: ""
-        intimation_date: "2027-01-25"
-        website_url: "https://conf.researchr.org/track/icsa-2026/icsa-2026-in-practice"
-      - track_name: "New ideas and emerging results track"
-        paper_submission_date: "2026-12-10"
-        abstract_deadline: ""
-        intimation_date: "2027-01-28"
-        website_url: "https://conf.researchr.org/track/icsa-2026/icsa-2026-nemi"
-      - track_name: "Tool track"
-        paper_submission_date: "2026-12-15"
-        abstract_deadline: ""
-        intimation_date: "2027-02-05"
-        website_url: "https://conf.researchr.org/track/icsa-2026/icsa-2026-tools"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-11-20'
+      abstract_deadline: '2026-11-13'
+      intimation_date: '2027-01-20'
+      website_url: https://conf.researchr.org/home/icsa-2026
+    - track_name: In practice track
+      paper_submission_date: '2026-12-05'
+      abstract_deadline: ''
+      intimation_date: '2027-01-25'
+      website_url: https://conf.researchr.org/track/icsa-2026/icsa-2026-in-practice
+    - track_name: New ideas and emerging results track
+      paper_submission_date: '2026-12-10'
+      abstract_deadline: ''
+      intimation_date: '2027-01-28'
+      website_url: https://conf.researchr.org/track/icsa-2026/icsa-2026-nemi
+    - track_name: Tool track
+      paper_submission_date: '2026-12-15'
+      abstract_deadline: ''
+      intimation_date: '2027-02-05'
+      website_url: https://conf.researchr.org/track/icsa-2026/icsa-2026-tools
+    country_code: nl
   SEAMS:
-    full_name: "International Symposium on Software Engineering for Adaptive and Self-Managing Systems"
-    core_rating: "A"
-    location: "Dublin, Ireland (Co-located with ICSE 2027)"
-    country: "Ireland"
-    flag: "🇮🇪"
+    full_name: International Symposium on Software Engineering for Adaptive and Self-Managing
+      Systems
+    core_rating: A
+    location: Dublin, Ireland (Co-located with ICSE 2027)
+    country: Ireland
+    flag: 🇮🇪
     year: 2027
-    website: "https://conf.researchr.org/home/seams-2026"
-    url_pattern: "https://conf.researchr.org/home/seams-{year}"
+    website: https://conf.researchr.org/home/seams-2026
+    url_pattern: https://conf.researchr.org/home/seams-{year}
     cohosted:
-      - "ICSE"
-      - "CAIN"
-      - "AGENT"
-      - "MSR"
-      - "ICPC"
+    - ICSE
+    - CAIN
+    - AGENT
+    - MSR
+    - ICPC
     cycle:
       conference_month: 5
       typical_submission_month: 11
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-11-28"
-        abstract_deadline: "2026-11-21"
-        intimation_date: "2027-01-18"
-        website_url: "https://conf.researchr.org/home/seams-2026"
-      - track_name: "Artifacts and exemplars track"
-        paper_submission_date: "2026-12-12"
-        abstract_deadline: ""
-        intimation_date: "2027-01-22"
-        website_url: "https://conf.researchr.org/track/seams-2026/seams-2026-artifacts"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-11-28'
+      abstract_deadline: '2026-11-21'
+      intimation_date: '2027-01-18'
+      website_url: https://conf.researchr.org/home/seams-2026
+    - track_name: Artifacts and exemplars track
+      paper_submission_date: '2026-12-12'
+      abstract_deadline: ''
+      intimation_date: '2027-01-22'
+      website_url: https://conf.researchr.org/track/seams-2026/seams-2026-artifacts
+    country_code: ie
   AGENT:
-    full_name: "International Workshop on Agentic Engineering (Agentic AI in SE)"
-    core_rating: "Workshop"
-    location: "Dublin, Ireland (Co-located with ICSE 2027)"
-    country: "Ireland"
-    flag: "🇮🇪"
+    full_name: International Workshop on Agentic Engineering (Agentic AI in SE)
+    core_rating: Workshop
+    location: Dublin, Ireland (Co-located with ICSE 2027)
+    country: Ireland
+    flag: 🇮🇪
     year: 2027
-    website: "https://agentic-engineering.github.io/"
-    url_pattern: "https://agentic-engineering.github.io/"
+    website: https://agentic-engineering.github.io/
+    url_pattern: https://agentic-engineering.github.io/
     cohosted:
-      - "ICSE"
-      - "SEAMS"
-      - "CAIN"
+    - ICSE
+    - SEAMS
+    - CAIN
     cycle:
       conference_month: 5
       typical_submission_month: 11
     tracks:
-      - workshop_name: "Agentic Engineering Workshop (Agentic AI in SE)"
-        paper_submission_date: "2026-11-15"
-        abstract_deadline: ""
-        intimation_date: "2026-12-22"
-        website_url: "https://agentic-engineering.github.io/"
-
+    - workshop_name: Agentic Engineering Workshop (Agentic AI in SE)
+      paper_submission_date: '2026-11-15'
+      abstract_deadline: ''
+      intimation_date: '2026-12-22'
+      website_url: https://agentic-engineering.github.io/
+    country_code: ie
   CAIN:
-    full_name: "IEEE/ACM International Conference on AI Engineering – Software Engineering for AI"
-    core_rating: "A"
-    location: "Dublin, Ireland (Co-located with ICSE 2027)"
-    country: "Ireland"
-    flag: "🇮🇪"
+    full_name: IEEE/ACM International Conference on AI Engineering – Software Engineering
+      for AI
+    core_rating: A
+    location: Dublin, Ireland (Co-located with ICSE 2027)
+    country: Ireland
+    flag: 🇮🇪
     year: 2027
-    website: "https://conf.researchr.org/home/cain-2026"
-    url_pattern: "https://conf.researchr.org/home/cain-{year}"
+    website: https://conf.researchr.org/home/cain-2026
+    url_pattern: https://conf.researchr.org/home/cain-{year}
     cohosted:
-      - "ICSE"
-      - "SEAMS"
-      - "AGENT"
+    - ICSE
+    - SEAMS
+    - AGENT
     cycle:
       conference_month: 5
       typical_submission_month: 11
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-11-10"
-        abstract_deadline: "2026-11-03"
-        intimation_date: "2027-01-15"
-        website_url: "https://conf.researchr.org/home/cain-2026"
-      - track_name: "In practice track"
-        paper_submission_date: "2026-12-01"
-        abstract_deadline: ""
-        intimation_date: "2027-01-20"
-        website_url: "https://conf.researchr.org/track/cain-2026/cain-2026-industry"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-11-10'
+      abstract_deadline: '2026-11-03'
+      intimation_date: '2027-01-15'
+      website_url: https://conf.researchr.org/home/cain-2026
+    - track_name: In practice track
+      paper_submission_date: '2026-12-01'
+      abstract_deadline: ''
+      intimation_date: '2027-01-20'
+      website_url: https://conf.researchr.org/track/cain-2026/cain-2026-industry
+    country_code: ie
   MODELS:
-    full_name: "ACM/IEEE International Conference on Model Driven Engineering Languages and Systems"
-    core_rating: "A"
-    location: "Linz, Austria"
-    country: "Austria"
-    flag: "🇦🇹"
+    full_name: ACM/IEEE International Conference on Model Driven Engineering Languages
+      and Systems
+    core_rating: A
+    location: Linz, Austria
+    country: Austria
+    flag: 🇦🇹
     year: 2026
-    website: "https://conf.researchr.org/home/models-2026"
-    url_pattern: "https://conf.researchr.org/home/models-{year}"
+    website: https://conf.researchr.org/home/models-2026
+    url_pattern: https://conf.researchr.org/home/models-{year}
     cohosted:
-      - "SAM (System Analysis and Modelling)"
-      - "MDE4AI Workshop"
+    - SAM (System Analysis and Modelling)
+    - MDE4AI Workshop
     cycle:
       conference_month: 10
       typical_submission_month: 5
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-05-18"
-        abstract_deadline: "2026-05-11"
-        intimation_date: "2026-07-10"
-        website_url: "https://conf.researchr.org/home/models-2026"
-      - track_name: "New ideas and emerging results track"
-        paper_submission_date: "2026-05-25"
-        abstract_deadline: ""
-        intimation_date: "2026-07-15"
-        website_url: "https://conf.researchr.org/track/models-2026/models-2026-practice"
-      - track_name: "Tool track"
-        paper_submission_date: "2026-06-08"
-        abstract_deadline: ""
-        intimation_date: "2026-07-20"
-        website_url: "https://conf.researchr.org/track/models-2026/models-2026-tools"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-05-18'
+      abstract_deadline: '2026-05-11'
+      intimation_date: '2026-07-10'
+      website_url: https://conf.researchr.org/home/models-2026
+    - track_name: New ideas and emerging results track
+      paper_submission_date: '2026-05-25'
+      abstract_deadline: ''
+      intimation_date: '2026-07-15'
+      website_url: https://conf.researchr.org/track/models-2026/models-2026-practice
+    - track_name: Tool track
+      paper_submission_date: '2026-06-08'
+      abstract_deadline: ''
+      intimation_date: '2026-07-20'
+      website_url: https://conf.researchr.org/track/models-2026/models-2026-tools
+    country_code: at
   ISEC:
-    full_name: "Innovations in Software Engineering Conference"
-    core_rating: "A"
-    location: "Hyderabad, India"
-    country: "India"
-    flag: "🇮🇳"
+    full_name: Innovations in Software Engineering Conference
+    core_rating: A
+    location: Hyderabad, India
+    country: India
+    flag: 🇮🇳
     year: 2026
-    website: "https://isec2026.github.io/"
-    url_pattern: "https://isec{year}.github.io/"
+    website: https://isec2026.github.io/
+    url_pattern: https://isec{year}.github.io/
     cohosted:
-      - "ModSym (Modelling Symposium)"
-      - "VR in Software Engineering Track"
+    - ModSym (Modelling Symposium)
+    - VR in Software Engineering Track
     cycle:
       conference_month: 2
       typical_submission_month: 9
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-09-15"
-        abstract_deadline: "2026-09-08"
-        intimation_date: "2026-11-10"
-        website_url: "https://isec2026.github.io/"
-      - track_name: "In practice track"
-        paper_submission_date: "2026-10-01"
-        abstract_deadline: ""
-        intimation_date: "2026-11-15"
-        website_url: "https://isec2026.github.io/industry"
-      - workshop_name: "ModSym Workshop (Modelling Symposium)"
-        paper_submission_date: "2026-10-10"
-        abstract_deadline: ""
-        intimation_date: "2026-11-25"
-        website_url: "https://isec2026.github.io/modsym"
-      - workshop_name: "VR and Emerging Tech in SE Track"
-        paper_submission_date: "2026-10-05"
-        abstract_deadline: ""
-        intimation_date: "2026-11-20"
-        website_url: "https://isec2026.github.io/vr-se"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-09-15'
+      abstract_deadline: '2026-09-08'
+      intimation_date: '2026-11-10'
+      website_url: https://isec2026.github.io/
+    - track_name: In practice track
+      paper_submission_date: '2026-10-01'
+      abstract_deadline: ''
+      intimation_date: '2026-11-15'
+      website_url: https://isec2026.github.io/industry
+    - workshop_name: ModSym Workshop (Modelling Symposium)
+      paper_submission_date: '2026-10-10'
+      abstract_deadline: ''
+      intimation_date: '2026-11-25'
+      website_url: https://isec2026.github.io/modsym
+    - workshop_name: VR and Emerging Tech in SE Track
+      paper_submission_date: '2026-10-05'
+      abstract_deadline: ''
+      intimation_date: '2026-11-20'
+      website_url: https://isec2026.github.io/vr-se
+    country_code: in
   ECSA:
-    full_name: "European Conference on Software Architecture"
-    core_rating: "A"
-    location: "Limassol, Cyprus"
-    country: "Cyprus"
-    flag: "🇨🇾"
+    full_name: European Conference on Software Architecture
+    core_rating: A
+    location: Limassol, Cyprus
+    country: Cyprus
+    flag: 🇨🇾
     year: 2026
-    website: "https://ecsa2026.disim.univaq.it/"
-    url_pattern: "https://ecsa{year}.disim.univaq.it/"
+    website: https://ecsa2026.disim.univaq.it/
+    url_pattern: https://ecsa{year}.disim.univaq.it/
     cohosted:
-      - "Agentic AI & Sustainable Software Track"
-      - "ECSA Workshops"
+    - Agentic AI & Sustainable Software Track
+    - ECSA Workshops
     cycle:
       conference_month: 9
       typical_submission_month: 4
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-04-10"
-        abstract_deadline: "2026-04-03"
-        intimation_date: "2026-06-12"
-        website_url: "https://ecsa2026.disim.univaq.it/"
-      - workshop_name: "Agentic AI and Sustainable Software Track"
-        paper_submission_date: "2026-04-20"
-        abstract_deadline: ""
-        intimation_date: "2026-06-18"
-        website_url: "https://ecsa2026.disim.univaq.it/tracks"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-04-10'
+      abstract_deadline: '2026-04-03'
+      intimation_date: '2026-06-12'
+      website_url: https://ecsa2026.disim.univaq.it/
+    - workshop_name: Agentic AI and Sustainable Software Track
+      paper_submission_date: '2026-04-20'
+      abstract_deadline: ''
+      intimation_date: '2026-06-18'
+      website_url: https://ecsa2026.disim.univaq.it/tracks
+    country_code: cy
   MSR:
-    full_name: "Mining Software Repositories"
-    core_rating: "A"
-    location: "Dublin, Ireland (Co-located with ICSE 2027)"
-    country: "Ireland"
-    flag: "🇮🇪"
+    full_name: Mining Software Repositories
+    core_rating: A
+    location: Dublin, Ireland (Co-located with ICSE 2027)
+    country: Ireland
+    flag: 🇮🇪
     year: 2027
-    website: "https://conf.researchr.org/home/msr-2027"
-    url_pattern: "https://conf.researchr.org/home/msr-{year}"
+    website: https://conf.researchr.org/home/msr-2027
+    url_pattern: https://conf.researchr.org/home/msr-{year}
     cohosted:
-      - "ICSE"
-      - "ICPC"
-      - "SEAMS"
+    - ICSE
+    - ICPC
+    - SEAMS
     cycle:
       conference_month: 5
       typical_submission_month: 11
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-11-15"
-        abstract_deadline: "2026-11-08"
-        intimation_date: "2027-01-20"
-        website_url: "https://conf.researchr.org/home/msr-2027"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-11-15'
+      abstract_deadline: '2026-11-08'
+      intimation_date: '2027-01-20'
+      website_url: https://conf.researchr.org/home/msr-2027
+    country_code: ie
   ICPC:
-    full_name: "IEEE/ACM International Conference on Program Comprehension"
-    core_rating: "A"
-    location: "Dublin, Ireland (Co-located with ICSE 2027)"
-    country: "Ireland"
-    flag: "🇮🇪"
+    full_name: IEEE/ACM International Conference on Program Comprehension
+    core_rating: A
+    location: Dublin, Ireland (Co-located with ICSE 2027)
+    country: Ireland
+    flag: 🇮🇪
     year: 2027
-    website: "https://conf.researchr.org/home/icpc-2027"
-    url_pattern: "https://conf.researchr.org/home/icpc-{year}"
+    website: https://conf.researchr.org/home/icpc-2027
+    url_pattern: https://conf.researchr.org/home/icpc-{year}
     cohosted:
-      - "ICSE"
-      - "MSR"
-      - "SEAMS"
+    - ICSE
+    - MSR
+    - SEAMS
     cycle:
       conference_month: 5
       typical_submission_month: 11
     tracks:
-      - track_name: "Research paper track"
-        paper_submission_date: "2026-11-20"
-        abstract_deadline: "2026-11-13"
-        intimation_date: "2027-01-22"
-        website_url: "https://conf.researchr.org/home/icpc-2027"
-
+    - track_name: Research paper track
+      paper_submission_date: '2026-11-20'
+      abstract_deadline: '2026-11-13'
+      intimation_date: '2027-01-22'
+      website_url: https://conf.researchr.org/home/icpc-2027
+    country_code: ie
