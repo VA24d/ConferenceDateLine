@@ -23,13 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build data/deadlines.json from the CSV
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Build static data and conference pages
         run: python3 scripts/build_static_data.py
 
       - name: Assemble site
         run: |
           mkdir _site
           cp *.html app.js styles.css _site/
+          cp -r conferences _site/conferences
           cp -r data _site/data
           touch _site/.nojekyll
 

@@ -7,8 +7,8 @@ from flask_cors import CORS
 
 from data_loader import DataLoader
 
-# Get the absolute path to the frontend directory
-frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
+# Get the absolute path to the root static directory
+frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 app = Flask(__name__, static_folder=frontend_dir, static_url_path='')
 CORS(app)

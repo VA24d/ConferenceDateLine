@@ -658,6 +658,8 @@ if __name__ == "__main__":
         # Try multiple possible locations for the YAML files
         import os
         possible_paths = [
+            ("config/types.yml", "config/conferences.yml"),
+            ("../config/types.yml", "../config/conferences.yml"),
             ("types.yml", "conferences.yml"),  # Same directory
             ("../types.yml", "../conferences.yml"),  # Parent directory (when running from backend/)
             ("../../types.yml", "../../conferences.yml"),  # Two levels up

@@ -166,6 +166,7 @@ body {
 header {
     text-align: center;
     margin-bottom: 24px;
+    padding-top: 4px;
 }
 
 header h1 {
@@ -173,15 +174,18 @@ header h1 {
     font-weight: 800;
     letter-spacing: -0.025em;
     color: var(--color-text);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--color-text) 60%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 header p {
-    font-size: 15px;
+    font-size: 14.5px;
     color: var(--color-text-muted);
-    max-width: 680px;
     max-width: 720px;
     margin: 0 auto;
+    line-height: 1.5;
     text-wrap: balance;
 }
 
@@ -368,16 +372,13 @@ header p {
 }
 
 /* ==========================================================================
-   4. Controls Bar (Filters, Sorting, Dedicated Pages)
    4. Controls Bar (Search, Filters, Sorting, Dedicated Pages)
    ========================================================================== */
 .controls {
     display: flex;
     flex-direction: column;
-    gap: 14px;
     gap: 16px;
     margin-bottom: 16px;
-    padding: 16px 20px;
     padding: 18px 20px;
     background: var(--color-surface);
     border-radius: var(--radius-lg);
@@ -386,7 +387,9 @@ header p {
 }
 
 .controls.single-conf-controls {
-    flex-direction: row;
+    flex-direction: column;
+}
+
 /* Search Bar Row & Quick Keywords */
 .search-bar-row {
     display: flex;
@@ -1261,6 +1264,59 @@ header p {
 .date-chip-val {
     font-weight: 600;
     color: var(--color-text);
+}
+
+/* Lazy Loading Workshop Section */
+.lazy-loading-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 0 16px;
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 9999px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-load-more:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    color: var(--color-primary);
+}
+
+.btn-load-more:active {
+    transform: translateY(0);
+}
+
+.lazy-load-counter {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.lazy-load-sentinel {
+    height: 1px;
+    width: 100%;
+    pointer-events: none;
+    opacity: 0;
 }
 
 /* ==========================================================================

@@ -9,7 +9,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-research-track",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -31,7 +32,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-seip",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -53,7 +55,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-seis",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -75,7 +78,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-new-ideas-and-emerging-results--nier-",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -97,7 +101,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-journal-first-papers",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -119,7 +124,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-software-engineering-education-and-training--seet-",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -141,7 +147,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-doctoral-symposium",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -163,7 +170,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-tutorials-and-technical-briefings",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -185,7 +193,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-src",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -207,7 +216,8 @@
     "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-industry-challenge",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -220,668 +230,6 @@
     ]
   },
   {
-    "conference_name": "FSE",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-10-02",
-    "abstract_deadline": null,
-    "intimation_date": "2027-01-22",
-    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-papers",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "In practice track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-01-23",
-    "abstract_deadline": null,
-    "intimation_date": "2027-03-20",
-    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-industry-papers",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "New ideas and emerging results track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-01-22",
-    "abstract_deadline": null,
-    "intimation_date": "2026-03-17",
-    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-ideas-visions-and-reflections",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "Journal first track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-02-25",
-    "abstract_deadline": null,
-    "intimation_date": "2026-03-25",
-    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-journal-first",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "Education track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-01-29",
-    "abstract_deadline": null,
-    "intimation_date": "2027-03-26",
-    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-software-engineering-education",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "Student research competition",
-    "workshop_name": null,
-    "paper_submission_date": "2026-01-26",
-    "abstract_deadline": null,
-    "intimation_date": "2026-03-09",
-    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-student-research-competition",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "Tool track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-01-22",
-    "abstract_deadline": null,
-    "intimation_date": "2026-03-17",
-    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-demonstrations",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "FSE",
-    "track_name": "Tutorials and technical briefings track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-01-26",
-    "abstract_deadline": null,
-    "intimation_date": "2026-03-09",
-    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-tutorials",
-    "core_rating": "A*",
-    "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
-    "cohosted": [
-      "LLMTrust Workshop",
-      "CauSE Workshop",
-      "SRC Track"
-    ]
-  },
-  {
-    "conference_name": "ISSTA",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-01-11",
-    "abstract_deadline": null,
-    "intimation_date": "2027-07-22",
-    "website_url": "https://conf.researchr.org/home/issta-2027",
-    "core_rating": "A",
-    "location": "Singapore",
-    "flag": "\ud83c\uddf8\ud83c\uddec",
-    "cohosted": [
-      "ISSTA Tool Demos",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-09-25",
-    "abstract_deadline": "2026-09-21",
-    "intimation_date": "2026-12-01",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-papers",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "In practice track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-10-23",
-    "abstract_deadline": "2026-10-19",
-    "intimation_date": "2026-12-08",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-industrial-track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "New ideas and emerging results track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-10-23",
-    "abstract_deadline": "2026-10-19",
-    "intimation_date": "2026-12-08",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-early-research-achievement-era--track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "Short paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-10-23",
-    "abstract_deadline": "2026-10-19",
-    "intimation_date": "2026-12-08",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-short-papers-and-posters-track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "Reproducibility Studies and Negative Results Track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-10-23",
-    "abstract_deadline": "2026-10-19",
-    "intimation_date": "2026-12-08",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-reproducibility-studies-and-negative-results-rene-track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "Journal first track",
-    "workshop_name": null,
-    "paper_submission_date": "2025-12-08",
-    "abstract_deadline": null,
-    "intimation_date": "2025-12-22",
-    "website_url": "https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "Tool track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-10-23",
-    "abstract_deadline": "2026-10-19",
-    "intimation_date": "2026-12-08",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-tool-demo-track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "SANER",
-    "track_name": "Registered reports track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-11-06",
-    "abstract_deadline": "2026-10-30",
-    "intimation_date": "2026-12-24",
-    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-registered-report-track",
-    "core_rating": "A",
-    "location": "Richmond, Virginia, USA",
-    "flag": "\ud83c\uddfa\ud83c\uddf8",
-    "cohosted": [
-      "IWESEP",
-      "ERA Track",
-      "RENE Track"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-01-22",
-    "abstract_deadline": null,
-    "intimation_date": "2027-03-12",
-    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-papers",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Short paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-03-02",
-    "abstract_deadline": "2026-02-23",
-    "intimation_date": "2026-04-06",
-    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-short-papers-and-emerging-results",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "In practice track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-03-01",
-    "abstract_deadline": "2027-02-22",
-    "intimation_date": "2027-04-12",
-    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-industry-papers#Call-for-Papers",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Posters track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-03-02",
-    "abstract_deadline": null,
-    "intimation_date": "2026-04-06",
-    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-posters-and-vision",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Journal first track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-03-06",
-    "abstract_deadline": null,
-    "intimation_date": "2026-04-06",
-    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-journal-first",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Doctoral symposium",
-    "workshop_name": null,
-    "paper_submission_date": "2027-03-08",
-    "abstract_deadline": null,
-    "intimation_date": "2027-04-12",
-    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-doctoral-symposium",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Data and Benchmarking track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-03-02",
-    "abstract_deadline": null,
-    "intimation_date": "2026-04-06",
-    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-ai-models---data",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Reproducibility Studies and Negative Results Track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-02-23",
-    "abstract_deadline": "2026-02-23",
-    "intimation_date": "2026-04-06",
-    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-reproducibility-and-negative-results",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "EASE",
-    "track_name": "Tutorials and technical briefings track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-03-02",
-    "abstract_deadline": null,
-    "intimation_date": "2027-04-05",
-    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-tutorial",
-    "core_rating": "A",
-    "location": "Hanoi, Vietnam",
-    "flag": "\ud83c\uddfb\ud83c\uddf3",
-    "cohosted": [
-      "Emerging Results Track",
-      "Doctoral Symposium"
-    ]
-  },
-  {
-    "conference_name": "IEEE VR",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-08-31",
-    "abstract_deadline": "2026-08-24",
-    "intimation_date": "2026-11-18",
-    "website_url": "https://ieeevr.org/2027/",
-    "core_rating": "A*",
-    "location": "Melbourne, Australia",
-    "flag": "\ud83c\udde6\ud83c\uddfa",
-    "cohosted": [
-      "3DUI Symposium",
-      "KELVAR",
-      "SEARIS",
-      "OpenXRS",
-      "XR-Health"
-    ]
-  },
-  {
-    "conference_name": "IEEE VR",
-    "track_name": "Posters track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-11-20",
-    "abstract_deadline": null,
-    "intimation_date": "2026-12-18",
-    "website_url": "https://ieeevr.org/2027/contribute/posters/",
-    "core_rating": "A*",
-    "location": "Melbourne, Australia",
-    "flag": "\ud83c\udde6\ud83c\uddfa",
-    "cohosted": [
-      "3DUI Symposium",
-      "KELVAR",
-      "SEARIS",
-      "OpenXRS",
-      "XR-Health"
-    ]
-  },
-  {
-    "conference_name": "IEEE VR",
-    "track_name": "",
-    "workshop_name": "KELVAR Workshop (Learning in VR)",
-    "paper_submission_date": "2027-01-10",
-    "abstract_deadline": null,
-    "intimation_date": "2027-01-22",
-    "website_url": "https://kelvar.org/",
-    "core_rating": "A*",
-    "location": "Melbourne, Australia",
-    "flag": "\ud83c\udde6\ud83c\uddfa",
-    "cohosted": [
-      "3DUI Symposium",
-      "KELVAR",
-      "SEARIS",
-      "OpenXRS",
-      "XR-Health"
-    ]
-  },
-  {
-    "conference_name": "IEEE VR",
-    "track_name": "",
-    "workshop_name": "SEARIS Workshop (SE & Architectures for Interactive Systems)",
-    "paper_submission_date": "2027-01-12",
-    "abstract_deadline": null,
-    "intimation_date": "2027-01-25",
-    "website_url": "http://searis.net/",
-    "core_rating": "A*",
-    "location": "Melbourne, Australia",
-    "flag": "\ud83c\udde6\ud83c\uddfa",
-    "cohosted": [
-      "3DUI Symposium",
-      "KELVAR",
-      "SEARIS",
-      "OpenXRS",
-      "XR-Health"
-    ]
-  },
-  {
-    "conference_name": "IEEE VR",
-    "track_name": "",
-    "workshop_name": "OpenXRS Workshop (Open Source & Standards in XR)",
-    "paper_submission_date": "2027-01-15",
-    "abstract_deadline": null,
-    "intimation_date": "2027-01-26",
-    "website_url": "https://openxrs.github.io/",
-    "core_rating": "A*",
-    "location": "Melbourne, Australia",
-    "flag": "\ud83c\udde6\ud83c\uddfa",
-    "cohosted": [
-      "3DUI Symposium",
-      "KELVAR",
-      "SEARIS",
-      "OpenXRS",
-      "XR-Health"
-    ]
-  },
-  {
-    "conference_name": "IEEE VR",
-    "track_name": "",
-    "workshop_name": "XR-Health Workshop (VR in Healthcare)",
-    "paper_submission_date": "2027-01-12",
-    "abstract_deadline": null,
-    "intimation_date": "2027-01-25",
-    "website_url": "https://xr-health.org/",
-    "core_rating": "A*",
-    "location": "Melbourne, Australia",
-    "flag": "\ud83c\udde6\ud83c\uddfa",
-    "cohosted": [
-      "3DUI Symposium",
-      "KELVAR",
-      "SEARIS",
-      "OpenXRS",
-      "XR-Health"
-    ]
-  },
-  {
-    "conference_name": "ISMAR",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-03-22",
-    "abstract_deadline": "2027-03-15",
-    "intimation_date": "2027-06-20",
-    "website_url": "https://ieeeismar.net/",
-    "core_rating": "A*",
-    "location": "Bari, Italy",
-    "flag": "\ud83c\uddee\ud83c\uddf9",
-    "cohosted": [
-      "XR-Health Workshop",
-      "MAR Art & Design",
-      "Doctoral Consortium"
-    ]
-  },
-  {
-    "conference_name": "ISMAR",
-    "track_name": "Posters track",
-    "workshop_name": null,
-    "paper_submission_date": "2027-06-15",
-    "abstract_deadline": null,
-    "intimation_date": "2027-07-20",
-    "website_url": "https://ieeeismar.net/",
-    "core_rating": "A*",
-    "location": "Bari, Italy",
-    "flag": "\ud83c\uddee\ud83c\uddf9",
-    "cohosted": [
-      "XR-Health Workshop",
-      "MAR Art & Design",
-      "Doctoral Consortium"
-    ]
-  },
-  {
-    "conference_name": "ISMAR",
-    "track_name": "",
-    "workshop_name": "HCI in AR/VR Workshop",
-    "paper_submission_date": "2027-06-20",
-    "abstract_deadline": null,
-    "intimation_date": "2027-07-20",
-    "website_url": "https://ieeeismar.net/workshops/",
-    "core_rating": "A*",
-    "location": "Bari, Italy",
-    "flag": "\ud83c\uddee\ud83c\uddf9",
-    "cohosted": [
-      "XR-Health Workshop",
-      "MAR Art & Design",
-      "Doctoral Consortium"
-    ]
-  },
-  {
-    "conference_name": "ISMAR",
-    "track_name": "",
-    "workshop_name": "Spatial Computing & Perception Workshop",
-    "paper_submission_date": "2027-06-25",
-    "abstract_deadline": null,
-    "intimation_date": "2027-07-25",
-    "website_url": "https://ieeeismar.net/workshops/",
-    "core_rating": "A*",
-    "location": "Bari, Italy",
-    "flag": "\ud83c\uddee\ud83c\uddf9",
-    "cohosted": [
-      "XR-Health Workshop",
-      "MAR Art & Design",
-      "Doctoral Consortium"
-    ]
-  },
-  {
-    "conference_name": "VRST",
-    "track_name": "Research paper track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-06-24",
-    "abstract_deadline": "2026-06-17",
-    "intimation_date": "2026-08-28",
-    "website_url": "https://vrst.acm.org/",
-    "core_rating": "A",
-    "location": "Sendai, Japan",
-    "flag": "\ud83c\uddef\ud83c\uddf5",
-    "cohosted": [
-      "Virtual Reality Technologies Workshop",
-      "Posters & Demos"
-    ]
-  },
-  {
-    "conference_name": "VRST",
-    "track_name": "Short papers and demos track",
-    "workshop_name": null,
-    "paper_submission_date": "2026-07-08",
-    "abstract_deadline": null,
-    "intimation_date": "2026-08-30",
-    "website_url": "https://vrst.acm.org/",
-    "core_rating": "A",
-    "location": "Sendai, Japan",
-    "flag": "\ud83c\uddef\ud83c\uddf5",
-    "cohosted": [
-      "Virtual Reality Technologies Workshop",
-      "Posters & Demos"
-    ]
-  },
-  {
-    "conference_name": "VRST",
-    "track_name": "",
-    "workshop_name": "Virtual Reality Technologies Workshop",
-    "paper_submission_date": "2026-07-15",
-    "abstract_deadline": null,
-    "intimation_date": "2026-08-30",
-    "website_url": "https://vrst.acm.org/",
-    "core_rating": "A",
-    "location": "Sendai, Japan",
-    "flag": "\ud83c\uddef\ud83c\uddf5",
-    "cohosted": [
-      "Virtual Reality Technologies Workshop",
-      "Posters & Demos"
-    ]
-  },
-  {
     "conference_name": "ICSE",
     "track_name": "",
     "workshop_name": "LLM4Code Workshop (LLMs for Code)",
@@ -891,7 +239,8 @@
     "website_url": "https://llm4code.github.io/",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -913,7 +262,8 @@
     "website_url": "https://chain-sec.github.io/",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -935,7 +285,8 @@
     "website_url": "https://conf.researchr.org/home/icse-2026/deeptest-2026",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -957,7 +308,8 @@
     "website_url": "https://conf.researchr.org/home/icse-2027/se4all-2027",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -979,7 +331,8 @@
     "website_url": "https://search-based-and-fuzz-testing.github.io/",
     "core_rating": "A*",
     "location": "Dublin, Ireland",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "SEAMS",
       "CAIN",
@@ -993,6 +346,150 @@
   },
   {
     "conference_name": "FSE",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-02",
+    "abstract_deadline": null,
+    "intimation_date": "2027-01-22",
+    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-papers",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-23",
+    "abstract_deadline": null,
+    "intimation_date": "2027-03-20",
+    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-industry-papers",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "New ideas and emerging results track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-22",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-17",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-ideas-visions-and-reflections",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-02-25",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-25",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-journal-first",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Education track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-29",
+    "abstract_deadline": null,
+    "intimation_date": "2027-03-26",
+    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-software-engineering-education",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Student research competition",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-26",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-09",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-student-research-competition",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Tool track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-22",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-17",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-demonstrations",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Tutorials and technical briefings track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-26",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-09",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-tutorials",
+    "core_rating": "A*",
+    "location": "Shenzhen, China",
+    "flag": "🇨🇳",
+    "year": "2027",
+    "cohosted": [
+      "LLMTrust Workshop",
+      "CauSE Workshop",
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "FSE",
     "track_name": "",
     "workshop_name": "LLMTrust Workshop (Trustworthy LLMs in SE)",
     "paper_submission_date": "2027-02-12",
@@ -1001,11 +498,12 @@
     "website_url": "https://llmtrust2026.github.io/",
     "core_rating": "A*",
     "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
+    "flag": "🇨🇳",
+    "year": "2027",
     "cohosted": [
       "LLMTrust Workshop",
       "CauSE Workshop",
-      "SRC Track"
+      "Student Research Competition"
     ]
   },
   {
@@ -1018,11 +516,569 @@
     "website_url": "https://causality-software-engineering.github.io/",
     "core_rating": "A*",
     "location": "Shenzhen, China",
-    "flag": "\ud83c\udde8\ud83c\uddf3",
+    "flag": "🇨🇳",
+    "year": "2027",
     "cohosted": [
       "LLMTrust Workshop",
       "CauSE Workshop",
-      "SRC Track"
+      "Student Research Competition"
+    ]
+  },
+  {
+    "conference_name": "ISSTA",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-11",
+    "abstract_deadline": null,
+    "intimation_date": "2027-07-22",
+    "website_url": "https://conf.researchr.org/home/issta-2027",
+    "core_rating": "A",
+    "location": "Singapore",
+    "flag": "🇸🇬",
+    "year": "2027",
+    "cohosted": [
+      "ISSTA Tool Demos",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-09-25",
+    "abstract_deadline": "2026-09-21",
+    "intimation_date": "2026-12-01",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-papers",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-industrial-track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "New ideas and emerging results track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-early-research-achievement-era--track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Short paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-short-papers-and-posters-track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Reproducibility Studies and Negative Results Track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-reproducibility-studies-and-negative-results-rene-track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2025-12-08",
+    "abstract_deadline": null,
+    "intimation_date": "2025-12-22",
+    "website_url": "https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Tool track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-tool-demo-track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Registered reports track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-11-06",
+    "abstract_deadline": "2026-10-30",
+    "intimation_date": "2026-12-24",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-registered-report-track",
+    "core_rating": "A",
+    "location": "Richmond, Virginia, USA",
+    "flag": "🇺🇸",
+    "year": "2027",
+    "cohosted": [
+      "IWESEP",
+      "ERA Track",
+      "RENE Track"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-22",
+    "abstract_deadline": null,
+    "intimation_date": "2027-03-12",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-papers",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Short paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-02",
+    "abstract_deadline": "2026-02-23",
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-short-papers-and-emerging-results",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-01",
+    "abstract_deadline": "2027-02-22",
+    "intimation_date": "2027-04-12",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-industry-papers#Call-for-Papers",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Posters track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-02",
+    "abstract_deadline": null,
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-posters-and-vision",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-06",
+    "abstract_deadline": null,
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-journal-first",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Doctoral symposium",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-08",
+    "abstract_deadline": null,
+    "intimation_date": "2027-04-12",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-doctoral-symposium",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Data and Benchmarking track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-02",
+    "abstract_deadline": null,
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-ai-models---data",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Reproducibility Studies and Negative Results Track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-02-23",
+    "abstract_deadline": "2026-02-23",
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-reproducibility-and-negative-results",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Tutorials and technical briefings track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-02",
+    "abstract_deadline": null,
+    "intimation_date": "2027-04-05",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-tutorial",
+    "core_rating": "A",
+    "location": "Hanoi, Vietnam",
+    "flag": "🇻🇳",
+    "year": "2027",
+    "cohosted": [
+      "Emerging Results Track",
+      "Doctoral Symposium"
+    ]
+  },
+  {
+    "conference_name": "IEEE VR",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-08-31",
+    "abstract_deadline": "2026-08-24",
+    "intimation_date": "2026-11-18",
+    "website_url": "https://ieeevr.org/2027/",
+    "core_rating": "A*",
+    "location": "Melbourne, Australia",
+    "flag": "🇦🇺",
+    "year": "2027",
+    "cohosted": [
+      "3DUI Symposium",
+      "KELVAR",
+      "SEARIS",
+      "OpenXRS",
+      "XR-Health"
+    ]
+  },
+  {
+    "conference_name": "IEEE VR",
+    "track_name": "Posters track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-11-20",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-18",
+    "website_url": "https://ieeevr.org/2027/contribute/posters/",
+    "core_rating": "A*",
+    "location": "Melbourne, Australia",
+    "flag": "🇦🇺",
+    "year": "2027",
+    "cohosted": [
+      "3DUI Symposium",
+      "KELVAR",
+      "SEARIS",
+      "OpenXRS",
+      "XR-Health"
+    ]
+  },
+  {
+    "conference_name": "IEEE VR",
+    "track_name": "",
+    "workshop_name": "KELVAR Workshop (Learning in VR)",
+    "paper_submission_date": "2027-01-10",
+    "abstract_deadline": null,
+    "intimation_date": "2027-01-22",
+    "website_url": "https://kelvar.org/",
+    "core_rating": "A*",
+    "location": "Melbourne, Australia",
+    "flag": "🇦🇺",
+    "year": "2027",
+    "cohosted": [
+      "3DUI Symposium",
+      "KELVAR",
+      "SEARIS",
+      "OpenXRS",
+      "XR-Health"
+    ]
+  },
+  {
+    "conference_name": "IEEE VR",
+    "track_name": "",
+    "workshop_name": "SEARIS Workshop (SE & Architectures for Interactive Systems)",
+    "paper_submission_date": "2027-01-12",
+    "abstract_deadline": null,
+    "intimation_date": "2027-01-25",
+    "website_url": "http://searis.net/",
+    "core_rating": "A*",
+    "location": "Melbourne, Australia",
+    "flag": "🇦🇺",
+    "year": "2027",
+    "cohosted": [
+      "3DUI Symposium",
+      "KELVAR",
+      "SEARIS",
+      "OpenXRS",
+      "XR-Health"
+    ]
+  },
+  {
+    "conference_name": "IEEE VR",
+    "track_name": "",
+    "workshop_name": "OpenXRS Workshop (Open Source & Standards in XR)",
+    "paper_submission_date": "2027-01-15",
+    "abstract_deadline": null,
+    "intimation_date": "2027-01-26",
+    "website_url": "https://openxrs.github.io/",
+    "core_rating": "A*",
+    "location": "Melbourne, Australia",
+    "flag": "🇦🇺",
+    "year": "2027",
+    "cohosted": [
+      "3DUI Symposium",
+      "KELVAR",
+      "SEARIS",
+      "OpenXRS",
+      "XR-Health"
+    ]
+  },
+  {
+    "conference_name": "IEEE VR",
+    "track_name": "",
+    "workshop_name": "XR-Health Workshop (VR in Healthcare)",
+    "paper_submission_date": "2027-01-12",
+    "abstract_deadline": null,
+    "intimation_date": "2027-01-25",
+    "website_url": "https://xr-health.org/",
+    "core_rating": "A*",
+    "location": "Melbourne, Australia",
+    "flag": "🇦🇺",
+    "year": "2027",
+    "cohosted": [
+      "3DUI Symposium",
+      "KELVAR",
+      "SEARIS",
+      "OpenXRS",
+      "XR-Health"
+    ]
+  },
+  {
+    "conference_name": "ISMAR",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-22",
+    "abstract_deadline": "2027-03-15",
+    "intimation_date": "2027-06-20",
+    "website_url": "https://ieeeismar.net/",
+    "core_rating": "A*",
+    "location": "Bari, Italy",
+    "flag": "🇮🇹",
+    "year": "2027",
+    "cohosted": [
+      "XR-Health Workshop",
+      "MAR Art & Design",
+      "Doctoral Consortium"
+    ]
+  },
+  {
+    "conference_name": "ISMAR",
+    "track_name": "Posters track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-06-15",
+    "abstract_deadline": null,
+    "intimation_date": "2027-07-20",
+    "website_url": "https://ieeeismar.net/",
+    "core_rating": "A*",
+    "location": "Bari, Italy",
+    "flag": "🇮🇹",
+    "year": "2027",
+    "cohosted": [
+      "XR-Health Workshop",
+      "MAR Art & Design",
+      "Doctoral Consortium"
+    ]
+  },
+  {
+    "conference_name": "ISMAR",
+    "track_name": "",
+    "workshop_name": "HCI in AR/VR Workshop",
+    "paper_submission_date": "2027-06-20",
+    "abstract_deadline": null,
+    "intimation_date": "2027-07-20",
+    "website_url": "https://ieeeismar.net/workshops/",
+    "core_rating": "A*",
+    "location": "Bari, Italy",
+    "flag": "🇮🇹",
+    "year": "2027",
+    "cohosted": [
+      "XR-Health Workshop",
+      "MAR Art & Design",
+      "Doctoral Consortium"
+    ]
+  },
+  {
+    "conference_name": "ISMAR",
+    "track_name": "",
+    "workshop_name": "Spatial Computing & Perception Workshop",
+    "paper_submission_date": "2027-06-25",
+    "abstract_deadline": null,
+    "intimation_date": "2027-07-25",
+    "website_url": "https://ieeeismar.net/workshops/",
+    "core_rating": "A*",
+    "location": "Bari, Italy",
+    "flag": "🇮🇹",
+    "year": "2027",
+    "cohosted": [
+      "XR-Health Workshop",
+      "MAR Art & Design",
+      "Doctoral Consortium"
+    ]
+  },
+  {
+    "conference_name": "VRST",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-06-24",
+    "abstract_deadline": "2026-06-17",
+    "intimation_date": "2026-08-28",
+    "website_url": "https://vrst.acm.org/",
+    "core_rating": "A",
+    "location": "Sendai, Japan",
+    "flag": "🇯🇵",
+    "year": "2026",
+    "cohosted": [
+      "Virtual Reality Technologies Workshop",
+      "Posters & Demos"
+    ]
+  },
+  {
+    "conference_name": "VRST",
+    "track_name": "Short papers and demos track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-07-08",
+    "abstract_deadline": null,
+    "intimation_date": "2026-08-30",
+    "website_url": "https://vrst.acm.org/",
+    "core_rating": "A",
+    "location": "Sendai, Japan",
+    "flag": "🇯🇵",
+    "year": "2026",
+    "cohosted": [
+      "Virtual Reality Technologies Workshop",
+      "Posters & Demos"
+    ]
+  },
+  {
+    "conference_name": "VRST",
+    "track_name": "",
+    "workshop_name": "Virtual Reality Technologies Workshop",
+    "paper_submission_date": "2026-07-15",
+    "abstract_deadline": null,
+    "intimation_date": "2026-08-30",
+    "website_url": "https://vrst.acm.org/",
+    "core_rating": "A",
+    "location": "Sendai, Japan",
+    "flag": "🇯🇵",
+    "year": "2026",
+    "cohosted": [
+      "Virtual Reality Technologies Workshop",
+      "Posters & Demos"
     ]
   },
   {
@@ -1035,7 +1091,8 @@
     "website_url": "https://chiplay.acm.org/2026/",
     "core_rating": "A",
     "location": "Zurich, Switzerland",
-    "flag": "\ud83c\udde8\ud83c\udded",
+    "flag": "🇨🇭",
+    "year": "2026",
     "cohosted": [
       "Serious Games & VR Showcase",
       "CHI PLAY WIP & Demos"
@@ -1051,7 +1108,8 @@
     "website_url": "https://chiplay.acm.org/2026/wip",
     "core_rating": "A",
     "location": "Zurich, Switzerland",
-    "flag": "\ud83c\udde8\ud83c\udded",
+    "flag": "🇨🇭",
+    "year": "2026",
     "cohosted": [
       "Serious Games & VR Showcase",
       "CHI PLAY WIP & Demos"
@@ -1067,7 +1125,8 @@
     "website_url": "https://chiplay.acm.org/2026/games",
     "core_rating": "A",
     "location": "Zurich, Switzerland",
-    "flag": "\ud83c\udde8\ud83c\udded",
+    "flag": "🇨🇭",
+    "year": "2026",
     "cohosted": [
       "Serious Games & VR Showcase",
       "CHI PLAY WIP & Demos"
@@ -1083,7 +1142,8 @@
     "website_url": "https://conf.researchr.org/home/icsa-2026",
     "core_rating": "A",
     "location": "Amsterdam, Netherlands",
-    "flag": "\ud83c\uddf3\ud83c\uddf1",
+    "flag": "🇳🇱",
+    "year": "2026",
     "cohosted": [
       "CAAIN Workshop",
       "NEMI Track",
@@ -1100,7 +1160,8 @@
     "website_url": "https://conf.researchr.org/track/icsa-2026/icsa-2026-in-practice",
     "core_rating": "A",
     "location": "Amsterdam, Netherlands",
-    "flag": "\ud83c\uddf3\ud83c\uddf1",
+    "flag": "🇳🇱",
+    "year": "2026",
     "cohosted": [
       "CAAIN Workshop",
       "NEMI Track",
@@ -1117,7 +1178,8 @@
     "website_url": "https://conf.researchr.org/track/icsa-2026/icsa-2026-nemi",
     "core_rating": "A",
     "location": "Amsterdam, Netherlands",
-    "flag": "\ud83c\uddf3\ud83c\uddf1",
+    "flag": "🇳🇱",
+    "year": "2026",
     "cohosted": [
       "CAAIN Workshop",
       "NEMI Track",
@@ -1134,7 +1196,8 @@
     "website_url": "https://conf.researchr.org/track/icsa-2026/icsa-2026-tools",
     "core_rating": "A",
     "location": "Amsterdam, Netherlands",
-    "flag": "\ud83c\uddf3\ud83c\uddf1",
+    "flag": "🇳🇱",
+    "year": "2026",
     "cohosted": [
       "CAAIN Workshop",
       "NEMI Track",
@@ -1151,7 +1214,8 @@
     "website_url": "https://conf.researchr.org/home/seams-2026",
     "core_rating": "A",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "CAIN",
@@ -1170,7 +1234,8 @@
     "website_url": "https://conf.researchr.org/track/seams-2026/seams-2026-artifacts",
     "core_rating": "A",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "CAIN",
@@ -1189,7 +1254,8 @@
     "website_url": "https://agentic-engineering.github.io/",
     "core_rating": "Workshop",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "SEAMS",
@@ -1206,7 +1272,8 @@
     "website_url": "https://conf.researchr.org/home/cain-2026",
     "core_rating": "A",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "SEAMS",
@@ -1223,7 +1290,8 @@
     "website_url": "https://conf.researchr.org/track/cain-2026/cain-2026-industry",
     "core_rating": "A",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "SEAMS",
@@ -1240,7 +1308,8 @@
     "website_url": "https://conf.researchr.org/home/models-2026",
     "core_rating": "A",
     "location": "Linz, Austria",
-    "flag": "\ud83c\udde6\ud83c\uddf9",
+    "flag": "🇦🇹",
+    "year": "2026",
     "cohosted": [
       "SAM (System Analysis and Modelling)",
       "MDE4AI Workshop"
@@ -1256,7 +1325,8 @@
     "website_url": "https://conf.researchr.org/track/models-2026/models-2026-practice",
     "core_rating": "A",
     "location": "Linz, Austria",
-    "flag": "\ud83c\udde6\ud83c\uddf9",
+    "flag": "🇦🇹",
+    "year": "2026",
     "cohosted": [
       "SAM (System Analysis and Modelling)",
       "MDE4AI Workshop"
@@ -1272,7 +1342,8 @@
     "website_url": "https://conf.researchr.org/track/models-2026/models-2026-tools",
     "core_rating": "A",
     "location": "Linz, Austria",
-    "flag": "\ud83c\udde6\ud83c\uddf9",
+    "flag": "🇦🇹",
+    "year": "2026",
     "cohosted": [
       "SAM (System Analysis and Modelling)",
       "MDE4AI Workshop"
@@ -1288,7 +1359,8 @@
     "website_url": "https://isec2026.github.io/",
     "core_rating": "A",
     "location": "Hyderabad, India",
-    "flag": "\ud83c\uddee\ud83c\uddf3",
+    "flag": "🇮🇳",
+    "year": "2026",
     "cohosted": [
       "ModSym (Modelling Symposium)",
       "VR in Software Engineering Track"
@@ -1304,7 +1376,8 @@
     "website_url": "https://isec2026.github.io/industry",
     "core_rating": "A",
     "location": "Hyderabad, India",
-    "flag": "\ud83c\uddee\ud83c\uddf3",
+    "flag": "🇮🇳",
+    "year": "2026",
     "cohosted": [
       "ModSym (Modelling Symposium)",
       "VR in Software Engineering Track"
@@ -1320,7 +1393,8 @@
     "website_url": "https://isec2026.github.io/modsym",
     "core_rating": "A",
     "location": "Hyderabad, India",
-    "flag": "\ud83c\uddee\ud83c\uddf3",
+    "flag": "🇮🇳",
+    "year": "2026",
     "cohosted": [
       "ModSym (Modelling Symposium)",
       "VR in Software Engineering Track"
@@ -1336,7 +1410,8 @@
     "website_url": "https://isec2026.github.io/vr-se",
     "core_rating": "A",
     "location": "Hyderabad, India",
-    "flag": "\ud83c\uddee\ud83c\uddf3",
+    "flag": "🇮🇳",
+    "year": "2026",
     "cohosted": [
       "ModSym (Modelling Symposium)",
       "VR in Software Engineering Track"
@@ -1352,7 +1427,8 @@
     "website_url": "https://ecsa2026.disim.univaq.it/",
     "core_rating": "A",
     "location": "Limassol, Cyprus",
-    "flag": "\ud83c\udde8\ud83c\uddfe",
+    "flag": "🇨🇾",
+    "year": "2026",
     "cohosted": [
       "Agentic AI & Sustainable Software Track",
       "ECSA Workshops"
@@ -1368,7 +1444,8 @@
     "website_url": "https://ecsa2026.disim.univaq.it/tracks",
     "core_rating": "A",
     "location": "Limassol, Cyprus",
-    "flag": "\ud83c\udde8\ud83c\uddfe",
+    "flag": "🇨🇾",
+    "year": "2026",
     "cohosted": [
       "Agentic AI & Sustainable Software Track",
       "ECSA Workshops"
@@ -1384,7 +1461,8 @@
     "website_url": "https://conf.researchr.org/home/msr-2027",
     "core_rating": "A",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "ICPC",
@@ -1401,7 +1479,8 @@
     "website_url": "https://conf.researchr.org/home/icpc-2027",
     "core_rating": "A",
     "location": "Dublin, Ireland (Co-located with ICSE 2027)",
-    "flag": "\ud83c\uddee\ud83c\uddea",
+    "flag": "🇮🇪",
+    "year": "2027",
     "cohosted": [
       "ICSE",
       "MSR",

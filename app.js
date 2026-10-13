@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Ireland',
             flag: '🇮🇪',
             year: '2027',
-            website: 'https://conf.researchr.org/home/icse-2027'
             website: 'https://conf.researchr.org/home/icse-2027',
             cohosted: ['SEAMS', 'CAIN', 'AGENT', 'MSR', 'ICPC', 'LLM4Code', 'DeepTest', 'ChainSEC']
         },
@@ -26,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'China',
             flag: '🇨🇳',
             year: '2027',
-            website: 'https://conf.researchr.org/home/fse-2027'
             website: 'https://conf.researchr.org/home/fse-2027',
             cohosted: ['LLMTrust Workshop', 'CauSE Workshop', 'Student Research Competition']
         },
@@ -37,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Singapore',
             flag: '🇸🇬',
             year: '2027',
-            website: 'https://conf.researchr.org/home/issta-2027'
             website: 'https://conf.researchr.org/home/issta-2027',
             cohosted: ['ISSTA Tool Demos', 'Doctoral Symposium']
         },
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'United States',
             flag: '🇺🇸',
             year: '2027',
-            website: 'https://conf.researchr.org/home/saner-2027'
             website: 'https://conf.researchr.org/home/saner-2027',
             cohosted: ['IWESEP', 'ERA Track', 'RENE Track']
         },
@@ -59,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Vietnam',
             flag: '🇻🇳',
             year: '2027',
-            website: 'https://conf.researchr.org/home/ease-2027'
             website: 'https://conf.researchr.org/home/ease-2027',
             cohosted: ['Emerging Results Track', 'Doctoral Symposium']
         },
@@ -70,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Australia',
             flag: '🇦🇺',
             year: '2027',
-            website: 'https://ieeevr.org/2027/'
             website: 'https://ieeevr.org/2027/',
             cohosted: ['3DUI Symposium', 'KELVAR', 'SEARIS', 'OpenXRS', 'XR-Health']
         },
@@ -81,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Italy',
             flag: '🇮🇹',
             year: '2027',
-            website: 'https://ieeeismar.net/'
             website: 'https://ieeeismar.net/',
             cohosted: ['XR-Health Workshop', 'MAR Art & Design', 'Doctoral Consortium']
         },
@@ -92,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Japan',
             flag: '🇯🇵',
             year: '2026',
-            website: 'https://vrst.acm.org/'
             website: 'https://vrst.acm.org/',
             cohosted: ['Virtual Reality Technologies Workshop', 'Posters & Demos']
         },
@@ -198,8 +190,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Page mode & directory detection
+    const isConferencePage = document.body.dataset.page === 'conference';
+    const isInSubfolder = window.location.pathname.includes('/conferences/') ||
+                          (document.querySelector('script[src*="../app.js"]') !== null) ||
+                          (document.querySelector('link[href*="../styles.css"]') !== null);
+
     function confSlug(name) {
-        return name.toLowerCase().replace(/\s+/g, '-') + '.html';
+        const slug = name.toLowerCase().replace(/\s+/g, '-') + '.html';
+        return isInSubfolder ? slug : `conferences/${slug}`;
     }
 
     function getMeta(confName) {
@@ -218,8 +217,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let allDeadlines = [];
     let allConferences = [];
 
-    // Page mode detection
-    const isConferencePage = document.body.dataset.page === 'conference';
     const urlParams = new URLSearchParams(window.location.search);
     let selectedConference = document.body.dataset.conf || urlParams.get('conf') || '';
 
@@ -266,11 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .map(([name, tracks]) => ({ name, tracks: [...tracks].sort() }));
     }
 
-    async function fetchDeadlines() {
-        const r = await fetch('data/deadlines.json');
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        const data = await r.json();
-        // Enrich data with metadata if missing
+    function enrichDeadlines(data) {
         return data.map(d => {
             const meta = getMeta(d.conference_name);
             return {
@@ -280,6 +273,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 flag: d.flag || meta.flag
             };
         });
+    }
+
+    async function fetchDeadlines() {
+        const primaryPath = isInSubfolder ? '../data/deadlines.json' : 'data/deadlines.json';
+        const fallbackPath = isInSubfolder ? 'data/deadlines.json' : '../data/deadlines.json';
+        const cacheKey = 'conference_deadlines_cache';
+        try {
+            let r = await fetch(primaryPath).catch(() => null);
+            if (!r || !r.ok) {
+                const rFallback = await fetch(fallbackPath).catch(() => null);
+                if (rFallback && rFallback.ok) {
+                    r = rFallback;
+                }
+            }
+            if (!r || !r.ok) throw new Error(`HTTP ${r ? r.status : 'offline'}`);
+            const data = await r.json();
+            try {
+                localStorage.setItem(cacheKey, JSON.stringify(data));
+            } catch (storageErr) {
+                // Ignore storage quota errors
+            }
+            return enrichDeadlines(data);
+        } catch (fetchErr) {
+            console.warn('Network fetch failed, attempting localStorage cache fallback:', fetchErr);
+            const cached = localStorage.getItem(cacheKey);
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    console.info('Loaded deadlines from offline localStorage cache');
+                    return enrichDeadlines(parsed);
+                } catch (parseErr) {
+                    console.error('Failed parsing localStorage cache:', parseErr);
+                }
+            }
+            throw fetchErr;
+        }
     }
 
     // Initialize
@@ -297,6 +326,30 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             allDeadlines = await fetchDeadlines();
             allConferences = deriveConferences(allDeadlines);
+
+            // Dynamically sync metadata from loaded deadlines (single source of truth)
+            allDeadlines.forEach(d => {
+                if (d.conference_name) {
+                    if (!CONFERENCE_METADATA[d.conference_name]) {
+                        CONFERENCE_METADATA[d.conference_name] = {
+                            fullName: `${d.conference_name} Conference`,
+                            coreRating: d.core_rating || 'Unranked',
+                            location: d.location || 'TBA',
+                            flag: d.flag || '🌐',
+                            year: d.year || '2027',
+                            website: d.website_url || '#',
+                            cohosted: d.cohosted || []
+                        };
+                    } else {
+                        const entry = CONFERENCE_METADATA[d.conference_name];
+                        if (d.core_rating) entry.coreRating = d.core_rating;
+                        if (d.location) entry.location = d.location;
+                        if (d.flag) entry.flag = d.flag;
+                        if (d.year) entry.year = d.year;
+                        if (d.cohosted && d.cohosted.length) entry.cohosted = d.cohosted;
+                    }
+                }
+            });
 
             // Default conference for dedicated page if none provided
             if (isConferencePage && !selectedConference && allConferences.length > 0) {
@@ -337,7 +390,6 @@ document.addEventListener('DOMContentLoaded', function() {
             allConferences.forEach(conf => {
                 const meta = getMeta(conf.name);
                 const link = document.createElement('a');
-                link.href = `${conf.name.toLowerCase()}.html`;
                 link.href = confSlug(conf.name);
                 link.className = 'dedicated-pill-link';
                 link.innerHTML = `<span>${meta.flag}</span> <strong>${conf.name}</strong> <span class="pill-core">${meta.coreRating}</span> ↗`;
@@ -352,7 +404,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const meta = getMeta(conf.name);
                 const isActive = conf.name.toUpperCase() === selectedConference.toUpperCase();
                 const link = document.createElement('a');
-                link.href = `${conf.name.toLowerCase()}.html`;
                 link.href = confSlug(conf.name);
                 link.className = `switcher-pill ${isActive ? 'is-active' : ''}`;
                 link.innerHTML = `<span>${meta.flag}</span> <strong>${conf.name}</strong>`;
@@ -382,11 +433,11 @@ document.addEventListener('DOMContentLoaded', function() {
             heroCoreBadge.className = `core-badge ${meta.coreRating === 'A*' ? 'is-core-star' : 'is-core-a'}`;
         }
         if (heroDesc) heroDesc.textContent = meta.fullName;
-        if (heroLocation) heroLocation.textContent = `📍 ${meta.location}`;
-        if (heroYear) heroYear.textContent = `📅 ${meta.year}`;
+        if (heroLocation) heroLocation.textContent = meta.location;
+        if (heroYear) heroYear.textContent = meta.year;
 
         const confDeadlines = allDeadlines.filter(d => d.conference_name.toUpperCase() === confName.toUpperCase());
-        if (heroTracksCount) heroTracksCount.textContent = `📊 ${confDeadlines.length} Tracks & Workshops`;
+        if (heroTracksCount) heroTracksCount.textContent = `${confDeadlines.length} Tracks & Workshops`;
 
         if (heroWebsiteLink) {
             // Find first website URL from tracks if available
@@ -849,15 +900,31 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = html;
     }
 
-    function renderWorkshopList() {
+    let currentWorkshopRenderLimit = 20;
+    const WORKSHOP_CHUNK_SIZE = 20;
+    let workshopObserver = null;
+
+    function renderWorkshopList(reset = true) {
+        if (!workshopListContainer) return;
+
+        if (reset) {
+            currentWorkshopRenderLimit = WORKSHOP_CHUNK_SIZE;
+        }
+
         const deadlines = getFilteredDeadlines();
 
         if (deadlines.length === 0) {
+            if (workshopObserver) {
+                workshopObserver.disconnect();
+                workshopObserver = null;
+            }
             workshopListContainer.innerHTML = '<p class="no-data">No workshops or tracks match your criteria.</p>';
             return;
         }
 
-        const html = deadlines.map(d => {
+        const visibleDeadlines = deadlines.slice(0, currentWorkshopRenderLimit);
+
+        let html = visibleDeadlines.map(d => {
             const isWorkshop = !!d.workshop_name;
             const cardClass = isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track';
             const name = d.workshop_name || (d.track_name || 'Main Track');
@@ -911,7 +978,51 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }).join('');
 
+        if (deadlines.length > currentWorkshopRenderLimit) {
+            const remaining = deadlines.length - currentWorkshopRenderLimit;
+            html += `
+                <div class="lazy-loading-footer">
+                    <span class="lazy-load-counter">Showing ${visibleDeadlines.length} of ${deadlines.length} items</span>
+                    <button type="button" class="btn-load-more" id="btn-load-more">Load More (${remaining} remaining) ↓</button>
+                    <div class="lazy-load-sentinel" id="lazy-load-sentinel"></div>
+                </div>
+            `;
+        } else if (deadlines.length > WORKSHOP_CHUNK_SIZE) {
+            html += `
+                <div class="lazy-loading-footer">
+                    <span class="lazy-load-counter">All ${deadlines.length} items loaded</span>
+                </div>
+            `;
+        }
+
         workshopListContainer.innerHTML = html;
+
+        if (workshopObserver) {
+            workshopObserver.disconnect();
+            workshopObserver = null;
+        }
+
+        const loadMoreBtn = document.getElementById('btn-load-more');
+        const sentinel = document.getElementById('lazy-load-sentinel');
+
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                currentWorkshopRenderLimit += WORKSHOP_CHUNK_SIZE;
+                renderWorkshopList(false);
+            });
+        }
+
+        if (sentinel && 'IntersectionObserver' in window) {
+            workshopObserver = new IntersectionObserver((entries) => {
+                if (entries[0] && entries[0].isIntersecting) {
+                    workshopObserver.disconnect();
+                    workshopObserver = null;
+                    currentWorkshopRenderLimit += WORKSHOP_CHUNK_SIZE;
+                    renderWorkshopList(false);
+                }
+            }, { rootMargin: '250px' });
+            workshopObserver.observe(sentinel);
+        }
     }
 
     function formatDate(dateStr) {
