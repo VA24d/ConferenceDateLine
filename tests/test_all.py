@@ -156,6 +156,17 @@ class TestBuildStaticData(unittest.TestCase):
             self.assertIn('src="../app.js', content)
             self.assertIn('href="../index.html"', content)
             self.assertIn(f'data-conf="{venue}"', content)
+            self.assertIn('Camera-ready Deadline', content)
+
+        # Ensure camera_ready_deadline is in CSV header and JSON items
+        with open(csv_path, "r", encoding="utf-8") as f:
+            header = f.readline()
+            self.assertIn("camera_ready_deadline", header)
+
+        import json
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            self.assertTrue(any("camera_ready_deadline" in d for d in data))
 
 
 if __name__ == "__main__":

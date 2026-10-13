@@ -107,9 +107,25 @@
                         <option value="deadline-desc">Submission Deadline (Furthest first)</option>
                         <option value="name-asc">Track Name (A → Z)</option>
                         <option value="notification-asc">Notification Date (Soonest first)</option>
+                        <option value="cameraready-asc">Camera-ready Deadline (Soonest first)</option>
                     </select>
                 </div>
                 <div class="conference-stats" id="conference-stats"></div>
+            </div>
+        </section>
+
+        <!-- View Mode Switcher -->
+        <section class="view-mode-bar">
+            <div class="view-mode-toggle" role="group" aria-label="View Mode">
+                <button type="button" class="view-mode-btn" id="view-timeline-btn" data-view="timeline">
+                    <span>Timeline</span>
+                </button>
+                <button type="button" class="view-mode-btn" id="view-cards-btn" data-view="cards">
+                    <span>Cards Grid</span>
+                </button>
+                <button type="button" class="view-mode-btn active" id="view-both-btn" data-view="both">
+                    <span>Combined</span>
+                </button>
             </div>
         </section>
 
@@ -119,23 +135,62 @@
             </div>
             <div class="legend-items">
                 <div class="legend-item">
-                    <span class="color-box blue"></span>
+                    <span class="color-box blue" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
                     <span>Review Window</span>
                 </div>
                 <div class="legend-item">
-                    <span class="color-box green"></span>
+                    <span class="color-box green" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </span>
                     <span>Submission Deadline</span>
                 </div>
                 <div class="legend-item">
-                    <span class="color-box orange"></span>
+                    <span class="color-box orange" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                    </span>
                     <span>Abstract Deadline</span>
                 </div>
                 <div class="legend-item">
-                    <span class="color-box cyan"></span>
+                    <span class="color-box cyan" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </span>
                     <span>Notification Date</span>
                 </div>
                 <div class="legend-item">
-                    <span class="color-box today"></span>
+                    <span class="color-box indigo" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </span>
+                    <span>Camera-ready Deadline</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box today" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </span>
                     <span>Today</span>
                 </div>
             </div>

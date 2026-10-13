@@ -57,6 +57,7 @@ def build_deadlines(conferences: dict) -> list:
                 "paper_submission_date": item.get("paper_submission_date") or None,
                 "abstract_deadline": item.get("abstract_deadline") or None,
                 "intimation_date": item.get("intimation_date") or None,
+                "camera_ready_deadline": item.get("camera_ready_deadline") or None,
                 "website_url": item.get("website_url") or website,
                 "core_rating": core,
                 "location": loc,
@@ -78,6 +79,7 @@ def write_csv(deadlines: list, csv_path: str = CSV_PATH):
         "paper_submission_date",
         "abstract_deadline",
         "intimation_date",
+        "camera_ready_deadline",
         "website_url",
     ]
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
@@ -91,6 +93,7 @@ def write_csv(deadlines: list, csv_path: str = CSV_PATH):
                 "paper_submission_date": d["paper_submission_date"] or "",
                 "abstract_deadline": d["abstract_deadline"] or "",
                 "intimation_date": d["intimation_date"] or "",
+                "camera_ready_deadline": d["camera_ready_deadline"] or "",
                 "website_url": d["website_url"] or "",
             })
     print(f"✓ Synchronized {csv_path} ({len(deadlines)} rows)")

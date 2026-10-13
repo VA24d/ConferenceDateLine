@@ -78,7 +78,7 @@ def roll_conference(conf_name: str, conf_data: dict, years: int = 1, target_year
 
     # Roll tracks and workshops
     for track in conf_data.get("tracks", []):
-        for date_key in ["paper_submission_date", "abstract_deadline", "intimation_date"]:
+        for date_key in ["paper_submission_date", "abstract_deadline", "intimation_date", "camera_ready_deadline"]:
             if track.get(date_key):
                 track[date_key] = roll_date_str(track[date_key], delta)
 

@@ -540,6 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 paper_submission_date: found ? found.paper_submission_date : null,
                 abstract_deadline: found ? found.abstract_deadline : null,
                 intimation_date: found ? found.intimation_date : null,
+                camera_ready_deadline: found ? found.camera_ready_deadline : null,
                 website_url: found ? found.website_url : null,
                 pinnedAt: Date.now()
             });
@@ -1149,11 +1150,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const dtStartB = parseLocalDate(b.paper_submission_date);
             const dtEndA = parseLocalDate(a.intimation_date);
             const dtEndB = parseLocalDate(b.intimation_date);
+            const dtCamA = parseLocalDate(a.camera_ready_deadline);
+            const dtCamB = parseLocalDate(b.camera_ready_deadline);
 
             const startA = dtStartA ? dtStartA.getTime() : fallbackFarFuture;
             const startB = dtStartB ? dtStartB.getTime() : fallbackFarFuture;
             const endA = dtEndA ? dtEndA.getTime() : fallbackFarFuture;
             const endB = dtEndB ? dtEndB.getTime() : fallbackFarFuture;
+            const camA = dtCamA ? dtCamA.getTime() : fallbackFarFuture;
+            const camB = dtCamB ? dtCamB.getTime() : fallbackFarFuture;
 
             switch (sortVal) {
                 case 'deadline-desc':
@@ -1173,6 +1178,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 case 'notification-asc':
                     return endA - endB;
+                case 'cameraready-asc':
+                    return camA - camB;
                 case 'deadline-asc':
                 default:
                     return startA - startB;
@@ -1212,7 +1219,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const deadlines = rawDeadlines.filter(d => {
             const start = parseLocalDate(d.paper_submission_date);
             const end = parseLocalDate(d.intimation_date);
-            return start && end && end >= minDate && start <= maxDate;
+            const cam = parseLocalDate(d.camera_ready_deadline);
+            const effectiveEnd = cam || end;
+            return start && effectiveEnd && effectiveEnd >= minDate && start <= maxDate;
         });
 
         if (deadlines.length === 0) {
@@ -1329,6 +1338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const start = parseLocalDate(d.paper_submission_date);
                 const end = parseLocalDate(d.intimation_date);
                 const abstractDate = parseLocalDate(d.abstract_deadline);
+                const cameraReadyDate = parseLocalDate(d.camera_ready_deadline);
 
                 const startOffset = start ? Math.max(0, Math.min(100, ((start.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : 0;
                 const endOffset = end ? Math.max(0, Math.min(100, ((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : 0;
@@ -1370,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     : '';
 
                 const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
-                const barTooltip = `${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}`;
+                const barTooltip = `${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}${cameraReadyDate ? `\nCamera-Ready: ${formatDateSafe(cameraReadyDate)}` : ''}`;
 
                 rowsHtml += `
                     <div class="timeline-row conf-group-${confIndex % 2}" style="grid-row: ${row}; grid-column: 2 / span 2;">
@@ -1386,6 +1396,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             ${start && start >= minDate && start <= maxDate ? `<div class="timeline-marker submission-marker" style="left: ${startOffset}%" title="Submission Deadline: ${formatDateSafe(start)}"></div>` : ''}
                             ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDateSafe(abstractDate)}"></div>` : ''}
                             ${end && end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
+                            ${cameraReadyDate && cameraReadyDate >= minDate && cameraReadyDate <= maxDate ? `<div class="timeline-marker camera-ready-marker" style="left: ${((cameraReadyDate.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Camera-ready Deadline: ${formatDateSafe(cameraReadyDate)}"></div>` : ''}
                         </div>
                     </div>
                 `;
@@ -1485,18 +1496,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
 
                 <div class="workshop-dates-grid">
-                    <div class="date-tile">
-                        <span class="date-label">Submission Deadline (AoE)</span>
-                        <span class="date-value">${formatDate(d.paper_submission_date)}</span>
+                    <div class="date-chip">
+                        <span class="date-chip-label">
+                            <svg class="chip-icon-sub" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                            Submission (AoE)
+                        </span>
+                        <span class="date-chip-val">${formatDate(d.paper_submission_date)}</span>
                         ${localTimeFormatted ? `<span class="date-local-hint">Local: ${localTimeFormatted}</span>` : ''}
                     </div>
-                    <div class="date-tile">
-                        <span class="date-label">Abstract Deadline</span>
-                        <span class="date-value">${formatDate(d.abstract_deadline)}</span>
+                    <div class="date-chip">
+                        <span class="date-chip-label">
+                            <svg class="chip-icon-abs" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                            Abstract Deadline
+                        </span>
+                        <span class="date-chip-val">${formatDate(d.abstract_deadline)}</span>
                     </div>
-                    <div class="date-tile">
-                        <span class="date-label">Notification Date</span>
-                        <span class="date-value">${formatDate(d.intimation_date)}</span>
+                    <div class="date-chip">
+                        <span class="date-chip-label">
+                            <svg class="chip-icon-not" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                            Notification Date
+                        </span>
+                        <span class="date-chip-val">${formatDate(d.intimation_date)}</span>
+                    </div>
+                    <div class="date-chip">
+                        <span class="date-chip-label">
+                            <svg class="chip-icon-cam" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                            Camera-ready Deadline
+                        </span>
+                        <span class="date-chip-val">${formatDate(d.camera_ready_deadline)}</span>
                     </div>
                 </div>
             </div>
@@ -1589,7 +1616,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!timelineContainer || !workshopList) return;
 
         function setView(mode) {
-            localStorage.setItem('cdl_view_mode', mode);
+            localStorage.setItem(isConferencePage ? 'cdl_conf_view_mode' : 'cdl_view_mode', mode);
             if (timelineBtn) timelineBtn.classList.toggle('active', mode === 'timeline');
             if (cardsBtn) cardsBtn.classList.toggle('active', mode === 'cards');
             if (bothBtn) bothBtn.classList.toggle('active', mode === 'both');
@@ -1606,7 +1633,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        const savedMode = localStorage.getItem('cdl_view_mode') || 'timeline';
+        const savedMode = isConferencePage ? (localStorage.getItem('cdl_conf_view_mode') || 'both') : (localStorage.getItem('cdl_view_mode') || 'timeline');
         setView(savedMode);
 
         if (timelineBtn) timelineBtn.addEventListener('click', () => setView('timeline'));

@@ -20,6 +20,7 @@ class WebScraper(BaseScraper):
             "paper_submission_date": None,
             "abstract_deadline": None,
             "intimation_date": None,
+            "camera_ready_deadline": None,
         }
 
         html = self.fetch_url(url)
@@ -53,6 +54,7 @@ class WebScraper(BaseScraper):
             "paper_submission_date": None,
             "abstract_deadline": None,
             "intimation_date": None,
+            "camera_ready_deadline": None,
         }
 
         # Check sidebar table
@@ -76,7 +78,9 @@ class WebScraper(BaseScraper):
                     else:
                         continue
 
-                    if "abstract" in label and not result["abstract_deadline"]:
+                    if ("camera" in label or "camera-ready" in label) and not result["camera_ready_deadline"]:
+                        result["camera_ready_deadline"] = parsed
+                    elif "abstract" in label and not result["abstract_deadline"]:
                         result["abstract_deadline"] = parsed
                     elif ("submission" in label or "paper" in label) and not result["paper_submission_date"]:
                         result["paper_submission_date"] = parsed
@@ -91,6 +95,7 @@ class WebScraper(BaseScraper):
             "paper_submission_date": None,
             "abstract_deadline": None,
             "intimation_date": None,
+            "camera_ready_deadline": None,
         }
 
         for table in soup.find_all("table"):
@@ -120,7 +125,9 @@ class WebScraper(BaseScraper):
                     else:
                         continue
 
-                    if "abstract" in label and not result["abstract_deadline"]:
+                    if ("camera" in label or "final version" in label or "final paper" in label) and not result["camera_ready_deadline"]:
+                        result["camera_ready_deadline"] = parsed
+                    elif "abstract" in label and not result["abstract_deadline"]:
                         result["abstract_deadline"] = parsed
                     elif ("submission" in label or "paper" in label or "deadline" in label) and not result["paper_submission_date"]:
                         result["paper_submission_date"] = parsed
@@ -135,6 +142,7 @@ class WebScraper(BaseScraper):
             "paper_submission_date": None,
             "abstract_deadline": None,
             "intimation_date": None,
+            "camera_ready_deadline": None,
         }
 
         # Look for target headings
@@ -161,7 +169,11 @@ class WebScraper(BaseScraper):
                     continue
                 line_lower = line_clean.lower()
 
-                if "abstract" in line_lower and not result["abstract_deadline"]:
+                if ("camera" in line_lower or "final version" in line_lower or "final paper" in line_lower) and not result["camera_ready_deadline"]:
+                    parsed = self.parse_date_string(line_clean, default_year=default_year)
+                    if parsed:
+                        result["camera_ready_deadline"] = parsed
+                elif "abstract" in line_lower and not result["abstract_deadline"]:
                     parsed = self.parse_date_string(line_clean, default_year=default_year)
                     if parsed:
                         result["abstract_deadline"] = parsed
