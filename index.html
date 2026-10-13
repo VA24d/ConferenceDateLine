@@ -20,18 +20,17 @@
                     <option value="all">All Conferences</option>
                 </select>
             </div>
-        </section>
-
-        <section class="timeline-container">
-            <div id="timeline-chart"></div>
+            <div class="conference-stats" id="conference-stats"></div>
         </section>
 
         <section class="legend">
-            <h3>Legend</h3>
+            <div class="legend-header">
+                <span class="legend-title">Legend</span>
+            </div>
             <div class="legend-items">
                 <div class="legend-item">
                     <span class="color-box blue"></span>
-                    <span>Paper Submission Start</span>
+                    <span>Submission Window</span>
                 </div>
                 <div class="legend-item">
                     <span class="color-box orange"></span>
@@ -39,7 +38,7 @@
                 </div>
                 <div class="legend-item">
                     <span class="color-box purple"></span>
-                    <span>Notification/End Date</span>
+                    <span>Notification Date</span>
                 </div>
                 <div class="legend-item">
                     <span class="color-box today"></span>
@@ -48,12 +47,18 @@
             </div>
         </section>
 
+        <section class="timeline-container">
+            <div id="timeline-chart"></div>
+        </section>
+
         <section class="workshop-list">
-            <h2>Workshops & Tracks</h2>
+            <div class="section-header">
+                <h2>Workshops & Tracks</h2>
+                <span class="section-subtitle" id="workshop-count"></span>
+            </div>
             <div id="workshop-list-container"></div>
         </section>
     </div>
-
 
     <script src="app.js"></script>
 </body>

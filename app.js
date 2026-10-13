@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // State
     let allDeadlines = [];
     let allConferences = [];
+
     // Derive the conference list from the deadlines
     function deriveConferences(deadlines) {
         const map = new Map();
@@ -27,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const conferenceFilter = document.getElementById('conference-filter');
     const workshopListContainer = document.getElementById('workshop-list-container');
+    const conferenceStats = document.getElementById('conference-stats');
+    const workshopCount = document.getElementById('workshop-count');
     
     // Helper: Safely parses YYYY-MM-DD date strings in local time without UTC offset shifts
     function parseLocalDate(dateStr) {
@@ -72,8 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadDeadlines() {
         try {
             allDeadlines = await fetchDeadlines();
-            console.log('Loaded deadlines:', allDeadlines.length);
-            
             renderTimeline();
             renderWorkshopList();
         } catch (error) {
@@ -82,9 +83,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function setupEventListeners() {
-        conferenceFilter.addEventListener('change', renderTimeline);
-        conferenceFilter.addEventListener('change', renderWorkshopList);
-
+        conferenceFilter.addEventListener('change', () => {
+            renderTimeline();
+            renderWorkshopList();
+        });
     }
     
     function getFilteredDeadlines() {
@@ -95,13 +97,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return allDeadlines.filter(d => d.conference_name === selectedConf);
     }
 
-	function renderTimeline() {
+    function renderTimeline() {
         const rawDeadlines = getFilteredDeadlines();
         const container = document.getElementById('timeline-chart');
         if (!container) return;
         
         if (!rawDeadlines || rawDeadlines.length === 0) {
             container.innerHTML = '<div class="no-data">No data available for the selected conference</div>';
+            if (conferenceStats) conferenceStats.textContent = '0 Conferences • 0 Tracks';
+            if (workshopCount) workshopCount.textContent = '0 items';
             return;
         }
 
@@ -127,30 +131,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (deadlines.length === 0) {
             container.innerHTML = '<div class="no-data">No deadline date ranges found within the 1-year window</div>';
+            if (conferenceStats) conferenceStats.textContent = '0 active deadlines';
             return;
         }
 
         // Calculate widths for conference column and track label column
-        let confColWidth = 40; // Minimum width for vertical conference names
-        let trackLabelWidth = 120; // Minimum width for track labels
+        let confColWidth = 52;
+        let trackLabelWidth = 140;
         
         deadlines.forEach(d => {
             const confName = d.conference_name || 'Conference';
             const name = d.workshop_name || d.track_name || 'Main Track';
             
-            // Conference column width - estimate based on text length with vertical writing
-            const confTextWidth = Math.min(confName.length * 8, 80);
+            const confTextWidth = Math.min(confName.length * 8, 70);
             confColWidth = Math.max(confColWidth, confTextWidth);
             
-            // Track label width - measure actual text
             const textWidth = Math.ceil(name.length * 7.2);
             trackLabelWidth = Math.max(trackLabelWidth, textWidth);
         });
         
-        // Cap track label width to avoid excessive stretching
-        trackLabelWidth = Math.min(trackLabelWidth, 180);
-        
-        const maxWidth = confColWidth + trackLabelWidth;
+        // Cap track label width for balanced layout
+        trackLabelWidth = Math.min(Math.max(trackLabelWidth, 140), 190);
 
         // Group deadlines by conference name
         const groupedDeadlines = {};
@@ -162,66 +163,83 @@ document.addEventListener('DOMContentLoaded', function() {
             groupedDeadlines[confName].push(d);
         });
 
-        // Render Header Scale with vertical month markers and grid lines
-        let html = `
-            <div class="timeline-wrapper">
-                <div class="timeline-scale-row" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr;">
-                    <div class="timeline-label-spacer" style="width: ${confColWidth}px"></div>
-                    <div class="timeline-label-spacer" style="width: ${trackLabelWidth}px"></div>
-                    <div class="timeline-scale">
-        `;
+        const confNames = Object.keys(groupedDeadlines);
 
-        // Add vertical grid lines at month boundaries
+        // Update stats badges
+        if (conferenceStats) {
+            conferenceStats.textContent = `${confNames.length} Conferences • ${deadlines.length} Tracks & Workshops`;
+        }
+        if (workshopCount) {
+            workshopCount.textContent = `Showing ${deadlines.length} items`;
+        }
+
+        // Calculate month boundaries for scale and vertical grid lines
         const months = [];
-        const currentDate = new Date(minDate);
-        currentDate.setDate(1); // Start from first day of month
+        const curDate = new Date(minDate);
+        curDate.setDate(1);
         const endDate = new Date(maxDate);
         
-        while (currentDate <= endDate) {
-            const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        while (curDate <= endDate) {
+            const monthStart = new Date(curDate.getFullYear(), curDate.getMonth(), 1);
             const offset = ((monthStart - minDate) / 86400000) / totalDays;
             if (offset >= 0 && offset <= 1) {
                 months.push({
-                    date: new Date(currentDate),
+                    date: new Date(curDate),
                     left: offset * 100
                 });
             }
-            currentDate.setMonth(currentDate.getMonth() + 1);
+            curDate.setMonth(curDate.getMonth() + 1);
         }
 
-        // Render vertical grid lines for each month
-        months.forEach((month, i) => {
-            html += `<div class="month-grid-line" style="left: ${month.left}%"></div>`;
-        });
-
-        // Render month labels vertically
-        months.forEach((month, i) => {
-            const label = month.date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
-            html += `<div class="scale-marker vertical-marker" style="left: ${month.left}%"><span>${label}</span></div>`;
-        });
-
-        html += `
-                    </div>
-                </div>
-                <div class="timeline-bars" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr; gap: 12px;">
-                    <!-- Single global Today line overlay -->
-                    <div class="today-line-overlay" style="grid-column: 3; left: calc(100% * ${todayOffset / 100})"></div>
+        // Render Header Scale with clean horizontal month markers
+        let html = `
+            <div class="timeline-wrapper">
+                <div class="timeline-scale-row" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr; column-gap: 12px;">
+                    <div class="timeline-label-spacer"></div>
+                    <div class="timeline-label-spacer"></div>
+                    <div class="timeline-scale">
         `;
 
-        // Render Rows - each conference gets its own row with spanning
-        let rowIndex = 1;
-        let confIndex = 0;
-        for (const confName in groupedDeadlines) {
+        // Render month ticks and horizontal labels
+        months.forEach((month, i) => {
+            const nextLeft = months[i + 1] ? months[i + 1].left : 100;
+            const midLeft = (month.left + nextLeft) / 2;
+            const monthName = month.date.toLocaleDateString('en-US', { month: 'short' });
+            const yearShort = month.date.toLocaleDateString('en-US', { year: '2-digit' });
+
+            html += `<div class="scale-tick" style="left: ${month.left}%"></div>`;
+            html += `<div class="scale-month-label" style="left: ${midLeft}%"><span>${monthName} '${yearShort}</span></div>`;
+        });
+
+        // Add sleek Today indicator in scale header
+        html += `
+                        <div class="scale-today-marker" style="left: ${todayOffset}%">
+                            <span class="today-tag">Today</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-bars" style="display: grid; grid-template-columns: ${confColWidth}px ${trackLabelWidth}px 1fr; column-gap: 12px; row-gap: 8px;">
+        `;
+
+        // Generate rows and conference separators
+        let currentRow = 1;
+        let rowsHtml = '';
+
+        confNames.forEach((confName, confIndex) => {
             const tracks = groupedDeadlines[confName];
             const trackCount = tracks.length;
-            
-            // Conference name column (spans all tracks vertically)
-            html += `<div class="conference-column" style="grid-row: ${rowIndex} / span ${trackCount}; grid-column: 1;" title="${confName}">
-                        <div class="conference-name-vertical">${confName}</div>
-                     </div>`;
-            
-            // Render each track
+            const startRow = currentRow;
+
+            // Conference badge column (spans all tracks of this conference)
+            rowsHtml += `
+                <div class="conference-column" style="grid-row: ${startRow} / span ${trackCount}; grid-column: 1;" title="${confName}">
+                    <div class="conference-badge-vertical">${confName}</div>
+                </div>
+            `;
+
+            // Render each track row
             tracks.forEach((d, trackIndex) => {
+                const row = startRow + trackIndex;
                 const start = parseLocalDate(d.paper_submission_date);
                 const end = parseLocalDate(d.intimation_date);
                 const abstractDate = parseLocalDate(d.abstract_deadline);
@@ -232,45 +250,68 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const daysToSubmission = Math.ceil((start - today) / 86400000);
 
-                let daysColorClass = 'days-green';
-                if (daysToSubmission <= 10) daysColorClass = 'days-darkred';
-                else if (daysToSubmission <= 30) daysColorClass = 'days-red';
-                else if (daysToSubmission <= 60) daysColorClass = 'days-yellow';
+                let statusClass = 'days-status-safe';
+                if (daysToSubmission <= 0) statusClass = 'days-status-past';
+                else if (daysToSubmission <= 10) statusClass = 'days-status-urgent';
+                else if (daysToSubmission <= 30) statusClass = 'days-status-soon';
+                else if (daysToSubmission <= 60) statusClass = 'days-status-medium';
 
-                const daysDisplay = daysToSubmission > 0 ? `${daysToSubmission} days left` : 
+                const daysDisplay = daysToSubmission > 0 ? `${daysToSubmission}d left` : 
                                    daysToSubmission === 0 ? 'Today!' : 
-                                   `${Math.abs(daysToSubmission)} days ago`;
+                                   `${Math.abs(daysToSubmission)}d ago`;
 
                 const name = d.workshop_name || d.track_name || 'Main Track';
                 const websiteUrl = d.website_url || '';
-                const strikeClass = daysToSubmission <= 0 ? 'strike-through' : '';
                 const durationDays = Math.round((end - start) / 86400000);
-                
-                // Format dates for tooltip
-                const formatDate = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
-                const barTooltip = `Submission: ${formatDate(start)}\nNotification: ${formatDate(end)}${abstractDate ? `\nAbstract: ${formatDate(abstractDate)}` : ''}`;
 
-                html += `
-                    <div class="timeline-row conf-group-${confIndex}" style="grid-row: ${rowIndex + trackIndex}; grid-column: 2 / span 2;">
-                        <div class="timeline-label" style="width: ${trackLabelWidth}px; position: relative; z-index: 100;">
+                const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
+                const barTooltip = `Submission: ${formatDateSafe(start)}\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}`;
+
+                rowsHtml += `
+                    <div class="timeline-row conf-group-${confIndex % 2}" style="grid-row: ${row}; grid-column: 2 / span 2;">
+                        <div class="timeline-label" style="width: ${trackLabelWidth}px;">
                             <div class="track-name">${websiteUrl ? `<a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" title="${name}">${name}</a>` : `<span title="${name}">${name}</span>`}</div>
-                            <div class="days-left ${daysColorClass} ${strikeClass}">${daysDisplay}</div>
+                            <div class="days-left-badge ${statusClass}">${daysDisplay}</div>
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
                             <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
                                 <span class="duration">${durationDays}d</span>
                             </div>
-                            ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate - minDate) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDate(abstractDate)}"></div>` : ''}
-                            ${end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDate(end)}"></div>` : ''}
+                            ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate - minDate) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDateSafe(abstractDate)}"></div>` : ''}
+                            ${end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end - minDate) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
                         </div>
                     </div>
                 `;
             });
-            
-            confIndex++;
-            rowIndex += trackCount;
-        }
 
+            currentRow += trackCount;
+
+            // Conference Separator in between conferences
+            if (confIndex < confNames.length - 1) {
+                rowsHtml += `
+                    <div class="conference-separator" style="grid-row: ${currentRow}; grid-column: 1 / span 3;" role="separator"></div>
+                `;
+                currentRow++;
+            }
+        });
+
+        const totalRows = currentRow - 1;
+
+        // Layer 1: Month grid lines in column 3 (rendered behind bars)
+        const gridLinesHtml = `
+            <div class="timeline-grid-lines" style="grid-column: 3; grid-row: 1 / span ${totalRows};">
+                ${months.map(m => `<div class="month-grid-line" style="left: ${m.left}%"></div>`).join('')}
+            </div>
+        `;
+
+        // Layer 3: Today line overlay in column 3 (rendered in front of bars)
+        const todayLineHtml = `
+            <div class="timeline-today-layer" style="grid-column: 3; grid-row: 1 / span ${totalRows};">
+                <div class="today-line-overlay" style="left: ${todayOffset}%"></div>
+            </div>
+        `;
+
+        html += gridLinesHtml + rowsHtml + todayLineHtml;
         html += '</div></div>';
         container.innerHTML = html;
     }
@@ -279,13 +320,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const deadlines = getFilteredDeadlines();
         
         if (deadlines.length === 0) {
-            workshopListContainer.innerHTML = '<p>No workshops or tracks found.</p>';
+            workshopListContainer.innerHTML = '<p class="no-data">No workshops or tracks found.</p>';
             return;
         }
         
         const html = deadlines.map(d => {
             const isWorkshop = !!d.workshop_name;
-            const cardClass = isWorkshop ? 'workshop-card workshop' : 'workshop-card';
+            const cardClass = isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track';
             const name = d.workshop_name || (d.track_name || 'Main Track');
             const url = d.website_url;
             
@@ -296,13 +337,24 @@ document.addEventListener('DOMContentLoaded', function() {
             return `
                 <div class="${cardClass}">
                     <div class="workshop-header">
-                        <div class="workshop-name">${titleHtml}</div>
+                        <span class="workshop-conf-badge">${d.conference_name}</span>
+                        <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
                     </div>
-                    <div class="workshop-dates">
-                        <strong>Conference:</strong> ${d.conference_name}<br>
-                        <strong>Paper:</strong> ${formatDate(d.paper_submission_date)} | 
-                        ${d.abstract_deadline ? `<strong>Abstract:</strong> ${formatDate(d.abstract_deadline)} | ` : ''}
-                        <strong>Notification:</strong> ${formatDate(d.intimation_date)}
+                    <div class="workshop-name">${titleHtml}</div>
+                    <div class="workshop-dates-grid">
+                        <div class="date-chip">
+                            <span class="date-chip-label">Paper Submission</span>
+                            <span class="date-chip-val">${formatDate(d.paper_submission_date)}</span>
+                        </div>
+                        ${d.abstract_deadline ? `
+                        <div class="date-chip">
+                            <span class="date-chip-label">Abstract Deadline</span>
+                            <span class="date-chip-val">${formatDate(d.abstract_deadline)}</span>
+                        </div>` : ''}
+                        <div class="date-chip">
+                            <span class="date-chip-label">Notification</span>
+                            <span class="date-chip-val">${formatDate(d.intimation_date)}</span>
+                        </div>
                     </div>
                 </div>
             `;

@@ -1,5 +1,65 @@
 /* ==========================================================================
-   1. Reset & Global Styles
+   1. Design Tokens & Variables
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f1f5f9;
+    --color-surface-subtle: #f8fafc;
+    --color-border: #e2e8f0;
+    --color-border-strong: #cbd5e1;
+    --color-text: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #64748b;
+
+    /* Brand / Primary */
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-primary-subtle: #eff6ff;
+    --color-primary-border: #bfdbfe;
+
+    /* Status Badges */
+    --color-urgent-bg: #fef2f2;
+    --color-urgent-text: #dc2626;
+    --color-urgent-border: #fecaca;
+
+    --color-soon-bg: #fffbeb;
+    --color-soon-text: #d97706;
+    --color-soon-border: #fde68a;
+
+    --color-medium-bg: #fefce8;
+    --color-medium-text: #a16207;
+    --color-medium-border: #fef08a;
+
+    --color-safe-bg: #f0fdf4;
+    --color-safe-text: #16a34a;
+    --color-safe-border: #bbf7d0;
+
+    --color-past-bg: #f1f5f9;
+    --color-past-text: #94a3b8;
+    --color-past-border: #e2e8f0;
+
+    /* Timeline Markers */
+    --bar-submission-start: #3b82f6;
+    --bar-submission-end: #2563eb;
+    --marker-abstract: #f59e0b;
+    --marker-notification: #a855f7;
+    --marker-today: #ef4444;
+
+    /* Typography */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+    /* Radii & Shadows */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   2. Reset & Global Styles
    ========================================================================== */
 * {
     box-sizing: border-box;
@@ -8,474 +68,697 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    background-color: #f5f7fa;
-    color: #333333;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 32px 24px;
 }
 
 /* ==========================================================================
-   2. Header & Controls
+   3. Header
    ========================================================================== */
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 header h1 {
-    color: #2c3e50;
-    margin-bottom: 8px;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--color-text);
+    margin-bottom: 6px;
 }
 
 header p {
-    color: #7f8c8d;
+    font-size: 15px;
+    color: var(--color-text-muted);
+    max-width: 620px;
+    margin: 0 auto;
+    text-wrap: balance;
 }
 
+/* ==========================================================================
+   4. Controls Bar
+   ========================================================================== */
 .controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding: 14px 20px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
 }
 
 .conference-selector {
     display: flex;
     align-items: center;
-    gap: 10px;
-}
-
-.conference-selector label {
-    font-weight: 500;
-}
-
-.conference-selector select {
-    padding: 8px 12px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    font-size: 14px;
-    background: #ffffff;
-}
-
-/* ==========================================================================
-   3. Timeline Container & Scale Alignment
-   ========================================================================== */
-.timeline-container {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    min-height: 350px;
-}
-
-#timeline-chart {
-    width: 100%;
-    overflow-y: auto;
-}
-
-.timeline-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    position: relative;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-}
-
-/* Sticky Header X-Axis Scale */
-.timeline-scale-row {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-    height: 35px;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #e0e0e0;
-    position: sticky;
-    top: 0;
-    background: #ffffff;
-    z-index: 4;
-}
-
-.timeline-label-spacer {
-    flex-shrink: 0;
-}
-
-.timeline-scale {
-    position: relative;
-    flex: 1;
-    height: 100%;
-}
-
-.scale-marker {
-    position: absolute;
-    bottom: 4px;
-    transform: translateX(-50%);
-    font-size: 11px;
-    font-weight: 600;
-    color: #7f8c8d;
-    white-space: nowrap;
-}
-
-/* Vertical month markers */
-.scale-marker.vertical-marker {
-    bottom: auto;
-    top: 4px;
-    transform: translateX(-50%) rotate(-90deg);
-    transform-origin: left center;
-    white-space: nowrap;
-}
-
-.scale-marker.vertical-marker span {
-    display: inline-block;
-    padding: 2px 4px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 3px;
-    font-size: 10px;
-}
-
-/* Month grid lines */
-.month-grid-line {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: rgba(52, 152, 219, 0.2);
-    pointer-events: none;
-}
-
-/* ==========================================================================
-   4. Timeline Data Rows & Bars
-   ========================================================================== */
-.timeline-bars {
-    position: relative;
-    display: grid;
-    grid-auto-flow: row;
     gap: 12px;
 }
 
-.timeline-row {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    width: 100%;
-    grid-row: var(--row, auto);
-}
-
-.timeline-label {
-    flex-shrink: 0;
-    padding-right: 8px;
-    box-sizing: border-box;
-    position: relative;
-    width: var(--track-label-width, 120px);
-    min-width: 0;
-    pointer-events: auto !important;
-    z-index: 100;
-}
-
-.conference-column {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.conference-name-vertical {
-    font-weight: 700;
-    font-size: 13px;
-    color: #2980b9;
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    text-align: center;
-    white-space: nowrap;
-}
-
-.conference-name {
+.conference-selector label {
+    font-size: 14px;
     font-weight: 600;
-    font-size: 13px;
-    color: #2c3e50;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: var(--color-text-secondary);
 }
 
-.conference-first {
-    /* First track of a conference - show the name vertically */
-    font-weight: 700;
-    color: #2980b9;
-    grid-row: var(--span, span 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.conference-spanned {
-    /* Subsequent tracks of same conference - hidden */
-    display: none;
-}
-
-/* Track name styling - ensure links are clickable */
-.track-name {
-    font-size: 12px;
-    color: #7f8c8d;
-    margin-top: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    position: relative;
-    z-index: 10;
-}
-
-.track-name a {
-    color: #7f8c8d;
-    text-decoration: none;
+.conference-selector select {
+    padding: 8px 34px 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text);
+    background: var(--color-surface);
     cursor: pointer;
-    display: inline-block;
-    pointer-events: auto !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
 }
 
-.track-name a:hover {
-    color: #2980b9;
-    text-decoration: underline;
+.conference-selector select:hover {
+    border-color: var(--color-border-strong);
 }
 
-.days-left {
-    font-size: 11px;
+.conference-selector select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.conference-stats {
+    font-size: 13px;
     font-weight: 600;
-}
-
-/* Status colors for countdowns */
-.days-darkred { color: #c0392b; }
-.days-red     { color: #e74c3c; }
-.days-yellow  { color: #f39c12; }
-.days-green   { color: #27ae60; }
-
-.strike-through {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-/* Timeline Track Container */
-.timeline-bar-container {
-    position: relative;
-    flex: 1;
-    height: 26px;
-    background-color: #f1f5f9;
-    border-radius: 4px;
-}
-
-/* Duration Bar */
-.timeline-bar {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    background: #3498db;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.timeline-bar .duration {
-    font-size: 10px;
-    color: #ffffff;
-    font-weight: 700;
-    padding: 0 4px;
-}
-
-/* Abstract & Notification Markers */
-.timeline-marker {
-    position: absolute;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    transform: translateX(-50%);
-    z-index: 2;
-}
-
-.timeline-marker.abstract-marker {
-    background-color: #e67e22;
-}
-
-.timeline-marker.notification-marker {
-    background-color: #9b59b6;
-}
-
-/* Today Indicator Line Overlay */
-.today-line-overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background-color: #e74c3c;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.today-line-overlay::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: -4px;
-    width: 10px;
-    height: 10px;
-    background-color: #e74c3c;
-    border-radius: 50%;
-}
-
-/* Conference Group Box - shaded background for all tracks of same conference */
-.conference-group-box {
-    background: linear-gradient(90deg, rgba(52, 152, 219, 0.03) 0%, rgba(52, 152, 219, 0.01) 100%);
-    border-radius: 0 4px 4px 0;
-    padding: 4px 0;
-    margin: 2px 0;
-}
-
-/* Alternating colors for different conferences */
-.conf-group-1, .conf-group-3, .conf-group-5, .conf-group-7, .conf-group-9, 
-.conf-group-11, .conf-group-13, .conf-group-15, .conf-group-17, .conf-group-19 {
-    background: linear-gradient(90deg, rgba(46, 204, 113, 0.03) 0%, rgba(46, 204, 113, 0.01) 100%);
-}
-
-.no-data {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    color: #7f8c8d;
-    font-size: 16px;
+    color: var(--color-primary);
+    background: var(--color-primary-subtle);
+    border: 1px solid var(--color-primary-border);
+    padding: 5px 12px;
+    border-radius: 9999px;
 }
 
 /* ==========================================================================
-   5. Legend Section
+   5. Legend Section (At Top)
    ========================================================================== */
 .legend {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    padding: 12px 20px;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
 }
 
-.legend h3 {
-    margin-bottom: 10px;
-    color: #2c3e50;
-    font-size: 16px;
+.legend-header {
+    display: flex;
+    align-items: center;
+}
+
+.legend-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .legend-items {
     display: flex;
-    gap: 30px;
+    gap: 16px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    background: var(--color-surface-subtle);
+    padding: 4px 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
 }
 
 .color-box {
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
+    width: 13px;
+    height: 13px;
+    border-radius: 3px;
+    flex-shrink: 0;
 }
 
-.color-box.blue   { background-color: #3498db; }
-.color-box.orange { background-color: #e67e22; }
-.color-box.purple { background-color: #9b59b6; }
-.color-box.today  { background-color: #e74c3c; }
+.color-box.blue   { background-color: var(--bar-submission-start); }
+.color-box.orange { background-color: var(--marker-abstract); }
+.color-box.purple { background-color: var(--marker-notification); }
+.color-box.today  { background-color: var(--marker-today); }
 
 /* ==========================================================================
-   6. Workshop / Track List (2 Columns & Links)
+   6. Timeline Container & Scale
+   ========================================================================== */
+.timeline-container {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+    min-height: 350px;
+    overflow-x: auto;
+}
+
+#timeline-chart {
+    width: 100%;
+}
+
+.timeline-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 900px;
+    position: relative;
+}
+
+/* Header Month Scale (Horizontal & Clean) */
+.timeline-scale-row {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    height: 42px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--color-border);
+    position: sticky;
+    top: 0;
+    background: var(--color-surface);
+    z-index: 20;
+}
+
+.timeline-label-spacer {
+    height: 100%;
+}
+
+.timeline-scale {
+    position: relative;
+    height: 100%;
+    overflow: visible;
+}
+
+.scale-tick {
+    position: absolute;
+    bottom: 0;
+    height: 8px;
+    width: 1px;
+    background: var(--color-border-strong);
+    transform: translateX(-50%);
+}
+
+.scale-month-label {
+    position: absolute;
+    bottom: 11px;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.02em;
+}
+
+.scale-month-label span {
+    display: inline-block;
+    padding: 1px 4px;
+    background: var(--color-surface);
+    border-radius: 3px;
+}
+
+.scale-today-marker {
+    position: absolute;
+    top: 2px;
+    transform: translateX(-50%);
+    z-index: 25;
+    pointer-events: none;
+}
+
+.today-tag {
+    display: inline-block;
+    padding: 2px 7px;
+    background: var(--marker-today);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 9999px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(239, 68, 68, 0.4);
+}
+
+/* ==========================================================================
+   7. Timeline Bars & Conference Grid
+   ========================================================================== */
+.timeline-bars {
+    position: relative;
+    display: grid;
+    align-items: center;
+}
+
+/* Layer 1: Background month grid lines (rendered behind bars) */
+.timeline-grid-lines {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.month-grid-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(226, 232, 240, 0.7);
+    pointer-events: none;
+}
+
+/* Layer 3: Today line overlay (rendered in front of bars) */
+.timeline-today-layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.today-line-overlay {
+    position: absolute;
+    top: -12px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--marker-today);
+    z-index: 15;
+    pointer-events: none;
+    box-shadow: 0 0 4px rgba(239, 68, 68, 0.35);
+}
+
+/* Conference Column (Left vertical pill badge) */
+.conference-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    z-index: 2;
+}
+
+.conference-badge-vertical {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    background: var(--color-primary-subtle);
+    border: 1px solid var(--color-primary-border);
+    border-radius: var(--radius-md);
+    padding: 10px 5px;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: all 0.15s ease;
+}
+
+.conference-column:hover .conference-badge-vertical {
+    background: #dbeafe;
+    border-color: #93c5fd;
+    color: var(--color-primary-hover);
+}
+
+/* Conference Separator between conferences */
+.conference-separator {
+    height: 1px;
+    background: var(--color-border-strong);
+    margin: 8px 0;
+    position: relative;
+    border-radius: 1px;
+    z-index: 2;
+}
+
+/* Timeline Row (Track Label + Bar) */
+.timeline-row {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    width: 100%;
+    padding: 3px 0;
+    border-radius: var(--radius-md);
+    transition: background-color 0.15s ease;
+}
+
+.timeline-row:hover {
+    background-color: var(--color-surface-hover);
+}
+
+.timeline-label {
+    flex-shrink: 0;
+    padding-right: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.track-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.track-name a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.track-name a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* Days Left Status Pills */
+.days-left-badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 7px;
+    border-radius: 9999px;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.days-status-urgent {
+    background: var(--color-urgent-bg);
+    color: var(--color-urgent-text);
+    border: 1px solid var(--color-urgent-border);
+}
+
+.days-status-soon {
+    background: var(--color-soon-bg);
+    color: var(--color-soon-text);
+    border: 1px solid var(--color-soon-border);
+}
+
+.days-status-medium {
+    background: var(--color-medium-bg);
+    color: var(--color-medium-text);
+    border: 1px solid var(--color-medium-border);
+}
+
+.days-status-safe {
+    background: var(--color-safe-bg);
+    color: var(--color-safe-text);
+    border: 1px solid var(--color-safe-border);
+}
+
+.days-status-past {
+    background: var(--color-past-bg);
+    color: var(--color-past-text);
+    border: 1px solid var(--color-past-border);
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+/* Bar Container (Track Lane) */
+.timeline-bar-container {
+    position: relative;
+    height: 28px;
+    background-color: #f1f5f9;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+}
+
+/* Duration Bar */
+.timeline-bar {
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    background: linear-gradient(90deg, var(--bar-submission-start) 0%, var(--bar-submission-end) 100%);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+    transition: filter 0.15s ease;
+    z-index: 3;
+}
+
+.timeline-bar:hover {
+    filter: brightness(1.08);
+}
+
+.timeline-bar .duration {
+    font-size: 11px;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0 6px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Abstract & Notification Markers */
+.timeline-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    transform: translateX(-50%);
+    z-index: 4;
+    border-radius: 1px;
+}
+
+.timeline-marker.abstract-marker {
+    background-color: var(--marker-abstract);
+    box-shadow: 0 0 4px rgba(245, 158, 11, 0.5);
+}
+
+.timeline-marker.notification-marker {
+    background-color: var(--marker-notification);
+    box-shadow: 0 0 4px rgba(168, 85, 247, 0.5);
+}
+
+.no-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    color: var(--color-text-muted);
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   8. Workshops & Tracks Section
    ========================================================================== */
 .workshop-list {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--color-border);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 12px;
 }
 
 .workshop-list h2 {
-    margin-bottom: 15px;
-    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.section-subtitle {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-muted);
 }
 
 #workshop-list-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 16px;
 }
 
 .workshop-card {
-    background: #f8f9fa;
-    border-left: 4px solid #3498db;
-    padding: 12px 15px;
-    border-radius: 0 4px 4px 0;
-    margin-bottom: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    padding: 16px;
+    border-radius: var(--radius-md);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.workshop-card.workshop {
-    border-left-color: #9b59b6;
+.workshop-card:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-strong);
+}
+
+.workshop-card.is-workshop {
+    border-left-color: var(--marker-notification);
 }
 
 .workshop-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
+}
+
+.workshop-conf-badge {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: var(--color-primary-subtle);
+    padding: 2px 8px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-primary-border);
+}
+
+.workshop-type-pill {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: var(--color-surface-hover);
+    padding: 2px 8px;
+    border-radius: 9999px;
 }
 
 .workshop-name {
+    font-size: 15px;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--color-text);
+    line-height: 1.4;
 }
 
 .workshop-title-link {
-    color: #2980b9;
+    color: var(--color-text);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.15s ease;
 }
 
 .workshop-title-link:hover {
-    color: #3498db;
+    color: var(--color-primary);
     text-decoration: underline;
 }
 
-.workshop-dates {
-    font-size: 13px;
-    color: #7f8c8d;
-    line-height: 1.5;
+.workshop-dates-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
 }
 
-/* Responsive adjustment for 2-column grid */
-@media (max-width: 768px) {
+.date-chip {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 4px 8px;
+    font-size: 12px;
+    flex: 1;
+    min-width: 110px;
+}
+
+.date-chip-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+}
+
+.date-chip-val {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* ==========================================================================
+   9. Responsive Design
+   ========================================================================== */
+@media (max-width: 900px) {
     #workshop-list-container {
         grid-template-columns: 1fr;
     }
 }
 
-/* ==========================================================================
-   8. Responsive Adjustments
-   ========================================================================== */
 @media (max-width: 768px) {
+    .container {
+        padding: 16px 12px;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
     .controls {
         flex-direction: column;
-        gap: 15px;
+        align-items: stretch;
+    }
+
+    .conference-selector {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .conference-stats {
+        align-self: flex-start;
+    }
+
+    .legend {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .legend-items {
-        flex-direction: column;
-        gap: 10px;
+        gap: 8px;
     }
 }
