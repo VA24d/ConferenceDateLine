@@ -5,7 +5,6 @@ A web-based interface for tracking conference deadlines, tracks, and workshops w
 ## Features
 
 - View deadlines for multiple conferences and their tracks
-- Add workshops with paper submission and notification dates
 - Visual timeline showing:
   - Paper submission date (start - green marker)
   - Abstract deadline (yellow marker, if applicable)
@@ -115,14 +114,15 @@ The `scraper.py` module is ready for implementation to automatically scrape conf
 MIT License
 ## GitHub Pages
 
-The site runs as plain static files. With no Flask backend, `app.js` falls back to `data/deadlines.json`; workshops added in the browser are kept in `localStorage` only.
+The site is fully static: `index.html`, `app.js`, `styles.css` and `data/deadlines.json`. There is no backend and no in-browser editing.
 
-After editing `data/conferences.csv`, regenerate the JSON:
+To update deadlines, edit `data/conferences.csv` and push to `main`. The workflow in `.github/workflows/pages.yml` regenerates `data/deadlines.json` and deploys. To preview locally:
 
 ```
 python3 scripts/build_static_data.py
+python3 -m http.server
 ```
 
-Then enable Pages: repo Settings → Pages → Deploy from branch → `main` / root.
+One-time setup: repo Settings → Pages → Source → **GitHub Actions**.
 
-To use the Flask backend instead, run `python backend/app.py`; the frontend prefers the API when it is reachable.
+The Flask backend in `backend/` is kept only as the CSV loader used by the build script.

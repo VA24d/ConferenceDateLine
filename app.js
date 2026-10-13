@@ -3,26 +3,10 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // API base URL - adjust if needed
-    const API_BASE = '';
-    
     // State
     let allDeadlines = [];
     let allConferences = [];
-    let staticMode = false;
-    const LOCAL_KEY = 'conferenceDateLine.userDeadlines';
-
-    function readLocalDeadlines() {
-        try { return JSON.parse(localStorage.getItem(LOCAL_KEY)) || []; }
-        catch (e) { return []; }
-    }
-
-    function writeLocalDeadlines(list) {
-        try { localStorage.setItem(LOCAL_KEY, JSON.stringify(list)); }
-        catch (e) { console.error('localStorage unavailable:', e); }
-    }
-
-    // Derive the conference list from deadlines (static mode has no /api/conferences)
+    // Derive the conference list from the deadlines
     function deriveConferences(deadlines) {
         const map = new Map();
         deadlines.forEach(d => {
@@ -34,33 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .map(([name, tracks]) => ({ name, tracks: [...tracks].sort() }));
     }
 
-    // Try the Flask API first; fall back to data/deadlines.json (GitHub Pages)
     async function fetchDeadlines() {
-        try {
-            const r = await fetch(`${API_BASE}/api/deadlines`);
-            const ct = r.headers.get('content-type') || '';
-            if (r.ok && ct.includes('json')) {
-                staticMode = false;
-                return await r.json();
-            }
-        } catch (e) { /* no backend */ }
-        staticMode = true;
         const r = await fetch('data/deadlines.json');
-        const base = await r.json();
-        return base.concat(readLocalDeadlines());
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
     }
     
     // DOM Elements
     const conferenceFilter = document.getElementById('conference-filter');
-    const addWorkshopBtn = document.getElementById('add-workshop-btn');
-    const addConferenceBtn = document.getElementById('add-conference-btn');
-    const workshopModal = document.getElementById('workshop-modal');
-    const conferenceModal = document.getElementById('conference-modal');
-    const closeModal = document.querySelector('.close');
-    const closeWorkshopModal = document.getElementById('close-workshop-modal');
-    const closeConferenceModal = document.getElementById('close-conference-modal');
-    const workshopForm = document.getElementById('workshop-form');
-    const conferenceForm = document.getElementById('conference-form');
     const workshopListContainer = document.getElementById('workshop-list-container');
     
     // Helper: Safely parses YYYY-MM-DD date strings in local time without UTC offset shifts
@@ -119,45 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupEventListeners() {
         conferenceFilter.addEventListener('change', renderTimeline);
         conferenceFilter.addEventListener('change', renderWorkshopList);
-        
-        addWorkshopBtn.addEventListener('click', () => {
-            workshopModal.classList.remove('hidden');
-        });
-        
-        addConferenceBtn.addEventListener('click', () => {
-            conferenceModal.classList.remove('hidden');
-        });
-        
-        closeModal.addEventListener('click', () => {
-            workshopModal.classList.add('hidden');
-        });
-        
-        closeWorkshopModal.addEventListener('click', () => {
-            workshopModal.classList.add('hidden');
-        });
-        
-        closeConferenceModal.addEventListener('click', () => {
-            conferenceModal.classList.add('hidden');
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === workshopModal) {
-                workshopModal.classList.add('hidden');
-            }
-            if (e.target === conferenceModal) {
-                conferenceModal.classList.add('hidden');
-            }
-        });
-        
-        workshopForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await addWorkshop();
-        });
-        
-        conferenceForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await addConference();
-        });
+
     }
     
     function getFilteredDeadlines() {
@@ -383,97 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         workshopListContainer.innerHTML = html;
     }
-	
-    async function addWorkshop() {
-        const data = {
-            conference_name: document.getElementById('conference-name').value,
-            track_name: document.getElementById('track-name').value,
-            workshop_name: document.getElementById('workshop-name').value,
-            paper_submission_date: document.getElementById('paper-date').value,
-            abstract_deadline: document.getElementById('abstract-date').value || null,
-            intimation_date: document.getElementById('intimation-date').value
-        };
-        
-        if (staticMode) {
-            const local = readLocalDeadlines();
-            local.push({
-                ...data,
-                workshop_name: data.workshop_name || null,
-                website_url: null
-            });
-            writeLocalDeadlines(local);
-            workshopModal.classList.add('hidden');
-            workshopForm.reset();
-            await loadDeadlines();
-            await loadConferences();
-            return;
-        }
 
-        try {
-            const response = await fetch(`${API_BASE}/api/workshops`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            
-            if (response.ok) {
-                workshopModal.classList.add('hidden');
-                workshopForm.reset();
-                await loadDeadlines();
-            } else {
-                const error = await response.json();
-                alert(`Error: ${error.error}`);
-            }
-        } catch (error) {
-            console.error('Error adding workshop:', error);
-            alert('Failed to add workshop. Please try again.');
-        }
-    }
-    
-    async function addConference() {
-        const data = {
-            name: document.getElementById('conference-name-input').value,
-            year: document.getElementById('conference-year').value
-        };
-        
-        if (staticMode) {
-            if (!allConferences.some(c => c.name === data.name)) {
-                allConferences.push({ name: data.name, tracks: [] });
-                const option = document.createElement('option');
-                option.value = data.name;
-                option.textContent = data.name;
-                conferenceFilter.appendChild(option);
-            }
-            conferenceModal.classList.add('hidden');
-            conferenceForm.reset();
-            return;
-        }
-
-        try {
-            const response = await fetch(`${API_BASE}/api/conferences`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-            
-            if (response.ok) {
-                conferenceModal.classList.add('hidden');
-                conferenceForm.reset();
-                await loadConferences();
-            } else {
-                const error = await response.json();
-                alert(`Error: ${error.error}`);
-            }
-        } catch (error) {
-            console.error('Error adding conference:', error);
-            alert('Failed to add conference. Please try again.');
-        }
-    }
-    
     function formatDate(dateStr) {
         if (!dateStr) return 'N/A';
         const date = parseLocalDate(dateStr);

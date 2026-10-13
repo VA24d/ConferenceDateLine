@@ -20,10 +20,6 @@
                     <option value="all">All Conferences</option>
                 </select>
             </div>
-            <div class="button-group">
-                <button id="add-conference-btn" class="btn-secondary">Add Conference</button>
-                <button id="add-workshop-btn" class="btn-primary">Add Workshop</button>
-            </div>
         </section>
 
         <section class="timeline-container">
@@ -58,59 +54,6 @@
         </section>
     </div>
 
-    <!-- Add Conference Modal -->
-    <div id="conference-modal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" id="close-conference-modal">&times;</span>
-            <h2>Add New Conference</h2>
-            <form id="conference-form">
-                <div class="form-group">
-                    <label for="conference-name-input">Conference Name:</label>
-                    <input type="text" id="conference-name-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="conference-year">Year:</label>
-                    <input type="text" id="conference-year" placeholder="2025" required>
-                </div>
-                <button type="submit" class="btn-primary">Add Conference</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Workshop Modal -->
-    <div id="workshop-modal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" id="close-workshop-modal">&times;</span>
-            <h2>Add New Workshop</h2>
-            <form id="workshop-form">
-                <div class="form-group">
-                    <label for="conference-name">Conference Name:</label>
-                    <input type="text" id="conference-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="track-name">Track Name (optional):</label>
-                    <input type="text" id="track-name">
-                </div>
-                <div class="form-group">
-                    <label for="workshop-name">Workshop Name:</label>
-                    <input type="text" id="workshop-name">
-                </div>
-                <div class="form-group">
-                    <label for="paper-date">Paper Submission Date:</label>
-                    <input type="date" id="paper-date" required>
-                </div>
-                <div class="form-group">
-                    <label for="abstract-date">Abstract Deadline (optional):</label>
-                    <input type="date" id="abstract-date">
-                </div>
-                <div class="form-group">
-                    <label for="intimation-date">Notification Date:</label>
-                    <input type="date" id="intimation-date" required>
-                </div>
-                <button type="submit" class="btn-primary">Add Workshop</button>
-            </form>
-        </div>
-    </div>
 
     <script src="app.js"></script>
 </body>
