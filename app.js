@@ -1174,20 +1174,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        let confColWidth = isConferencePage ? 60 : 54;
+        let confColWidth = isConferencePage ? 75 : 95;
         let trackLabelWidth = 140;
 
         deadlines.forEach(d => {
             const confName = d.conference_name || 'Conference';
             const name = d.workshop_name || d.track_name || 'Main Track';
 
-            const confTextWidth = Math.min(confName.length * 8, 70);
+            const confTextWidth = Math.ceil(confName.length * 8.5) + 24;
             confColWidth = Math.max(confColWidth, confTextWidth);
 
             const textWidth = Math.ceil(name.length * 7.2);
             trackLabelWidth = Math.max(trackLabelWidth, textWidth);
         });
 
+        confColWidth = Math.min(Math.max(confColWidth, 90), 125);
         trackLabelWidth = Math.min(Math.max(trackLabelWidth, 140), 190);
 
         const groupedDeadlines = {};
@@ -1308,7 +1309,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const name = d.workshop_name || d.track_name || 'Main Track';
                 const websiteUrl = d.website_url || '';
                 const durationDays = (start && end) ? Math.round((end.getTime() - start.getTime()) / 86400000) : 0;
-                const durationLabel = width >= 8 ? `${durationDays}d review` : (width >= 4 ? `${durationDays}d` : '');
+                const isNarrowBar = width < 8;
+                const isFarRight = endOffset > 88;
+
+                const outsideLabelHtml = (durationDays > 0 && isNarrowBar) ? (
+                    isFarRight
+                        ? `<span class="timeline-bar-label-outside label-left" style="right: calc(${100 - startOffset}% + 6px);">${durationDays}d review</span>`
+                        : `<span class="timeline-bar-label-outside" style="left: calc(${endOffset}% + 6px);">${durationDays}d review</span>`
+                ) : '';
+
+                const insideDurationHtml = (!isNarrowBar && durationDays > 0)
+                    ? `<span class="duration">${durationDays}d review</span>`
+                    : '';
 
                 const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
                 const barTooltip = `${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}`;
@@ -1321,8 +1333,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
                             <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
-                                ${durationLabel ? `<span class="duration">${durationLabel}</span>` : ''}
+                                ${insideDurationHtml}
                             </div>
+                            ${outsideLabelHtml}
                             ${start && start >= minDate && start <= maxDate ? `<div class="timeline-marker submission-marker" style="left: ${startOffset}%" title="Submission Deadline: ${formatDateSafe(start)}"></div>` : ''}
                             ${abstractDate && abstractDate >= minDate && abstractDate <= maxDate ? `<div class="timeline-marker abstract-marker" style="left: ${((abstractDate.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Abstract Deadline: ${formatDateSafe(abstractDate)}"></div>` : ''}
                             ${end && end >= minDate && end <= maxDate ? `<div class="timeline-marker notification-marker" style="left: ${((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100}%" title="Notification Date: ${formatDateSafe(end)}"></div>` : ''}
