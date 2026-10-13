@@ -113,3 +113,16 @@ The `scraper.py` module is ready for implementation to automatically scrape conf
 ## License
 
 MIT License
+## GitHub Pages
+
+The site runs as plain static files. With no Flask backend, `app.js` falls back to `data/deadlines.json`; workshops added in the browser are kept in `localStorage` only.
+
+After editing `data/conferences.csv`, regenerate the JSON:
+
+```
+python3 scripts/build_static_data.py
+```
+
+Then enable Pages: repo Settings → Pages → Deploy from branch → `main` / root.
+
+To use the Flask backend instead, run `python backend/app.py`; the frontend prefers the API when it is reachable.

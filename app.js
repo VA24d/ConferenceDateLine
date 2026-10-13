@@ -9,6 +9,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // State
     let allDeadlines = [];
     let allConferences = [];
+    let staticMode = false;
+    const LOCAL_KEY = 'conferenceDateLine.userDeadlines';
+
+    function readLocalDeadlines() {
+        try { return JSON.parse(localStorage.getItem(LOCAL_KEY)) || []; }
+        catch (e) { return []; }
+    }
+
+    function writeLocalDeadlines(list) {
+        try { localStorage.setItem(LOCAL_KEY, JSON.stringify(list)); }
+        catch (e) { console.error('localStorage unavailable:', e); }
+    }
+
+    // Derive the conference list from deadlines (static mode has no /api/conferences)
+    function deriveConferences(deadlines) {
+        const map = new Map();
+        deadlines.forEach(d => {
+            if (!map.has(d.conference_name)) map.set(d.conference_name, new Set());
+            if (d.track_name) map.get(d.conference_name).add(d.track_name);
+        });
+        return [...map.entries()]
+            .sort((a, b) => a[0].localeCompare(b[0]))
+            .map(([name, tracks]) => ({ name, tracks: [...tracks].sort() }));
+    }
+
+    // Try the Flask API first; fall back to data/deadlines.json (GitHub Pages)
+    async function fetchDeadlines() {
+        try {
+            const r = await fetch(`${API_BASE}/api/deadlines`);
+            const ct = r.headers.get('content-type') || '';
+            if (r.ok && ct.includes('json')) {
+                staticMode = false;
+                return await r.json();
+            }
+        } catch (e) { /* no backend */ }
+        staticMode = true;
+        const r = await fetch('data/deadlines.json');
+        const base = await r.json();
+        return base.concat(readLocalDeadlines());
+    }
     
     // DOM Elements
     const conferenceFilter = document.getElementById('conference-filter');
@@ -42,15 +82,14 @@ document.addEventListener('DOMContentLoaded', function() {
     init();
     
     async function init() {
-        await loadConferences();
         await loadDeadlines();
+        await loadConferences();
         setupEventListeners();
     }
     
     async function loadConferences() {
         try {
-            const response = await fetch(`${API_BASE}/api/conferences`);
-            allConferences = await response.json();
+            allConferences = deriveConferences(allDeadlines);
             
             // Populate conference filter
             conferenceFilter.innerHTML = '<option value="all">All Conferences</option>';
@@ -67,8 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function loadDeadlines() {
         try {
-            const response = await fetch(`${API_BASE}/api/deadlines`);
-            allDeadlines = await response.json();
+            allDeadlines = await fetchDeadlines();
             console.log('Loaded deadlines:', allDeadlines.length);
             
             renderTimeline();
@@ -356,6 +394,21 @@ document.addEventListener('DOMContentLoaded', function() {
             intimation_date: document.getElementById('intimation-date').value
         };
         
+        if (staticMode) {
+            const local = readLocalDeadlines();
+            local.push({
+                ...data,
+                workshop_name: data.workshop_name || null,
+                website_url: null
+            });
+            writeLocalDeadlines(local);
+            workshopModal.classList.add('hidden');
+            workshopForm.reset();
+            await loadDeadlines();
+            await loadConferences();
+            return;
+        }
+
         try {
             const response = await fetch(`${API_BASE}/api/workshops`, {
                 method: 'POST',
@@ -385,6 +438,19 @@ document.addEventListener('DOMContentLoaded', function() {
             year: document.getElementById('conference-year').value
         };
         
+        if (staticMode) {
+            if (!allConferences.some(c => c.name === data.name)) {
+                allConferences.push({ name: data.name, tracks: [] });
+                const option = document.createElement('option');
+                option.value = data.name;
+                option.textContent = data.name;
+                conferenceFilter.appendChild(option);
+            }
+            conferenceModal.classList.add('hidden');
+            conferenceForm.reset();
+            return;
+        }
+
         try {
             const response = await fetch(`${API_BASE}/api/conferences`, {
                 method: 'POST',

@@ -1,0 +1,326 @@
+[
+  {
+    "conference_name": "ICSE",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-06-30",
+    "abstract_deadline": "2026-06-23",
+    "intimation_date": "2026-10-20",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-research-track"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-11",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-seip"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Society track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-18",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-seis"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "New ideas and emerging results track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-18",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-new-ideas-and-emerging-results--nier-"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-30",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-11",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-journal-first-papers"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Education track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-18",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-software-engineering-education-and-training--seet-"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Doctoral symposium",
+    "workshop_name": null,
+    "paper_submission_date": "2026-11-14",
+    "abstract_deadline": "2027-01-26",
+    "intimation_date": "2026-12-05",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-doctoral-symposium"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Tutorials and technical briefings track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-11-27",
+    "intimation_date": "2026-11-13",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-tutorials-and-technical-briefings"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Student research competition",
+    "workshop_name": null,
+    "paper_submission_date": "2026-11-13",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-18",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-src"
+  },
+  {
+    "conference_name": "ICSE",
+    "track_name": "Challenge track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-11-13",
+    "abstract_deadline": null,
+    "intimation_date": "2026-12-18",
+    "website_url": "https://conf.researchr.org/track/icse-2027/icse-2027-industry-challenge"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-02",
+    "abstract_deadline": null,
+    "intimation_date": "2027-01-22",
+    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-papers"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-23",
+    "abstract_deadline": null,
+    "intimation_date": "2027-03-20",
+    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-industry-papers"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "New ideas and emerging results track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-22",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-17",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-ideas-visions-and-reflections"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-02-25",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-25",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-journal-first"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Education track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-29",
+    "abstract_deadline": null,
+    "intimation_date": "2027-03-26",
+    "website_url": "https://conf.researchr.org/track/fse-2027/fse-2027-software-engineering-education"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Student research competition",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-26",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-09",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-student-research-competition"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Tool track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-22",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-17",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-demonstrations"
+  },
+  {
+    "conference_name": "FSE",
+    "track_name": "Tutorials and technical briefings track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-01-26",
+    "abstract_deadline": null,
+    "intimation_date": "2026-03-09",
+    "website_url": "https://conf.researchr.org/track/fse-2026/fse-2026-tutorials"
+  },
+  {
+    "conference_name": "ISSTA",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-11",
+    "abstract_deadline": null,
+    "intimation_date": "2027-07-22",
+    "website_url": "https://conf.researchr.org/home/issta-2027"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-09-25",
+    "abstract_deadline": "2026-09-21",
+    "intimation_date": "2026-12-01",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-papers"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-industrial-track"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "New ideas and emerging results track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-early-research-achievement-era--track"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Short paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-short-papers-and-posters-track"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Reproducibility Studies and Negative Results Track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-reproducibility-studies-and-negative-results-rene-track"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2025-12-08",
+    "abstract_deadline": null,
+    "intimation_date": "2025-12-22",
+    "website_url": "https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Tool track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-10-23",
+    "abstract_deadline": "2026-10-19",
+    "intimation_date": "2026-12-08",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-tool-demo-track"
+  },
+  {
+    "conference_name": "SANER",
+    "track_name": "Registered reports track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-11-06",
+    "abstract_deadline": "2026-10-30",
+    "intimation_date": "2026-12-24",
+    "website_url": "https://conf.researchr.org/track/saner-2027/saner-2027-registered-report-track"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Research paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-01-22",
+    "abstract_deadline": null,
+    "intimation_date": "2027-03-12",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-papers"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Short paper track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-02",
+    "abstract_deadline": "2026-02-23",
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-short-papers-and-emerging-results"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "In practice track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-01",
+    "abstract_deadline": "2027-02-22",
+    "intimation_date": "2027-04-12",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-industry-papers#Call-for-Papers"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Posters track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-02",
+    "abstract_deadline": null,
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-posters-and-vision"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Journal first track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-06",
+    "abstract_deadline": null,
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-journal-first"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Doctoral symposium",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-08",
+    "abstract_deadline": null,
+    "intimation_date": "2027-04-12",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-doctoral-symposium"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Data and Benchmarking track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-03-02",
+    "abstract_deadline": null,
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-ai-models---data"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Reproducibility Studies and Negative Results Track",
+    "workshop_name": null,
+    "paper_submission_date": "2026-02-23",
+    "abstract_deadline": "2026-02-23",
+    "intimation_date": "2026-04-06",
+    "website_url": "https://conf.researchr.org/track/ease-2026/ease-2026-reproducibility-and-negative-results"
+  },
+  {
+    "conference_name": "EASE",
+    "track_name": "Tutorials and technical briefings track",
+    "workshop_name": null,
+    "paper_submission_date": "2027-03-02",
+    "abstract_deadline": null,
+    "intimation_date": "2027-04-05",
+    "website_url": "https://conf.researchr.org/track/ease-2027/ease-2027-tutorial"
+  }
+]
