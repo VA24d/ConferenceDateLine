@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Software Engineering (SE) Conferences classification
     const SE_CONFERENCES = new Set([
         'ICSE', 'FSE', 'ISSTA', 'SANER', 'EASE', 'ICSA', 'SEAMS',
-        'AGENT', 'CAIN', 'MODELS', 'ISEC', 'ECSA', 'MSR', 'ICPC'
+        'AGENT', 'CAIN', 'MODELS', 'ISEC', 'ECSA', 'MSR', 'ICPC',
+        'ASE', 'RE'
     ]);
 
     // Conference Metadata (Locations, CORE ratings, Year, etc.)
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'ie',
             year: '2027',
             website: 'https://conf.researchr.org/home/icse-2027',
-            cohosted: ['SEAMS', 'CAIN', 'AGENT', 'MSR', 'ICPC', 'LLM4Code', 'DeepTest', 'ChainSEC']
+            cohosted: ['SEAMS', 'CAIN', 'AGENT', 'MSR', 'ICPC']
         },
         'FSE': {
             fullName: 'ACM International Conference on the Foundations of Software Engineering',
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'cn',
             year: '2027',
             website: 'https://conf.researchr.org/home/fse-2027',
-            cohosted: ['LLMTrust Workshop', 'CauSE Workshop', 'Student Research Competition']
+            cohosted: ['Student Research Competition']
         },
         'ISSTA': {
             fullName: 'International Symposium on Software Testing and Analysis',
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'sg',
             year: '2027',
             website: 'https://conf.researchr.org/home/issta-2027',
-            cohosted: ['ISSTA Tool Demos', 'Doctoral Symposium']
+            cohosted: ['Doctoral Symposium']
         },
         'SANER': {
             fullName: 'IEEE International Conference on Software Analysis, Evolution and Reengineering',
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'us',
             year: '2027',
             website: 'https://conf.researchr.org/home/saner-2027',
-            cohosted: ['IWESEP', 'ERA Track', 'RENE Track']
+            cohosted: ['ERA Track', 'RENE Track']
         },
         'EASE': {
             fullName: 'International Conference on Evaluation and Assessment in Software Engineering',
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'vn',
             year: '2027',
             website: 'https://conf.researchr.org/home/ease-2027',
-            cohosted: ['Emerging Results Track', 'Doctoral Symposium']
+            cohosted: ['Doctoral Symposium']
         },
         'IEEE VR': {
             fullName: 'IEEE Conference on Virtual Reality and 3D User Interfaces',
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'au',
             year: '2027',
             website: 'https://ieeevr.org/2027/',
-            cohosted: ['3DUI Symposium', 'KELVAR', 'SEARIS', 'OpenXRS', 'XR-Health']
+            cohosted: ['3DUI Symposium']
         },
         'ISMAR': {
             fullName: 'IEEE International Symposium on Mixed and Augmented Reality',
@@ -82,8 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Italy',
             country_code: 'it',
             year: '2027',
-            website: 'https://ieeeismar.net/',
-            cohosted: ['XR-Health Workshop', 'MAR Art & Design', 'Doctoral Consortium']
+            website: 'https://www.ismar.net/',
+            cohosted: ['MAR Art & Design', 'Doctoral Consortium']
         },
         'VRST': {
             fullName: 'ACM Symposium on Virtual Reality Software and Technology',
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'jp',
             year: '2026',
             website: 'https://vrst.acm.org/',
-            cohosted: ['Virtual Reality Technologies Workshop', 'Posters & Demos']
+            cohosted: ['Posters & Demos']
         },
         'CHI PLAY': {
             fullName: 'ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play',
@@ -103,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'ch',
             year: '2026',
             website: 'https://chiplay.acm.org/',
-            cohosted: ['Serious Games Showcase', 'Work-in-Progress', 'Student Game Design']
+            cohosted: ['Serious Games & VR Showcase', 'Work-in-Progress']
         },
         'ICSA': {
             fullName: 'IEEE International Conference on Software Architecture',
@@ -112,8 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Denmark',
             country_code: 'dk',
             year: '2027',
-            website: 'https://conf.researchr.org/home/icsa-2027',
-            cohosted: ['WICSA', 'Software Architecture in Practice', 'Early Career Track']
+            website: 'https://conf.researchr.org/home/icsa-2026',
+            cohosted: ['Software Architecture in Practice', 'Early Career Track']
         },
         'SEAMS': {
             fullName: 'International Symposium on Software Engineering for Adaptive and Self-Managing Systems',
@@ -122,28 +123,28 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Ireland',
             country_code: 'ie',
             year: '2027',
-            website: 'https://conf.researchr.org/home/seams-2027',
-            cohosted: ['ICSE 2027 Co-located', 'Artifact Track']
+            website: 'https://conf.researchr.org/home/seams-2026',
+            cohosted: ['ICSE', 'CAIN', 'AGENT', 'MSR', 'ICPC']
         },
         'AGENT': {
-            fullName: 'International Workshop on Agentic Engineering',
-            coreRating: 'Unranked',
-            location: 'Dublin, Ireland',
+            fullName: 'International Conference on Agent-Based Software Engineering',
+            coreRating: 'A* Co-located',
+            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
             country_code: 'ie',
             year: '2027',
-            website: 'https://conf.researchr.org/home/icse-2027',
-            cohosted: ['ICSE 2027 Co-located', 'Agent-Based Software Engineering']
+            website: 'https://conf.researchr.org/home/icse-2027/agent-2027',
+            cohosted: ['ICSE', 'SEAMS', 'CAIN']
         },
         'CAIN': {
             fullName: 'International Conference on AI Engineering – Software Engineering for AI',
-            coreRating: 'Unranked',
-            location: 'Dublin, Ireland',
+            coreRating: 'A',
+            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
             country: 'Ireland',
             country_code: 'ie',
             year: '2027',
-            website: 'https://conf.researchr.org/home/cain-2027',
-            cohosted: ['ICSE 2027 Co-located']
+            website: 'https://conf.researchr.org/home/cain-2026',
+            cohosted: ['ICSE', 'SEAMS', 'AGENT']
         },
         'MODELS': {
             fullName: 'ACM/IEEE International Conference on Model Driven Engineering Languages and Systems',
@@ -153,17 +154,17 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'at',
             year: '2026',
             website: 'https://conf.researchr.org/home/models-2026',
-            cohosted: ['MDE Intelligence', 'Educators Symposium']
+            cohosted: ['Educators Symposium']
         },
         'ISEC': {
             fullName: 'Innovations in Software Engineering Conference',
-            coreRating: 'Unranked',
+            coreRating: 'A',
             location: 'Hyderabad, India',
             country: 'India',
             country_code: 'in',
-            year: '2027',
-            website: 'https://isec2027.github.io/',
-            cohosted: ['ModSym Symposium', 'Tech Briefings']
+            year: '2026',
+            website: 'https://conf.researchr.org/home/isec-2026',
+            cohosted: ['ModSym (Modelling Symposium)']
         },
         'ECSA': {
             fullName: 'European Conference on Software Architecture',
@@ -172,8 +173,8 @@ document.addEventListener('DOMContentLoaded', function() {
             country: 'Cyprus',
             country_code: 'cy',
             year: '2026',
-            website: 'https://ecsa2026.github.io/',
-            cohosted: ['ECSA Workshops', 'Tools & Demos']
+            website: 'https://conf.researchr.org/home/ecsa-2026',
+            cohosted: ['ECSA Workshops']
         },
         'MSR': {
             fullName: 'Mining Software Repositories',
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'ie',
             year: '2027',
             website: 'https://conf.researchr.org/home/msr-2027',
-            cohosted: ['ICSE 2027 Co-located', 'Mining Challenge']
+            cohosted: ['ICSE', 'ICPC', 'SEAMS']
         },
         'ICPC': {
             fullName: 'International Conference on Program Comprehension',
@@ -193,7 +194,37 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: 'ie',
             year: '2027',
             website: 'https://conf.researchr.org/home/icpc-2027',
-            cohosted: ['ICSE 2027 Co-located', 'Tool Demonstrations']
+            cohosted: ['ICSE', 'MSR', 'SEAMS']
+        },
+        'AAMAS': {
+            fullName: 'International Conference on Autonomous Agents and Multiagent Systems',
+            coreRating: 'A*',
+            location: 'Paphos, Cyprus',
+            country: 'Cyprus',
+            country_code: 'cy',
+            year: '2026',
+            website: 'https://cyprusconferences.org/aamas2026/',
+            cohosted: ['Blue Sky Ideas Track', 'Demonstrations Track', 'Doctoral Consortium']
+        },
+        'ASE': {
+            fullName: 'IEEE/ACM International Conference on Automated Software Engineering',
+            coreRating: 'A*',
+            location: 'Munich, Germany',
+            country: 'Germany',
+            country_code: 'de',
+            year: '2026',
+            website: 'https://conf.researchr.org/home/ase-2026',
+            cohosted: ['Industry Showcase Track', 'Tool Demonstrations Track']
+        },
+        'RE': {
+            fullName: 'IEEE International Requirements Engineering Conference',
+            coreRating: 'A',
+            location: 'Montreal, Canada',
+            country: 'Canada',
+            country_code: 'ca',
+            year: '2026',
+            website: 'https://conf.researchr.org/home/re-2026',
+            cohosted: ['RE@Next! Track', 'Industrial Innovation Track']
         }
     };
 
@@ -231,6 +262,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'India': 'in',
         'Cyprus': 'cy',
         'Denmark': 'dk',
+        'Germany': 'de',
+        'Canada': 'ca',
         'ie': 'ie',
         'cn': 'cn',
         'sg': 'sg',
@@ -244,7 +277,9 @@ document.addEventListener('DOMContentLoaded', function() {
         'at': 'at',
         'in': 'in',
         'cy': 'cy',
-        'dk': 'dk'
+        'dk': 'dk',
+        'de': 'de',
+        'ca': 'ca'
     };
 
     function getFlagCode(metaOrConf) {
@@ -940,7 +975,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (heroWebsiteLink) {
             const trackWithUrl = confDeadlines.find(d => d.website_url);
-            heroWebsiteLink.href = trackWithUrl ? trackWithUrl.website_url : meta.website;
+            heroWebsiteLink.href = (meta.website && meta.website !== '#') ? meta.website : (trackWithUrl ? trackWithUrl.website_url : '#');
         }
 
         if (listTitle) {
@@ -959,13 +994,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 cohostedPillsRow.innerHTML = cohostedList.map(item => {
                     const itemMeta = getMeta(item);
                     const hasPage = allConferences.some(c => c.name.toUpperCase() === item.toUpperCase());
-                    const link = hasPage ? confSlug(item) : (itemMeta.website && itemMeta.website !== '#' ? itemMeta.website : '#');
+                    const link = hasPage ? confSlug(item) : (itemMeta.website && itemMeta.website !== '#' ? itemMeta.website : '');
+                    const actionButton = link
+                        ? `<a href="${link}" class="btn-card-action" style="padding:2px 8px;" ${hasPage ? '' : 'target="_blank" rel="noopener noreferrer"'}>${hasPage ? 'View Page ↗' : 'Official Site ↗'}</a>`
+                        : `<span class="cohosted-pill-tag">Co-located Event</span>`;
                     return `
                         <div class="cohosted-pill-card" data-conf="${item}">
                             <span class="cohosted-pill-flag">${renderFlagHtml(itemMeta, 'flag-sm')}</span>
                             <strong>${item}</strong>
                             <span class="cohosted-pill-badge">${itemMeta.coreRating}</span>
-                            <a href="${link}" class="btn-card-action" style="padding:2px 8px;" ${hasPage ? '' : 'target="_blank" rel="noopener noreferrer"'}>${hasPage ? 'View Page ↗' : 'Official Site ↗'}</a>
+                            ${actionButton}
                         </div>
                     `;
                 }).join('');
@@ -1063,6 +1101,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // 1. Keyword search
         const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
         if (query) {
+            const queryTokens = [query];
+            if (query === 'agents' || query === 'agent') {
+                queryTokens.push('agent', 'agents', 'agentic', 'aamas', 'autonomous agents');
+            } else if (query.endsWith('s') && query.length > 3) {
+                queryTokens.push(query.slice(0, -1));
+            }
+
             result = result.filter(d => {
                 const conf = (d.conference_name || '').toLowerCase();
                 const track = (d.track_name || '').toLowerCase();
@@ -1072,8 +1117,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const meta = getMeta(d.conference_name);
                 const fullName = (meta.fullName || '').toLowerCase();
 
-                return conf.includes(query) || track.includes(query) || workshop.includes(query) ||
-                       location.includes(query) || core.includes(query) || fullName.includes(query);
+                return queryTokens.some(q =>
+                    conf.includes(q) || track.includes(q) || workshop.includes(q) ||
+                    location.includes(q) || core.includes(q) || fullName.includes(q)
+                );
             });
         }
 

@@ -53,12 +53,12 @@ conferences:
       website_url: https://conf.researchr.org/track/icse-2027/icse-2027-software-engineering-education-and-training--seet-
     - track_name: Doctoral symposium
       paper_submission_date: '2026-11-14'
-      abstract_deadline: '2027-01-26'
+      abstract_deadline: ''
       intimation_date: '2026-12-05'
       website_url: https://conf.researchr.org/track/icse-2027/icse-2027-doctoral-symposium
     - track_name: Tutorials and technical briefings track
       paper_submission_date: '2026-10-23'
-      abstract_deadline: '2026-11-27'
+      abstract_deadline: ''
       intimation_date: '2026-11-13'
       website_url: https://conf.researchr.org/track/icse-2027/icse-2027-tutorials-and-technical-briefings
     - track_name: Student research competition
@@ -340,22 +340,22 @@ conferences:
       paper_submission_date: '2027-01-10'
       abstract_deadline: ''
       intimation_date: '2027-01-22'
-      website_url: https://kelvar.org/
+      website_url: https://ieeevr.org/2027/
     - workshop_name: SEARIS Workshop (SE & Architectures for Interactive Systems)
       paper_submission_date: '2027-01-12'
       abstract_deadline: ''
       intimation_date: '2027-01-25'
-      website_url: http://searis.net/
+      website_url: https://ieeevr.org/2027/
     - workshop_name: OpenXRS Workshop (Open Source & Standards in XR)
       paper_submission_date: '2027-01-15'
       abstract_deadline: ''
       intimation_date: '2027-01-26'
-      website_url: https://openxrs.github.io/
+      website_url: https://ieeevr.org/2027/
     - workshop_name: XR-Health Workshop (VR in Healthcare)
       paper_submission_date: '2027-01-12'
       abstract_deadline: ''
       intimation_date: '2027-01-25'
-      website_url: https://xr-health.org/
+      website_url: https://ieeevr.org/2027/
     country_code: au
   ISMAR:
     full_name: IEEE International Symposium on Mixed and Augmented Reality
@@ -364,8 +364,8 @@ conferences:
     country: Italy
     flag: 🇮🇹
     year: 2027
-    website: https://ieeeismar.net/
-    url_pattern: https://ieeeismar.net/
+    website: https://www.ismar.net/
+    url_pattern: https://www.ismar.net/
     cohosted:
     - XR-Health Workshop
     - MAR Art & Design
@@ -378,22 +378,22 @@ conferences:
       paper_submission_date: '2027-03-22'
       abstract_deadline: '2027-03-15'
       intimation_date: '2027-06-20'
-      website_url: https://ieeeismar.net/
+      website_url: https://www.ismar.net/
     - track_name: Posters track
       paper_submission_date: '2027-06-15'
       abstract_deadline: ''
       intimation_date: '2027-07-20'
-      website_url: https://ieeeismar.net/
+      website_url: https://www.ismar.net/
     - workshop_name: HCI in AR/VR Workshop
       paper_submission_date: '2027-06-20'
       abstract_deadline: ''
       intimation_date: '2027-07-20'
-      website_url: https://ieeeismar.net/workshops/
+      website_url: https://www.ismar.net/
     - workshop_name: Spatial Computing & Perception Workshop
       paper_submission_date: '2027-06-25'
       abstract_deadline: ''
       intimation_date: '2027-07-25'
-      website_url: https://ieeeismar.net/workshops/
+      website_url: https://www.ismar.net/
     country_code: it
   VRST:
     full_name: ACM Symposium on Virtual Reality Software and Technology
@@ -526,17 +526,18 @@ conferences:
       paper_submission_date: '2026-12-12'
       abstract_deadline: ''
       intimation_date: '2027-01-22'
-      website_url: https://conf.researchr.org/track/seams-2026/seams-2026-artifacts
+      website_url: https://conf.researchr.org/home/seams-2026
     country_code: ie
   AGENT:
-    full_name: International Workshop on Agentic Engineering (Agentic AI in SE)
-    core_rating: Workshop
+    full_name: International Conference on Agent-Based Software Engineering
+    core_rating: A* Co-located
     location: Dublin, Ireland (Co-located with ICSE 2027)
     country: Ireland
     flag: 🇮🇪
     year: 2027
-    website: https://agentic-engineering.github.io/
-    url_pattern: https://agentic-engineering.github.io/
+    website: https://conf.researchr.org/home/icse-2027/agent-2027
+    url_pattern: https://conf.researchr.org/home/icse-{year}/agent-{year}
+    series_url: https://conf.researchr.org/series/agent
     cohosted:
     - ICSE
     - SEAMS
@@ -545,11 +546,12 @@ conferences:
       conference_month: 5
       typical_submission_month: 11
     tracks:
-    - workshop_name: Agentic Engineering Workshop (Agentic AI in SE)
+    - track_name: Agent-Based Software Engineering Track
+      workshop_name: Agentic Engineering Workshop (Agentic AI in SE)
       paper_submission_date: '2026-11-15'
       abstract_deadline: ''
       intimation_date: '2026-12-22'
-      website_url: https://agentic-engineering.github.io/
+      website_url: https://conf.researchr.org/home/icse-2027/agent-2027
     country_code: ie
   CAIN:
     full_name: IEEE/ACM International Conference on AI Engineering – Software Engineering
@@ -606,12 +608,12 @@ conferences:
       paper_submission_date: '2026-05-25'
       abstract_deadline: ''
       intimation_date: '2026-07-15'
-      website_url: https://conf.researchr.org/track/models-2026/models-2026-practice
+      website_url: https://conf.researchr.org/home/models-2026
     - track_name: Tool track
       paper_submission_date: '2026-06-08'
       abstract_deadline: ''
       intimation_date: '2026-07-20'
-      website_url: https://conf.researchr.org/track/models-2026/models-2026-tools
+      website_url: https://conf.researchr.org/home/models-2026
     country_code: at
   ISEC:
     full_name: Innovations in Software Engineering Conference
@@ -620,8 +622,8 @@ conferences:
     country: India
     flag: 🇮🇳
     year: 2026
-    website: https://isec2026.github.io/
-    url_pattern: https://isec{year}.github.io/
+    website: https://conf.researchr.org/home/isec-2026
+    url_pattern: https://conf.researchr.org/home/isec-{year}
     cohosted:
     - ModSym (Modelling Symposium)
     - VR in Software Engineering Track
@@ -633,22 +635,22 @@ conferences:
       paper_submission_date: '2026-09-15'
       abstract_deadline: '2026-09-08'
       intimation_date: '2026-11-10'
-      website_url: https://isec2026.github.io/
+      website_url: https://conf.researchr.org/home/isec-2026
     - track_name: In practice track
       paper_submission_date: '2026-10-01'
       abstract_deadline: ''
       intimation_date: '2026-11-15'
-      website_url: https://isec2026.github.io/industry
+      website_url: https://conf.researchr.org/home/isec-2026
     - workshop_name: ModSym Workshop (Modelling Symposium)
       paper_submission_date: '2026-10-10'
       abstract_deadline: ''
       intimation_date: '2026-11-25'
-      website_url: https://isec2026.github.io/modsym
+      website_url: https://conf.researchr.org/home/isec-2026
     - workshop_name: VR and Emerging Tech in SE Track
       paper_submission_date: '2026-10-05'
       abstract_deadline: ''
       intimation_date: '2026-11-20'
-      website_url: https://isec2026.github.io/vr-se
+      website_url: https://conf.researchr.org/home/isec-2026
     country_code: in
   ECSA:
     full_name: European Conference on Software Architecture
@@ -657,8 +659,8 @@ conferences:
     country: Cyprus
     flag: 🇨🇾
     year: 2026
-    website: https://ecsa2026.disim.univaq.it/
-    url_pattern: https://ecsa{year}.disim.univaq.it/
+    website: https://conf.researchr.org/home/ecsa-2026
+    url_pattern: https://conf.researchr.org/home/ecsa-{year}
     cohosted:
     - Agentic AI & Sustainable Software Track
     - ECSA Workshops
@@ -670,12 +672,12 @@ conferences:
       paper_submission_date: '2026-04-10'
       abstract_deadline: '2026-04-03'
       intimation_date: '2026-06-12'
-      website_url: https://ecsa2026.disim.univaq.it/
+      website_url: https://conf.researchr.org/home/ecsa-2026
     - workshop_name: Agentic AI and Sustainable Software Track
       paper_submission_date: '2026-04-20'
       abstract_deadline: ''
       intimation_date: '2026-06-18'
-      website_url: https://ecsa2026.disim.univaq.it/tracks
+      website_url: https://conf.researchr.org/home/ecsa-2026
     country_code: cy
   MSR:
     full_name: Mining Software Repositories
@@ -723,3 +725,103 @@ conferences:
       intimation_date: '2027-01-22'
       website_url: https://conf.researchr.org/home/icpc-2027
     country_code: ie
+  AAMAS:
+    full_name: International Conference on Autonomous Agents and Multiagent Systems
+    core_rating: A*
+    location: Paphos, Cyprus
+    country: Cyprus
+    flag: 🇨🇾
+    year: 2027
+    website: https://cyprusconferences.org/aamas2026/
+    url_pattern: https://cyprusconferences.org/aamas{year}/
+    series_url: https://www.ifaamas.org/
+    cohosted:
+    - Blue Sky Ideas Track
+    - Demonstrations Track
+    - Doctoral Consortium
+    cycle:
+      conference_month: 5
+      typical_submission_month: 10
+    tracks:
+    - track_name: Main Technical Track
+      paper_submission_date: '2026-10-25'
+      abstract_deadline: '2026-10-18'
+      intimation_date: '2027-01-20'
+      website_url: https://cyprusconferences.org/aamas2026/
+    - track_name: Blue Sky Ideas Track
+      paper_submission_date: '2026-11-10'
+      abstract_deadline: ''
+      intimation_date: '2027-01-25'
+      website_url: https://cyprusconferences.org/aamas2026/
+    - track_name: Demonstrations Track
+      paper_submission_date: '2026-11-20'
+      abstract_deadline: ''
+      intimation_date: '2027-01-30'
+      website_url: https://cyprusconferences.org/aamas2026/
+    country_code: cy
+  ASE:
+    full_name: IEEE/ACM International Conference on Automated Software Engineering
+    core_rating: A*
+    location: Munich, Germany
+    country: Germany
+    flag: 🇩🇪
+    year: 2027
+    website: https://conf.researchr.org/home/ase-2026
+    url_pattern: https://conf.researchr.org/home/ase-{year}
+    series_url: https://conf.researchr.org/series/ase
+    cohosted:
+    - Industry Showcase Track
+    - Tool Demonstrations Track
+    cycle:
+      conference_month: 10
+      typical_submission_month: 5
+    tracks:
+    - track_name: Research paper track
+      paper_submission_date: '2027-05-08'
+      abstract_deadline: '2027-05-01'
+      intimation_date: '2027-07-24'
+      website_url: https://conf.researchr.org/home/ase-2026
+    - track_name: Industry Showcase Track
+      paper_submission_date: '2027-06-12'
+      abstract_deadline: ''
+      intimation_date: '2027-08-07'
+      website_url: https://conf.researchr.org/home/ase-2026
+    - track_name: Tool Demonstrations Track
+      paper_submission_date: '2027-06-19'
+      abstract_deadline: ''
+      intimation_date: '2027-08-14'
+      website_url: https://conf.researchr.org/home/ase-2026
+    country_code: de
+  RE:
+    full_name: IEEE International Requirements Engineering Conference
+    core_rating: A
+    location: Montreal, Canada
+    country: Canada
+    flag: 🇨🇦
+    year: 2027
+    website: https://conf.researchr.org/home/re-2026
+    url_pattern: https://conf.researchr.org/home/re-{year}
+    series_url: https://conf.researchr.org/series/re
+    cohosted:
+    - RE@Next! Track
+    - Industrial Innovation Track
+    cycle:
+      conference_month: 9
+      typical_submission_month: 3
+    tracks:
+    - track_name: Research paper track
+      paper_submission_date: '2027-03-20'
+      abstract_deadline: '2027-03-13'
+      intimation_date: '2027-05-22'
+      website_url: https://conf.researchr.org/home/re-2026
+    - track_name: RE@Next! Track
+      paper_submission_date: '2027-04-10'
+      abstract_deadline: ''
+      intimation_date: '2027-06-05'
+      website_url: https://conf.researchr.org/home/re-2026
+    - track_name: Industrial Innovation Track
+      paper_submission_date: '2027-04-17'
+      abstract_deadline: ''
+      intimation_date: '2027-06-12'
+      website_url: https://conf.researchr.org/home/re-2026
+    country_code: ca

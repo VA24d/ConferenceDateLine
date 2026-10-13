@@ -15,6 +15,13 @@ try:
 except ImportError:
     HAS_BS4 = False
 
+try:
+    from playwright.sync_api import sync_playwright
+    from playwright_stealth.stealth import Stealth
+    HAS_PLAYWRIGHT = True
+except ImportError:
+    HAS_PLAYWRIGHT = False
+
 
 class BaseScraper:
     """Base class for resilient web scraping with error handling and date normalization."""
@@ -53,21 +60,43 @@ class BaseScraper:
             self.session = requests.Session()
             self.session.headers.update(self.DEFAULT_HEADERS)
 
-    def fetch_url(self, url: str) -> Optional[str]:
-        """Fetch URL content with timeout and graceful error logging."""
-        if not HAS_REQUESTS:
-            print("[Warning] requests library is not installed.")
-            return None
+    def fetch_url(self, url: str, use_browser: bool = False) -> Optional[str]:
+        """Fetch URL content with timeout, falling back gracefully to Playwright Stealth when needed."""
         if not url or url == "#" or not url.startswith(("http://", "https://")):
             return None
 
-        try:
-            resp = self.session.get(url, timeout=self.timeout, verify=self.verify_ssl)
-            resp.raise_for_status()
-            return resp.text
-        except Exception as exc:
-            print(f"[Scraper Error] Fetching {url}: {exc}")
-            return None
+        if not use_browser and HAS_REQUESTS:
+            try:
+                resp = self.session.get(url, timeout=self.timeout, verify=self.verify_ssl)
+                if resp.status_code == 200:
+                    return resp.text
+                print(f"[Requests notice] Status {resp.status_code} for {url}, falling back to Playwright Stealth...")
+            except Exception as exc:
+                print(f"[Requests notice] Error {exc} for {url}, falling back to Playwright Stealth...")
+
+        # Browser fallback using Playwright Stealth
+        if HAS_PLAYWRIGHT:
+            try:
+                with sync_playwright() as p:
+                    browser = p.chromium.launch(headless=True)
+                    context = browser.new_context(
+                        user_agent=(
+                            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                            "AppleWebKit/537.36 (KHTML, like Gecko) "
+                            "Chrome/124.0.0.0 Safari/537.36"
+                        )
+                    )
+                    page = context.new_page()
+                    Stealth().apply_stealth_sync(page)
+                    page.goto(url, wait_until="domcontentloaded", timeout=self.timeout * 1000)
+                    content = page.content()
+                    browser.close()
+                    return content
+            except Exception as exc:
+                print(f"[Playwright Stealth Error] Fetching {url}: {exc}")
+                return None
+
+        return None
 
     @classmethod
     def parse_date_string(cls, text: Optional[str], default_year: Optional[int] = None) -> Optional[str]:
