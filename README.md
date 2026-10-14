@@ -126,3 +126,23 @@ python3 -m http.server
 One-time setup: repo Settings → Pages → Source → **GitHub Actions**.
 
 The Flask backend in `backend/` is kept only as the CSV loader used by the build script.
+
+
+## Scraping deadlines
+
+`python scripts/scrape_deadlines.py --all` refreshes dates in `config/conferences.yml` (then rebuilds the data files and pages).
+Only conferences already in the config are updated. Sources are tried in this order, first hit wins:
+
+1. the track's official page
+2. [se-deadlines](https://se-deadlines.github.io) (software engineering)
+3. [hci-deadlines](https://hci-deadlines.github.io) (HCI, VR/AR, games)
+4. [WikiCFP](http://www.wikicfp.com/cfp/home) (main tracks only, throttled)
+
+A confirmed date clears the track's `estimated` flag; anything no source can confirm is left untouched.
+
+| Flag | Purpose |
+| --- | --- |
+| `--dry-run` | print changes, write nothing |
+| `--sources web,se,hci,wikicfp` | restrict sources |
+| `--discover` | list untracked venues matching our topics (SE, architecture, agents, VR/AR/XR, games) |
+| `--validate` | cross-check year/location of tracked SIGCHI venues against [sigchi.org](https://sigchi.org/conferences/upcoming/) |

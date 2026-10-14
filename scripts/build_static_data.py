@@ -122,12 +122,10 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
     os.makedirs(out_dir, exist_ok=True)
 
     # Adjust asset links for child directory placement (conferences/ -> ../)
+    # Rewrite versioned asset links regardless of the ?v= cache-buster value
+    subpage_template = re.sub(r'(href|src)="(styles\.css|app\.js)((?:\?v=[^"]*)?)"', r'\1="../\2\3"', raw_template)
     subpage_template = (
-        raw_template
-        .replace('href="styles.css?v=20261013-1"', 'href="../styles.css?v=20261013-1"')
-        .replace('href="styles.css"', 'href="../styles.css"')
-        .replace('src="app.js?v=20261013-1"', 'src="../app.js?v=20261013-1"')
-        .replace('src="app.js"', 'src="../app.js"')
+        subpage_template
         .replace('href="index.html"', 'href="../index.html"')
         .replace('src="assets/', 'src="../assets/')
     )

@@ -217,6 +217,7 @@ body {
 }
 
 .container {
+    position: relative;
     max-width: 1400px;
     margin: 0 auto;
     padding: 28px 24px;
@@ -264,8 +265,17 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 24px;
-    padding-top: 4px;
+    margin-bottom: 16px;
+    padding-top: 0;
+}
+
+/* Home page: theme toggle floats top-right so it doesn't take its own row */
+body[data-page="home"] .top-bar-nav {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    margin: 0;
+    z-index: 5;
 }
 
 header h1 {
@@ -273,7 +283,7 @@ header h1 {
     font-weight: 800;
     letter-spacing: -0.025em;
     color: var(--color-text);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     background: linear-gradient(135deg, var(--color-text) 60%, var(--color-primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -282,7 +292,7 @@ header h1 {
 header p {
     font-size: 14.5px;
     color: var(--color-text-muted);
-    max-width: 720px;
+    max-width: 900px;
     margin: 0 auto;
     line-height: 1.5;
     text-wrap: balance;
@@ -325,6 +335,8 @@ header p {
 }
 
 .conference-nav-switcher {
+    flex: 1 1 280px;
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -338,6 +350,8 @@ header p {
 }
 
 .switcher-pills {
+    min-width: 0;
+    flex: 1 1 auto;
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
@@ -405,7 +419,7 @@ header p {
     height: 14px;
     object-fit: cover;
     border-radius: 2px;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.28), 0 1px 2px rgba(0, 0, 0, 0.08);
     flex-shrink: 0;
 }
 
@@ -753,39 +767,108 @@ header p {
 }
 
 /* Pin toggle buttons on workshop cards & modal */
+/* Pin button: icon that tilts + recolors on hover, and flips angle/color when pinned */
 .btn-pin-toggle {
+    --pin-hover: var(--color-primary);
+    --pin-active: #d97706;
     display: inline-flex;
     align-items: center;
-    gap: 3px;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
     background: var(--color-surface-subtle);
     border: 1px solid var(--color-border);
     color: var(--color-text-muted);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 7px;
     border-radius: 9999px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
-.btn-pin-toggle:hover {
-    color: var(--color-primary);
+.btn-pin-toggle .pin-icon {
+    display: block;
+    transform: rotate(0deg);
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), fill 0.18s ease;
+}
+
+.btn-pin-toggle:hover,
+.btn-pin-toggle:focus-visible {
+    color: var(--pin-hover);
     border-color: var(--color-primary-border);
     background: var(--color-primary-subtle);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-pin-toggle:hover .pin-icon,
+.btn-pin-toggle:focus-visible .pin-icon {
+    transform: rotate(-20deg) scale(1.12);
+}
+
+.btn-pin-toggle:active .pin-icon {
+    transform: rotate(-35deg) scale(0.92);
 }
 
 .btn-pin-toggle.is-pinned {
     background: #fef3c7;
     border-color: #f59e0b;
-    color: #b45309;
+    color: var(--pin-active);
+}
+
+.btn-pin-toggle.is-pinned .pin-icon {
+    transform: rotate(40deg);
+    fill: currentColor;
+}
+
+.btn-pin-toggle.is-pinned:hover .pin-icon,
+.btn-pin-toggle.is-pinned:focus-visible .pin-icon {
+    transform: rotate(40deg) scale(1.12);
+}
+
+.btn-pin-toggle.is-pinned:hover {
+    background: #fde68a;
+    border-color: #d97706;
+    color: var(--pin-active);
+}
+
+.btn-pin-toggle:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Timeline rows: pin sits in the row label's top-right corner */
+.timeline-label {
+    position: relative;
+}
+
+.btn-pin-toggle.pin-timeline {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+}
+
+.btn-pin-toggle.pin-timeline .pin-icon {
+    width: 12px;
+    height: 12px;
+}
+
+.timeline-label .track-name {
+    padding-right: 28px;
 }
 
 @media (prefers-color-scheme: dark) {
-    .btn-pin-toggle.is-pinned {
+    :root:not([data-theme="light"]) .btn-pin-toggle.is-pinned {
         background: rgba(245, 158, 11, 0.2);
-        border-color: rgba(245, 158, 11, 0.4);
-        color: #fde68a;
+        border-color: rgba(245, 158, 11, 0.45);
+        color: #fbbf24;
     }
+}
+
+:root[data-theme="dark"] .btn-pin-toggle.is-pinned {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.45);
+    color: #fbbf24;
 }
 
 /* ==========================================================================
@@ -942,12 +1025,13 @@ header p {
 
 .controls-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
     gap: 16px;
     align-items: center;
 }
 
 .control-item, .sort-selector {
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -962,7 +1046,9 @@ header p {
 
 .control-item select, .sort-selector select {
     flex: 1;
-    min-width: 140px;
+    min-width: 0;
+    width: 100%;
+    text-overflow: ellipsis;
     padding: 8px 32px 8px 12px;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -1118,8 +1204,8 @@ header p {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
-    margin-bottom: 20px;
-    padding: 12px 20px;
+    margin-bottom: 14px;
+    padding: 8px 14px;
     background: var(--color-surface);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
@@ -1141,7 +1227,7 @@ header p {
 
 .legend-items {
     display: flex;
-    gap: 16px;
+    gap: 8px;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -1149,12 +1235,12 @@ header p {
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 13px;
+    gap: 6px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--color-text-secondary);
     background: var(--color-surface-subtle);
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: var(--radius-md);
     border: 1px solid var(--color-border);
 }
@@ -2079,6 +2165,12 @@ header p {
         padding: 16px 12px;
     }
 
+    body[data-page="home"] .top-bar-nav {
+        position: static;
+        justify-content: flex-end;
+        margin-bottom: 4px;
+    }
+
     header h1 {
         font-size: 24px;
     }
@@ -2501,8 +2593,8 @@ header p {
    ========================================================================== */
 .chat-widget {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: 14px;
+    right: 14px;
     z-index: 900;
     font-family: inherit;
 }
@@ -2515,10 +2607,11 @@ header p {
     color: white;
     border: none;
     border-radius: 9999px;
-    padding: 10px 18px;
-    font-size: 14px;
+    padding: 7px 14px;
+    font-size: 13px;
     font-weight: 700;
     cursor: pointer;
+    opacity: 0.92;
     box-shadow: var(--shadow-lg);
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -2831,9 +2924,207 @@ header p {
 
 .workshop-card.is-estimated {
     border-style: dashed;
+    border-left-style: solid;
 }
 
 .timeline-bar.is-estimated {
-    opacity: 0.6;
-    background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0 4px, transparent 4px 8px);
+    background: repeating-linear-gradient(135deg, var(--bar-submission-start) 0 6px, #6b9bf5 6px 12px);
+}
+
+/* ==========================================================================
+   UI polish pass
+   ========================================================================== */
+/* Leave room so the floating assistant never covers the last content */
+body {
+    padding-bottom: 64px;
+}
+
+.chat-toggle-btn:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .chat-toggle-text {
+        display: none;
+    }
+
+    .chat-toggle-btn {
+        padding: 10px 12px;
+    }
+
+    .controls-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Pinned section heading icon */
+.pinned-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 9999px;
+    background: #fef3c7;
+    color: #d97706;
+    transform: rotate(40deg);
+}
+
+:root[data-theme="dark"] .pinned-badge-tag {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+.pinned-targets-section.is-flash {
+    animation: pinned-flash 1.4s ease-out;
+}
+
+@keyframes pinned-flash {
+    0%   { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+    100% { box-shadow: 0 0 0 14px rgba(245, 158, 11, 0); }
+}
+
+/* Toast */
+.cdl-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 20px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: calc(100vw - 32px);
+    padding: 10px 14px;
+    background: var(--color-text);
+    color: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1100;
+}
+
+.cdl-toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+
+.cdl-toast-action {
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    border-radius: 9999px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Timeline: bar that began before the visible window gets a flat, arrowed left edge */
+.timeline-bar.is-clipped-left {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.timeline-bar.is-clipped-left::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.55), transparent);
+}
+
+/* Timeline: domain group headers (SE vs VR/Games/HCI) */
+.timeline-group-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 6px 0 2px;
+    padding: 8px 12px;
+    background: var(--color-surface-subtle);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
+    position: sticky;
+    left: 0;
+    z-index: 4;
+}
+
+.timeline-group-header:hover {
+    background: var(--color-primary-subtle);
+}
+
+.timeline-group-chevron {
+    display: inline-block;
+    transition: transform 0.15s ease;
+    color: var(--color-text-muted);
+}
+
+.timeline-group-header.is-collapsed .timeline-group-chevron {
+    transform: rotate(-90deg);
+}
+
+.timeline-group-title {
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.timeline-group-count {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+/* Dedicated pages: collapsed by default so the controls card stays short */
+details.dedicated-pages-nav {
+    display: block;
+}
+
+details.dedicated-pages-nav > summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+details.dedicated-pages-nav > summary::-webkit-details-marker {
+    display: none;
+}
+
+details.dedicated-pages-nav > summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+
+details.dedicated-pages-nav[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+details.dedicated-pages-nav .dedicated-pills {
+    margin-top: 8px;
+}
+
+.cohosted-pill-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.pinned-targets-section[hidden] {
+    display: none;
 }

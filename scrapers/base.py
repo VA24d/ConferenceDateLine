@@ -1,6 +1,7 @@
 """Base scraper class with robust HTTP fetching and date parsing."""
 import datetime
 import re
+from zoneinfo import ZoneInfo
 from typing import Dict, List, Optional
 
 try:
@@ -60,40 +61,67 @@ class BaseScraper:
             self.session = requests.Session()
             self.session.headers.update(self.DEFAULT_HEADERS)
 
+    # Hosts that failed repeatedly in this process; skipped so one dead site cannot stall a whole run.
+    _HOST_FAILURES: Dict[str, int] = {}
+    HOST_FAILURE_LIMIT = 2
+    # Only these statuses suggest bot protection; timeouts / DNS errors will not be fixed by a browser.
+    BROWSER_FALLBACK_STATUSES = (403, 429, 503)
+
+    @classmethod
+    def _host(cls, url: str) -> str:
+        return re.sub(r"^https?://([^/]+).*$", r"\1", url)
+
+    @classmethod
+    def host_is_dead(cls, url: str) -> bool:
+        return cls._HOST_FAILURES.get(cls._host(url), 0) >= cls.HOST_FAILURE_LIMIT
+
+    @classmethod
+    def _record_host_failure(cls, url: str) -> None:
+        host = cls._host(url)
+        cls._HOST_FAILURES[host] = cls._HOST_FAILURES.get(host, 0) + 1
+        if cls._HOST_FAILURES[host] == cls.HOST_FAILURE_LIMIT:
+            print(f"[Host skipped] {host} failed {cls.HOST_FAILURE_LIMIT} times; skipping it for the rest of this run.")
+
     def fetch_url(self, url: str, use_browser: bool = False) -> Optional[str]:
-        """Fetch URL content with timeout, falling back gracefully to Playwright Stealth when needed."""
+        """Fetch URL content with timeout; use Playwright Stealth only when the site blocks plain requests."""
         if not url or url == "#" or not url.startswith(("http://", "https://")):
             return None
+        if self.host_is_dead(url):
+            return None
 
+        needs_browser = use_browser
         if not use_browser and HAS_REQUESTS:
             try:
                 resp = self.session.get(url, timeout=self.timeout, verify=self.verify_ssl)
                 if resp.status_code == 200:
+                    self._HOST_FAILURES.pop(self._host(url), None)
                     return resp.text
-                print(f"[Requests notice] Status {resp.status_code} for {url}, falling back to Playwright Stealth...")
+                if resp.status_code in self.BROWSER_FALLBACK_STATUSES:
+                    print(f"[Requests notice] Status {resp.status_code} for {url}, falling back to Playwright Stealth...")
+                    needs_browser = True
+                else:
+                    # 404 etc: the page simply is not there; a browser will not change that
+                    return None
             except Exception as exc:
-                print(f"[Requests notice] Error {exc} for {url}, falling back to Playwright Stealth...")
+                print(f"[Requests notice] {type(exc).__name__} for {url}")
+                self._record_host_failure(url)
+                return None
 
-        # Browser fallback using Playwright Stealth
-        if HAS_PLAYWRIGHT:
+        if needs_browser and HAS_PLAYWRIGHT:
             try:
                 with sync_playwright() as p:
                     browser = p.chromium.launch(headless=True)
-                    context = browser.new_context(
-                        user_agent=(
-                            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                            "AppleWebKit/537.36 (KHTML, like Gecko) "
-                            "Chrome/124.0.0.0 Safari/537.36"
-                        )
-                    )
+                    context = browser.new_context(user_agent=self.DEFAULT_HEADERS["User-Agent"])
                     page = context.new_page()
                     Stealth().apply_stealth_sync(page)
                     page.goto(url, wait_until="domcontentloaded", timeout=self.timeout * 1000)
                     content = page.content()
                     browser.close()
+                    self._HOST_FAILURES.pop(self._host(url), None)
                     return content
             except Exception as exc:
-                print(f"[Playwright Stealth Error] Fetching {url}: {exc}")
+                print(f"[Playwright Stealth Error] Fetching {url}: {str(exc).splitlines()[0]}")
+                self._record_host_failure(url)
                 return None
 
         return None
@@ -183,3 +211,46 @@ class BaseScraper:
 
         return None
 
+
+
+    @staticmethod
+    def _tz_offset_hours(tz: Optional[str]):
+        """Return a datetime.tzinfo for strings like 'UTC-12', 'UTC+5:30', 'AoE' or an IANA name; None if unknown."""
+        if not tz or not isinstance(tz, str):
+            return None
+        tz = tz.strip()
+        if tz.lower() in ("aoe", "anywhere on earth"):
+            return datetime.timezone(datetime.timedelta(hours=-12))
+        m = re.fullmatch(r"(?:UTC|GMT)\s*([+-])\s*(\d{1,2})(?::?(\d{2}))?", tz, re.IGNORECASE)
+        if m:
+            delta = datetime.timedelta(hours=int(m.group(2)), minutes=int(m.group(3) or 0))
+            return datetime.timezone(delta if m.group(1) == "+" else -delta)
+        if tz.upper() in ("UTC", "GMT", "Z"):
+            return datetime.timezone.utc
+        try:
+            return ZoneInfo(tz)
+        except Exception:
+            return None
+
+    @classmethod
+    def normalize_deadline(cls, value, tz: Optional[str] = None) -> Optional[str]:
+        """Return the deadline as a YYYY-MM-DD date in Anywhere-on-Earth (UTC-12), the site's convention.
+
+        Feeds publish '2026-04-01 23:59:59' plus a timezone; a 23:59 deadline in UTC+2 is still the
+        previous calendar day in AoE terms. With no timezone the date is assumed to already be AoE.
+        """
+        if value is None:
+            return None
+        if isinstance(value, (datetime.datetime, datetime.date)):
+            value = value.isoformat(sep=" ") if isinstance(value, datetime.datetime) else value.isoformat()
+        text = str(value).strip()
+        m = re.match(r"^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?", text)
+        if not m:
+            return cls.parse_date_string(text)
+        year, month, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        tzinfo = cls._tz_offset_hours(tz)
+        if tzinfo is None or m.group(4) is None:
+            return f"{year:04d}-{month:02d}-{day:02d}"
+        local = datetime.datetime(year, month, day, int(m.group(4)), int(m.group(5)), int(m.group(6) or 0), tzinfo=tzinfo)
+        aoe = local.astimezone(datetime.timezone(datetime.timedelta(hours=-12)))
+        return aoe.strftime("%Y-%m-%d")

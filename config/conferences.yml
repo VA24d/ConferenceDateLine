@@ -82,13 +82,13 @@ conferences:
       website_url: https://conf.researchr.org/track/icse-2027/icse-2027-industry-challenge
       camera_ready_deadline: '2027-01-29'
     - workshop_name: LLM4Code Workshop (LLMs for Code)
-      paper_submission_date: '2026-10-20'
+      paper_submission_date: '2026-11-13'
       abstract_deadline: ''
       intimation_date: '2026-12-15'
       website_url: https://llm4code.github.io/
       camera_ready_deadline: ''
     - workshop_name: ChainSEC Workshop (Software Supply Chain Security)
-      paper_submission_date: '2026-11-27'
+      paper_submission_date: '2026-11-13'
       abstract_deadline: ''
       intimation_date: '2026-12-20'
       website_url: https://chain-sec.github.io/
@@ -189,7 +189,7 @@ conferences:
       website_url: https://llmtrust2026.github.io/
       camera_ready_deadline: ''
     - workshop_name: CauSE Workshop (Causal Methods in Software Engineering)
-      paper_submission_date: '2027-02-01'
+      paper_submission_date: '2026-11-23'
       abstract_deadline: ''
       intimation_date: '2027-03-10'
       website_url: https://causality-software-engineering.github.io/
@@ -213,11 +213,10 @@ conferences:
     tracks:
     - track_name: Research paper track
       paper_submission_date: '2027-01-11'
-      abstract_deadline: ''
+      abstract_deadline: '2027-01-08'
       intimation_date: '2027-07-22'
       website_url: https://conf.researchr.org/home/issta-2027
       camera_ready_deadline: '2027-08-15'
-      estimated: true
     country_code: sg
   SANER:
     full_name: IEEE International Conference on Software Analysis, Evolution and Reengineering
@@ -304,7 +303,7 @@ conferences:
     tracks:
     - track_name: Research paper track
       paper_submission_date: '2027-01-22'
-      abstract_deadline: ''
+      abstract_deadline: '2027-01-15'
       intimation_date: '2027-03-12'
       website_url: https://conf.researchr.org/track/ease-2027/ease-2027-papers
       camera_ready_deadline: ''
@@ -466,7 +465,7 @@ conferences:
     location: Sendai, Japan
     country: Japan
     flag: 🇯🇵
-    year: 2027
+    year: 2026
     website: https://vrst.acm.org/
     url_pattern: https://vrst.acm.org/
     cohosted:
@@ -477,35 +476,32 @@ conferences:
       typical_submission_month: 6
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2027-06-24'
-      abstract_deadline: '2027-06-17'
-      intimation_date: '2027-08-28'
+      paper_submission_date: '2026-06-24'
+      abstract_deadline: '2026-06-17'
+      intimation_date: '2026-08-28'
       website_url: https://vrst.acm.org/
-      camera_ready_deadline: '2027-09-15'
-      estimated: true
+      camera_ready_deadline: ''
     - track_name: Short papers and demos track
-      paper_submission_date: '2027-07-08'
+      paper_submission_date: '2026-07-08'
       abstract_deadline: ''
-      intimation_date: '2027-08-30'
+      intimation_date: '2026-08-30'
       website_url: https://vrst.acm.org/
-      camera_ready_deadline: '2027-09-15'
-      estimated: true
+      camera_ready_deadline: ''
     - workshop_name: Virtual Reality Technologies Workshop
-      paper_submission_date: '2027-07-15'
+      paper_submission_date: '2026-07-15'
       abstract_deadline: ''
-      intimation_date: '2027-08-30'
+      intimation_date: '2026-08-30'
       website_url: https://vrst.acm.org/
-      camera_ready_deadline: '2027-09-15'
-      estimated: true
+      camera_ready_deadline: ''
     country_code: jp
   CHI PLAY:
     full_name: ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play
     core_rating: A
-    location: Zurich, Switzerland
-    country: Switzerland
-    flag: 🇨🇭
-    year: 2027
-    website: https://chiplay.acm.org/2027/
+    location: York, United Kingdom
+    country: United Kingdom
+    flag: 🇬🇧
+    year: 2026
+    website: https://chiplay.acm.org/2026/
     url_pattern: https://chiplay.acm.org/{year}/
     cohosted:
     - Serious Games & VR Showcase
@@ -515,27 +511,24 @@ conferences:
       typical_submission_month: 6
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2027-06-15'
-      abstract_deadline: '2027-06-08'
-      intimation_date: '2027-08-14'
-      website_url: https://chiplay.acm.org/2027/
-      camera_ready_deadline: '2027-09-04'
-      estimated: true
+      paper_submission_date: '2026-06-15'
+      abstract_deadline: '2026-06-08'
+      intimation_date: '2026-08-14'
+      website_url: https://chiplay.acm.org/2026/
+      camera_ready_deadline: ''
     - track_name: Work-in-progress and demos track
-      paper_submission_date: '2027-07-20'
+      paper_submission_date: '2026-07-20'
       abstract_deadline: ''
-      intimation_date: '2027-08-25'
-      website_url: https://chiplay.acm.org/2027/wip
-      camera_ready_deadline: '2027-09-10'
-      estimated: true
+      intimation_date: '2026-08-25'
+      website_url: https://chiplay.acm.org/2026/wip
+      camera_ready_deadline: ''
     - workshop_name: Serious Games and VR Showcase
-      paper_submission_date: '2027-07-25'
+      paper_submission_date: '2026-07-25'
       abstract_deadline: ''
-      intimation_date: '2027-08-30'
-      website_url: https://chiplay.acm.org/2027/games
-      camera_ready_deadline: '2027-09-15'
-      estimated: true
-    country_code: ch
+      intimation_date: '2026-08-30'
+      website_url: https://chiplay.acm.org/2026/games
+      camera_ready_deadline: ''
+    country_code: gb
   ICSA:
     full_name: IEEE International Conference on Software Architecture
     core_rating: A
@@ -554,12 +547,11 @@ conferences:
       typical_submission_month: 11
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2026-11-20'
-      abstract_deadline: '2026-11-13'
+      paper_submission_date: '2026-11-04'
+      abstract_deadline: '2026-10-30'
       intimation_date: '2027-01-20'
       website_url: https://conf.researchr.org/home/icsa-2027
       camera_ready_deadline: '2027-02-15'
-      estimated: true
     - track_name: In practice track
       paper_submission_date: '2026-12-05'
       abstract_deadline: ''
@@ -603,7 +595,7 @@ conferences:
       typical_submission_month: 11
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2026-11-28'
+      paper_submission_date: '2026-10-21'
       abstract_deadline: '2026-11-21'
       intimation_date: '2027-01-18'
       website_url: https://conf.researchr.org/home/seams-2026
@@ -660,7 +652,7 @@ conferences:
       typical_submission_month: 11
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2026-11-10'
+      paper_submission_date: '2026-10-30'
       abstract_deadline: '2026-11-03'
       intimation_date: '2027-01-15'
       website_url: https://conf.researchr.org/home/cain-2026
@@ -802,8 +794,8 @@ conferences:
       typical_submission_month: 11
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2026-11-15'
-      abstract_deadline: '2026-11-08'
+      paper_submission_date: '2026-10-23'
+      abstract_deadline: '2026-10-20'
       intimation_date: '2027-01-20'
       website_url: https://conf.researchr.org/home/msr-2027
       camera_ready_deadline: ''
@@ -826,8 +818,8 @@ conferences:
       typical_submission_month: 11
     tracks:
     - track_name: Research paper track
-      paper_submission_date: '2026-11-20'
-      abstract_deadline: '2026-11-13'
+      paper_submission_date: '2026-11-05'
+      abstract_deadline: '2026-10-29'
       intimation_date: '2027-01-22'
       website_url: https://conf.researchr.org/home/icpc-2027
       camera_ready_deadline: ''
@@ -851,12 +843,11 @@ conferences:
       typical_submission_month: 10
     tracks:
     - track_name: Main Technical Track
-      paper_submission_date: '2026-10-25'
+      paper_submission_date: '2026-10-01'
       abstract_deadline: '2026-10-18'
       intimation_date: '2027-01-20'
       website_url: https://cyprusconferences.org/aamas2026/
       camera_ready_deadline: '2027-02-15'
-      estimated: true
     - track_name: Blue Sky Ideas Track
       paper_submission_date: '2026-11-10'
       abstract_deadline: ''

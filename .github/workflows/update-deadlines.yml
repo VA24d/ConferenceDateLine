@@ -14,10 +14,16 @@ on:
 
 permissions:
   contents: write
+  actions: write   # lets the job dispatch the Pages deploy (pushes made with GITHUB_TOKEN do not trigger it)
+
+concurrency:
+  group: update-deadlines
+  cancel-in-progress: false
 
 jobs:
   scrape-and-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 30   # a hung site must not burn the default 6 hours
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,26 +42,41 @@ jobs:
           playwright install chromium --with-deps
 
       - name: Run deadline scraper
+        env:
+          PYTHONUNBUFFERED: '1'
         run: |
+          set -o pipefail
           if [ "${{ inputs.dry_run }}" = "true" ]; then
-            python scripts/scrape_deadlines.py --all --dry-run
+            FLAGS="--dry-run"
           else
-            python scripts/scrape_deadlines.py --all
+            FLAGS=""
           fi
+          python scripts/scrape_deadlines.py --all --discover --validate $FLAGS 2>&1 | tee scrape.log
+          {
+            echo '### Deadline scraper'
+            echo '```'
+            tail -n 120 scrape.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Rebuild static assets and conference pages
         run: python scripts/build_static_data.py
 
       - name: Commit and push changes if any
         if: ${{ inputs.dry_run != true }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain)" ]; then
-            git add config/ data/ conferences/
-            git commit -m "Auto-update conference deadlines and pages [skip ci]"
-            git push
-          else
+          # app.js is included because the build syncs CONFERENCE_METADATA into it
+          git add config/ data/ conferences/ app.js
+          if git diff --cached --quiet; then
             echo "No changes detected. Working tree clean."
+          else
+            git commit -m "Auto-update conference deadlines and pages [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+            # Pushes made with GITHUB_TOKEN do not trigger other workflows, so deploy explicitly
+            gh workflow run pages.yml --ref main
           fi
-

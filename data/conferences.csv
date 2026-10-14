@@ -9,8 +9,8 @@ ICSE,Doctoral symposium,,2026-11-14,,2026-12-05,2027-01-26,https://conf.research
 ICSE,Tutorials and technical briefings track,,2026-10-23,,2026-11-13,2026-11-27,https://conf.researchr.org/track/icse-2027/icse-2027-tutorials-and-technical-briefings,
 ICSE,Student research competition,,2026-11-13,,2026-12-18,2027-01-20,https://conf.researchr.org/track/icse-2027/icse-2027-src,
 ICSE,Challenge track,,2026-11-13,,2026-12-18,2027-01-29,https://conf.researchr.org/track/icse-2027/icse-2027-industry-challenge,
-ICSE,,LLM4Code Workshop (LLMs for Code),2026-10-20,,2026-12-15,,https://llm4code.github.io/,
-ICSE,,ChainSEC Workshop (Software Supply Chain Security),2026-11-27,,2026-12-20,,https://chain-sec.github.io/,
+ICSE,,LLM4Code Workshop (LLMs for Code),2026-11-13,,2026-12-15,,https://llm4code.github.io/,
+ICSE,,ChainSEC Workshop (Software Supply Chain Security),2026-11-13,,2026-12-20,,https://chain-sec.github.io/,
 ICSE,,DeepTest Workshop (Deep Learning for Testing),2026-10-20,,2026-12-15,,https://conf.researchr.org/home/icse-2026/deeptest-2026,
 ICSE,,SE4ALL Workshop (Software Engineering and AI for All),2026-11-13,,2026-12-20,,https://conf.researchr.org/home/icse-2027/se4all-2027,
 ICSE,,SBFT Workshop (Search-Based and Fuzz Testing),2026-10-20,,2026-12-15,,https://search-based-and-fuzz-testing.github.io/,
@@ -23,8 +23,8 @@ FSE,Student research competition,,2027-01-26,,2027-03-09,2027-04-02,https://conf
 FSE,Tool track,,2027-01-22,,2027-03-17,2027-04-02,https://conf.researchr.org/track/fse-2027/fse-2027-demonstrations,true
 FSE,Tutorials and technical briefings track,,2027-01-26,,2027-03-09,2027-04-02,https://conf.researchr.org/track/fse-2027/fse-2027-tutorials,true
 FSE,,LLMTrust Workshop (Trustworthy LLMs in SE),2027-02-12,,2027-03-15,,https://llmtrust2026.github.io/,
-FSE,,CauSE Workshop (Causal Methods in Software Engineering),2027-02-01,,2027-03-10,,https://causality-software-engineering.github.io/,
-ISSTA,Research paper track,,2027-01-11,,2027-07-22,2027-08-15,https://conf.researchr.org/home/issta-2027,true
+FSE,,CauSE Workshop (Causal Methods in Software Engineering),2026-11-23,,2027-03-10,,https://causality-software-engineering.github.io/,
+ISSTA,Research paper track,,2027-01-11,2027-01-08,2027-07-22,2027-08-15,https://conf.researchr.org/home/issta-2027,
 SANER,Research paper track,,2026-09-25,2026-09-21,2026-12-01,2027-01-08,https://conf.researchr.org/track/saner-2027/saner-2027-papers,
 SANER,In practice track,,2026-10-23,2026-10-19,2026-12-08,2027-01-08,https://conf.researchr.org/track/saner-2027/saner-2027-industrial-track,
 SANER,New ideas and emerging results track,,2026-10-23,2026-10-19,2026-12-08,2027-01-08,https://conf.researchr.org/track/saner-2027/saner-2027-early-research-achievement-era--track,
@@ -33,7 +33,7 @@ SANER,Reproducibility Studies and Negative Results Track,,2026-10-23,2026-10-19,
 SANER,Journal first track,,2026-12-08,,2026-12-22,2027-01-08,https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track,true
 SANER,Tool track,,2026-10-23,2026-10-19,2026-12-08,2027-01-08,https://conf.researchr.org/track/saner-2027/saner-2027-tool-demo-track,
 SANER,Registered reports track,,2026-11-06,2026-10-30,2026-12-24,,https://conf.researchr.org/track/saner-2027/saner-2027-registered-report-track,
-EASE,Research paper track,,2027-01-22,,2027-03-12,,https://conf.researchr.org/track/ease-2027/ease-2027-papers,
+EASE,Research paper track,,2027-01-22,2027-01-15,2027-03-12,,https://conf.researchr.org/track/ease-2027/ease-2027-papers,
 EASE,Short paper track,,2027-03-02,2027-02-23,2027-04-06,,https://conf.researchr.org/track/ease-2027/ease-2027-short-papers-and-emerging-results,true
 EASE,In practice track,,2027-03-01,2027-02-22,2027-04-12,,https://conf.researchr.org/track/ease-2027/ease-2027-industry-papers#Call-for-Papers,
 EASE,Posters track,,2027-03-02,,2027-04-06,2027-04-20,https://conf.researchr.org/track/ease-2027/ease-2027-posters-and-vision,true
@@ -52,20 +52,20 @@ ISMAR,Research paper track,,2027-03-22,2027-03-15,2027-06-20,,https://www.ismar.
 ISMAR,Posters track,,2027-06-15,,2027-07-20,,https://www.ismar.net/,
 ISMAR,,HCI in AR/VR Workshop,2027-06-20,,2027-07-20,,https://www.ismar.net/,
 ISMAR,,Spatial Computing & Perception Workshop,2027-06-25,,2027-07-25,,https://www.ismar.net/,
-VRST,Research paper track,,2027-06-24,2027-06-17,2027-08-28,2027-09-15,https://vrst.acm.org/,true
-VRST,Short papers and demos track,,2027-07-08,,2027-08-30,2027-09-15,https://vrst.acm.org/,true
-VRST,,Virtual Reality Technologies Workshop,2027-07-15,,2027-08-30,2027-09-15,https://vrst.acm.org/,true
-CHI PLAY,Research paper track,,2027-06-15,2027-06-08,2027-08-14,2027-09-04,https://chiplay.acm.org/2027/,true
-CHI PLAY,Work-in-progress and demos track,,2027-07-20,,2027-08-25,2027-09-10,https://chiplay.acm.org/2027/wip,true
-CHI PLAY,,Serious Games and VR Showcase,2027-07-25,,2027-08-30,2027-09-15,https://chiplay.acm.org/2027/games,true
-ICSA,Research paper track,,2026-11-20,2026-11-13,2027-01-20,2027-02-15,https://conf.researchr.org/home/icsa-2027,true
+VRST,Research paper track,,2026-06-24,2026-06-17,2026-08-28,,https://vrst.acm.org/,
+VRST,Short papers and demos track,,2026-07-08,,2026-08-30,,https://vrst.acm.org/,
+VRST,,Virtual Reality Technologies Workshop,2026-07-15,,2026-08-30,,https://vrst.acm.org/,
+CHI PLAY,Research paper track,,2026-06-15,2026-06-08,2026-08-14,,https://chiplay.acm.org/2026/,
+CHI PLAY,Work-in-progress and demos track,,2026-07-20,,2026-08-25,,https://chiplay.acm.org/2026/wip,
+CHI PLAY,,Serious Games and VR Showcase,2026-07-25,,2026-08-30,,https://chiplay.acm.org/2026/games,
+ICSA,Research paper track,,2026-11-04,2026-10-30,2027-01-20,2027-02-15,https://conf.researchr.org/home/icsa-2027,
 ICSA,In practice track,,2026-12-05,,2027-01-25,2027-02-18,https://conf.researchr.org/track/icsa-2027/icsa-2027-in-practice,true
 ICSA,New ideas and emerging results track,,2026-12-10,,2027-01-28,2027-02-18,https://conf.researchr.org/track/icsa-2027/icsa-2027-nemi,true
 ICSA,Tool track,,2026-12-15,,2027-02-05,2027-02-20,https://conf.researchr.org/track/icsa-2027/icsa-2027-tools,true
-SEAMS,Research paper track,,2026-11-28,2026-11-21,2027-01-18,,https://conf.researchr.org/home/seams-2026,
+SEAMS,Research paper track,,2026-10-21,2026-11-21,2027-01-18,,https://conf.researchr.org/home/seams-2026,
 SEAMS,Artifacts and exemplars track,,2026-12-12,,2027-01-22,,https://conf.researchr.org/home/seams-2026,
 AGENT,Agent-Based Software Engineering Track,Agentic Engineering Workshop (Agentic AI in SE),2026-11-15,,2026-12-22,2027-01-29,https://conf.researchr.org/home/icse-2027/agent-2027,
-CAIN,Research paper track,,2026-11-10,2026-11-03,2027-01-15,2027-01-22,https://conf.researchr.org/home/cain-2026,
+CAIN,Research paper track,,2026-10-30,2026-11-03,2027-01-15,2027-01-22,https://conf.researchr.org/home/cain-2026,
 CAIN,In practice track,,2026-12-01,,2027-01-20,,https://conf.researchr.org/track/cain-2026/cain-2026-industry,
 MODELS,Research paper track,,2027-05-18,2027-05-11,2027-07-10,2027-08-05,https://conf.researchr.org/home/models-2027,true
 MODELS,New ideas and emerging results track,,2027-05-25,,2027-07-15,2027-08-05,https://conf.researchr.org/home/models-2027,true
@@ -76,9 +76,9 @@ ISEC,,ModSym Workshop (Modelling Symposium),2026-10-10,,2026-11-25,,https://conf
 ISEC,,VR and Emerging Tech in SE Track,2026-10-05,,2026-11-20,,https://conf.researchr.org/home/isec-2026,
 ECSA,Research paper track,,2027-04-10,2027-04-03,2027-06-12,2027-07-10,https://conf.researchr.org/home/ecsa-2027,true
 ECSA,,Agentic AI and Sustainable Software Track,2027-04-20,,2027-06-18,2027-07-10,https://conf.researchr.org/home/ecsa-2027,true
-MSR,Research paper track,,2026-11-15,2026-11-08,2027-01-20,,https://conf.researchr.org/home/msr-2027,
-ICPC,Research paper track,,2026-11-20,2026-11-13,2027-01-22,,https://conf.researchr.org/home/icpc-2027,
-AAMAS,Main Technical Track,,2026-10-25,2026-10-18,2027-01-20,2027-02-15,https://cyprusconferences.org/aamas2026/,true
+MSR,Research paper track,,2026-10-23,2026-10-20,2027-01-20,,https://conf.researchr.org/home/msr-2027,
+ICPC,Research paper track,,2026-11-05,2026-10-29,2027-01-22,,https://conf.researchr.org/home/icpc-2027,
+AAMAS,Main Technical Track,,2026-10-01,2026-10-18,2027-01-20,2027-02-15,https://cyprusconferences.org/aamas2026/,
 AAMAS,Blue Sky Ideas Track,,2026-11-10,,2027-01-25,2027-02-15,https://cyprusconferences.org/aamas2026/,true
 AAMAS,Demonstrations Track,,2026-11-20,,2027-01-30,2027-02-15,https://cyprusconferences.org/aamas2026/,true
 ASE,Research paper track,,2027-05-08,2027-05-01,2027-07-24,2027-08-28,https://conf.researchr.org/home/ase-2026,true

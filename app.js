@@ -92,18 +92,18 @@ document.addEventListener('DOMContentLoaded', function() {
             location: "Sendai, Japan",
             country: "Japan",
             country_code: "jp",
-            year: "2027",
+            year: "2026",
             website: "https://vrst.acm.org/",
             cohosted: ["Virtual Reality Technologies Workshop", "Posters & Demos"]
         },
         'CHI PLAY': {
             fullName: "ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play",
             coreRating: "A",
-            location: "Zurich, Switzerland",
-            country: "Switzerland",
-            country_code: "ch",
-            year: "2027",
-            website: "https://chiplay.acm.org/2027/",
+            location: "York, United Kingdom",
+            country: "United Kingdom",
+            country_code: "gb",
+            year: "2026",
+            website: "https://chiplay.acm.org/2026/",
             cohosted: ["Serious Games & VR Showcase", "CHI PLAY WIP & Demos"]
         },
         'ICSA': {
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Ireland': 'ie', 'China': 'cn', 'Singapore': 'sg', 'United States': 'us', 'USA': 'us',
         'Vietnam': 'vn', 'Australia': 'au', 'Italy': 'it', 'Japan': 'jp', 'Switzerland': 'ch',
         'Netherlands': 'nl', 'Austria': 'at', 'India': 'in', 'Cyprus': 'cy', 'Denmark': 'dk',
-        'Germany': 'de', 'Canada': 'ca'
+        'Germany': 'de', 'Canada': 'ca', 'United Kingdom': 'gb'
     };
     const FLAG_CODES = new Set(Object.values(COUNTRY_CODES));
 
@@ -481,9 +481,10 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 document.documentElement.removeAttribute('data-theme');
                 const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                if (themeIcon) themeIcon.textContent = isSystemDark ? '●' : '○';
-                if (themeLabel) themeLabel.textContent = 'Auto';
+                if (themeIcon) themeIcon.textContent = '◐';
+                if (themeLabel) themeLabel.textContent = `Auto (${isSystemDark ? 'dark' : 'light'})`;
             }
+            if (themeBtn) themeBtn.title = `Theme: ${themeLabel ? themeLabel.textContent : theme} - click to switch`;
         }
 
         const savedTheme = storageGet('cdl_theme') || 'auto';
@@ -520,6 +521,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ========================================================================== */
     const STORAGE_KEY_PINNED = 'cdl_pinned_targets';
     let countdownIntervalId = null;
+    const collapsedTimelineGroups = new Set();
 
     function getPinnedTargets() {
         try {
@@ -540,6 +542,34 @@ document.addEventListener('DOMContentLoaded', function() {
         const confNorm = (confName || '').toUpperCase();
         const trackNorm = (trackName || 'Main Track').toUpperCase();
         return targets.some(t => t.conf.toUpperCase() === confNorm && (t.track || 'Main Track').toUpperCase() === trackNorm);
+    }
+
+    let toastTimer = null;
+    function showToast(message, actionLabel, onAction) {
+        let el = document.getElementById('cdl-toast');
+        if (!el) {
+            el = document.createElement('div');
+            el.id = 'cdl-toast';
+            el.className = 'cdl-toast';
+            el.setAttribute('role', 'status');
+            el.setAttribute('aria-live', 'polite');
+            document.body.appendChild(el);
+        }
+        el.innerHTML = `<span>${esc(message)}</span>${actionLabel ? `<button type="button" class="cdl-toast-action">${esc(actionLabel)}</button>` : ''}`;
+        const actionBtn = el.querySelector('.cdl-toast-action');
+        if (actionBtn && onAction) actionBtn.addEventListener('click', () => { onAction(); el.classList.remove('is-visible'); });
+        el.classList.add('is-visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('is-visible'), 4500);
+    }
+
+    function revealPinnedSection() {
+        const section = document.getElementById('pinned-targets-section');
+        if (!section) return;
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        section.classList.remove('is-flash');
+        void section.offsetWidth;
+        section.classList.add('is-flash');
     }
 
     function toggleTargetPin(confName, trackName) {
@@ -569,12 +599,24 @@ document.addEventListener('DOMContentLoaded', function() {
         savePinnedTargets(targets);
         renderPinnedTargets();
         updatePinToggleButtons();
+        if (index >= 0) {
+            showToast(`Unpinned ${confName} - ${trackName || 'Main Track'}`);
+        } else {
+            showToast(`Pinned ${confName} - ${trackName || 'Main Track'}`, 'View targets', revealPinnedSection);
+        }
     }
 
     function clearAllPinnedTargets() {
         savePinnedTargets([]);
         renderPinnedTargets();
         updatePinToggleButtons();
+    }
+
+    const PIN_SVG = '<svg class="pin-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"></path><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"></path></svg>';
+
+    function pinButtonHtml(confName, trackName, extraClass = '') {
+        const pinned = isTargetPinned(confName, trackName);
+        return `<button type="button" class="btn-pin-toggle pin-icon-btn ${extraClass} ${pinned ? 'is-pinned' : ''}" data-conf="${esc(confName)}" data-track="${esc(trackName)}" title="${pinned ? 'Unpin target' : 'Pin to Target Conferences'}" aria-label="${pinned ? 'Unpin' : 'Pin'} ${esc(confName)} - ${esc(trackName)}" aria-pressed="${pinned}">${PIN_SVG}</button>`;
     }
 
     function updatePinToggleButtons() {
@@ -585,7 +627,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (conf) {
                 const pinned = isTargetPinned(conf, track);
                 hBtn.classList.toggle('is-pinned', pinned);
-                hBtn.innerHTML = pinned ? 'Pinned' : 'Pin Target';
+                hBtn.setAttribute('aria-pressed', String(pinned));
                 hBtn.title = pinned ? 'Unpin target' : 'Pin to Target Conferences';
             }
         });
@@ -1020,12 +1062,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     const link = hasPage ? confSlug(item) : safeUrl(itemMeta.website);
                     const actionButton = link
                         ? `<a href="${esc(link)}" class="btn-card-action" style="padding:2px 8px;" ${hasPage ? '' : 'target="_blank" rel="noopener noreferrer"'}>${hasPage ? 'View Page ↗' : 'Official Site ↗'}</a>`
-                        : `<span class="cohosted-pill-tag">Co-located Event</span>`;
+                        : `<span class="cohosted-pill-tag">Co-located</span>`;
                     return `
                         <div class="cohosted-pill-card" data-conf="${esc(item)}">
                             <span class="cohosted-pill-flag">${renderFlagHtml(itemMeta, 'flag-sm')}</span>
                             <strong>${esc(item)}</strong>
-                            <span class="cohosted-pill-badge">${esc(itemMeta.coreRating)}</span>
+                            ${itemMeta.coreRating && itemMeta.coreRating !== 'Unranked' ? `<span class="cohosted-pill-badge">${esc(itemMeta.coreRating)}</span>` : ''}
                             ${actionButton}
                         </div>
                     `;
@@ -1097,16 +1139,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Workshop list pin button delegation
-        if (workshopListContainer) {
-            workshopListContainer.addEventListener('click', (e) => {
+        // Pin button delegation (timeline rows + cards)
+        [document.getElementById('timeline-chart'), workshopListContainer].forEach(container => {
+            if (!container) return;
+            container.addEventListener('click', (e) => {
                 const target = /** @type {HTMLElement} */ (e.target);
+                const groupBtn = /** @type {HTMLElement|null} */ (target.closest('.timeline-group-header'));
+                if (groupBtn && groupBtn.dataset.group) {
+                    const key = groupBtn.dataset.group;
+                    if (collapsedTimelineGroups.has(key)) collapsedTimelineGroups.delete(key);
+                    else collapsedTimelineGroups.add(key);
+                    renderTimeline();
+                    return;
+                }
                 const pinBtn = /** @type {HTMLElement|null} */ (target.closest('.btn-pin-toggle'));
                 if (pinBtn && pinBtn.dataset.conf) {
                     toggleTargetPin(pinBtn.dataset.conf, pinBtn.dataset.track || 'Main Track');
                 }
             });
-        }
+        });
     }
 
     function updateClearBtnVisibility() {
@@ -1167,6 +1218,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const sortVal = sortOrderSelect ? sortOrderSelect.value : 'deadline-asc';
         const fallbackFarFuture = new Date(9999, 0, 1).getTime();
 
+        const nowMs = Date.now();
+        const isPast = d => {
+            const due = parseAoeDate(d.paper_submission_date);
+            return !!due && due.getTime() < nowMs;
+        };
+
         result.sort((a, b) => {
             const dtStartA = parseLocalDate(a.paper_submission_date);
             const dtStartB = parseLocalDate(b.paper_submission_date);
@@ -1203,8 +1260,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 case 'cameraready-asc':
                     return camA - camB;
                 case 'deadline-asc':
-                default:
-                    return startA - startB;
+                default: {
+                    // Upcoming first (soonest -> latest), then passed (most recent first)
+                    const pastA = isPast(a);
+                    const pastB = isPast(b);
+                    if (pastA !== pastB) return pastA ? 1 : -1;
+                    return pastA ? startB - startA : startA - startB;
+                }
             }
         });
 
@@ -1267,7 +1329,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         confColWidth = Math.min(Math.max(confColWidth, 90), 125);
-        trackLabelWidth = Math.min(Math.max(trackLabelWidth, 140), 190);
+        trackLabelWidth = Math.min(Math.max(trackLabelWidth, 140), 230);
 
         const groupedDeadlines = {};
         const confOrder = [];
@@ -1321,7 +1383,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const yearShort = month.date.toLocaleDateString('en-US', { year: '2-digit' });
 
             html += `<div class="scale-tick" style="left: ${month.left}%"></div>`;
-            html += `<div class="scale-month-label" style="left: ${midLeft}%"><span>${monthName} '${yearShort}</span></div>`;
+            if (midLeft <= 95) {
+                html += `<div class="scale-month-label" style="left: ${midLeft}%"><span>${monthName} '${yearShort}</span></div>`;
+            }
         });
 
         html += `
@@ -1336,7 +1400,33 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentRow = 1;
         let rowsHtml = '';
 
-        confOrder.forEach((confName, confIndex) => {
+        // Separate Software Engineering and VR/Games/HCI conferences (single-conference pages stay flat)
+        const timelineGroups = isConferencePage
+            ? [{ key: 'all', title: '', confs: confOrder }]
+            : [
+                { key: 'vr', title: 'Virtual Reality, Games & HCI', confs: confOrder.filter(c => !SE_CONFERENCES.has(c.toUpperCase())) },
+                { key: 'se', title: 'Software Engineering', confs: confOrder.filter(c => SE_CONFERENCES.has(c.toUpperCase())) }
+            ].filter(g => g.confs.length > 0);
+
+        let confCounter = 0;
+
+        timelineGroups.forEach(group => {
+          if (!isConferencePage) {
+            const collapsed = collapsedTimelineGroups.has(group.key);
+            const trackTotal = group.confs.reduce((n, c) => n + groupedDeadlines[c].length, 0);
+            rowsHtml += `
+                <button type="button" class="timeline-group-header ${collapsed ? 'is-collapsed' : ''}" data-group="${group.key}" aria-expanded="${!collapsed}" style="grid-row: ${currentRow}; grid-column: 1 / span 3;">
+                    <span class="timeline-group-chevron" aria-hidden="true">▾</span>
+                    <span class="timeline-group-title">${esc(group.title)}</span>
+                    <span class="timeline-group-count">${group.confs.length} conferences • ${trackTotal} tracks</span>
+                </button>
+            `;
+            currentRow++;
+            if (collapsed) return;
+          }
+
+          group.confs.forEach((confName, groupIdx) => {
+            const confIndex = confCounter++;
             const tracks = groupedDeadlines[confName];
             const trackCount = tracks.length;
             const startRow = currentRow;
@@ -1378,8 +1468,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const outsideLabelHtml = (durationDays > 0 && isNarrowBar) ? (
                     isFarRight
-                        ? `<span class="timeline-bar-label-outside label-left" style="right: calc(${100 - startOffset}% + 6px);">${durationDays}d review</span>`
-                        : `<span class="timeline-bar-label-outside" style="left: calc(${endOffset}% + 6px);">${durationDays}d review</span>`
+                        ? `<span class="timeline-bar-label-outside label-left" style="right: calc(${100 - startOffset}% + 12px);">${durationDays}d review</span>`
+                        : `<span class="timeline-bar-label-outside" style="left: calc(${endOffset}% + 12px);">${durationDays}d review</span>`
                 ) : '';
 
                 const insideDurationHtml = (!isNarrowBar && durationDays > 0)
@@ -1392,11 +1482,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 rowsHtml += `
                     <div class="timeline-row conf-group-${confIndex % 2}" style="grid-row: ${row}; grid-column: 2 / span 2;">
                         <div class="timeline-label" style="width: ${trackLabelWidth}px;">
+                            ${pinButtonHtml(confName, name, 'pin-timeline')}
                             <div class="track-name">${websiteUrl ? `<a href="${esc(websiteUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(name)}">${esc(name)}</a>` : `<span title="${esc(name)}">${esc(name)}</span>`}</div>
                             <div class="days-left-badge ${statusClass}">${daysDisplay}${d.estimated && daysDisplay ? ' (est.)' : ''}</div>
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
-                            <div class="timeline-bar submission-start${d.estimated ? ' is-estimated' : ''}" style="left: ${startOffset}%; width: ${width}%">
+                            <div class="timeline-bar submission-start${d.estimated ? ' is-estimated' : ''}${start && start < minDate ? ' is-clipped-left' : ''}" style="left: ${startOffset}%; width: ${width}%">
                                 ${insideDurationHtml}
                             </div>
                             ${outsideLabelHtml}
@@ -1411,12 +1502,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             currentRow += trackCount;
 
-            if (confIndex < confOrder.length - 1) {
+            if (groupIdx < group.confs.length - 1) {
                 rowsHtml += `
                     <div class="conference-separator" style="grid-row: ${currentRow}; grid-column: 1 / span 3;" role="separator"></div>
                 `;
                 currentRow++;
             }
+          });
         });
 
         const totalRows = currentRow - 1;
@@ -1448,7 +1540,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const meta = getMeta(d.conference_name);
         const confPageUrl = confSlug(d.conference_name);
 
-        const isPinned = isTargetPinned(d.conference_name, name);
         const status = getDeadlineStatus(d.paper_submission_date);
         const daysBadgeHtml = status ? `
             <span class="days-left-badge ${status.statusClass}">${status.label}</span>
@@ -1473,9 +1564,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${d.estimated ? EST_BADGE_HTML : ''}
                     </div>
                     <div style="display:flex; align-items:center; gap:6px;">
-                        <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${esc(d.conference_name)}" data-track="${esc(name)}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
-                            ${isPinned ? 'Pinned' : 'Pin Target'}
-                        </button>
+                        ${pinButtonHtml(d.conference_name, name)}
                         <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
                     </div>
                 </div>
@@ -1495,6 +1584,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="date-chip-val">${formatDate(d.paper_submission_date)}${d.estimated && d.paper_submission_date ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                         ${localTimeFormatted ? `<span class="date-local-hint">Local: ${esc(localTimeFormatted)}</span>` : ''}
                     </div>
+                    ${d.abstract_deadline ? `
                     <div class="date-chip">
                         <span class="date-chip-label">
                             <svg class="chip-icon-abs" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
@@ -1502,6 +1592,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </span>
                         <span class="date-chip-val">${formatDate(d.abstract_deadline)}${d.estimated && d.abstract_deadline ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                     </div>
+                    ` : ''}
                     <div class="date-chip">
                         <span class="date-chip-label">
                             <svg class="chip-icon-not" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -1509,6 +1600,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </span>
                         <span class="date-chip-val">${formatDate(d.intimation_date)}${d.estimated && d.intimation_date ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                     </div>
+                    ${d.camera_ready_deadline ? `
                     <div class="date-chip">
                         <span class="date-chip-label">
                             <svg class="chip-icon-cam" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
@@ -1516,6 +1608,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </span>
                         <span class="date-chip-val">${formatDate(d.camera_ready_deadline)}${d.estimated && d.camera_ready_deadline ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                     </div>
+                    ` : ''}
                 </div>
             </div>
         `;
@@ -1905,7 +1998,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lower.includes('vr') || lower.includes('chi play') || lower.includes('kai play') || lower.includes('game') || lower.includes('virtual') || lower.includes('xr')) {
             return `
                 <strong>Virtual Reality & Gaming Venues Tracked:</strong><br><br>
-                • <strong>CHI PLAY (CORE A)</strong>: Zurich, Switzerland (Papers, Work-in-Progress, Serious Games Showcase).<br>
+                • <strong>CHI PLAY 2026 (CORE A)</strong>: York, United Kingdom, Nov 2-5 (Papers, Work-in-Progress, Serious Games Showcase).<br>
                 • <strong>IEEE VR 2027 (CORE A*)</strong>: Melbourne, Australia (Research Papers, Posters, 3DUI, KELVAR, SEARIS, OpenXRS).<br>
                 • <strong>ISMAR 2027 (CORE A*)</strong>: Bari, Italy (Research Papers, Posters, XR-Health).<br>
                 • <strong>VRST 2026 (CORE A)</strong>: Sendai, Japan (Full Papers, Short Papers & Demos).<br><br>
@@ -1923,7 +2016,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 • <strong>ICSE 2027 (Dublin)</strong> co-hosts: <em>SEAMS</em> (CORE A), <em>CAIN</em>, <em>AGENT Workshop</em>, <em>MSR</em> (CORE A), <em>ICPC</em> (CORE A), <em>LLM4Code</em>, <em>DeepTest</em>.<br>
                 • <strong>IEEE VR 2027 (Melbourne)</strong> co-hosts: <em>3DUI Symposium</em> (CORE A*), <em>KELVAR</em>, <em>SEARIS</em>, <em>OpenXRS</em>, <em>XR-Health</em>.<br>
                 • <strong>ISMAR 2027 (Bari)</strong> co-hosts: <em>XR-Health Workshop</em>, <em>MAR Art & Design</em>.<br>
-                • <strong>CHI PLAY 2026 (Zurich)</strong> co-hosts: <em>Serious Games & VR Showcase</em>, <em>Work-in-Progress & Demos</em>.<br>
+                • <strong>CHI PLAY 2026 (York)</strong> co-hosts: <em>Serious Games & VR Showcase</em>, <em>Work-in-Progress & Demos</em>.<br>
                 • <strong>ISEC 2026 (Hyderabad)</strong> co-hosts: <em>ModSym</em> (Modelling Symposium), <em>VR in SE Track</em>.<br><br>
                 <div class="chat-actions-row">
                     <button type="button" class="chat-action-btn" data-action="open-page" data-val="ICSE">Open ICSE Page</button>
