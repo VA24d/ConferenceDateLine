@@ -108,6 +108,7 @@ def scrape_deadlines(
 
             if found_sub:
                 track["paper_submission_date"] = found_sub
+                track.pop("estimated", None)  # date now confirmed online
                 if found_abs:
                     track["abstract_deadline"] = found_abs
                 if found_notif:

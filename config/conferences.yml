@@ -147,12 +147,14 @@ conferences:
       intimation_date: '2027-03-17'
       website_url: https://conf.researchr.org/track/fse-2027/fse-2027-ideas-visions-and-reflections
       camera_ready_deadline: '2027-04-02'
+      estimated: true
     - track_name: Journal first track
       paper_submission_date: '2027-02-25'
       abstract_deadline: ''
       intimation_date: '2027-03-25'
       website_url: https://conf.researchr.org/track/fse-2027/fse-2027-journal-first
       camera_ready_deadline: '2027-04-02'
+      estimated: true
     - track_name: Education track
       paper_submission_date: '2027-01-29'
       abstract_deadline: ''
@@ -165,18 +167,21 @@ conferences:
       intimation_date: '2027-03-09'
       website_url: https://conf.researchr.org/track/fse-2027/fse-2027-student-research-competition
       camera_ready_deadline: '2027-04-02'
+      estimated: true
     - track_name: Tool track
       paper_submission_date: '2027-01-22'
       abstract_deadline: ''
       intimation_date: '2027-03-17'
       website_url: https://conf.researchr.org/track/fse-2027/fse-2027-demonstrations
       camera_ready_deadline: '2027-04-02'
+      estimated: true
     - track_name: Tutorials and technical briefings track
       paper_submission_date: '2027-01-26'
       abstract_deadline: ''
       intimation_date: '2027-03-09'
       website_url: https://conf.researchr.org/track/fse-2027/fse-2027-tutorials
       camera_ready_deadline: '2027-04-02'
+      estimated: true
     - workshop_name: LLMTrust Workshop (Trustworthy LLMs in SE)
       paper_submission_date: '2027-02-12'
       abstract_deadline: ''
@@ -212,6 +217,7 @@ conferences:
       intimation_date: '2027-07-22'
       website_url: https://conf.researchr.org/home/issta-2027
       camera_ready_deadline: '2027-08-15'
+      estimated: true
     country_code: sg
   SANER:
     full_name: IEEE International Conference on Software Analysis, Evolution and Reengineering
@@ -266,6 +272,7 @@ conferences:
       intimation_date: '2026-12-22'
       website_url: https://conf.researchr.org/track/saner-2026/saner-2026-journal-first-track
       camera_ready_deadline: '2027-01-08'
+      estimated: true
     - track_name: Tool track
       paper_submission_date: '2026-10-23'
       abstract_deadline: '2026-10-19'
@@ -307,6 +314,7 @@ conferences:
       intimation_date: '2027-04-06'
       website_url: https://conf.researchr.org/track/ease-2027/ease-2027-short-papers-and-emerging-results
       camera_ready_deadline: ''
+      estimated: true
     - track_name: In practice track
       paper_submission_date: '2027-03-01'
       abstract_deadline: '2027-02-22'
@@ -319,12 +327,14 @@ conferences:
       intimation_date: '2027-04-06'
       website_url: https://conf.researchr.org/track/ease-2027/ease-2027-posters-and-vision
       camera_ready_deadline: '2027-04-20'
+      estimated: true
     - track_name: Journal first track
       paper_submission_date: '2027-03-06'
       abstract_deadline: ''
       intimation_date: '2027-04-06'
       website_url: https://conf.researchr.org/track/ease-2027/ease-2027-journal-first
       camera_ready_deadline: ''
+      estimated: true
     - track_name: Doctoral symposium
       paper_submission_date: '2027-03-08'
       abstract_deadline: ''
@@ -337,12 +347,14 @@ conferences:
       intimation_date: '2027-04-06'
       website_url: https://conf.researchr.org/track/ease-2027/ease-2027-ai-models---data
       camera_ready_deadline: ''
+      estimated: true
     - track_name: Reproducibility Studies and Negative Results Track
       paper_submission_date: '2027-02-23'
       abstract_deadline: '2027-02-23'
       intimation_date: '2027-04-06'
       website_url: https://conf.researchr.org/track/ease-2027/ease-2027-reproducibility-and-negative-results
       camera_ready_deadline: '2027-04-20'
+      estimated: true
     - track_name: Tutorials and technical briefings track
       paper_submission_date: '2027-03-02'
       abstract_deadline: ''
@@ -470,18 +482,21 @@ conferences:
       intimation_date: '2027-08-28'
       website_url: https://vrst.acm.org/
       camera_ready_deadline: '2027-09-15'
+      estimated: true
     - track_name: Short papers and demos track
       paper_submission_date: '2027-07-08'
       abstract_deadline: ''
       intimation_date: '2027-08-30'
       website_url: https://vrst.acm.org/
       camera_ready_deadline: '2027-09-15'
+      estimated: true
     - workshop_name: Virtual Reality Technologies Workshop
       paper_submission_date: '2027-07-15'
       abstract_deadline: ''
       intimation_date: '2027-08-30'
       website_url: https://vrst.acm.org/
       camera_ready_deadline: '2027-09-15'
+      estimated: true
     country_code: jp
   CHI PLAY:
     full_name: ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play
@@ -505,18 +520,21 @@ conferences:
       intimation_date: '2027-08-14'
       website_url: https://chiplay.acm.org/2027/
       camera_ready_deadline: '2027-09-04'
+      estimated: true
     - track_name: Work-in-progress and demos track
       paper_submission_date: '2027-07-20'
       abstract_deadline: ''
       intimation_date: '2027-08-25'
       website_url: https://chiplay.acm.org/2027/wip
       camera_ready_deadline: '2027-09-10'
+      estimated: true
     - workshop_name: Serious Games and VR Showcase
       paper_submission_date: '2027-07-25'
       abstract_deadline: ''
       intimation_date: '2027-08-30'
       website_url: https://chiplay.acm.org/2027/games
       camera_ready_deadline: '2027-09-15'
+      estimated: true
     country_code: ch
   ICSA:
     full_name: IEEE International Conference on Software Architecture
@@ -541,24 +559,28 @@ conferences:
       intimation_date: '2027-01-20'
       website_url: https://conf.researchr.org/home/icsa-2027
       camera_ready_deadline: '2027-02-15'
+      estimated: true
     - track_name: In practice track
       paper_submission_date: '2026-12-05'
       abstract_deadline: ''
       intimation_date: '2027-01-25'
       website_url: https://conf.researchr.org/track/icsa-2027/icsa-2027-in-practice
       camera_ready_deadline: '2027-02-18'
+      estimated: true
     - track_name: New ideas and emerging results track
       paper_submission_date: '2026-12-10'
       abstract_deadline: ''
       intimation_date: '2027-01-28'
       website_url: https://conf.researchr.org/track/icsa-2027/icsa-2027-nemi
       camera_ready_deadline: '2027-02-18'
+      estimated: true
     - track_name: Tool track
       paper_submission_date: '2026-12-15'
       abstract_deadline: ''
       intimation_date: '2027-02-05'
       website_url: https://conf.researchr.org/track/icsa-2027/icsa-2027-tools
       camera_ready_deadline: '2027-02-20'
+      estimated: true
     country_code: nl
   SEAMS:
     full_name: International Symposium on Software Engineering for Adaptive and Self-Managing
@@ -673,18 +695,21 @@ conferences:
       intimation_date: '2027-07-10'
       website_url: https://conf.researchr.org/home/models-2027
       camera_ready_deadline: '2027-08-05'
+      estimated: true
     - track_name: New ideas and emerging results track
       paper_submission_date: '2027-05-25'
       abstract_deadline: ''
       intimation_date: '2027-07-15'
       website_url: https://conf.researchr.org/home/models-2027
       camera_ready_deadline: '2027-08-05'
+      estimated: true
     - track_name: Tool track
       paper_submission_date: '2027-06-08'
       abstract_deadline: ''
       intimation_date: '2027-07-20'
       website_url: https://conf.researchr.org/home/models-2027
       camera_ready_deadline: '2027-08-05'
+      estimated: true
     country_code: at
   ISEC:
     full_name: Innovations in Software Engineering Conference
@@ -708,6 +733,7 @@ conferences:
       intimation_date: '2026-11-10'
       website_url: https://conf.researchr.org/home/isec-2026
       camera_ready_deadline: '2026-12-01'
+      estimated: true
     - track_name: In practice track
       paper_submission_date: '2026-10-01'
       abstract_deadline: ''
@@ -749,12 +775,14 @@ conferences:
       intimation_date: '2027-06-12'
       website_url: https://conf.researchr.org/home/ecsa-2027
       camera_ready_deadline: '2027-07-10'
+      estimated: true
     - workshop_name: Agentic AI and Sustainable Software Track
       paper_submission_date: '2027-04-20'
       abstract_deadline: ''
       intimation_date: '2027-06-18'
       website_url: https://conf.researchr.org/home/ecsa-2027
       camera_ready_deadline: '2027-07-10'
+      estimated: true
     country_code: cy
   MSR:
     full_name: Mining Software Repositories
@@ -828,18 +856,21 @@ conferences:
       intimation_date: '2027-01-20'
       website_url: https://cyprusconferences.org/aamas2026/
       camera_ready_deadline: '2027-02-15'
+      estimated: true
     - track_name: Blue Sky Ideas Track
       paper_submission_date: '2026-11-10'
       abstract_deadline: ''
       intimation_date: '2027-01-25'
       website_url: https://cyprusconferences.org/aamas2026/
       camera_ready_deadline: '2027-02-15'
+      estimated: true
     - track_name: Demonstrations Track
       paper_submission_date: '2026-11-20'
       abstract_deadline: ''
       intimation_date: '2027-01-30'
       website_url: https://cyprusconferences.org/aamas2026/
       camera_ready_deadline: '2027-02-15'
+      estimated: true
     country_code: cy
   ASE:
     full_name: IEEE/ACM International Conference on Automated Software Engineering
@@ -864,6 +895,7 @@ conferences:
       intimation_date: '2027-07-24'
       website_url: https://conf.researchr.org/home/ase-2026
       camera_ready_deadline: '2027-08-28'
+      estimated: true
     - track_name: Industry Showcase Track
       paper_submission_date: '2027-06-12'
       abstract_deadline: ''
@@ -900,6 +932,7 @@ conferences:
       intimation_date: '2027-05-22'
       website_url: https://conf.researchr.org/home/re-2026
       camera_ready_deadline: '2027-07-10'
+      estimated: true
     - track_name: RE@Next! Track
       paper_submission_date: '2027-04-10'
       abstract_deadline: ''

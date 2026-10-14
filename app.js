@@ -265,6 +265,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const DAY_MS = 86400000;
 
+    // Dates rolled forward from a previous cycle are projections, not confirmed by the conference
+    const EST_TITLE = 'Estimated: projected from the previous cycle, not yet confirmed by the conference';
+    const EST_BADGE_HTML = `<span class="est-badge" title="${EST_TITLE}">Est.</span>`;
+
     // Days until an AoE deadline (negative = passed) + CSS status class + label
     function getDeadlineStatus(dateStr) {
         const due = parseAoeDate(dateStr);
@@ -439,11 +443,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (!r || !r.ok) throw new Error(`HTTP ${r ? r.status : 'offline'}`);
             const data = await r.json();
-            try {
-                localStorage.setItem(cacheKey, JSON.stringify(data));
-            } catch (storageErr) {
-                // Ignore storage quota
-            }
             storageSet(cacheKey, JSON.stringify(data));
             return enrichDeadlines(data);
         } catch (fetchErr) {
@@ -533,11 +532,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function savePinnedTargets(targets) {
-        try {
-            localStorage.setItem(STORAGE_KEY_PINNED, JSON.stringify(targets));
-        } catch (e) {
-            console.error('Failed to save pinned targets', e);
-        }
         storageSet(STORAGE_KEY_PINNED, JSON.stringify(targets));
     }
 
@@ -567,6 +561,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 intimation_date: found ? found.intimation_date : null,
                 camera_ready_deadline: found ? found.camera_ready_deadline : null,
                 website_url: found ? found.website_url : null,
+                estimated: found ? !!found.estimated : false,
                 pinnedAt: Date.now()
             });
         }
@@ -626,19 +621,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return chunks.join('\r\n');
     }
 
-    function getGoogleCalendarUrl(confName, trackName, dateStr, website) {
+    function getGoogleCalendarUrl(confName, trackName, dateStr, website, estimated = false) {
         if (!dateStr) return '#';
         const due = parseAoeDate(dateStr);
         if (!due) return '#';
         // Deadline is 23:59:59 AoE (UTC-12); mark the final 30 minutes
         const dates = `${toUtcStamp(new Date(due.getTime() - 30 * 60 * 1000))}/${toUtcStamp(due)}`;
-        const title = encodeURIComponent(`${confName} - ${trackName} Deadline`);
-        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
+        const title = encodeURIComponent(`${confName} - ${trackName} Deadline${estimated ? ' (estimated)' : ''}`);
+        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).${estimated ? ' ESTIMATED - not yet confirmed.' : ''}\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
         return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}`;
     }
 
     // Returns VEVENT lines for one deadline, or '' when no usable date
-    function buildIcsEvent(confName, trackName, dateStr, websiteUrl) {
+    function buildIcsEvent(confName, trackName, dateStr, websiteUrl, estimated = false) {
         const date = parseLocalDate(dateStr);
         if (!date) return '';
         const next = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
@@ -651,8 +646,8 @@ document.addEventListener('DOMContentLoaded', function() {
             `DTSTAMP:${toUtcStamp(new Date())}`,
             `DTSTART;VALUE=DATE:${dt}`,
             `DTEND;VALUE=DATE:${toIcsDate(next)}`,
-            `SUMMARY:${icsEscape(`${confName} - ${trackName} Submission Deadline (AoE)`)}`,
-            `DESCRIPTION:${icsEscape(`Paper submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).${url ? ` Official link: ${url}` : ''}`)}`,
+            `SUMMARY:${icsEscape(`${confName} - ${trackName} Submission Deadline (AoE)${estimated ? ' [ESTIMATED]' : ''}`)}`,
+            `DESCRIPTION:${icsEscape(`Paper submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).${estimated ? ' ESTIMATED: projected from the previous cycle, not yet confirmed - check the official site.' : ''}${url ? ` Official link: ${url}` : ''}`)}`,
             'STATUS:CONFIRMED',
             'BEGIN:VALARM',
             'TRIGGER:-P3D',
@@ -687,7 +682,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function downloadIcsReminder(confName, trackName) {
         const found = findDeadline(confName, trackName);
-        const event = found ? buildIcsEvent(confName, trackName, found.paper_submission_date, found.website_url) : '';
+        const event = found ? buildIcsEvent(confName, trackName, found.paper_submission_date, found.website_url, !!found.estimated) : '';
         if (!event) {
             alert(`No confirmed submission date found for ${confName} - ${trackName}`);
             return;
@@ -706,7 +701,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const track = t.track || 'Main Track';
             const found = findDeadline(t.conf, track);
             const dateStr = (found && found.paper_submission_date) || t.paper_submission_date;
-            return buildIcsEvent(t.conf, track, dateStr, (found && found.website_url) || t.website_url);
+            return buildIcsEvent(t.conf, track, dateStr, (found && found.website_url) || t.website_url, found ? !!found.estimated : !!t.estimated);
         }).filter(Boolean).join('\r\n');
 
         if (!events) {
@@ -773,9 +768,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const live = findDeadline(t.conf, track);
             const submission = (live && live.paper_submission_date) || t.paper_submission_date;
             const website = safeUrl((live && live.website_url) || t.website_url);
+            const isEstimated = live ? !!live.estimated : !!t.estimated;
             const meta = getMeta(t.conf);
             const confPageUrl = confSlug(t.conf);
-            const gcalUrl = getGoogleCalendarUrl(t.conf, track, submission, website);
+            const gcalUrl = getGoogleCalendarUrl(t.conf, track, submission, website, isEstimated);
             const localFormatted = formatAoeToLocal(submission);
             const conf = esc(t.conf);
             const trk = esc(track);
@@ -796,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="live-countdown-box">
                         <span class="countdown-timer-value" data-date="${esc(submission || '')}">Calculating...</span>
                         <div class="countdown-due-date">
-                            <span><span class="aoe-badge">AoE</span> ${esc(formatDate(submission))}</span>
+                            <span><span class="aoe-badge">AoE</span> ${esc(formatDate(submission))} ${isEstimated ? EST_BADGE_HTML : ''}</span>
                             ${localFormatted ? `<span class="local-due-text">Your time: ${esc(localFormatted)}</span>` : ''}
                         </div>
                     </div>
@@ -936,9 +932,6 @@ document.addEventListener('DOMContentLoaded', function() {
             conferenceFilter.appendChild(seOptGroup);
             conferenceFilter.appendChild(vrOptGroup);
 
-            if (urlParams.get('conf')) {
-                conferenceFilter.value = urlParams.get('conf') || 'all';
-            }
             // Ignore ?conf= values that match no option (select would go blank and hide everything)
             const confParam = (urlParams.get('conf') || '').toUpperCase();
             const matched = allConferences.find(c => c.name.toUpperCase() === confParam);
@@ -1373,7 +1366,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const endOffset = end ? Math.max(0, Math.min(100, ((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : startOffset;
                 const width = Math.max(1.5, endOffset - startOffset);
 
-                const daysToSubmission = start ? Math.ceil((start.getTime() - today.getTime()) / 86400000) : null;
                 const status = getDeadlineStatus(d.paper_submission_date);
                 const statusClass = status ? status.statusClass : 'days-status-safe';
                 const daysDisplay = status ? status.label : '';
@@ -1395,16 +1387,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     : '';
 
                 const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
-                const barTooltip = esc(`${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}${cameraReadyDate ? `\nCamera-Ready: ${formatDateSafe(cameraReadyDate)}` : ''}`);
+                const barTooltip = esc(`${d.estimated ? '[ESTIMATED - projected from previous cycle, unconfirmed]\n' : ''}${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}${cameraReadyDate ? `\nCamera-Ready: ${formatDateSafe(cameraReadyDate)}` : ''}`);
 
                 rowsHtml += `
                     <div class="timeline-row conf-group-${confIndex % 2}" style="grid-row: ${row}; grid-column: 2 / span 2;">
                         <div class="timeline-label" style="width: ${trackLabelWidth}px;">
                             <div class="track-name">${websiteUrl ? `<a href="${esc(websiteUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(name)}">${esc(name)}</a>` : `<span title="${esc(name)}">${esc(name)}</span>`}</div>
-                            <div class="days-left-badge ${statusClass}">${daysDisplay}</div>
+                            <div class="days-left-badge ${statusClass}">${daysDisplay}${d.estimated && daysDisplay ? ' (est.)' : ''}</div>
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
-                            <div class="timeline-bar submission-start" style="left: ${startOffset}%; width: ${width}%">
+                            <div class="timeline-bar submission-start${d.estimated ? ' is-estimated' : ''}" style="left: ${startOffset}%; width: ${width}%">
                                 ${insideDurationHtml}
                             </div>
                             ${outsideLabelHtml}
@@ -1451,7 +1443,7 @@ document.addEventListener('DOMContentLoaded', function() {
        ========================================================================== */
     function renderCard(d) {
         const isWorkshop = !!d.workshop_name;
-        const cardClass = isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track';
+        const cardClass = (isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track') + (d.estimated ? ' is-estimated' : '');
         const name = d.workshop_name || (d.track_name || 'Main Track');
         const meta = getMeta(d.conference_name);
         const confPageUrl = confSlug(d.conference_name);
@@ -1478,6 +1470,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         </a>
                         <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">CORE ${esc(meta.coreRating)}</span>
                         ${daysBadgeHtml}
+                        ${d.estimated ? EST_BADGE_HTML : ''}
                     </div>
                     <div style="display:flex; align-items:center; gap:6px;">
                         <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${esc(d.conference_name)}" data-track="${esc(name)}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
@@ -1499,7 +1492,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <svg class="chip-icon-sub" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                             Submission (AoE)
                         </span>
-                        <span class="date-chip-val">${formatDate(d.paper_submission_date)}</span>
+                        <span class="date-chip-val">${formatDate(d.paper_submission_date)}${d.estimated && d.paper_submission_date ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                         ${localTimeFormatted ? `<span class="date-local-hint">Local: ${esc(localTimeFormatted)}</span>` : ''}
                     </div>
                     <div class="date-chip">
@@ -1507,21 +1500,21 @@ document.addEventListener('DOMContentLoaded', function() {
                             <svg class="chip-icon-abs" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                             Abstract Deadline
                         </span>
-                        <span class="date-chip-val">${formatDate(d.abstract_deadline)}</span>
+                        <span class="date-chip-val">${formatDate(d.abstract_deadline)}${d.estimated && d.abstract_deadline ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                     </div>
                     <div class="date-chip">
                         <span class="date-chip-label">
                             <svg class="chip-icon-not" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                             Notification Date
                         </span>
-                        <span class="date-chip-val">${formatDate(d.intimation_date)}</span>
+                        <span class="date-chip-val">${formatDate(d.intimation_date)}${d.estimated && d.intimation_date ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                     </div>
                     <div class="date-chip">
                         <span class="date-chip-label">
                             <svg class="chip-icon-cam" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                             Camera-ready Deadline
                         </span>
-                        <span class="date-chip-val">${formatDate(d.camera_ready_deadline)}</span>
+                        <span class="date-chip-val">${formatDate(d.camera_ready_deadline)}${d.estimated && d.camera_ready_deadline ? ' <span class="est-mark" title="' + EST_TITLE + '">(est.)</span>' : ''}</span>
                     </div>
                 </div>
             </div>
@@ -1894,7 +1887,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return `
                     <div style="margin-bottom:6px; padding:4px 0; border-bottom:1px dashed var(--color-border);">
                         <strong>${renderFlagHtml(meta, 'flag-sm')} ${esc(d.conference_name)}</strong> - ${esc(name)}<br>
-                        Due: <strong>${esc(formatDate(d.paper_submission_date))}</strong> (AoE • ${days} days left)<br>
+                        Due: <strong>${esc(formatDate(d.paper_submission_date))}</strong> (AoE • ${days} days left${d.estimated ? ' • <em>estimated, unconfirmed</em>' : ''})<br>
                         ${localHint ? `<span style="font-size:11px; color:var(--color-text-secondary);">Your time: ${esc(localHint)}</span> • ` : ''}<span class="core-tag">${esc(meta.coreRating)}</span>
                     </div>
                 `;

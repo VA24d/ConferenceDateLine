@@ -82,6 +82,9 @@ def roll_conference(conf_name: str, conf_data: dict, years: int = 1, target_year
             if track.get(date_key):
                 track[date_key] = roll_date_str(track[date_key], delta)
 
+        # Rolled dates are projections copied from the previous cycle, not confirmed
+        track["estimated"] = True
+
         if track.get("website_url"):
             track_pattern = track.get("url_pattern")
             if track_pattern and "{year}" in track_pattern:

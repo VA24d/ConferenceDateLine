@@ -58,6 +58,7 @@ def build_deadlines(conferences: dict) -> list:
                 "abstract_deadline": item.get("abstract_deadline") or None,
                 "intimation_date": item.get("intimation_date") or None,
                 "camera_ready_deadline": item.get("camera_ready_deadline") or None,
+                "estimated": bool(item.get("estimated", False)),
                 "website_url": item.get("website_url") or website,
                 "core_rating": core,
                 "location": loc,
@@ -81,6 +82,7 @@ def write_csv(deadlines: list, csv_path: str = CSV_PATH):
         "intimation_date",
         "camera_ready_deadline",
         "website_url",
+        "estimated",
     ]
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -95,6 +97,7 @@ def write_csv(deadlines: list, csv_path: str = CSV_PATH):
                 "intimation_date": d["intimation_date"] or "",
                 "camera_ready_deadline": d["camera_ready_deadline"] or "",
                 "website_url": d["website_url"] or "",
+                "estimated": "true" if d.get("estimated") else "",
             })
     print(f"✓ Synchronized {csv_path} ({len(deadlines)} rows)")
 
