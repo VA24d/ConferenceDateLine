@@ -14,6 +14,25 @@ document.addEventListener('DOMContentLoaded', function() {
         'ASE', 'RE'
     ]);
 
+    // Research domains used to group conferences. Anything not listed falls into 'other' rather than
+    // being silently lumped with VR (AAMAS, for instance, is an agents venue).
+    const VR_CONFERENCES = new Set(['IEEE VR', 'ISMAR', 'VRST', 'CHI PLAY']);
+    const AI_CONFERENCES = new Set(['AAMAS']);
+    const DOMAINS = [
+        { key: 'vr', title: 'Virtual Reality, Games & HCI', optLabel: 'VR, Games & HCI', openByDefault: true },
+        { key: 'ai', title: 'Agents & AI', optLabel: 'Agents & AI', openByDefault: true },
+        { key: 'se', title: 'Software Engineering', optLabel: 'Software Engineering (SE)', openByDefault: false },
+        { key: 'other', title: 'Other Conferences', optLabel: 'Other', openByDefault: true }
+    ];
+
+    function getDomain(confName) {
+        const name = (confName || '').toUpperCase();
+        if (SE_CONFERENCES.has(name)) return 'se';
+        if (VR_CONFERENCES.has(name)) return 'vr';
+        if (AI_CONFERENCES.has(name)) return 'ai';
+        return 'other';
+    }
+
     // Conference Metadata (Locations, CORE ratings, Year, etc.)
     const CONFERENCE_METADATA = {
         'ICSE': {
@@ -955,24 +974,23 @@ document.addEventListener('DOMContentLoaded', function() {
         // Setup for Home Page
         if (!isConferencePage && conferenceFilter) {
             conferenceFilter.innerHTML = '<option value="all">All Conferences</option>';
-            const seOptGroup = document.createElement('optgroup');
-            seOptGroup.label = 'Software Engineering (SE)';
-            const vrOptGroup = document.createElement('optgroup');
-            vrOptGroup.label = 'VR, Games & HCI';
+            const optGroups = {};
+            DOMAINS.forEach(dom => {
+                const og = document.createElement('optgroup');
+                og.label = dom.optLabel;
+                optGroups[dom.key] = og;
+            });
 
             allConferences.forEach(conf => {
                 const meta = getMeta(conf.name);
                 const option = document.createElement('option');
                 option.value = conf.name;
                 option.textContent = `${conf.name} (${meta.coreRating}) - ${meta.location}`;
-                if (SE_CONFERENCES.has(conf.name.toUpperCase())) {
-                    seOptGroup.appendChild(option);
-                } else {
-                    vrOptGroup.appendChild(option);
-                }
+                optGroups[getDomain(conf.name)].appendChild(option);
             });
-            conferenceFilter.appendChild(seOptGroup);
-            conferenceFilter.appendChild(vrOptGroup);
+            DOMAINS.forEach(dom => {
+                if (optGroups[dom.key].children.length > 0) conferenceFilter.appendChild(optGroups[dom.key]);
+            });
 
             // Ignore ?conf= values that match no option (select would go blank and hide everything)
             const confParam = (urlParams.get('conf') || '').toUpperCase();
@@ -1403,10 +1421,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Separate Software Engineering and VR/Games/HCI conferences (single-conference pages stay flat)
         const timelineGroups = isConferencePage
             ? [{ key: 'all', title: '', confs: confOrder }]
-            : [
-                { key: 'vr', title: 'Virtual Reality, Games & HCI', confs: confOrder.filter(c => !SE_CONFERENCES.has(c.toUpperCase())) },
-                { key: 'se', title: 'Software Engineering', confs: confOrder.filter(c => SE_CONFERENCES.has(c.toUpperCase())) }
-            ].filter(g => g.confs.length > 0);
+            : DOMAINS
+                .map(dom => ({ key: dom.key, title: dom.title, confs: confOrder.filter(c => getDomain(c) === dom.key) }))
+                .filter(g => g.confs.length > 0);
 
         let confCounter = 0;
 
@@ -1418,7 +1435,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button type="button" class="timeline-group-header ${collapsed ? 'is-collapsed' : ''}" data-group="${group.key}" aria-expanded="${!collapsed}" style="grid-row: ${currentRow}; grid-column: 1 / span 3;">
                     <span class="timeline-group-chevron" aria-hidden="true">▾</span>
                     <span class="timeline-group-title">${esc(group.title)}</span>
-                    <span class="timeline-group-count">${group.confs.length} conferences • ${trackTotal} tracks</span>
+                    <span class="timeline-group-count">${group.confs.length} conference${group.confs.length === 1 ? '' : 's'} • ${trackTotal} track${trackTotal === 1 ? '' : 's'}</span>
                 </button>
             `;
             currentRow++;
@@ -1634,55 +1651,33 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // On home page: Group into Software Engineering (SE) and VR/Games/HCI
-        const seDeadlines = deadlines.filter(d => SE_CONFERENCES.has((d.conference_name || '').toUpperCase()));
-        const vrDeadlines = deadlines.filter(d => !SE_CONFERENCES.has((d.conference_name || '').toUpperCase()));
-
-        // Check if there is an active search or SE filter that should auto-expand SE
+        // On home page: one collapsible group per research domain
+        // An active search or a selected SE conference auto-expands the (otherwise closed) SE group
         const query = searchInput ? searchInput.value.trim() : '';
         const selectedConf = conferenceFilter ? conferenceFilter.value : 'all';
-        const isSeSelected = selectedConf !== 'all' && SE_CONFERENCES.has(selectedConf.toUpperCase());
-        const shouldExpandSe = !!query || isSeSelected;
+        const forceOpenKey = selectedConf !== 'all' ? getDomain(selectedConf) : null;
 
         let html = '';
-
-        // Extended Reality, Games & HCI Group (Open by default)
-        if (vrDeadlines.length > 0) {
+        DOMAINS.forEach(dom => {
+            const items = deadlines.filter(d => getDomain(d.conference_name) === dom.key);
+            if (items.length === 0) return;
+            const open = dom.openByDefault || !!query || forceOpenKey === dom.key;
             html += `
-                <details class="domain-group vr-group" id="domain-group-vr" open>
+                <details class="domain-group ${dom.key}-group" id="domain-group-${dom.key}" ${open ? 'open' : ''}>
                     <summary class="domain-summary">
                         <div class="domain-summary-left">
                             <span class="domain-chevron">▶</span>
-                            <h3 class="domain-title">Virtual Reality, Games & HCI Conferences</h3>
-                            <span class="domain-meta-badge">${vrDeadlines.length} Tracks & Workshops</span>
+                            <h3 class="domain-title">${esc(dom.title)} Conferences</h3>
+                            <span class="domain-meta-badge">${items.length} Tracks & Workshops</span>
                         </div>
                         <span class="domain-toggle-hint">Click to expand / collapse</span>
                     </summary>
                     <div class="domain-cards-grid">
-                        ${vrDeadlines.map(d => renderCard(d)).join('')}
+                        ${items.map(d => renderCard(d)).join('')}
                     </div>
                 </details>
             `;
-        }
-
-        // Software Engineering (SE) Group (CLOSED BY DEFAULT per user requirement)
-        if (seDeadlines.length > 0) {
-            html += `
-                <details class="domain-group se-group" id="domain-group-se" ${shouldExpandSe ? 'open' : ''}>
-                    <summary class="domain-summary">
-                        <div class="domain-summary-left">
-                            <span class="domain-chevron">▶</span>
-                            <h3 class="domain-title">Software Engineering Conferences</h3>
-                            <span class="domain-meta-badge">${seDeadlines.length} Tracks & Workshops</span>
-                        </div>
-                        <span class="domain-toggle-hint">Click to expand / collapse</span>
-                    </summary>
-                    <div class="domain-cards-grid">
-                        ${seDeadlines.map(d => renderCard(d)).join('')}
-                    </div>
-                </details>
-            `;
-        }
+        });
 
         workshopListContainer.innerHTML = html;
     }
