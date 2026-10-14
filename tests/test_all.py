@@ -16,12 +16,12 @@ import build_static_data
 
 
 class TestConfigConferences(unittest.TestCase):
-    """Test configuration integrity and coverage of all 18 tracked venues."""
+    """Test configuration integrity and coverage of all tracked venues."""
 
     EXPECTED_VENUES = [
         "ICSE", "FSE", "ISSTA", "SANER", "EASE", "IEEE VR", "ISMAR",
         "VRST", "CHI PLAY", "ICSA", "SEAMS", "AGENT", "CAIN", "MODELS",
-        "ISEC", "ECSA", "MSR", "ICPC"
+        "ISEC", "ECSA", "MSR", "ICPC", "ICST"
     ]
 
     def setUp(self):
@@ -31,8 +31,8 @@ class TestConfigConferences(unittest.TestCase):
             data = yaml.safe_load(f)
         self.conferences = data.get("conferences", {})
 
-    def test_all_18_venues_present(self):
-        """Verify all 18 venues are present in config."""
+    def test_all_expected_venues_present(self):
+        """Verify all expected venues are present in config."""
         for venue in self.EXPECTED_VENUES:
             self.assertIn(venue, self.conferences, f"Venue {venue} missing from config")
 
@@ -42,10 +42,12 @@ class TestConfigConferences(unittest.TestCase):
             self.assertTrue(meta.get("full_name"), f"{name} missing full_name")
             self.assertTrue(meta.get("core_rating"), f"{name} missing core_rating")
             self.assertTrue(meta.get("location"), f"{name} missing location")
-            self.assertTrue(meta.get("country"), f"{name} missing country")
-            self.assertTrue(meta.get("flag"), f"{name} missing flag")
             self.assertTrue(meta.get("year"), f"{name} missing year")
-            self.assertTrue(meta.get("website"), f"{name} missing website")
+            if meta.get("location") != "TBA":
+                # CORE-imported stubs stay TBA until a maintainer/scraper confirms the venue
+                self.assertTrue(meta.get("country"), f"{name} missing country")
+                self.assertTrue(meta.get("flag"), f"{name} missing flag")
+                self.assertTrue(meta.get("website"), f"{name} missing website")
             self.assertIsInstance(meta.get("cohosted"), list, f"{name} cohosted must be a list")
             tracks = meta.get("tracks", [])
             self.assertGreater(len(tracks), 0, f"{name} has no tracks or workshops defined")

@@ -146,3 +146,13 @@ A confirmed date clears the track's `estimated` flag; anything no source can con
 | `--sources web,se,hci,wikicfp` | restrict sources |
 | `--discover` | list untracked venues matching our topics (SE, architecture, agents, VR/AR/XR, games) |
 | `--validate` | cross-check year/location of tracked SIGCHI venues against [sigchi.org](https://sigchi.org/conferences/upcoming/) |
+
+## CORE import (FoR 4612 A*/A)
+
+```
+python3 scripts/import_core.py --fetch --sync   # Playwright+stealth scrape -> data/core_se.json, add missing venues
+python3 scripts/import_core.py --csv export.csv --sync   # or from a portal CSV export
+python3 scripts/build_static_data.py
+```
+
+New venues get an *estimated* deadline from `TYPICAL_CYCLES` until a scraper or maintainer confirms it. ISEC is labelled `Indian` (not CORE-ranked).

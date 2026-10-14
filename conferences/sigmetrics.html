@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>SIGMETRICS (A*) - Conference Deadlines & Tracks</title>
+    <link rel="stylesheet" href="../styles.css?v=20261014-6">
+</head>
+<body data-page="conference" data-conf="SIGMETRICS">
+    <div class="container">
+        <header class="conference-header-wrap">
+            <div class="header-nav-bar">
+                <a href="../index.html" class="nav-back-button" id="nav-back-button">← All Conferences</a>
+                <div class="conference-nav-switcher">
+                    <span class="switcher-label">Switch:</span>
+                    <div class="switcher-pills" id="conference-switcher"></div>
+                </div>
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle theme (Light / Dark)" aria-label="Toggle theme">
+                    <span class="theme-toggle-icon" id="theme-icon">◐</span>
+                    <span id="theme-label">Theme</span>
+                </button>
+            </div>
+
+            <div class="conference-hero-card" id="conference-hero">
+                <div class="hero-top-row">
+                    <div class="hero-identity">
+                        <span class="hero-flag" id="hero-flag"><img src="../assets/flags/un.svg" class="flat-flag flag-hero" alt="" loading="lazy"></span>
+                        <div>
+                            <div class="hero-title-row">
+                                <h1 id="hero-title">SIGMETRICS 2027</h1>
+                                <span class="core-badge" id="hero-core-badge">CORE A*</span>
+                            </div>
+                            <p class="hero-subtitle" id="hero-desc">Measurement and Modeling of Computer Systems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-meta-bar">
+                    <div class="hero-meta-item">
+                        <span class="meta-label">Location:</span>
+                        <span id="hero-location">TBA</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="meta-label">Year:</span>
+                        <span id="hero-year">2027</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="meta-label">Tracks:</span>
+                        <span id="hero-tracks-count">10 Tracks & Workshops</span>
+                    </div>
+                    <a href="" target="_blank" rel="noopener noreferrer" class="hero-external-link" id="hero-website-link">Official Website ↗</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Pinned Target Conferences (Live Countdowns & User Memory) -->
+        <section id="pinned-targets-section" class="pinned-targets-section hidden" hidden>
+            <div class="pinned-targets-header">
+                <div class="pinned-title-group">
+                    <span class="pinned-badge-tag" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"></path><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"></path></svg></span>
+                    <h3>Target Conferences</h3>
+                    <span class="pinned-count-badge" id="pinned-count-badge">0 pinned</span>
+                </div>
+                <div class="pinned-header-actions">
+                    <button type="button" id="export-all-pinned-btn" class="btn-subtle" title="Export all pinned target conferences as iCalendar (.ics)">Export All (.ics)</button>
+                    <button type="button" id="clear-all-pinned-btn" class="btn-subtle" title="Clear all pinned target conferences">Clear Targets</button>
+                </div>
+            </div>
+            <div id="pinned-cards-grid" class="pinned-cards-grid">
+                <!-- Rendered dynamically from localStorage -->
+            </div>
+        </section>
+
+        <!-- Dedicated Section for Co-hosted & Co-located Conferences -->
+        <section class="cohosted-banner-section" id="cohosted-banner-section">
+            <div class="cohosted-section-card">
+                <div class="cohosted-header-row">
+                    <div class="cohosted-title-group">
+                        <div>
+                            <h3>Co-hosted & Co-located Events</h3>
+                            <p class="cohosted-desc" id="cohosted-section-desc">Conferences, symposia, and workshops co-located with this venue</p>
+                        </div>
+                    </div>
+                    <span class="cohosted-count-tag" id="cohosted-count-tag">0 Events</span>
+                </div>
+                <div class="cohosted-pills-row" id="cohosted-pills-row"></div>
+            </div>
+        </section>
+
+        <section class="controls single-conf-controls">
+            <!-- Keyword search row -->
+            <div class="search-bar-row">
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="search" id="keyword-search" placeholder="Search tracks or workshops in this conference (e.g. Research, Student, Industry, Tool)..." autocomplete="off">
+                    <kbd class="search-kbd-hint" id="search-kbd-hint" title="Press ⌘K or / to search">⌘K</kbd>
+                    <button type="button" id="clear-search-btn" class="clear-search-btn" title="Clear search" aria-label="Clear search">×</button>
+                </div>
+            </div>
+
+            <div class="single-conf-bottom-bar">
+                <div class="sort-selector">
+                    <label for="sort-order">Sort by:</label>
+                    <select id="sort-order">
+                        <option value="deadline-asc">Submission Deadline (Soonest first)</option>
+                        <option value="deadline-desc">Submission Deadline (Furthest first)</option>
+                        <option value="name-asc">Track Name (A → Z)</option>
+                        <option value="notification-asc">Notification Date (Soonest first)</option>
+                        <option value="cameraready-asc">Camera-ready Deadline (Soonest first)</option>
+                    </select>
+                </div>
+                <div class="conference-stats" id="conference-stats"></div>
+            </div>
+        </section>
+
+        <!-- View Mode Switcher -->
+        <section class="view-mode-bar">
+            <div class="view-mode-toggle" role="group" aria-label="View Mode">
+                <button type="button" class="view-mode-btn" id="view-timeline-btn" data-view="timeline">
+                    <span>Timeline</span>
+                </button>
+                <button type="button" class="view-mode-btn" id="view-cards-btn" data-view="cards">
+                    <span>Cards Grid</span>
+                </button>
+                <button type="button" class="view-mode-btn active" id="view-both-btn" data-view="both">
+                    <span>Combined</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="legend">
+            <div class="legend-header">
+                <span class="legend-title">Legend</span>
+            </div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="color-box blue" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <span>Review Window</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box green" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </span>
+                    <span>Submission Deadline</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box orange" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                    </span>
+                    <span>Abstract Deadline</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box cyan" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </span>
+                    <span>Notification Date</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box indigo" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </span>
+                    <span>Camera-ready Deadline</span>
+                </div>
+                <div class="legend-item">
+                    <span class="est-badge" aria-hidden="true">Est.</span>
+                    <span>Estimated (projected, unconfirmed)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="color-box today" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </span>
+                    <span>Today</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-container">
+            <div id="timeline-chart"></div>
+        </section>
+
+        <section class="workshop-list">
+            <div class="section-header">
+                <h2 id="workshop-list-title">Tracks & Workshops</h2>
+                <span class="section-subtitle" id="workshop-count"></span>
+            </div>
+            <div id="workshop-list-container"></div>
+        </section>
+    </div>
+
+    <!-- Local Chat Bot Widget -->
+    <div id="dateline-chat-widget" class="chat-widget">
+        <button type="button" id="chat-toggle-btn" class="chat-toggle-btn" aria-label="Open Dateline Assistant">
+            <span class="chat-toggle-text">Dateline AI</span>
+            <span class="chat-status-dot" title="Ready (Offline Mode)"></span>
+        </button>
+
+        <div id="chat-panel" class="chat-panel hidden">
+            <div class="chat-panel-header">
+                <div class="chat-panel-title">
+                    <div>
+                        <strong>Dateline Assistant</strong>
+                        <span class="chat-engine-tag" id="chat-engine-tag">Offline Local NLP</span>
+                    </div>
+                </div>
+                <div class="chat-header-actions">
+                    <button type="button" id="chat-llm-settings-btn" class="chat-header-btn" title="Configure Local Ollama / LLM">Settings</button>
+                    <button type="button" id="chat-close-btn" class="chat-header-btn" title="Close chat">×</button>
+                </div>
+            </div>
+
+            <!-- Optional Local LLM Settings Drawer -->
+            <div id="chat-settings-drawer" class="chat-settings-drawer hidden">
+                <div class="settings-group">
+                    <label>
+                        <input type="checkbox" id="enable-ollama-cb"> Enable Local Ollama LLM
+                    </label>
+                </div>
+                <div class="settings-group">
+                    <label for="ollama-url">Ollama Endpoint:</label>
+                    <input type="text" id="ollama-url" value="http://localhost:11434" placeholder="http://localhost:11434">
+                </div>
+                <div class="settings-group">
+                    <label for="ollama-model">Model Name:</label>
+                    <input type="text" id="ollama-model" value="llama3.2" placeholder="e.g. llama3.2, mistral, qwen2.5">
+                </div>
+                <p class="settings-hint">Zero setup: if Ollama is not running, built-in offline NLP responds instantly in-browser.</p>
+            </div>
+
+            <!-- Quick Suggestions Bar -->
+            <div class="chat-quick-prompts">
+                <button type="button" class="chat-prompt-pill" data-prompt="What deadlines are coming up next?">Next deadlines</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Where does Prof. Raghu from SERC publish?">Prof. Raghu venues</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show me VR and gaming conferences like CHI PLAY and IEEE VR">VR & CHI PLAY</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="What conferences are co-hosted with ICSE?">ICSE co-hosted</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show all CORE A* conferences">CORE A*</button>
+                <button type="button" class="chat-prompt-pill" data-prompt="Show agent and AI workshops">Agent workshops</button>
+            </div>
+
+            <!-- Messages Thread -->
+            <div id="chat-messages" class="chat-messages">
+                <!-- Initial welcome populated dynamically -->
+            </div>
+
+            <!-- Input area -->
+            <form id="chat-form" class="chat-input-bar">
+                <input type="text" id="chat-input" placeholder="Ask about deadlines, tracks, Prof. Raghu, co-hosted events..." autocomplete="off">
+                <button type="submit" id="chat-send-btn" class="chat-send-btn" aria-label="Send message">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../app.js?v=20261014-5"></script>
+</body>
+</html>

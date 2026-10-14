@@ -1,0 +1,226 @@
+[
+  {
+    "title": "Automated Software Engineering Conference",
+    "acronym": "ASE",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "Architectural Support for Programming Languages and Operating Systems",
+    "acronym": "ASPLOS",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "Computer Aided Verification",
+    "acronym": "CAV",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "ACM International Conference on the Foundations of Software Engineering",
+    "acronym": "FSE",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Conference on Software Engineering",
+    "acronym": "ICSE",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "IEEE/ACM International Symposium on Mixed and Augmented Reality",
+    "acronym": "ISMAR",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4607"
+  },
+  {
+    "title": "ACM-SIGPLAN Conference on Programming Language Design and Implementation",
+    "acronym": "PLDI",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "ACM-SIGACT Symposium on Principles of Programming Languages",
+    "acronym": "POPL",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "ACM SIG International Conference on Computer Graphics and Interactive Techniques",
+    "acronym": "SIGGRAPH",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4607"
+  },
+  {
+    "title": "Measurement and Modeling of Computer Systems",
+    "acronym": "SIGMETRICS",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4612"
+  },
+  {
+    "title": "SIGGRAPH Asia",
+    "acronym": "SiggraphA",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4607"
+  },
+  {
+    "title": "IEEE Conference on Virtual Reality and 3D User Interfaces",
+    "acronym": "VR",
+    "source": "ICORE2026",
+    "rank": "A*",
+    "primary_for": "4607"
+  },
+  {
+    "title": "International Conference in Business Process Management",
+    "acronym": "BPM",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Symposium on Code Generation and Optimization",
+    "acronym": "CGO",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Conference on Evaluation and Assessment in Software Engineering",
+    "acronym": "EASE",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "European Conference on Object-Oriented Programming",
+    "acronym": "ECOOP",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Symposium on Empirical Software Engineering and Measurement",
+    "acronym": "ESEM",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "European Symposium on Programming",
+    "acronym": "ESOP",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Conference on Functional Programming",
+    "acronym": "ICFP",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "IEEE International Conference on Program Comprehension (previously IWPC, changed in 2006)",
+    "acronym": "ICPC",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Conference on Software Architecture",
+    "acronym": "ICSA",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "IEEE International Conference on Software Maintenance and Evolution (prior to 2014 was ICSM, IEEE International Conference on Software Maintenance)",
+    "acronym": "ICSME",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Conference on Software Testing, Verification and Validation",
+    "acronym": "ICST",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Symposium on Software Reliability Engineering",
+    "acronym": "ISSRE",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Symposium on Software Testing and Analysis",
+    "acronym": "ISSTA",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Conference on Model Driven Engineering Languages and Systems (Previously UML, changed in 2005)",
+    "acronym": "MODELS",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "IEEE International Working Conference on Mining Software Repositories",
+    "acronym": "MSR",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "ACM Conference on Object Oriented Programming Systems Languages and Applications",
+    "acronym": "OOPSLA",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "IEEE International Requirements Engineering Conference",
+    "acronym": "RE",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "IEEE International Conference on Software Analysis, Evolution and Reengineering",
+    "acronym": "SANER",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "International Symposium on Software Engineering for Adaptive and Self-Managing Systems",
+    "acronym": "SEAMS",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  },
+  {
+    "title": "Tools and Algorithms for Construction and Analysis of Systems",
+    "acronym": "TACAS",
+    "source": "ICORE2026",
+    "rank": "A",
+    "primary_for": "4612"
+  }
+]

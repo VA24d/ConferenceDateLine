@@ -19,15 +19,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const VR_CONFERENCES = new Set(['IEEE VR', 'ISMAR', 'VRST', 'CHI PLAY']);
     const AI_CONFERENCES = new Set(['AAMAS']);
     const DOMAINS = [
+        { key: 'se', title: 'Software Engineering', optLabel: 'Software Engineering (SE)', openByDefault: true },
         { key: 'vr', title: 'Virtual Reality, Games & HCI', optLabel: 'VR, Games & HCI', openByDefault: true },
         { key: 'ai', title: 'Agents & AI', optLabel: 'Agents & AI', openByDefault: true },
-        { key: 'se', title: 'Software Engineering', optLabel: 'Software Engineering (SE)', openByDefault: false },
         { key: 'other', title: 'Other Conferences', optLabel: 'Other', openByDefault: true }
     ];
 
     function getDomain(confName) {
         const name = (confName || '').toUpperCase();
         if (SE_CONFERENCES.has(name)) return 'se';
+        const metaDomain = getMeta(confName).domain;
+        if (metaDomain) return metaDomain;
         if (VR_CONFERENCES.has(name)) return 'vr';
         if (AI_CONFERENCES.has(name)) return 'ai';
         return 'other';
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ie",
             year: "2027",
             website: "https://conf.researchr.org/home/icse-2027",
+            domain: "",
             cohosted: ["SEAMS", "CAIN", "AGENT", "MSR", "ICPC", "LLM4Code", "DeepTest", "ChainSEC"]
         },
         'FSE': {
@@ -53,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "cn",
             year: "2027",
             website: "https://conf.researchr.org/home/fse-2027",
+            domain: "",
             cohosted: ["LLMTrust Workshop", "CauSE Workshop", "Student Research Competition"]
         },
         'ISSTA': {
@@ -63,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "sg",
             year: "2027",
             website: "https://conf.researchr.org/home/issta-2027",
+            domain: "",
             cohosted: ["ISSTA Tool Demos", "Doctoral Symposium"]
         },
         'SANER': {
@@ -73,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "us",
             year: "2027",
             website: "https://conf.researchr.org/home/saner-2027",
+            domain: "",
             cohosted: ["IWESEP", "ERA Track", "RENE Track"]
         },
         'EASE': {
@@ -83,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "vn",
             year: "2027",
             website: "https://conf.researchr.org/home/ease-2027",
+            domain: "",
             cohosted: ["Emerging Results Track", "Doctoral Symposium"]
         },
         'IEEE VR': {
@@ -93,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "au",
             year: "2027",
             website: "https://ieeevr.org/2027/",
+            domain: "",
             cohosted: ["3DUI Symposium", "KELVAR", "SEARIS", "OpenXRS", "XR-Health"]
         },
         'ISMAR': {
@@ -103,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "it",
             year: "2027",
             website: "https://www.ismar.net/",
+            domain: "",
             cohosted: ["XR-Health Workshop", "MAR Art & Design", "Doctoral Consortium"]
         },
         'VRST': {
@@ -113,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "jp",
             year: "2026",
             website: "https://vrst.acm.org/",
+            domain: "",
             cohosted: ["Virtual Reality Technologies Workshop", "Posters & Demos"]
         },
         'CHI PLAY': {
@@ -123,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "gb",
             year: "2026",
             website: "https://chiplay.acm.org/2026/",
+            domain: "",
             cohosted: ["Serious Games & VR Showcase", "CHI PLAY WIP & Demos"]
         },
         'ICSA': {
@@ -133,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "nl",
             year: "2027",
             website: "https://conf.researchr.org/home/icsa-2027",
+            domain: "",
             cohosted: ["CAAIN Workshop", "NEMI Track", "Architecture in Practice"]
         },
         'SEAMS': {
@@ -143,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ie",
             year: "2027",
             website: "https://conf.researchr.org/home/seams-2026",
+            domain: "",
             cohosted: ["ICSE", "CAIN", "AGENT", "MSR", "ICPC"]
         },
         'AGENT': {
@@ -153,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ie",
             year: "2027",
             website: "https://conf.researchr.org/home/icse-2027/agent-2027",
+            domain: "",
             cohosted: ["ICSE", "SEAMS", "CAIN"]
         },
         'CAIN': {
@@ -163,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ie",
             year: "2027",
             website: "https://conf.researchr.org/home/cain-2026",
+            domain: "",
             cohosted: ["ICSE", "SEAMS", "AGENT"]
         },
         'MODELS': {
@@ -173,16 +188,18 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "at",
             year: "2027",
             website: "https://conf.researchr.org/home/models-2027",
+            domain: "",
             cohosted: ["SAM (System Analysis and Modelling)", "MDE4AI Workshop"]
         },
         'ISEC': {
             fullName: "Innovations in Software Engineering Conference",
-            coreRating: "A",
+            coreRating: "Indian",
             location: "Hyderabad, India",
             country: "India",
             country_code: "in",
             year: "2027",
             website: "https://conf.researchr.org/home/isec-2027",
+            domain: "",
             cohosted: ["ModSym (Modelling Symposium)", "VR in Software Engineering Track"]
         },
         'ECSA': {
@@ -193,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "cy",
             year: "2027",
             website: "https://conf.researchr.org/home/ecsa-2027",
+            domain: "",
             cohosted: ["Agentic AI & Sustainable Software Track", "ECSA Workshops"]
         },
         'MSR': {
@@ -203,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ie",
             year: "2027",
             website: "https://conf.researchr.org/home/msr-2027",
+            domain: "",
             cohosted: ["ICSE", "ICPC", "SEAMS"]
         },
         'ICPC': {
@@ -213,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ie",
             year: "2027",
             website: "https://conf.researchr.org/home/icpc-2027",
+            domain: "",
             cohosted: ["ICSE", "MSR", "SEAMS"]
         },
         'AAMAS': {
@@ -223,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "cy",
             year: "2027",
             website: "https://cyprusconferences.org/aamas2026/",
+            domain: "",
             cohosted: ["Blue Sky Ideas Track", "Demonstrations Track", "Doctoral Consortium"]
         },
         'ASE': {
@@ -233,6 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "de",
             year: "2027",
             website: "https://conf.researchr.org/home/ase-2026",
+            domain: "",
             cohosted: ["Industry Showcase Track", "Tool Demonstrations Track"]
         },
         'RE': {
@@ -243,9 +265,223 @@ document.addEventListener('DOMContentLoaded', function() {
             country_code: "ca",
             year: "2027",
             website: "https://conf.researchr.org/home/re-2026",
+            domain: "",
             cohosted: ["RE@Next! Track", "Industrial Innovation Track"]
+        },
+        'ASPLOS': {
+            fullName: "Architectural Support for Programming Languages and Operating Systems",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2028",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'CAV': {
+            fullName: "Computer Aided Verification",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'PLDI': {
+            fullName: "ACM-SIGPLAN Conference on Programming Language Design and Implementation",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'POPL': {
+            fullName: "ACM-SIGACT Symposium on Principles of Programming Languages",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2028",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'SIGMETRICS': {
+            fullName: "Measurement and Modeling of Computer Systems",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'BPM': {
+            fullName: "International Conference in Business Process Management",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'CGO': {
+            fullName: "International Symposium on Code Generation and Optimization",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2028",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'ECOOP': {
+            fullName: "European Conference on Object-Oriented Programming",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'ESEM': {
+            fullName: "International Symposium on Empirical Software Engineering and Measurement",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'ESOP': {
+            fullName: "European Symposium on Programming",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'ICFP': {
+            fullName: "International Conference on Functional Programming",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'ICSME': {
+            fullName: "IEEE International Conference on Software Maintenance and Evolution (prior to 2014 was ICSM, IEEE International Conference on Software Maintenance)",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'ICST': {
+            fullName: "International Conference on Software Testing, Verification and Validation",
+            coreRating: "A",
+            location: "San Sebasti\u00e1n, Spain",
+            country: "Spain",
+            country_code: "es",
+            year: "2027",
+            website: "https://conf.researchr.org/home/icst-2027",
+            domain: "se",
+            cohosted: []
+        },
+        'ISSRE': {
+            fullName: "International Symposium on Software Reliability Engineering",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'OOPSLA': {
+            fullName: "ACM Conference on Object Oriented Programming Systems Languages and Applications",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'TACAS': {
+            fullName: "Tools and Algorithms for Construction and Analysis of Systems",
+            coreRating: "A",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "se",
+            cohosted: []
+        },
+        'SIGGRAPH': {
+            fullName: "ACM SIG International Conference on Computer Graphics and Interactive Techniques",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "vr",
+            cohosted: []
+        },
+        'SiggraphA': {
+            fullName: "SIGGRAPH Asia",
+            coreRating: "A*",
+            location: "TBA",
+            country: "",
+            country_code: "un",
+            year: "2027",
+            website: "#",
+            domain: "vr",
+            cohosted: []
         }
     };
+
+    // CORE rank labels: 'Indian' marks Indian venues that are not CORE-ranked.
+    function coreLabel(rating) {
+        return rating === 'Indian' ? '🇮🇳 Indian' : `CORE ${rating}`;
+    }
+    function coreTagClass(rating) {
+        if (rating === 'A*') return 'core-star';
+        if (rating === 'Indian') return 'core-indian';
+        return 'core-a';
+    }
+    function coreBadgeClass(rating) {
+        if (rating === 'A*') return 'is-core-star';
+        if (rating === 'Indian') return 'is-core-indian';
+        return 'is-core-a';
+    }
 
     function getMeta(confName) {
         if (!confName) return { fullName: 'Unknown', coreRating: 'Unranked', location: 'TBA', year: '2027', website: '#', cohosted: [] };
@@ -322,7 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Ireland': 'ie', 'China': 'cn', 'Singapore': 'sg', 'United States': 'us', 'USA': 'us',
         'Vietnam': 'vn', 'Australia': 'au', 'Italy': 'it', 'Japan': 'jp', 'Switzerland': 'ch',
         'Netherlands': 'nl', 'Austria': 'at', 'India': 'in', 'Cyprus': 'cy', 'Denmark': 'dk',
-        'Germany': 'de', 'Canada': 'ca', 'United Kingdom': 'gb'
+        'Germany': 'de', 'Canada': 'ca', 'United Kingdom': 'gb', 'Spain': 'es'
     };
     const FLAG_CODES = new Set(Object.values(COUNTRY_CODES));
 
@@ -814,6 +1050,8 @@ document.addEventListener('DOMContentLoaded', function() {
             pinnedSection.style.setProperty('display', 'none', 'important');
             if (pinnedCountBadge) pinnedCountBadge.textContent = '0 pinned';
             pinnedGrid.innerHTML = '';
+            const emptyPlanner = document.getElementById('submission-planner');
+            if (emptyPlanner) emptyPlanner.innerHTML = '';
             return;
         }
 
@@ -843,7 +1081,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="pinned-card-identity">
                             ${renderFlagHtml(meta, 'flag-sm')}
                             <a href="${esc(confPageUrl)}" style="color:inherit; text-decoration:none;"><strong>${conf}</strong></a>
-                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}" style="font-size:10px; padding:1px 5px;">CORE ${esc(meta.coreRating)}</span>
+                            <span class="core-tag ${coreTagClass(meta.coreRating)}" style="font-size:10px; padding:1px 5px;">${esc(coreLabel(meta.coreRating))}</span>
                         </div>
                         <button type="button" class="pinned-unpin-btn" data-conf="${conf}" data-track="${trk}" title="Unpin this target conference" aria-label="Unpin ${conf}">×</button>
                     </div>
@@ -874,7 +1112,52 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }).join('');
 
+        renderSubmissionPlanner(targets);
         updateLiveCountdowns();
+    }
+
+    // Conflict-free multi-venue submission plan for the pinned targets (logic lives in planner.js)
+    function renderSubmissionPlanner(targets) {
+        const box = document.getElementById('submission-planner');
+        if (!box) return;
+        if (!window.SubmissionPlanner || targets.length < 2) { box.innerHTML = ''; return; }
+
+        const live = targets.map(t => {
+            const f = findDeadline(t.conf, t.track || 'Main Track') || {};
+            return {
+                conf: t.conf,
+                track: t.track || 'Main Track',
+                paper_submission_date: f.paper_submission_date || t.paper_submission_date,
+                intimation_date: f.intimation_date || t.intimation_date,
+                estimated: f.paper_submission_date ? !!f.estimated : !!t.estimated,
+            };
+        });
+        const plan = window.SubmissionPlanner.analyze(live);
+
+        const est = it => (it.estimated ? ' <span class="est-mark">(est.)</span>' : '');
+        const chain = plan.chain.length
+            ? `<ol class="planner-chain">${plan.chain.map(it => `<li><strong>${esc(it.label)}</strong>
+                submit ${esc(formatDate(it.submit))}${est(it)} → decision ${esc(formatDate(it.notify))}${it.notifKnown ? '' : ' <em>(assumed)</em>'}</li>`).join('')}</ol>`
+            : '<p class="planner-note">No upcoming deadlines to schedule.</p>';
+        const issues = [];
+        plan.clashes.forEach(c => issues.push(`<li class="planner-warn">Deadline clash: <strong>${esc(c.a)}</strong> and <strong>${esc(c.b)}</strong> are ${c.gapDays === 0 ? 'on the same day' : c.gapDays + ' day' + (c.gapDays > 1 ? 's' : '') + ' apart'}.</li>`));
+        plan.overlaps.forEach(o => issues.push(`<li class="planner-warn">Concurrent review: <strong>${esc(o.second)}</strong> (due ${esc(formatDate(o.secondSub))}) opens before <strong>${esc(o.first)}</strong> decides (${esc(formatDate(o.firstNotif))}${o.notifKnown ? '' : ', assumed'}). Same paper in both would break dual-submission rules.</li>`));
+        const deferred = plan.deferred.length
+            ? `<p class="planner-note">Pick one per paper, or use different papers: ${plan.deferred.map(d => esc(d.label)).join(', ')} conflict${plan.deferred.length === 1 ? 's' : ''} with the chain above.</p>`
+            : '';
+        const skipped = [];
+        if (plan.passed.length) skipped.push(`Passed: ${plan.passed.map(esc).join(', ')}`);
+        if (plan.undated.length) skipped.push(`No date yet: ${plan.undated.map(esc).join(', ')}`);
+
+        box.innerHTML = `
+            <div class="planner-head">
+                <h4>Submission planner</h4>
+                <span class="planner-status ${plan.conflictFree ? 'is-ok' : 'is-warn'}">${plan.conflictFree ? 'No conflicts' : (plan.overlaps.length + plan.clashes.length) + ' conflict' + (plan.overlaps.length + plan.clashes.length > 1 ? 's' : '')}</span>
+            </div>
+            ${issues.length ? `<ul class="planner-issues">${issues.join('')}</ul>` : ''}
+            <p class="planner-sub">Suggested order for one paper (each decision lands before the next submission):</p>
+            ${chain}${deferred}
+            ${skipped.length ? `<p class="planner-note">${skipped.join(' • ')}</p>` : ''}`;
     }
 
     function updateLiveCountdowns() {
@@ -1006,8 +1289,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.createElement('a');
                 link.href = confSlug(conf.name);
                 link.className = 'dedicated-pill-link';
-                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${conf.name}</strong> <span class="pill-core">${meta.coreRating}</span> ↗`;
-                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${esc(conf.name)}</strong> <span class="pill-core">${esc(meta.coreRating)}</span> ↗`;
+                                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${esc(conf.name)}</strong> <span class="pill-core">${esc(meta.coreRating)}</span> ↗`;
                 quickPillsContainer.appendChild(link);
             });
         }
@@ -1045,8 +1327,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroTitle) heroTitle.textContent = `${confName} ${meta.year}`;
         if (heroFlag) heroFlag.innerHTML = renderFlagHtml(meta, 'flag-hero');
         if (heroCoreBadge) {
-            heroCoreBadge.textContent = `CORE ${meta.coreRating}`;
-            heroCoreBadge.className = `core-badge ${meta.coreRating === 'A*' ? 'is-core-star' : 'is-core-a'}`;
+            heroCoreBadge.textContent = coreLabel(meta.coreRating);
+            heroCoreBadge.className = `core-badge ${coreBadgeClass(meta.coreRating)}`;
         }
         if (heroDesc) heroDesc.textContent = meta.fullName;
         if (heroLocation) heroLocation.textContent = meta.location;
@@ -1576,7 +1858,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <a href="${esc(confPageUrl)}" class="workshop-conf-badge" title="View ${esc(d.conference_name)} page">
                             ${renderFlagHtml(meta, 'flag-sm')} ${esc(d.conference_name)} ↗
                         </a>
-                        <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">CORE ${esc(meta.coreRating)}</span>
+                        <span class="core-tag ${coreTagClass(meta.coreRating)}">${esc(coreLabel(meta.coreRating))}</span>
                         ${daysBadgeHtml}
                         ${d.estimated ? EST_BADGE_HTML : ''}
                     </div>

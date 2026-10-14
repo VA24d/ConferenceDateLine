@@ -87,3 +87,25 @@ ASE,Tool Demonstrations Track,,2027-06-19,,2027-08-14,,https://conf.researchr.or
 RE,Research paper track,,2027-03-20,2027-03-13,2027-05-22,2027-07-10,https://conf.researchr.org/home/re-2026,true
 RE,RE@Next! Track,,2027-04-10,,2027-06-05,,https://conf.researchr.org/home/re-2026,
 RE,Industrial Innovation Track,,2027-04-17,,2027-06-12,,https://conf.researchr.org/home/re-2026,
+ASPLOS,Research paper track,,2027-08-15,,2027-10-29,,,true
+CAV,Research paper track,,2027-02-15,,2027-05-01,,,true
+PLDI,Research paper track,,2026-11-15,,2027-01-29,,,true
+POPL,Research paper track,,2027-07-15,,2027-09-28,,,true
+SIGMETRICS,Research paper track,,2026-10-15,,2026-12-29,,,true
+BPM,Research paper track,,2027-04-15,,2027-06-29,,,true
+CGO,Research paper track,,2027-09-15,,2027-11-29,,,true
+ECOOP,Research paper track,,2026-11-15,,2027-01-29,,,true
+ESEM,Research paper track,,2027-05-15,,2027-07-29,,,true
+ESOP,Research paper track,,2026-10-15,,2026-12-29,,,true
+ICFP,Research paper track,,2027-03-15,,2027-05-29,,,true
+ICSME,Research paper track,,2027-03-15,,2027-05-29,,,true
+ICST,Research Papers,,2026-11-02,,2026-12-22,,https://conf.researchr.org/track/icst-2027/icst-2027-research-papers,
+ICST,New Ideas and Emerging Results,,2027-01-13,,,,https://conf.researchr.org/track/icst-2027/icst-2027-nier,
+ICST,Industry,,2027-01-21,,,,https://conf.researchr.org/track/icst-2027/icst-2027-industry,
+ICST,Challenge Competition Track,,2027-01-15,,,,https://conf.researchr.org/track/icst-2027/icst-2027-challenge-competition-track,
+ICST,,Workshops (returning proposals),2026-11-04,,2026-11-06,,https://conf.researchr.org/track/icst-2027/icst-2027-workshops,
+ISSRE,Research paper track,,2027-04-15,,2027-06-29,,,true
+OOPSLA,Research paper track,,2026-10-15,,2026-12-29,,,true
+TACAS,Research paper track,,2026-10-15,,2026-12-29,,,true
+SIGGRAPH,Research paper track,,2027-01-15,,2027-03-31,,,true
+SiggraphA,Research paper track,,2027-01-15,,2027-03-31,,,true

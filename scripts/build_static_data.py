@@ -136,6 +136,7 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
         flag = meta.get("flag", "")
         year = str(meta.get("year", "2027"))
         core = meta.get("core_rating", "Unranked")
+        core_label = "Indian" if core == "Indian" else f"CORE {core}"
         full_name = meta.get("full_name", f"{conf_name} Conference")
         loc = meta.get("location", "TBA")
         website = meta.get("website", "#")
@@ -166,7 +167,7 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
         )
         page_content = re.sub(
             r'<span\s+class="core-badge"\s+id="hero-core-badge">.*?</span>',
-            f'<span class="core-badge" id="hero-core-badge">CORE {core}</span>',
+            f'<span class="core-badge" id="hero-core-badge">{core_label}</span>',
             page_content
         )
         page_content = re.sub(
@@ -218,7 +219,8 @@ def sync_app_js_metadata(conferences: dict, app_js_path: str = os.path.join(ROOT
             f"            country: {json.dumps(c.get('country', ''))},",
             f"            country_code: {json.dumps(c.get('country_code', 'un'))},",
             f"            year: {json.dumps(str(c.get('year', 2027)))},",
-            f"            website: {json.dumps(c.get('website', '#'))},",
+            f"            website: {json.dumps(c.get('website') or '#')},",
+            f"            domain: {json.dumps(c.get('domain', ''))},",
             f"            cohosted: {cohosted_json}",
             f"        }}{',' if idx < len(conf_items) - 1 else ''}",
         ]
