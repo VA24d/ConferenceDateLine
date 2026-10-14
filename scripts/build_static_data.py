@@ -197,6 +197,45 @@ def generate_conference_pages(conferences: dict, template_path: str = TEMPLATE_P
     print(f"✓ Generated {len(generated_files)} conference pages in {out_dir}/")
 
 
+def sync_app_js_metadata(conferences: dict, app_js_path: str = os.path.join(ROOT, "app.js")) -> None:
+    """Synchronize CONFERENCE_METADATA dictionary in app.js from master YAML."""
+    if not os.path.exists(app_js_path):
+        return
+
+    with open(app_js_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    lines = ["    // Conference Metadata (Locations, CORE ratings, Year, etc.)", "    const CONFERENCE_METADATA = {"]
+    conf_items = list(conferences.items())
+    for idx, (name, c) in enumerate(conf_items):
+        cohosted_json = json.dumps(c.get("cohosted", []))
+        block = [
+            f"        '{name}': {{",
+            f"            fullName: {json.dumps(c.get('full_name', ''))},",
+            f"            coreRating: {json.dumps(c.get('core_rating', 'Unranked'))},",
+            f"            location: {json.dumps(c.get('location', 'TBA'))},",
+            f"            country: {json.dumps(c.get('country', ''))},",
+            f"            country_code: {json.dumps(c.get('country_code', 'un'))},",
+            f"            year: {json.dumps(str(c.get('year', 2027)))},",
+            f"            website: {json.dumps(c.get('website', '#'))},",
+            f"            cohosted: {cohosted_json}",
+            f"        }}{',' if idx < len(conf_items) - 1 else ''}",
+        ]
+        lines.extend(block)
+    lines.append("    };")
+
+    new_block = "\n".join(lines)
+    updated = re.sub(
+        r"    // Conference Metadata \(Locations, CORE ratings, Year, etc\.\)\n    const CONFERENCE_METADATA = \{[\s\S]*?\n    \};",
+        lambda _: new_block,
+        content,
+    )
+    if updated != content:
+        with open(app_js_path, "w", encoding="utf-8") as f:
+            f.write(updated)
+        print(f"✓ Synchronized CONFERENCE_METADATA in {app_js_path}")
+
+
 def main():
     print("Building Conference DateLine static assets...")
     conferences = load_master_config()
@@ -204,6 +243,7 @@ def main():
     write_csv(deadlines)
     write_json(deadlines)
     generate_conference_pages(conferences)
+    sync_app_js_metadata(conferences)
     print("✓ Static build complete!")
 
 

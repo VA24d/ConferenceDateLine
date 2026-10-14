@@ -17,214 +17,214 @@ document.addEventListener('DOMContentLoaded', function() {
     // Conference Metadata (Locations, CORE ratings, Year, etc.)
     const CONFERENCE_METADATA = {
         'ICSE': {
-            fullName: 'International Conference on Software Engineering',
-            coreRating: 'A*',
-            location: 'Dublin, Ireland',
-            country: 'Ireland',
-            country_code: 'ie',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/icse-2027',
-            cohosted: ['SEAMS', 'CAIN', 'AGENT', 'MSR', 'ICPC']
+            fullName: "International Conference on Software Engineering",
+            coreRating: "A*",
+            location: "Dublin, Ireland",
+            country: "Ireland",
+            country_code: "ie",
+            year: "2027",
+            website: "https://conf.researchr.org/home/icse-2027",
+            cohosted: ["SEAMS", "CAIN", "AGENT", "MSR", "ICPC", "LLM4Code", "DeepTest", "ChainSEC"]
         },
         'FSE': {
-            fullName: 'ACM International Conference on the Foundations of Software Engineering',
-            coreRating: 'A*',
-            location: 'Shenzhen, China',
-            country: 'China',
-            country_code: 'cn',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/fse-2027',
-            cohosted: ['Student Research Competition']
+            fullName: "ACM International Conference on the Foundations of Software Engineering",
+            coreRating: "A*",
+            location: "Shenzhen, China",
+            country: "China",
+            country_code: "cn",
+            year: "2027",
+            website: "https://conf.researchr.org/home/fse-2027",
+            cohosted: ["LLMTrust Workshop", "CauSE Workshop", "Student Research Competition"]
         },
         'ISSTA': {
-            fullName: 'International Symposium on Software Testing and Analysis',
-            coreRating: 'A',
-            location: 'Singapore',
-            country: 'Singapore',
-            country_code: 'sg',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/issta-2027',
-            cohosted: ['Doctoral Symposium']
+            fullName: "International Symposium on Software Testing and Analysis",
+            coreRating: "A",
+            location: "Singapore",
+            country: "Singapore",
+            country_code: "sg",
+            year: "2027",
+            website: "https://conf.researchr.org/home/issta-2027",
+            cohosted: ["ISSTA Tool Demos", "Doctoral Symposium"]
         },
         'SANER': {
-            fullName: 'IEEE International Conference on Software Analysis, Evolution and Reengineering',
-            coreRating: 'A',
-            location: 'Richmond, Virginia, USA',
-            country: 'United States',
-            country_code: 'us',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/saner-2027',
-            cohosted: ['ERA Track', 'RENE Track']
+            fullName: "IEEE International Conference on Software Analysis, Evolution and Reengineering",
+            coreRating: "A",
+            location: "Richmond, Virginia, USA",
+            country: "United States",
+            country_code: "us",
+            year: "2027",
+            website: "https://conf.researchr.org/home/saner-2027",
+            cohosted: ["IWESEP", "ERA Track", "RENE Track"]
         },
         'EASE': {
-            fullName: 'International Conference on Evaluation and Assessment in Software Engineering',
-            coreRating: 'A',
-            location: 'Hanoi, Vietnam',
-            country: 'Vietnam',
-            country_code: 'vn',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/ease-2027',
-            cohosted: ['Doctoral Symposium']
+            fullName: "International Conference on Evaluation and Assessment in Software Engineering",
+            coreRating: "A",
+            location: "Hanoi, Vietnam",
+            country: "Vietnam",
+            country_code: "vn",
+            year: "2027",
+            website: "https://conf.researchr.org/home/ease-2027",
+            cohosted: ["Emerging Results Track", "Doctoral Symposium"]
         },
         'IEEE VR': {
-            fullName: 'IEEE Conference on Virtual Reality and 3D User Interfaces',
-            coreRating: 'A*',
-            location: 'Melbourne, Australia',
-            country: 'Australia',
-            country_code: 'au',
-            year: '2027',
-            website: 'https://ieeevr.org/2027/',
-            cohosted: ['3DUI Symposium']
+            fullName: "IEEE Conference on Virtual Reality and 3D User Interfaces",
+            coreRating: "A*",
+            location: "Melbourne, Australia",
+            country: "Australia",
+            country_code: "au",
+            year: "2027",
+            website: "https://ieeevr.org/2027/",
+            cohosted: ["3DUI Symposium", "KELVAR", "SEARIS", "OpenXRS", "XR-Health"]
         },
         'ISMAR': {
-            fullName: 'IEEE International Symposium on Mixed and Augmented Reality',
-            coreRating: 'A*',
-            location: 'Bari, Italy',
-            country: 'Italy',
-            country_code: 'it',
-            year: '2027',
-            website: 'https://www.ismar.net/',
-            cohosted: ['MAR Art & Design', 'Doctoral Consortium']
+            fullName: "IEEE International Symposium on Mixed and Augmented Reality",
+            coreRating: "A*",
+            location: "Bari, Italy",
+            country: "Italy",
+            country_code: "it",
+            year: "2027",
+            website: "https://www.ismar.net/",
+            cohosted: ["XR-Health Workshop", "MAR Art & Design", "Doctoral Consortium"]
         },
         'VRST': {
-            fullName: 'ACM Symposium on Virtual Reality Software and Technology',
-            coreRating: 'A',
-            location: 'Sendai, Japan',
-            country: 'Japan',
-            country_code: 'jp',
-            year: '2026',
-            website: 'https://vrst.acm.org/',
-            cohosted: ['Posters & Demos']
+            fullName: "ACM Symposium on Virtual Reality Software and Technology",
+            coreRating: "A",
+            location: "Sendai, Japan",
+            country: "Japan",
+            country_code: "jp",
+            year: "2027",
+            website: "https://vrst.acm.org/",
+            cohosted: ["Virtual Reality Technologies Workshop", "Posters & Demos"]
         },
         'CHI PLAY': {
-            fullName: 'ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play',
-            coreRating: 'A',
-            location: 'Zurich, Switzerland',
-            country: 'Switzerland',
-            country_code: 'ch',
-            year: '2026',
-            website: 'https://chiplay.acm.org/',
-            cohosted: ['Serious Games & VR Showcase', 'Work-in-Progress']
+            fullName: "ACM SIGCHI Annual Symposium on Computer-Human Interaction in Play",
+            coreRating: "A",
+            location: "Zurich, Switzerland",
+            country: "Switzerland",
+            country_code: "ch",
+            year: "2027",
+            website: "https://chiplay.acm.org/2027/",
+            cohosted: ["Serious Games & VR Showcase", "CHI PLAY WIP & Demos"]
         },
         'ICSA': {
-            fullName: 'IEEE International Conference on Software Architecture',
-            coreRating: 'A',
-            location: 'Odense, Denmark',
-            country: 'Denmark',
-            country_code: 'dk',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/icsa-2026',
-            cohosted: ['Software Architecture in Practice', 'Early Career Track']
+            fullName: "IEEE International Conference on Software Architecture",
+            coreRating: "A",
+            location: "Amsterdam, Netherlands",
+            country: "Netherlands",
+            country_code: "nl",
+            year: "2027",
+            website: "https://conf.researchr.org/home/icsa-2027",
+            cohosted: ["CAAIN Workshop", "NEMI Track", "Architecture in Practice"]
         },
         'SEAMS': {
-            fullName: 'International Symposium on Software Engineering for Adaptive and Self-Managing Systems',
-            coreRating: 'A',
-            location: 'Dublin, Ireland',
-            country: 'Ireland',
-            country_code: 'ie',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/seams-2026',
-            cohosted: ['ICSE', 'CAIN', 'AGENT', 'MSR', 'ICPC']
+            fullName: "International Symposium on Software Engineering for Adaptive and Self-Managing Systems",
+            coreRating: "A",
+            location: "Dublin, Ireland (Co-located with ICSE 2027)",
+            country: "Ireland",
+            country_code: "ie",
+            year: "2027",
+            website: "https://conf.researchr.org/home/seams-2026",
+            cohosted: ["ICSE", "CAIN", "AGENT", "MSR", "ICPC"]
         },
         'AGENT': {
-            fullName: 'International Conference on Agent-Based Software Engineering',
-            coreRating: 'A* Co-located',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
-            country: 'Ireland',
-            country_code: 'ie',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/icse-2027/agent-2027',
-            cohosted: ['ICSE', 'SEAMS', 'CAIN']
+            fullName: "International Conference on Agent-Based Software Engineering",
+            coreRating: "A* Co-located",
+            location: "Dublin, Ireland (Co-located with ICSE 2027)",
+            country: "Ireland",
+            country_code: "ie",
+            year: "2027",
+            website: "https://conf.researchr.org/home/icse-2027/agent-2027",
+            cohosted: ["ICSE", "SEAMS", "CAIN"]
         },
         'CAIN': {
-            fullName: 'International Conference on AI Engineering – Software Engineering for AI',
-            coreRating: 'A',
-            location: 'Dublin, Ireland (Co-located with ICSE 2027)',
-            country: 'Ireland',
-            country_code: 'ie',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/cain-2026',
-            cohosted: ['ICSE', 'SEAMS', 'AGENT']
+            fullName: "IEEE/ACM International Conference on AI Engineering \u2013 Software Engineering for AI",
+            coreRating: "A",
+            location: "Dublin, Ireland (Co-located with ICSE 2027)",
+            country: "Ireland",
+            country_code: "ie",
+            year: "2027",
+            website: "https://conf.researchr.org/home/cain-2026",
+            cohosted: ["ICSE", "SEAMS", "AGENT"]
         },
         'MODELS': {
-            fullName: 'ACM/IEEE International Conference on Model Driven Engineering Languages and Systems',
-            coreRating: 'A',
-            location: 'Vienna, Austria',
-            country: 'Austria',
-            country_code: 'at',
-            year: '2026',
-            website: 'https://conf.researchr.org/home/models-2026',
-            cohosted: ['Educators Symposium']
+            fullName: "ACM/IEEE International Conference on Model Driven Engineering Languages and Systems",
+            coreRating: "A",
+            location: "Linz, Austria",
+            country: "Austria",
+            country_code: "at",
+            year: "2027",
+            website: "https://conf.researchr.org/home/models-2027",
+            cohosted: ["SAM (System Analysis and Modelling)", "MDE4AI Workshop"]
         },
         'ISEC': {
-            fullName: 'Innovations in Software Engineering Conference',
-            coreRating: 'A',
-            location: 'Hyderabad, India',
-            country: 'India',
-            country_code: 'in',
-            year: '2026',
-            website: 'https://conf.researchr.org/home/isec-2026',
-            cohosted: ['ModSym (Modelling Symposium)']
+            fullName: "Innovations in Software Engineering Conference",
+            coreRating: "A",
+            location: "Hyderabad, India",
+            country: "India",
+            country_code: "in",
+            year: "2027",
+            website: "https://conf.researchr.org/home/isec-2027",
+            cohosted: ["ModSym (Modelling Symposium)", "VR in Software Engineering Track"]
         },
         'ECSA': {
-            fullName: 'European Conference on Software Architecture',
-            coreRating: 'A',
-            location: 'Limassol, Cyprus',
-            country: 'Cyprus',
-            country_code: 'cy',
-            year: '2026',
-            website: 'https://conf.researchr.org/home/ecsa-2026',
-            cohosted: ['ECSA Workshops']
+            fullName: "European Conference on Software Architecture",
+            coreRating: "A",
+            location: "Limassol, Cyprus",
+            country: "Cyprus",
+            country_code: "cy",
+            year: "2027",
+            website: "https://conf.researchr.org/home/ecsa-2027",
+            cohosted: ["Agentic AI & Sustainable Software Track", "ECSA Workshops"]
         },
         'MSR': {
-            fullName: 'Mining Software Repositories',
-            coreRating: 'A',
-            location: 'Dublin, Ireland',
-            country: 'Ireland',
-            country_code: 'ie',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/msr-2027',
-            cohosted: ['ICSE', 'ICPC', 'SEAMS']
+            fullName: "Mining Software Repositories",
+            coreRating: "A",
+            location: "Dublin, Ireland (Co-located with ICSE 2027)",
+            country: "Ireland",
+            country_code: "ie",
+            year: "2027",
+            website: "https://conf.researchr.org/home/msr-2027",
+            cohosted: ["ICSE", "ICPC", "SEAMS"]
         },
         'ICPC': {
-            fullName: 'International Conference on Program Comprehension',
-            coreRating: 'A',
-            location: 'Dublin, Ireland',
-            country: 'Ireland',
-            country_code: 'ie',
-            year: '2027',
-            website: 'https://conf.researchr.org/home/icpc-2027',
-            cohosted: ['ICSE', 'MSR', 'SEAMS']
+            fullName: "IEEE/ACM International Conference on Program Comprehension",
+            coreRating: "A",
+            location: "Dublin, Ireland (Co-located with ICSE 2027)",
+            country: "Ireland",
+            country_code: "ie",
+            year: "2027",
+            website: "https://conf.researchr.org/home/icpc-2027",
+            cohosted: ["ICSE", "MSR", "SEAMS"]
         },
         'AAMAS': {
-            fullName: 'International Conference on Autonomous Agents and Multiagent Systems',
-            coreRating: 'A*',
-            location: 'Paphos, Cyprus',
-            country: 'Cyprus',
-            country_code: 'cy',
-            year: '2026',
-            website: 'https://cyprusconferences.org/aamas2026/',
-            cohosted: ['Blue Sky Ideas Track', 'Demonstrations Track', 'Doctoral Consortium']
+            fullName: "International Conference on Autonomous Agents and Multiagent Systems",
+            coreRating: "A*",
+            location: "Paphos, Cyprus",
+            country: "Cyprus",
+            country_code: "cy",
+            year: "2027",
+            website: "https://cyprusconferences.org/aamas2026/",
+            cohosted: ["Blue Sky Ideas Track", "Demonstrations Track", "Doctoral Consortium"]
         },
         'ASE': {
-            fullName: 'IEEE/ACM International Conference on Automated Software Engineering',
-            coreRating: 'A*',
-            location: 'Munich, Germany',
-            country: 'Germany',
-            country_code: 'de',
-            year: '2026',
-            website: 'https://conf.researchr.org/home/ase-2026',
-            cohosted: ['Industry Showcase Track', 'Tool Demonstrations Track']
+            fullName: "IEEE/ACM International Conference on Automated Software Engineering",
+            coreRating: "A*",
+            location: "Munich, Germany",
+            country: "Germany",
+            country_code: "de",
+            year: "2027",
+            website: "https://conf.researchr.org/home/ase-2026",
+            cohosted: ["Industry Showcase Track", "Tool Demonstrations Track"]
         },
         'RE': {
-            fullName: 'IEEE International Requirements Engineering Conference',
-            coreRating: 'A',
-            location: 'Montreal, Canada',
-            country: 'Canada',
-            country_code: 'ca',
-            year: '2026',
-            website: 'https://conf.researchr.org/home/re-2026',
-            cohosted: ['RE@Next! Track', 'Industrial Innovation Track']
+            fullName: "IEEE International Requirements Engineering Conference",
+            coreRating: "A",
+            location: "Montreal, Canada",
+            country: "Canada",
+            country_code: "ca",
+            year: "2027",
+            website: "https://conf.researchr.org/home/re-2026",
+            cohosted: ["RE@Next! Track", "Industrial Innovation Track"]
         }
     };
 
@@ -237,6 +237,55 @@ document.addEventListener('DOMContentLoaded', function() {
         return { fullName: confName, coreRating: 'Unranked', location: 'TBA', year: '2027', website: '#', cohosted: [] };
     }
 
+    // Escape text for safe interpolation into HTML (data comes from scraped JSON / user input)
+    function esc(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, ch => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+        ));
+    }
+
+    // Only allow http(s) links; anything else (javascript:, data:) becomes ''
+    function safeUrl(url) {
+        if (!url || url === '#') return '';
+        try {
+            const u = new URL(url, window.location.href);
+            return (u.protocol === 'http:' || u.protocol === 'https:') ? u.href : '';
+        } catch (e) {
+            return '';
+        }
+    }
+
+    // localStorage can throw (private mode, blocked storage)
+    function storageGet(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function storageSet(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) { /* ignore */ }
+    }
+
+    const DAY_MS = 86400000;
+
+    // Days until an AoE deadline (negative = passed) + CSS status class + label
+    function getDeadlineStatus(dateStr) {
+        const due = parseAoeDate(dateStr);
+        if (!due) return null;
+        const days = Math.ceil((due.getTime() - Date.now()) / DAY_MS);
+        let statusClass = 'days-status-safe';
+        if (days < 0) statusClass = 'days-status-past';
+        else if (days <= 10) statusClass = 'days-status-urgent';
+        else if (days <= 30) statusClass = 'days-status-soon';
+        else if (days <= 60) statusClass = 'days-status-medium';
+        const label = days > 0 ? `${days}d left` : days === 0 ? 'Due Today' : `Passed ${Math.abs(days)}d ago`;
+        return { days, statusClass, label };
+    }
+
+    function findDeadline(confName, trackName) {
+        const confNorm = (confName || '').toUpperCase();
+        const trackNorm = (trackName || 'Main Track').toUpperCase();
+        return allDeadlines.find(d => (d.conference_name || '').toUpperCase() === confNorm &&
+            (d.workshop_name || d.track_name || 'Main Track').toUpperCase() === trackNorm);
+    }
+
     const isInSubfolder = window.location.pathname.includes('/conferences/');
     const isConferencePage = document.body.dataset.page === 'conference';
 
@@ -245,47 +294,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return isInSubfolder ? `${slug}.html` : `conferences/${slug}.html`;
     }
 
-    // Flat SVG Flags lookup table
-    const FLAG_CODES = {
-        'Ireland': 'ie',
-        'China': 'cn',
-        'Singapore': 'sg',
-        'United States': 'us',
-        'USA': 'us',
-        'Vietnam': 'vn',
-        'Australia': 'au',
-        'Italy': 'it',
-        'Japan': 'jp',
-        'Switzerland': 'ch',
-        'Netherlands': 'nl',
-        'Austria': 'at',
-        'India': 'in',
-        'Cyprus': 'cy',
-        'Denmark': 'dk',
-        'Germany': 'de',
-        'Canada': 'ca',
-        'ie': 'ie',
-        'cn': 'cn',
-        'sg': 'sg',
-        'us': 'us',
-        'vn': 'vn',
-        'au': 'au',
-        'it': 'it',
-        'jp': 'jp',
-        'ch': 'ch',
-        'nl': 'nl',
-        'at': 'at',
-        'in': 'in',
-        'cy': 'cy',
-        'dk': 'dk',
-        'de': 'de',
-        'ca': 'ca'
+    // Flat SVG Flags lookup table (country name -> ISO code)
+    const COUNTRY_CODES = {
+        'Ireland': 'ie', 'China': 'cn', 'Singapore': 'sg', 'United States': 'us', 'USA': 'us',
+        'Vietnam': 'vn', 'Australia': 'au', 'Italy': 'it', 'Japan': 'jp', 'Switzerland': 'ch',
+        'Netherlands': 'nl', 'Austria': 'at', 'India': 'in', 'Cyprus': 'cy', 'Denmark': 'dk',
+        'Germany': 'de', 'Canada': 'ca'
     };
+    const FLAG_CODES = new Set(Object.values(COUNTRY_CODES));
 
     function getFlagCode(metaOrConf) {
         if (!metaOrConf) return 'globe';
-        if (metaOrConf.country_code && FLAG_CODES[metaOrConf.country_code]) return FLAG_CODES[metaOrConf.country_code];
-        if (metaOrConf.country && FLAG_CODES[metaOrConf.country]) return FLAG_CODES[metaOrConf.country];
+        const cc = (metaOrConf.country_code || '').toLowerCase();
+        if (FLAG_CODES.has(cc)) return cc;
+        if (metaOrConf.country && COUNTRY_CODES[metaOrConf.country]) return COUNTRY_CODES[metaOrConf.country];
         return 'globe';
     }
 
@@ -295,6 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const flagPath = isInSubfolder ? `../assets/flags/${code}.svg` : `assets/flags/${code}.svg`;
         const cls = sizeClass ? `flat-flag ${sizeClass}` : 'flat-flag';
         return `<img src="${flagPath}" class="${cls}" alt="${countryName}" title="${countryName}" loading="lazy">`;
+        return `<img src="${flagPath}" class="${cls}" alt="${esc(countryName)}" title="${esc(countryName)}" loading="lazy">`;
     }
 
     // State
@@ -421,10 +444,11 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (storageErr) {
                 // Ignore storage quota
             }
+            storageSet(cacheKey, JSON.stringify(data));
             return enrichDeadlines(data);
         } catch (fetchErr) {
             console.warn('Network fetch failed, attempting localStorage cache fallback:', fetchErr);
-            const cached = localStorage.getItem(cacheKey);
+            const cached = storageGet(cacheKey);
             if (cached) {
                 try {
                     const parsed = JSON.parse(cached);
@@ -463,12 +487,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        const savedTheme = localStorage.getItem('cdl_theme') || 'auto';
+        const savedTheme = storageGet('cdl_theme') || 'auto';
         applyTheme(savedTheme);
 
         if (themeBtn) {
             themeBtn.addEventListener('click', () => {
-                const current = localStorage.getItem('cdl_theme') || 'auto';
+                const current = storageGet('cdl_theme') || 'auto';
                 let next = 'dark';
                 if (current === 'auto') {
                     const isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -478,14 +502,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     next = 'dark';
                 }
-                localStorage.setItem('cdl_theme', next);
+                storageSet('cdl_theme', next);
                 applyTheme(next);
             });
         }
 
         if (window.matchMedia) {
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-                if (!localStorage.getItem('cdl_theme') || localStorage.getItem('cdl_theme') === 'auto') {
+                if ((storageGet('cdl_theme') || 'auto') === 'auto') {
                     applyTheme('auto');
                 }
             });
@@ -500,8 +524,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function getPinnedTargets() {
         try {
-            const raw = localStorage.getItem(STORAGE_KEY_PINNED);
-            return raw ? JSON.parse(raw) : [];
+            const raw = storageGet(STORAGE_KEY_PINNED);
+            const parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed.filter(t => t && t.conf) : [];
         } catch (e) {
             return [];
         }
@@ -513,6 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (e) {
             console.error('Failed to save pinned targets', e);
         }
+        storageSet(STORAGE_KEY_PINNED, JSON.stringify(targets));
     }
 
     function isTargetPinned(confName, trackName) {
@@ -532,8 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (index >= 0) {
             targets.splice(index, 1);
         } else {
-            const found = allDeadlines.find(d => d.conference_name.toUpperCase() === confNorm &&
-                                                  ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === trackNorm));
+            const found = findDeadline(confName, trackName);
             targets.push({
                 conf: confName,
                 track: trackName || 'Main Track',
@@ -571,70 +596,103 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function getGoogleCalendarUrl(confName, trackName, dateStr, website) {
-        if (!dateStr) return '#';
-        const date = parseLocalDate(dateStr);
-        if (!date) return '#';
-        const y = date.getFullYear();
-        const m = String(date.getMonth() + 1).padStart(2, '0');
-        const d = String(date.getDate()).padStart(2, '0');
-        const dateStart = `${y}${m}${d}T180000Z`;
-        const dateEnd = `${y}${m}${d}T235900Z`;
-        const title = encodeURIComponent(`${confName} - ${trackName} Deadline`);
-        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
-        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dateStart}/${dateEnd}&details=${details}`;
+    const pad2 = n => String(n).padStart(2, '0');
+
+    // 20271031T115959Z
+    function toUtcStamp(date) {
+        return `${date.getUTCFullYear()}${pad2(date.getUTCMonth() + 1)}${pad2(date.getUTCDate())}` +
+            `T${pad2(date.getUTCHours())}${pad2(date.getUTCMinutes())}${pad2(date.getUTCSeconds())}Z`;
     }
 
-    function downloadIcsReminder(confName, trackName) {
-        const found = allDeadlines.find(d => d.conference_name.toUpperCase() === confName.toUpperCase() &&
-                                              ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === (trackName || 'Main Track').toUpperCase()));
-        const meta = getMeta(confName);
-        const dateStr = found ? found.paper_submission_date : null;
-        if (!dateStr) {
-            alert(`No confirmed submission date found for ${confName} - ${trackName}`);
-            return;
+    // 20271031 (local calendar date)
+    function toIcsDate(date) {
+        return `${date.getFullYear()}${pad2(date.getMonth() + 1)}${pad2(date.getDate())}`;
+    }
+
+    function icsEscape(text) {
+        return String(text == null ? '' : text)
+            .replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+    }
+
+    // RFC 5545: lines longer than 75 octets must be folded
+    function icsFold(line) {
+        const chunks = [];
+        let rest = line;
+        while (rest.length > 74) {
+            chunks.push(rest.slice(0, 74));
+            rest = ' ' + rest.slice(74);
         }
+        chunks.push(rest);
+        return chunks.join('\r\n');
+    }
 
+    function getGoogleCalendarUrl(confName, trackName, dateStr, website) {
+        if (!dateStr) return '#';
+        const due = parseAoeDate(dateStr);
+        if (!due) return '#';
+        // Deadline is 23:59:59 AoE (UTC-12); mark the final 30 minutes
+        const dates = `${toUtcStamp(new Date(due.getTime() - 30 * 60 * 1000))}/${toUtcStamp(due)}`;
+        const title = encodeURIComponent(`${confName} - ${trackName} Deadline`);
+        const details = encodeURIComponent(`Submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).\nWebsite: ${website || ''}\nTracked via SERC Conference DateLine.`);
+        return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}`;
+    }
+
+    // Returns VEVENT lines for one deadline, or '' when no usable date
+    function buildIcsEvent(confName, trackName, dateStr, websiteUrl) {
         const date = parseLocalDate(dateStr);
-        if (!date) return;
-        const y = date.getFullYear();
-        const m = String(date.getMonth() + 1).padStart(2, '0');
-        const d = String(date.getDate()).padStart(2, '0');
-        const dt = `${y}${m}${d}`;
-        const url = (found && found.website_url) ? found.website_url : meta.website;
-        const uid = `cdl-${confName.toLowerCase()}-${Date.now()}@conferencedateline`;
+        if (!date) return '';
+        const next = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+        const dt = toIcsDate(date);
+        const slug = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const url = safeUrl(websiteUrl) || safeUrl(getMeta(confName).website);
+        const lines = [
+            'BEGIN:VEVENT',
+            `UID:cdl-${slug(confName)}-${slug(trackName)}-${dt}@conferencedateline`,
+            `DTSTAMP:${toUtcStamp(new Date())}`,
+            `DTSTART;VALUE=DATE:${dt}`,
+            `DTEND;VALUE=DATE:${toIcsDate(next)}`,
+            `SUMMARY:${icsEscape(`${confName} - ${trackName} Submission Deadline (AoE)`)}`,
+            `DESCRIPTION:${icsEscape(`Paper submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE).${url ? ` Official link: ${url}` : ''}`)}`,
+            'STATUS:CONFIRMED',
+            'BEGIN:VALARM',
+            'TRIGGER:-P3D',
+            'ACTION:DISPLAY',
+            `DESCRIPTION:${icsEscape(`Reminder: ${confName} submission deadline in 3 days!`)}`,
+            'END:VALARM',
+            'END:VEVENT'
+        ];
+        return lines.map(icsFold).join('\r\n');
+    }
 
+    function downloadIcs(events, filename) {
         const icsContent = [
             'BEGIN:VCALENDAR',
             'VERSION:2.0',
             'PRODID:-//ConferenceDateLine//Tracker//EN',
             'CALSCALE:GREGORIAN',
-            'BEGIN:VEVENT',
-            `UID:${uid}`,
-            `DTSTAMP:${dt}T000000Z`,
-            `DTSTART;VALUE=DATE:${dt}`,
-            `DTEND;VALUE=DATE:${dt}`,
-            `SUMMARY:${confName} - ${trackName} Submission Deadline (AoE)`,
-            `DESCRIPTION:Paper submission deadline for ${confName} (${trackName}). Anywhere on Earth (AoE). Official link: ${url}`,
-            'STATUS:CONFIRMED',
-            'BEGIN:VALARM',
-            'TRIGGER:-P3D',
-            'ACTION:DISPLAY',
-            `DESCRIPTION:Reminder: ${confName} submission deadline in 3 days!`,
-            'END:VALARM',
-            'END:VEVENT',
+            events,
             'END:VCALENDAR'
-        ].join('\r\n');
+        ].join('\r\n') + '\r\n';
 
         const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
         const downloadUrl = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = downloadUrl;
-        a.download = `${confName}_${trackName.replace(/[^a-zA-Z0-9]/g, '_')}_deadline.ics`;
+        a.download = filename;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        URL.revokeObjectURL(downloadUrl);
+        setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+    }
+
+    function downloadIcsReminder(confName, trackName) {
+        const found = findDeadline(confName, trackName);
+        const event = found ? buildIcsEvent(confName, trackName, found.paper_submission_date, found.website_url) : '';
+        if (!event) {
+            alert(`No confirmed submission date found for ${confName} - ${trackName}`);
+            return;
+        }
+        downloadIcs(event, `${confName}_${(trackName || 'Main Track').replace(/[^a-zA-Z0-9]/g, '_')}_deadline.ics`);
     }
 
     function downloadAllPinnedIcs() {
@@ -645,37 +703,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const events = targets.map(t => {
-            const found = allDeadlines.find(d => d.conference_name.toUpperCase() === t.conf.toUpperCase() &&
-                                                  ((d.workshop_name || d.track_name || 'Main Track').toUpperCase() === (t.track || 'Main Track').toUpperCase()));
-            const meta = getMeta(t.conf);
-            const dateStr = t.paper_submission_date || (found ? found.paper_submission_date : null);
-            if (!dateStr) return '';
-
-            const date = parseLocalDate(dateStr);
-            if (!date) return '';
-            const y = date.getFullYear();
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            const dt = `${y}${m}${d}`;
-            const url = (found && found.website_url) ? found.website_url : meta.website;
-            const uid = `cdl-${t.conf.toLowerCase()}-${t.track.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${Date.now()}@conferencedateline`;
-
-            return [
-                'BEGIN:VEVENT',
-                `UID:${uid}`,
-                `DTSTAMP:${dt}T000000Z`,
-                `DTSTART;VALUE=DATE:${dt}`,
-                `DTEND;VALUE=DATE:${dt}`,
-                `SUMMARY:${t.conf} - ${t.track} Submission Deadline (AoE)`,
-                `DESCRIPTION:Paper submission deadline for ${t.conf} (${t.track}). Anywhere on Earth (AoE). Official link: ${url}`,
-                'STATUS:CONFIRMED',
-                'BEGIN:VALARM',
-                'TRIGGER:-P3D',
-                'ACTION:DISPLAY',
-                `DESCRIPTION:Reminder: ${t.conf} submission deadline in 3 days!`,
-                'END:VALARM',
-                'END:VEVENT'
-            ].join('\r\n');
+            const track = t.track || 'Main Track';
+            const found = findDeadline(t.conf, track);
+            const dateStr = (found && found.paper_submission_date) || t.paper_submission_date;
+            return buildIcsEvent(t.conf, track, dateStr, (found && found.website_url) || t.website_url);
         }).filter(Boolean).join('\r\n');
 
         if (!events) {
@@ -683,24 +714,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const icsContent = [
-            'BEGIN:VCALENDAR',
-            'VERSION:2.0',
-            'PRODID:-//ConferenceDateLine//Tracker//EN',
-            'CALSCALE:GREGORIAN',
-            events,
-            'END:VCALENDAR'
-        ].join('\r\n');
-
-        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-        const downloadUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = downloadUrl;
-        a.download = 'Target_Conferences_Deadlines.ics';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(downloadUrl);
+        downloadIcs(events, 'Target_Conferences_Deadlines.ics');
     }
 
     function setupBrowserNotification(confName, trackName) {
@@ -709,19 +723,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        const notify = () => new Notification(`Target Pinned: ${confName}`, {
+            body: `You are tracking ${confName} - ${trackName}. Live countdown is ticking at the top!`,
+            icon: isInSubfolder ? '../assets/flags/globe.svg' : 'assets/flags/globe.svg'
+        });
+
         if (Notification.permission === 'granted') {
-            new Notification(`Target Pinned: ${confName}`, {
-                body: `You are tracking ${confName} - ${trackName}. Live countdown is ticking at the top!`,
-                icon: isInSubfolder ? '../assets/flags/globe.svg' : 'assets/flags/globe.svg'
-            });
+            notify();
         } else if (Notification.permission !== 'denied') {
             Notification.requestPermission().then(permission => {
-                if (permission === 'granted') {
-                    new Notification(`Target Pinned: ${confName}`, {
-                        body: `You are tracking ${confName} - ${trackName}. Live countdown is ticking at the top!`,
-                        icon: isInSubfolder ? '../assets/flags/globe.svg' : 'assets/flags/globe.svg'
-                    });
-                }
+                if (permission === 'granted') notify();
             });
         } else {
             alert('Browser notifications are blocked. Please enable them in your browser settings to receive alerts.');
@@ -736,6 +747,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!pinnedSection || !pinnedGrid) return;
 
         const targets = getPinnedTargets();
+
+        pinnedSection.classList.toggle('hidden', targets.length === 0);
+        pinnedSection.hidden = targets.length === 0;
+        pinnedSection.style.display = targets.length === 0 ? 'none' : '';
 
         if (targets.length === 0) {
             pinnedSection.classList.add('hidden');
@@ -753,43 +768,50 @@ document.addEventListener('DOMContentLoaded', function() {
         if (pinnedCountBadge) pinnedCountBadge.textContent = `${targets.length} target${targets.length > 1 ? 's' : ''}`;
 
         pinnedGrid.innerHTML = targets.map(t => {
+            const track = t.track || 'Main Track';
+            // Prefer live data over the snapshot saved when pinned
+            const live = findDeadline(t.conf, track);
+            const submission = (live && live.paper_submission_date) || t.paper_submission_date;
+            const website = safeUrl((live && live.website_url) || t.website_url);
             const meta = getMeta(t.conf);
             const confPageUrl = confSlug(t.conf);
-            const gcalUrl = getGoogleCalendarUrl(t.conf, t.track, t.paper_submission_date, t.website_url);
-            const localFormatted = formatAoeToLocal(t.paper_submission_date);
+            const gcalUrl = getGoogleCalendarUrl(t.conf, track, submission, website);
+            const localFormatted = formatAoeToLocal(submission);
+            const conf = esc(t.conf);
+            const trk = esc(track);
 
             return `
-                <div class="pinned-target-card" data-conf="${t.conf}" data-track="${t.track}">
+                <div class="pinned-target-card" data-conf="${conf}" data-track="${trk}">
                     <div class="pinned-card-top">
                         <div class="pinned-card-identity">
                             ${renderFlagHtml(meta, 'flag-sm')}
-                            <a href="${confPageUrl}" style="color:inherit; text-decoration:none;"><strong>${t.conf}</strong></a>
-                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}" style="font-size:10px; padding:1px 5px;">CORE ${meta.coreRating}</span>
+                            <a href="${esc(confPageUrl)}" style="color:inherit; text-decoration:none;"><strong>${conf}</strong></a>
+                            <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}" style="font-size:10px; padding:1px 5px;">CORE ${esc(meta.coreRating)}</span>
                         </div>
-                        <button type="button" class="pinned-unpin-btn" data-conf="${t.conf}" data-track="${t.track}" title="Unpin this target conference">×</button>
+                        <button type="button" class="pinned-unpin-btn" data-conf="${conf}" data-track="${trk}" title="Unpin this target conference" aria-label="Unpin ${conf}">×</button>
                     </div>
 
-                    <div class="pinned-track-title" title="${t.track}">${t.track}</div>
+                    <div class="pinned-track-title" title="${trk}">${trk}</div>
 
                     <div class="live-countdown-box">
-                        <span class="countdown-timer-value" data-date="${t.paper_submission_date || ''}">Calculating...</span>
+                        <span class="countdown-timer-value" data-date="${esc(submission || '')}">Calculating...</span>
                         <div class="countdown-due-date">
-                            <span><span class="aoe-badge">AoE</span> ${formatDate(t.paper_submission_date)}</span>
-                            ${localFormatted ? `<span class="local-due-text">Your time: ${localFormatted}</span>` : ''}
+                            <span><span class="aoe-badge">AoE</span> ${esc(formatDate(submission))}</span>
+                            ${localFormatted ? `<span class="local-due-text">Your time: ${esc(localFormatted)}</span>` : ''}
                         </div>
                     </div>
 
                     <div class="pinned-card-actions">
-                        <a href="${gcalUrl}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action" title="Add submission deadline to Google Calendar">
+                        ${gcalUrl !== '#' ? `<a href="${esc(gcalUrl)}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action" title="Add submission deadline to Google Calendar">
                             Google Calendar
-                        </a>
-                        <button type="button" class="btn-reminder-action download-ics-btn" data-conf="${t.conf}" data-track="${t.track}" title="Download .ics Calendar File">
+                        </a>` : ''}
+                        <button type="button" class="btn-reminder-action download-ics-btn" data-conf="${conf}" data-track="${trk}" title="Download .ics Calendar File">
                             Export .ics
                         </button>
-                        <button type="button" class="btn-reminder-action notify-reminder-btn" data-conf="${t.conf}" data-track="${t.track}" title="Set browser notification alert">
+                        <button type="button" class="btn-reminder-action notify-reminder-btn" data-conf="${conf}" data-track="${trk}" title="Set browser notification alert">
                             Notify
                         </button>
-                        ${t.website_url && t.website_url !== '#' ? `<a href="${t.website_url}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action">Official Link ↗</a>` : ''}
+                        ${website ? `<a href="${esc(website)}" target="_blank" rel="noopener noreferrer" class="btn-reminder-action">Official Link ↗</a>` : ''}
                     </div>
                 </div>
             `;
@@ -917,6 +939,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (urlParams.get('conf')) {
                 conferenceFilter.value = urlParams.get('conf') || 'all';
             }
+            // Ignore ?conf= values that match no option (select would go blank and hide everything)
+            const confParam = (urlParams.get('conf') || '').toUpperCase();
+            const matched = allConferences.find(c => c.name.toUpperCase() === confParam);
+            if (matched) conferenceFilter.value = matched.name;
         }
 
         // Setup dedicated page pills on Home Page
@@ -928,6 +954,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.href = confSlug(conf.name);
                 link.className = 'dedicated-pill-link';
                 link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${conf.name}</strong> <span class="pill-core">${meta.coreRating}</span> ↗`;
+                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${esc(conf.name)}</strong> <span class="pill-core">${esc(meta.coreRating)}</span> ↗`;
                 quickPillsContainer.appendChild(link);
             });
         }
@@ -942,6 +969,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.href = confSlug(conf.name);
                 link.className = `switcher-pill ${isActive ? 'is-active' : ''}`;
                 link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${conf.name}</strong>`;
+                link.innerHTML = `${renderFlagHtml(meta, 'flag-sm')} <strong>${esc(conf.name)}</strong>`;
                 switcherContainer.appendChild(link);
             });
         }
@@ -977,6 +1005,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroWebsiteLink) {
             const trackWithUrl = confDeadlines.find(d => d.website_url);
             heroWebsiteLink.href = (meta.website && meta.website !== '#') ? meta.website : (trackWithUrl ? trackWithUrl.website_url : '#');
+            heroWebsiteLink.href = safeUrl(meta.website) || safeUrl(trackWithUrl && trackWithUrl.website_url) || '#';
         }
 
         if (listTitle) {
@@ -995,15 +1024,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 cohostedPillsRow.innerHTML = cohostedList.map(item => {
                     const itemMeta = getMeta(item);
                     const hasPage = allConferences.some(c => c.name.toUpperCase() === item.toUpperCase());
-                    const link = hasPage ? confSlug(item) : (itemMeta.website && itemMeta.website !== '#' ? itemMeta.website : '');
+                    const link = hasPage ? confSlug(item) : safeUrl(itemMeta.website);
                     const actionButton = link
-                        ? `<a href="${link}" class="btn-card-action" style="padding:2px 8px;" ${hasPage ? '' : 'target="_blank" rel="noopener noreferrer"'}>${hasPage ? 'View Page ↗' : 'Official Site ↗'}</a>`
+                        ? `<a href="${esc(link)}" class="btn-card-action" style="padding:2px 8px;" ${hasPage ? '' : 'target="_blank" rel="noopener noreferrer"'}>${hasPage ? 'View Page ↗' : 'Official Site ↗'}</a>`
                         : `<span class="cohosted-pill-tag">Co-located Event</span>`;
                     return `
-                        <div class="cohosted-pill-card" data-conf="${item}">
+                        <div class="cohosted-pill-card" data-conf="${esc(item)}">
                             <span class="cohosted-pill-flag">${renderFlagHtml(itemMeta, 'flag-sm')}</span>
-                            <strong>${item}</strong>
-                            <span class="cohosted-pill-badge">${itemMeta.coreRating}</span>
+                            <strong>${esc(item)}</strong>
+                            <span class="cohosted-pill-badge">${esc(itemMeta.coreRating)}</span>
                             ${actionButton}
                         </div>
                     `;
@@ -1322,12 +1351,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const pageUrl = confSlug(confName);
 
             rowsHtml += `
-                <div class="conference-column" style="grid-row: ${startRow} / span ${trackCount}; grid-column: 1;" title="${confName} (${meta.coreRating}) • ${meta.location}">
-                    <a href="${pageUrl}" class="conference-badge-link" data-conf="${confName}">
+                <div class="conference-column" style="grid-row: ${startRow} / span ${trackCount}; grid-column: 1;" title="${esc(`${confName} (${meta.coreRating}) • ${meta.location}`)}">
+                    <a href="${esc(pageUrl)}" class="conference-badge-link" data-conf="${esc(confName)}">
                         <div class="conference-badge-vertical">
                             ${renderFlagHtml(meta, 'flag-timeline')}
-                            <span class="badge-name">${confName}</span>
-                            <span class="badge-core">${meta.coreRating}</span>
+                            <span class="badge-name">${esc(confName)}</span>
+                            <span class="badge-core">${esc(meta.coreRating)}</span>
                         </div>
                     </a>
                 </div>
@@ -1341,30 +1370,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const cameraReadyDate = parseLocalDate(d.camera_ready_deadline);
 
                 const startOffset = start ? Math.max(0, Math.min(100, ((start.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : 0;
-                const endOffset = end ? Math.max(0, Math.min(100, ((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : 0;
+                const endOffset = end ? Math.max(0, Math.min(100, ((end.getTime() - minDate.getTime()) / 86400000) / totalDays * 100)) : startOffset;
                 const width = Math.max(1.5, endOffset - startOffset);
 
                 const daysToSubmission = start ? Math.ceil((start.getTime() - today.getTime()) / 86400000) : null;
-
-                let statusClass = 'days-status-safe';
-                if (daysToSubmission !== null) {
-                    if (daysToSubmission < 0) {
-                        statusClass = 'days-status-past';
-                    } else if (daysToSubmission <= 10) {
-                        statusClass = 'days-status-urgent';
-                    } else if (daysToSubmission <= 30) {
-                        statusClass = 'days-status-soon';
-                    } else if (daysToSubmission <= 60) {
-                        statusClass = 'days-status-medium';
-                    }
-                }
-
-                const daysDisplay = daysToSubmission !== null
-                    ? (daysToSubmission > 0 ? `${daysToSubmission}d left` : daysToSubmission === 0 ? 'Due Today' : `Passed ${Math.abs(daysToSubmission)}d ago`)
-                    : '';
+                const status = getDeadlineStatus(d.paper_submission_date);
+                const statusClass = status ? status.statusClass : 'days-status-safe';
+                const daysDisplay = status ? status.label : '';
 
                 const name = d.workshop_name || d.track_name || 'Main Track';
-                const websiteUrl = d.website_url || '';
+                const websiteUrl = safeUrl(d.website_url);
                 const durationDays = (start && end) ? Math.round((end.getTime() - start.getTime()) / 86400000) : 0;
                 const isNarrowBar = width < 8;
                 const isFarRight = endOffset > 88;
@@ -1380,12 +1395,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     : '';
 
                 const formatDateSafe = (date) => date ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : 'N/A';
-                const barTooltip = `${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}${cameraReadyDate ? `\nCamera-Ready: ${formatDateSafe(cameraReadyDate)}` : ''}`;
+                const barTooltip = esc(`${confName} - ${name}\nLocation: ${meta.location}\nCORE: ${meta.coreRating}\nSubmission Deadline: ${formatDateSafe(start)}\nReview Window: ${durationDays} days (${formatDateSafe(start)} to ${formatDateSafe(end)})\nNotification: ${formatDateSafe(end)}${abstractDate ? `\nAbstract: ${formatDateSafe(abstractDate)}` : ''}${cameraReadyDate ? `\nCamera-Ready: ${formatDateSafe(cameraReadyDate)}` : ''}`);
 
                 rowsHtml += `
                     <div class="timeline-row conf-group-${confIndex % 2}" style="grid-row: ${row}; grid-column: 2 / span 2;">
                         <div class="timeline-label" style="width: ${trackLabelWidth}px;">
-                            <div class="track-name">${websiteUrl ? `<a href="${websiteUrl}" target="_blank" rel="noopener noreferrer" title="${name}">${name}</a>` : `<span title="${name}">${name}</span>`}</div>
+                            <div class="track-name">${websiteUrl ? `<a href="${esc(websiteUrl)}" target="_blank" rel="noopener noreferrer" title="${esc(name)}">${esc(name)}</a>` : `<span title="${esc(name)}">${esc(name)}</span>`}</div>
                             <div class="days-left-badge ${statusClass}">${daysDisplay}</div>
                         </div>
                         <div class="timeline-bar-container" title="${barTooltip}">
@@ -1438,36 +1453,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const isWorkshop = !!d.workshop_name;
         const cardClass = isWorkshop ? 'workshop-card is-workshop' : 'workshop-card is-track';
         const name = d.workshop_name || (d.track_name || 'Main Track');
-        const url = d.website_url;
         const meta = getMeta(d.conference_name);
         const confPageUrl = confSlug(d.conference_name);
 
         const isPinned = isTargetPinned(d.conference_name, name);
-        const aoeDate = parseAoeDate(d.paper_submission_date);
-        const todayDate = new Date();
-        const daysToSubmission = aoeDate ? Math.ceil((aoeDate.getTime() - todayDate.getTime()) / 86400000) : null;
-        let statusClass = 'days-status-safe';
-        if (daysToSubmission !== null) {
-            if (daysToSubmission < 0) {
-                statusClass = 'days-status-past';
-            } else if (daysToSubmission <= 10) {
-                statusClass = 'days-status-urgent';
-            } else if (daysToSubmission <= 30) {
-                statusClass = 'days-status-soon';
-            } else if (daysToSubmission <= 60) {
-                statusClass = 'days-status-medium';
-            }
-        }
-
-        const daysBadgeHtml = daysToSubmission !== null ? `
-            <span class="days-left-badge ${statusClass}">
-                ${daysToSubmission > 0 ? `${daysToSubmission}d left` : daysToSubmission === 0 ? 'Due Today' : `Passed ${Math.abs(daysToSubmission)}d ago`}
-            </span>
+        const status = getDeadlineStatus(d.paper_submission_date);
+        const daysBadgeHtml = status ? `
+            <span class="days-left-badge ${status.statusClass}">${status.label}</span>
         ` : '';
 
-        const titleHtml = url 
-            ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="workshop-title-link">${name} ↗</a>`
-            : name;
+        const url = safeUrl(d.website_url);
+        const titleHtml = url
+            ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="workshop-title-link">${esc(name)} ↗</a>`
+            : esc(name);
 
         const localTimeFormatted = formatAoeToLocal(d.paper_submission_date);
 
@@ -1475,14 +1473,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="${cardClass}">
                 <div class="workshop-header">
                     <div class="header-chips">
-                        <a href="${confPageUrl}" class="workshop-conf-badge" title="View ${d.conference_name} page">
-                            ${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name} ↗
+                        <a href="${esc(confPageUrl)}" class="workshop-conf-badge" title="View ${esc(d.conference_name)} page">
+                            ${renderFlagHtml(meta, 'flag-sm')} ${esc(d.conference_name)} ↗
                         </a>
-                        <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">CORE ${meta.coreRating}</span>
+                        <span class="core-tag ${meta.coreRating === 'A*' ? 'core-star' : 'core-a'}">CORE ${esc(meta.coreRating)}</span>
                         ${daysBadgeHtml}
                     </div>
                     <div style="display:flex; align-items:center; gap:6px;">
-                        <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${d.conference_name}" data-track="${name}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
+                        <button type="button" class="btn-pin-toggle ${isPinned ? 'is-pinned' : ''}" data-conf="${esc(d.conference_name)}" data-track="${esc(name)}" title="${isPinned ? 'Unpin target' : 'Pin to Target Conferences'}">
                             ${isPinned ? 'Pinned' : 'Pin Target'}
                         </button>
                         <span class="workshop-type-pill">${isWorkshop ? 'Workshop' : 'Track'}</span>
@@ -1492,7 +1490,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="workshop-name">${titleHtml}</div>
 
                 <div class="workshop-location-row">
-                    <span class="location-chip">${meta.location} ${renderFlagHtml(meta, 'flag-sm')}</span>
+                    <span class="location-chip">${esc(meta.location)} ${renderFlagHtml(meta, 'flag-sm')}</span>
                 </div>
 
                 <div class="workshop-dates-grid">
@@ -1502,7 +1500,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             Submission (AoE)
                         </span>
                         <span class="date-chip-val">${formatDate(d.paper_submission_date)}</span>
-                        ${localTimeFormatted ? `<span class="date-local-hint">Local: ${localTimeFormatted}</span>` : ''}
+                        ${localTimeFormatted ? `<span class="date-local-hint">Local: ${esc(localTimeFormatted)}</span>` : ''}
                     </div>
                     <div class="date-chip">
                         <span class="date-chip-label">
@@ -1616,7 +1614,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!timelineContainer || !workshopList) return;
 
         function setView(mode) {
-            localStorage.setItem(isConferencePage ? 'cdl_conf_view_mode' : 'cdl_view_mode', mode);
+            storageSet(isConferencePage ? 'cdl_conf_view_mode' : 'cdl_view_mode', mode);
             if (timelineBtn) timelineBtn.classList.toggle('active', mode === 'timeline');
             if (cardsBtn) cardsBtn.classList.toggle('active', mode === 'cards');
             if (bothBtn) bothBtn.classList.toggle('active', mode === 'both');
@@ -1633,7 +1631,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        const savedMode = isConferencePage ? (localStorage.getItem('cdl_conf_view_mode') || 'both') : (localStorage.getItem('cdl_view_mode') || 'timeline');
+        const savedMode = isConferencePage ? (storageGet('cdl_conf_view_mode') || 'both') : (storageGet('cdl_view_mode') || 'timeline');
         setView(savedMode);
 
         if (timelineBtn) timelineBtn.addEventListener('click', () => setView('timeline'));
@@ -1652,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     searchInput.focus();
                     searchInput.select();
                 }
-            } else if (e.key === '/' && document.activeElement && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+            } else if (e.key === '/' && document.activeElement && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) && !(/** @type {HTMLElement} */ (document.activeElement)).isContentEditable) {
                 e.preventDefault();
                 if (searchInput) {
                     searchInput.focus();
@@ -1774,14 +1772,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         async function handleUserMessage(query) {
-            appendMessage('user', query);
+            appendMessage('user', esc(query));
             const typingEl = appendMessage('bot', '<em>Thinking...</em>');
 
             try {
                 if (enableOllamaCb && enableOllamaCb.checked) {
                     const urlInput = /** @type {HTMLInputElement|null} */ (document.getElementById('ollama-url'));
                     const modelInput = /** @type {HTMLInputElement|null} */ (document.getElementById('ollama-model'));
-                    const ollamaUrl = (urlInput ? urlInput.value.trim() : '') || 'http://localhost:11434';
+                    const ollamaUrl = ((urlInput ? urlInput.value.trim() : '') || 'http://localhost:11434').replace(/\/+$/, '');
                     const modelName = (modelInput ? modelInput.value.trim() : '') || 'llama3.2';
                     const reply = await askOllamaLLM(query, ollamaUrl, modelName);
                     if (typingEl) typingEl.innerHTML = reply;
@@ -1840,13 +1838,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!resp.ok) throw new Error(`Ollama HTTP ${resp.status}`);
         const data = await resp.json();
-        return (data.response || 'No response returned from Ollama.').replace(/\n/g, '<br>');
+        return esc(data.response || 'No response returned from Ollama.').replace(/\n/g, '<br>');
     }
 
     function generateLocalAssistantReply(q) {
         const lower = q.toLowerCase();
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
 
         if (lower.includes('raghu') || lower.includes('serc') || lower.includes('faculty') || lower.includes('professor') || lower.includes('architecture') || lower.includes('agents')) {
             return `
@@ -1879,14 +1875,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (lower.includes('upcoming') || lower.includes('next') || lower.includes('deadline') || lower.includes('due') || lower.includes('when')) {
             const upcoming = allDeadlines
                 .filter(d => {
-                    const dt = parseLocalDate(d.paper_submission_date);
-                    return dt && dt >= today;
+                    const dt = parseAoeDate(d.paper_submission_date);
+                    return dt && dt.getTime() >= Date.now();
                 })
-                .sort((a, b) => {
-                    const dtA = parseLocalDate(a.paper_submission_date);
-                    const dtB = parseLocalDate(b.paper_submission_date);
-                    return (dtA ? dtA.getTime() : 0) - (dtB ? dtB.getTime() : 0);
-                })
+                .sort((a, b) => parseAoeDate(a.paper_submission_date) - parseAoeDate(b.paper_submission_date))
                 .slice(0, 5);
 
             if (upcoming.length === 0) {
@@ -1894,16 +1886,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const itemsHtml = upcoming.map(d => {
-                const dt = parseLocalDate(d.paper_submission_date);
-                const days = dt ? Math.ceil((dt.getTime() - today.getTime()) / 86400000) : 0;
+                const status = getDeadlineStatus(d.paper_submission_date);
+                const days = status ? Math.max(0, status.days) : 0;
                 const name = d.workshop_name || d.track_name || 'Main Track';
                 const meta = getMeta(d.conference_name);
                 const localHint = formatAoeToLocal(d.paper_submission_date);
                 return `
                     <div style="margin-bottom:6px; padding:4px 0; border-bottom:1px dashed var(--color-border);">
-                        <strong>${renderFlagHtml(meta, 'flag-sm')} ${d.conference_name}</strong> - ${name}<br>
-                        Due: <strong>${formatDate(d.paper_submission_date)}</strong> (AoE • ${days} days left)<br>
-                        ${localHint ? `<span style="font-size:11px; color:var(--color-text-secondary);">Your time: ${localHint}</span> • ` : ''}<span class="core-tag">${meta.coreRating}</span>
+                        <strong>${renderFlagHtml(meta, 'flag-sm')} ${esc(d.conference_name)}</strong> - ${esc(name)}<br>
+                        Due: <strong>${esc(formatDate(d.paper_submission_date))}</strong> (AoE • ${days} days left)<br>
+                        ${localHint ? `<span style="font-size:11px; color:var(--color-text-secondary);">Your time: ${esc(localHint)}</span> • ` : ''}<span class="core-tag">${esc(meta.coreRating)}</span>
                     </div>
                 `;
             }).join('');
@@ -1947,7 +1939,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        if (lower.includes('agent') || lower.includes('agentic') || lower.includes('llm') || lower.includes('ai')) {
+        if (lower.includes('agent') || lower.includes('agentic') || lower.includes('llm') || /\bai\b/.test(lower)) {
             return `
                 <strong>Agentic Engineering & AI Workshops:</strong><br><br>
                 • <strong>AGENT Workshop</strong>: International Workshop on Agentic Engineering (Agentic AI in SE, co-located with ICSE 2027).<br>
@@ -1986,14 +1978,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const resHtml = matches.map(m => {
                 const meta = getMeta(m.conference_name);
                 const name = m.workshop_name || m.track_name || 'Main Track';
-                return `• <strong>${renderFlagHtml(meta, 'flag-sm')} ${m.conference_name}</strong> - ${name} (Due: ${formatDate(m.paper_submission_date)})`;
+                return `• <strong>${renderFlagHtml(meta, 'flag-sm')} ${esc(m.conference_name)}</strong> - ${esc(name)} (Due: ${esc(formatDate(m.paper_submission_date))})`;
             }).join('<br>');
 
             return `
-                I found ${matches.length} matching entries for "<strong>${q}</strong>":<br><br>
+                I found ${matches.length} matching entries for "<strong>${esc(q)}</strong>":<br><br>
                 ${resHtml}<br><br>
                 <div class="chat-actions-row">
-                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="${q}">Filter Timeline to "${q}"</button>
+                    <button type="button" class="chat-action-btn" data-action="search-kw" data-val="${esc(q)}">Filter Timeline to "${esc(q)}"</button>
                 </div>
             `;
         }
